@@ -23,22 +23,20 @@ describe('E2E Sanity Check', () => {
     }
   });
 
-  it('should load the home page', async () => {
+  it('should load the home page (now login page)', async () => {
     // Increased timeout for slow dev server starts
     await page.goto('http://localhost:4321', {
       waitUntil: 'networkidle0',
       timeout: 60000,
     });
 
-    // Check for some text that should be on the page
+    // Check for some text that should be on the page (since it is now login page)
     const content = await page.content();
-    expect(content).toContain(
-      'Experiencing the Intimacy of the Tuning you own RPG',
-    );
+    expect(content).toContain('MAMA VERIFICATION');
 
-    // Verify the 'Now Open A Vein And Own Your Own Mess' registration link is present
-    const forgeLink = await page.$('a[href="/market"]');
-    expect(forgeLink).not.toBeNull();
+    // Verify the submit button is present
+    const btn = await page.$('#submit-btn');
+    expect(btn).not.toBeNull();
   }, 30000);
 
   it.skipIf(!hasClerkKeys)(
