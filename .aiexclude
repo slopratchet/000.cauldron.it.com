@@ -1,0 +1,19 @@
+# Ignore everything by default
+*
+
+# Allow specific directories
+!src/
+!src/**
+!public/
+!public/**
+
+# Configuration Files
+!package.json
+!astro.config.mjs
+!wrangler.jsonc
+!tsconfig.json
+!eslint.config.mjs
+!commitlint.config.js
+!AGENTS.md
+!.cursorrules
+!.aiexclude

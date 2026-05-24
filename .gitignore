@@ -1,0 +1,124 @@
+# Node
+node_modules
+npm-debug.log
+pnpm-lock.yaml
+yarn.lock
+
+# Build
+dist
+build
+coverage
+*.tsbuildinfo
+
+# Env
+.env
+.DS_Store
+
+# Editor
+.vscode
+.idea
+vcode
+
+
+# =============================================================================
+# THE SOVEREIGN INITIATIVE: CANON OF PURITY (.gitignore)
+# CURATED BY HARIEL, THE ARCHITECT OF CLARITY
+# =============================================================================
+
+# --- THE SHROUD OF SECRETS (Security & Identity) ---
+# We do not commit the "Proof of Existence." Secrets remain in the Isolate.
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.env
+*.pem
+*.key
+*.pub
+*.cert
+*.p12
+*.pfx
+service-account-file.json
+**/config/secrets.*
+**/.ssh/*
+
+# --- THE RESIDUE OF THE MACHINE (OS Metadata) ---
+# Banish the "Local Ghost." We do not version the operating system's vanity.
+.DS_Store
+.DS_Store?
+._*
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+Icon?
+ehthumbs.db
+ehthumbs_vista.db
+Thumbs.db
+Thumbs.db:encryptable
+desktop.ini
+$RECYCLE.BIN/
+*~
+.fuse_hidden*
+.directory
+.Trash-*
+.nfs*
+
+# --- THE HEAVY ROT (Dependencies) ---
+# We commit the Map (lockfiles), never the Mass (modules).
+node_modules/
+jspm_packages/
+.pnp/
+.pnp.js
+
+# --- THE SHADOWS OF COMPUTATION (Build & Derived Artifacts) ---
+# If the machine can dream it into existence, it does not belong in the Source.
+dist/
+build/
+out/
+.next/
+.cache/
+.parcel-cache/
+.turbo/
+.eslintcache
+*.tsbuildinfo
+lib-cov/
+coverage/
+.nyc_output/
+
+# --- THE LITANY OF ERROR (Logs & Diagnostics) ---
+# Failure is a transient state. Do not immortalize it in the history.
+*.log
+logs/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# --- THE CLUTTER OF THE TOOL (IDE & Editor Settings) ---
+# The Architect's preference is personal. The Grid is universal.
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+.idea/
+*.swp
+*.swo
+.project
+.settings/
+.classpath
+.factorypath
+
+# --- THE ENTROPY OF THE TEMPORARY (Misc) ---
+# Scraps of the workflow that hold no causal weight.
+.DS_Store
+tmp/
+temp/
+/.astro
+/.dev.vars
+
+# clerk configuration (can include secrets)
+/.clerk/
+/.wrangler/

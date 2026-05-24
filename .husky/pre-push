@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Agent-Proof Pulse: Ensure all unit and E2E simulations pass before
+# any tactical increments are pushed to the remote buffer.
+npm run test:unit && npm run test:e2e

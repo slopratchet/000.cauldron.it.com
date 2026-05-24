@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# Agent-Proof Pulse: Verify edge-runtime compilation immediately
+# following a sector merge to catch environment pollution early.
+npm run build

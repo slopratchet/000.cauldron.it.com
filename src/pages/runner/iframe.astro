@@ -1,0 +1,101 @@
+---
+var iframeUrlStr = import.meta.env.PUBLIC_IFRAME_URL;
+if (iframeUrlStr == null) iframeUrlStr = 'none';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>Camp Candor</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+      }
+      iframe {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe
+      id="app-iframe"
+      title="Full Screen View"
+      data-iframe-url={iframeUrlStr}></iframe>
+
+    <script>
+      import { $clerkStore } from '@clerk/astro/client';
+
+      const iframe = document.getElementById('app-iframe');
+
+      // Fallback URL if data attribute is missing
+      let baseUrl = 'https://002-primal-mama-mobile-control.pages.dev/';
+      if (
+        iframe &&
+        iframe.dataset.iframeUrl &&
+        iframe.dataset.iframeUrl !== 'none'
+      ) {
+        baseUrl = iframe.dataset.iframeUrl;
+      }
+
+      const initIframe = async () => {
+        const clerk = $clerkStore.get();
+
+        // Ensure clerk exists AND is fully loaded (so session is populated)
+        if (!clerk || !clerk.loaded) {
+          // Wait for Clerk to load
+          setTimeout(initIframe, 100);
+          return;
+        }
+
+        let token = null;
+        try {
+          if (clerk.session) {
+            token = await clerk.session.getToken();
+          }
+        } catch (err) {
+          console.error('Error fetching Clerk token client-side:', err);
+        }
+
+        let finalIframeUrl = baseUrl;
+        if (token) {
+          if (finalIframeUrl.indexOf('?') === -1) {
+            finalIframeUrl += '?token=' + encodeURIComponent(token);
+          } else {
+            finalIframeUrl += '&token=' + encodeURIComponent(token);
+          }
+        }
+
+        if (iframe) {
+          // Set the src with the token in the URL first
+          iframe.src = finalIframeUrl;
+
+          // Also attempt postMessage for apps that prefer it,
+          // but ensure it happens after load
+          if (token) {
+            iframe.onload = function () {
+              if (iframe.contentWindow) {
+                iframe.contentWindow.postMessage(
+                  { type: 'CLERK_AUTH_TOKEN', payload: { token: token } },
+                  '*',
+                );
+              }
+            };
+          }
+        }
+      };
+
+      initIframe();
+    </script>
+  </body>
+</html>

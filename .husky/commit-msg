@@ -1,0 +1,3 @@
+#!/bin/sh
+# Ensures agents follow Conventional Commits
+npx --no-install commitlint --edit "$1"

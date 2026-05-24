@@ -1,0 +1,558 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+let status = 'OFFLINE';
+try {
+  const response = await fetch(new URL('/api/moon', Astro.url));
+  if (response.ok) {
+    const data = await response.json();
+    status = data.status;
+  }
+} catch (e) {
+  console.error('Failed to fetch system status:', e);
+}
+
+const isOnline = status === 'ONLINE';
+---
+
+<Layout bodyClass="dashboard-theme font-body text-on-surface relative">
+  <!-- Top Navigation Shell -->
+  <header
+    class="fixed top-0 left-0 w-full z-50 bg-[#fcf9f2] dark:bg-black border-b-2 border-black dark:border-[#fcf9f2] flex justify-between items-center px-6 py-4"
+  >
+    <div class="flex items-center gap-8">
+      <h1
+        class="font-headline font-black text-2xl uppercase tracking-tighter text-black dark:text-[#fcf9f2]"
+      >
+        DM COMMAND CENTER
+      </h1>
+      <nav class="hidden md:flex gap-6">
+        <a
+          class="font-label uppercase text-xs font-bold text-black dark:text-white translate-y-0.5 transition-transform underline"
+          href="#"
+          >Terminal
+        </a>
+        <a
+          class="font-label uppercase text-xs font-bold text-black/60 dark:text-[#fcf9f2]/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
+          href="#"
+          >Archive
+        </a>
+        <a
+          class="font-label uppercase text-xs font-bold text-black/60 dark:text-[#fcf9f2]/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
+          href="#"
+          >Systems
+        </a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <div class="relative">
+        <span
+          class="material-symbols-outlined absolute left-2 top-1/2 -translate-y-1/2 text-sm"
+          >search
+        </span>
+        <input
+          class="bg-surface-container-high border-2 border-black font-label text-[10px] px-8 py-1 focus:ring-0 focus:outline-none w-48 uppercase"
+          placeholder="QUERY PROTOCOL..."
+          type="text"
+        />
+      </div>
+      <span
+        class="material-symbols-outlined text-2xl"
+        data-icon="account_circle"
+        >account_circle
+      </span>
+    </div>
+  </header>
+
+  <!-- Sidebar Navigation -->
+  <aside
+    class="fixed left-0 top-0 h-full w-72 flex flex-col z-40 bg-[#fcf9f2] dark:bg-black border-r-2 border-black dark:border-[#fcf9f2] pt-24"
+  >
+    <div
+      class="bg-black text-[#fcf9f2] px-6 py-3 font-label font-bold uppercase tracking-widest text-sm"
+    >
+      Table of Contents
+    </div>
+    <div class="flex-1 flex flex-col w-full">
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs"
+          >The Dread Knight</span
+        >
+      </a>
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs">Flesh Weaver</span>
+      </a>
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs">Void Acolyte</span>
+      </a>
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs">Plague Doctor</span
+        >
+      </a>
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs">Iron Maiden</span>
+      </a>
+      <a
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        href="#"
+      >
+        <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
+        <span class="font-label font-bold uppercase text-xs">Soul Reaper</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- Main Content Stage -->
+  <main class="ml-72 pt-24 pb-12 px-8 min-h-screen">
+    <div class="grid grid-cols-12 gap-8 max-w-7xl mx-auto">
+      <!-- Left Column: SYSTEM METRICS -->
+      <section class="col-span-12 lg:col-span-4 space-y-6">
+        <div
+          class="bg-black text-surface px-3 py-1 inline-block font-label text-xs font-bold tracking-widest uppercase"
+        >
+          SYSTEM HEALTH / METRICS
+        </div>
+        <div class="space-y-4">
+          <!-- HEALTH OVERVIEW -->
+          <div
+            class="border-l-2 border-black bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group"
+          >
+            <div class="flex gap-3 items-center mb-3">
+              <div
+                class="w-10 h-10 border border-black flex items-center justify-center bg-black text-white"
+              >
+                <span class="material-symbols-outlined text-2xl"
+                  >health_metrics</span
+                >
+              </div>
+              <div>
+                <h3 class="font-headline font-bold text-sm leading-none">
+                  HEALTH OVERVIEW
+                </h3>
+                <p class="font-label text-[10px] opacity-60 uppercase">
+                  Grade: A- / Trend: improving
+                </p>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 gap-2 font-label text-[10px] font-bold"
+            >
+              <div class="bg-black text-white px-2 py-1 flex justify-between">
+                <span>SCORE</span><span>88</span>
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>STATUS</span><span>healthy</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- CI/CD HEALTH -->
+          <div
+            class="border-l-2 border-black bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group"
+          >
+            <div class="flex gap-3 items-center mb-3">
+              <div
+                class="w-10 h-10 border border-black flex items-center justify-center bg-black text-white"
+              >
+                <span class="material-symbols-outlined text-2xl">build</span>
+              </div>
+              <div>
+                <h3 class="font-headline font-bold text-sm leading-none">
+                  CI/CD HEALTH
+                </h3>
+                <p class="font-label text-[10px] opacity-60 uppercase">
+                  Last Run: failure
+                </p>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 gap-2 font-label text-[10px] font-bold"
+            >
+              <div class="bg-primary text-white px-2 py-1 flex justify-between">
+                <span class="text-error font-black">STATUS</span><span
+                  class="text-error">failing</span
+                >
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>SUCC RATE</span><span>94.2%</span>
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>AVG DUR</span><span>390s</span>
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>WORKFLOW</span><span>main</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SECURITY POSTURE -->
+          <div
+            class="border-l-2 border-black bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group"
+          >
+            <div class="flex gap-3 items-center mb-3">
+              <div
+                class="w-10 h-10 border border-black flex items-center justify-center bg-black text-white"
+              >
+                <span class="material-symbols-outlined text-2xl">security</span>
+              </div>
+              <div>
+                <h3 class="font-headline font-bold text-sm leading-none">
+                  SECURITY POSTURE
+                </h3>
+                <p class="font-label text-[10px] opacity-60 uppercase">
+                  Secret Alerts: 0
+                </p>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 gap-2 font-label text-[10px] font-bold"
+            >
+              <div class="bg-primary text-white px-2 py-1 flex justify-between">
+                <span class="text-error font-black">HIGH VULN</span><span
+                  class="text-error">2</span
+                >
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>CRITICAL</span><span>0</span>
+              </div>
+              <div
+                class="border border-black px-2 py-1 flex justify-between col-span-2"
+              >
+                <span>OUTDATED DEPS</span><span>5</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- VELOCITY & QUALITY -->
+          <div
+            class="border-l-2 border-black bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group"
+          >
+            <div class="flex gap-3 items-center mb-3">
+              <div
+                class="w-10 h-10 border border-black flex items-center justify-center bg-black text-white"
+              >
+                <span class="material-symbols-outlined text-2xl">speed</span>
+              </div>
+              <div>
+                <h3 class="font-headline font-bold text-sm leading-none">
+                  VELOCITY & QUALITY
+                </h3>
+                <p class="font-label text-[10px] opacity-60 uppercase">
+                  Test Coverage: 84.2%
+                </p>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 gap-2 font-label text-[10px] font-bold"
+            >
+              <div class="bg-black text-white px-2 py-1 flex justify-between">
+                <span>PR LEAD</span><span>14.5h</span>
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>OPEN PRS</span><span>8</span>
+              </div>
+              <div
+                class="border border-black px-2 py-1 flex justify-between col-span-2"
+              >
+                <span>OPEN BUGS</span><span>6</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- RISK METRICS -->
+          <div
+            class="border-l-2 border-black bg-surface-container-low p-4 hover:bg-surface-container-high transition-colors cursor-pointer group"
+          >
+            <div class="flex gap-3 items-center mb-3">
+              <div
+                class="w-10 h-10 border border-black flex items-center justify-center bg-black text-white"
+              >
+                <span class="material-symbols-outlined text-2xl">warning</span>
+              </div>
+              <div>
+                <h3 class="font-headline font-bold text-sm leading-none">
+                  RISK METRICS
+                </h3>
+                <p class="font-label text-[10px] opacity-60 uppercase">
+                  Active Contribs: 9
+                </p>
+              </div>
+            </div>
+            <div
+              class="grid grid-cols-2 gap-2 font-label text-[10px] font-bold"
+            >
+              <div class="bg-black text-white px-2 py-1 flex justify-between">
+                <span>BUS FACT</span><span>3</span>
+              </div>
+              <div class="border border-black px-2 py-1 flex justify-between">
+                <span>STALE BRN</span><span>3</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Center Column: SESSION OVERVIEW -->
+      <section class="col-span-12 lg:col-span-8 space-y-8">
+        <div class="border-b-4 border-black pb-4">
+          <p class="font-label text-[10px] font-bold opacity-60 mb-1">
+            CURRENT LOCATION // QUADRANT 7B
+          </p>
+          <h2
+            class="font-headline font-black text-5xl uppercase leading-none tracking-tighter"
+          >
+            THE FORGOTTEN REACH
+          </h2>
+        </div>
+        <div
+          class="prose max-w-none bg-surface-container border border-black p-6"
+        >
+          <p class="font-body text-lg italic leading-relaxed text-on-surface">
+            "The air within the reach is heavy with the scent of ancient ozone
+            and frozen rot. Frigid sepulchers stretch into the dark, their stone
+            floors etched with the binary prayers of a dead god. Every step
+            resonates against the silence of a thousand-year slumber."
+          </p>
+        </div>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="border border-black p-4 bg-surface-container-highest">
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="material-symbols-outlined text-sm"
+                data-icon="task_alt"
+                >task_alt
+              </span>
+              <h4
+                class="font-label font-bold text-[10px] uppercase tracking-widest"
+              >
+                Primary Objectives
+              </h4>
+            </div>
+            <ul class="font-label text-xs space-y-3 uppercase font-bold">
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 bg-black mt-1"></span>
+                <span>Locate central mechanisms</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 bg-black mt-1"></span>
+                <span>Decipher Liturgy of Aeon</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="w-1.5 h-1.5 bg-black mt-1"></span>
+                <span>Survive Necrosis Field</span>
+              </li>
+            </ul>
+          </div>
+          <div class="border border-black p-4 bg-surface-container-highest">
+            <div class="flex items-center gap-2 mb-4">
+              <span
+                class="material-symbols-outlined text-sm"
+                data-icon="auto_awesome_motion"
+                >auto_awesome_motion
+              </span>
+              <h4
+                class="font-label font-bold text-[10px] uppercase tracking-widest"
+              >
+                Grimoire Shortcuts
+              </h4>
+            </div>
+            <div class="space-y-2">
+              <div
+                class="bg-black text-white p-2 font-label text-[10px] flex justify-between items-center group cursor-pointer"
+              >
+                <span>NECROSIS LVL III</span>
+                <span
+                  class="opacity-0 group-hover:opacity-100 transition-opacity"
+                  >EXECUTE_
+                </span>
+              </div>
+              <div
+                class="bg-black text-white p-2 font-label text-[10px] flex justify-between items-center group cursor-pointer"
+              >
+                <span>BONE SHATTER LVL V</span>
+                <span
+                  class="opacity-0 group-hover:opacity-100 transition-opacity"
+                  >EXECUTE_
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="border-2 border-black p-6 bg-surface-container-low relative overflow-hidden"
+        >
+          <div
+            class="absolute top-0 right-0 bg-black text-white px-4 py-1 font-label text-[10px] font-bold"
+          >
+            SECRET_LOGS.EXE
+          </div>
+          <div class="flex items-center gap-3 mb-4">
+            <span class="material-symbols-outlined" data-icon="visibility_off"
+              >visibility_off
+            </span>
+            <h4 class="font-headline font-black text-sm uppercase">
+              Dungeon Master's Secret Logs
+            </h4>
+          </div>
+          <div class="font-body text-sm space-y-4 opacity-80 leading-relaxed">
+            <p>
+              Analysis indicates the party has bypassed the primary pressure
+              plate triggers in Hallway 4. The Necrosis Field is currently
+              operating at 40% capacity. VOID ACOLYTE'S proximity to the Relic
+              is causing structural instability in the southern wall.
+            </p>
+            <p>
+              Note: If the IRON MAIDEN attempts to breach the inner sanctum,
+              initiate Protocol 9-Theta immediately. The Grave Stalker is
+              currently shadowing them from the ethereal plane.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Bottom Row: BESTIARY LOOKUP -->
+      <section class="col-span-12 space-y-6">
+        <div
+          class="bg-black text-surface px-3 py-1 inline-block font-label text-xs font-bold tracking-widest uppercase"
+        >
+          BESTIARY LOOKUP
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- GRAVE STALKER -->
+          <div class="border border-black group cursor-pointer">
+            <div class="h-32 bg-primary overflow-hidden relative">
+              <img
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity"
+                alt="High contrast black and white image of a shadowy creature with long spindly limbs crawling through ancient ruin arches"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKMWo_L15OOoizj9bZCTm2aTw3-w5H8fMIJ4bPMHaovWwUXNcW6u9y2Fbr0WEjuaE5yQo1XUbefxi5a46dKJwmB4jsEHcejYJ81r7Pahm-c-lFHWXhMP0QGj97QZwqIwJPiwoyqmDv7_LSiDL6iq_CJD2_N9tCKmNa0_EBLFwNStm541XSiw-D-rJ0BQp4sq1q_M0jVj4KyPOyPqXYInwoqe6ASjIEIoAVDmpOU0XLDkWE_XiWGg7k1LPFOXucQW7MTlc2BjmYOA"
+              />
+              <div
+                class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 text-white font-label text-[10px] font-bold"
+              >
+                CR: 12
+              </div>
+            </div>
+            <div class="p-4 bg-surface-container-high">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-headline font-black text-sm uppercase">
+                  GRAVE STALKER
+                </h4>
+                <span class="font-label text-[10px] font-bold">PG: 402</span>
+              </div>
+              <p
+                class="font-label text-[9px] uppercase opacity-60 leading-tight"
+              >
+                Ethereal Stalker / Undead / Large
+              </p>
+            </div>
+          </div>
+          <!-- SOUL REAPER -->
+          <div class="border border-black group cursor-pointer">
+            <div class="h-32 bg-primary overflow-hidden relative">
+              <img
+                class="w-full h-full object-cover grayscale opacity-60 group-hover:opacity-100 transition-opacity"
+                alt="Cinematic low-key lighting showing a hooded reaper figure with a jagged scythe standing amidst swirling gray smoke"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCzq22iFaTzIOANU1b5tKZWwdwOJOgDeBiAFjsuRKQi03DlwROJsRHCNlQFR828NtinbiSURxOZSkauQPQnIukk93ZKg_urnVNrkHwm-RHi9Fri0bnWgMsItJNVoap3gjYOkd-kS8cfTnWW8KVbWGlJ9qC3PfwrvqlnpS1C7l8h-XHOYpvaw-Y-lgrCb6mLwzLviriNc3D3iLoYK1I1wgcZ6-xJT6JRk8Dc6lYc-0W8R4lk6N9-5Ps0UL9nRaLKWz0BWMM5Y-k8rw"
+              />
+              <div
+                class="absolute bottom-2 left-2 bg-black/80 px-2 py-1 text-white font-label text-[10px] font-bold"
+              >
+                CR: 20
+              </div>
+            </div>
+            <div class="p-4 bg-surface-container-high">
+              <div class="flex justify-between items-start mb-2">
+                <h4 class="font-headline font-black text-sm uppercase">
+                  SOUL REAPER
+                </h4>
+                <span class="font-label text-[10px] font-bold">PG: 512</span>
+              </div>
+              <p
+                class="font-label text-[9px] uppercase opacity-60 leading-tight"
+              >
+                Demonic Harbinger / Fiend / Gargantuan
+              </p>
+            </div>
+          </div>
+          <button
+            class="w-full border-2 border-dashed border-black/30 p-4 font-label text-[10px] font-bold uppercase hover:bg-black/5 transition-colors"
+          >
+            + ADD NEW RECORD
+          </button>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer Shell -->
+  <footer
+    class="fixed bottom-0 left-0 w-full z-50 bg-black dark:bg-[#fcf9f2] text-[#fcf9f2] dark:text-black flex justify-between items-center px-6 py-1"
+  >
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
+      >
+    </div>
+    <div class="flex gap-6 font-label text-[10px] tracking-widest uppercase">
+      <a class="opacity-80 hover:opacity-100 hover:underline" href="#"
+        >SYSTEM LOGS</a
+      >
+      <a class="opacity-80 hover:opacity-100 hover:underline" href="#"
+        >ENCRYPTION</a
+      >
+      <span class="opacity-40">TIMESTAMP: 14:22:01.09</span>
+    </div>
+  </footer>
+
+  <script>
+    const statusIndicator = document.getElementById('status-indicator');
+
+    async function updateStatus() {
+      try {
+        const response = await fetch('/api/moon');
+        const data = await response.json();
+
+        if (statusIndicator) {
+          statusIndicator.textContent = data.status;
+          if (data.status === 'ONLINE') {
+            statusIndicator.classList.remove('text-red-400');
+            statusIndicator.classList.add('text-green-400');
+          } else {
+            statusIndicator.classList.remove('text-green-400');
+            statusIndicator.classList.add('text-red-400');
+          }
+        }
+      } catch (error) {
+        if (statusIndicator) {
+          statusIndicator.textContent = 'OFFLINE';
+          statusIndicator.classList.remove('text-green-400');
+          statusIndicator.classList.add('text-red-400');
+        }
+      }
+    }
+
+    // Update status every 30 seconds
+    setInterval(updateStatus, 30000);
+  </script>
+</Layout>

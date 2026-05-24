@@ -1,0 +1,186 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout>
+  <div
+    class="relative min-h-screen w-full flex flex-col items-center border-[12px] border-primary pb-20 bg-background-light dark:bg-background-dark text-primary font-serif"
+  >
+    <header
+      class="w-full max-w-5xl px-8 py-16 text-center border-b-2 border-primary mb-12"
+    >
+      <h1
+        class="font-display text-5xl md:text-8xl font-black tracking-tighter uppercase leading-tight mb-4"
+      >
+        Character Selection
+      </h1>
+      <p
+        class="font-mono text-xs font-bold tracking-[0.3em] uppercase opacity-70"
+      >
+        Choose your vessel for the journey into the Void
+      </p>
+    </header>
+
+    <main class="w-full max-w-5xl px-4 md:px-8 space-y-16">
+      <button
+        class="character-card w-full text-left cursor-pointer group border-2 border-primary bg-background-light mb-12 flex flex-col md:flex-row overflow-hidden hover:-translate-y-1 transition-transform"
+      >
+        <div
+          class="illustration-container w-full md:w-1/3 aspect-[4/5] border-b-2 md:border-b-0 md:border-r-2 border-primary grayscale contrast-125 bg-cover bg-center"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+        >
+        </div>
+        <div class="flex-1 flex flex-col">
+          <div class="p-8 md:p-12 flex-1">
+            <div class="flex justify-between items-start mb-8">
+              <h2
+                class="font-display text-5xl md:text-6xl font-black uppercase leading-none tracking-tighter"
+              >
+                Dread Knight
+              </h2>
+              <span
+                class="font-mono text-sm font-bold border-2 border-primary px-3 py-1"
+                >REF: 112</span
+              >
+            </div>
+            <div
+              class="justified-slab text-xl md:text-2xl leading-relaxed text-primary/90"
+              style="text-align: justify; text-justify: inter-word;"
+            >
+              The Dread Knight emerges not from a womb, but from the frigid
+              sepulchers of the Forgotten Reach. They are the spectral echoes of
+              fallen paladins, their noble vows twisted by the necrotic
+              resonance of the Void.
+            </div>
+          </div>
+          <div
+            class="select-button text-center w-full py-6 bg-primary text-background-light font-display font-black text-2xl uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-primary border-t-2 border-primary transition-colors duration-200"
+          >
+            Select Dread Knight
+          </div>
+        </div>
+      </button>
+
+      <button
+        class="character-card w-full text-left cursor-pointer group border-2 border-primary bg-background-light mb-12 flex flex-col md:flex-row overflow-hidden hover:-translate-y-1 transition-transform"
+      >
+        <div
+          class="illustration-container w-full md:w-1/3 aspect-[4/5] border-b-2 md:border-b-0 md:border-r-2 border-primary grayscale contrast-125 bg-cover bg-center"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+        >
+        </div>
+        <div class="flex-1 flex flex-col">
+          <div class="p-8 md:p-12 flex-1">
+            <div class="flex justify-between items-start mb-8">
+              <h2
+                class="font-display text-5xl md:text-6xl font-black uppercase leading-none tracking-tighter"
+              >
+                Flesh Weaver
+              </h2>
+              <span
+                class="font-mono text-sm font-bold border-2 border-primary px-3 py-1"
+                >REF: 124</span
+              >
+            </div>
+            <div
+              class="justified-slab text-xl md:text-2xl leading-relaxed text-primary/90"
+              style="text-align: justify; text-justify: inter-word;"
+            >
+              They follow a rigid code known as the 'Liturgy of the Still
+              Heart.' It is a series of seventy-seven mandates that govern their
+              every movement, from the weight of their stride to the angle of
+              their blade.
+            </div>
+          </div>
+          <div
+            class="select-button text-center w-full py-6 bg-primary text-background-light font-display font-black text-2xl uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-primary border-t-2 border-primary transition-colors duration-200"
+          >
+            Select Flesh Weaver
+          </div>
+        </div>
+      </button>
+
+      <button
+        class="character-card w-full text-left cursor-pointer group border-2 border-primary bg-background-light mb-12 flex flex-col md:flex-row overflow-hidden hover:-translate-y-1 transition-transform"
+      >
+        <div
+          class="illustration-container w-full md:w-1/3 aspect-[4/5] border-b-2 md:border-b-0 md:border-r-2 border-primary grayscale contrast-125 bg-cover bg-center"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+        >
+        </div>
+        <div class="flex-1 flex flex-col">
+          <div class="p-8 md:p-12 flex-1">
+            <div class="flex justify-between items-start mb-8">
+              <h2
+                class="font-display text-5xl md:text-6xl font-black uppercase leading-none tracking-tighter"
+              >
+                Void Acolyte
+              </h2>
+              <span
+                class="font-mono text-sm font-bold border-2 border-primary px-3 py-1"
+                >REF: 140</span
+              >
+            </div>
+            <div
+              class="justified-slab text-xl md:text-2xl leading-relaxed text-primary/90"
+              style="text-align: justify; text-justify: inter-word;"
+            >
+              Their weapon is an extension of their soul. Each kill feeds the
+              blade, and each drop of blood spilled serves to lubricate the
+              grinding gears of their eternal existence.
+            </div>
+          </div>
+          <div
+            class="select-button text-center w-full py-6 bg-primary text-background-light font-display font-black text-2xl uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-primary border-t-2 border-primary transition-colors duration-200"
+          >
+            Select Void Acolyte
+          </div>
+        </div>
+      </button>
+
+      <button
+        class="character-card w-full text-left cursor-pointer group border-2 border-primary bg-background-light mb-12 flex flex-col md:flex-row overflow-hidden hover:-translate-y-1 transition-transform"
+      >
+        <div
+          class="illustration-container w-full md:w-1/3 aspect-[4/5] border-b-2 md:border-b-0 md:border-r-2 border-primary grayscale contrast-125 bg-cover bg-center"
+          style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+        >
+        </div>
+        <div class="flex-1 flex flex-col">
+          <div class="p-8 md:p-12 flex-1">
+            <div class="flex justify-between items-start mb-8">
+              <h2
+                class="font-display text-5xl md:text-6xl font-black uppercase leading-none tracking-tighter"
+              >
+                Iron Maiden
+              </h2>
+              <span
+                class="font-mono text-sm font-bold border-2 border-primary px-3 py-1"
+                >REF: 158</span
+              >
+            </div>
+            <div
+              class="justified-slab text-xl md:text-2xl leading-relaxed text-primary/90"
+              style="text-align: justify; text-justify: inter-word;"
+            >
+              Note to players: High-difficulty class. Their inability to heal
+              through standard clerical prayers makes them reliant on
+              soul-leeching mechanisms found in darker reaches.
+            </div>
+          </div>
+          <div
+            class="select-button text-center w-full py-6 bg-primary text-background-light font-display font-black text-2xl uppercase tracking-[0.2em] group-hover:bg-white group-hover:text-primary border-t-2 border-primary transition-colors duration-200"
+          >
+            Select Iron Maiden
+          </div>
+        </div>
+      </button>
+    </main>
+
+    <footer class="mt-12 text-center">
+      <p class="font-mono text-[10px] uppercase tracking-[0.4em] opacity-40">
+        Authorized access only // Chronos Systems 1974
+      </p>
+    </footer>
+  </div>
+</Layout>

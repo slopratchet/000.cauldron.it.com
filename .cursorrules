@@ -1,0 +1,43 @@
+# Agent Instructions
+
+## 1. Directory Restrictions
+
+You are strictly restricted to modifying code ONLY within the following permitted locations:
+
+- `src/` (components, pages, layouts, styles, and tests)
+- `public/` (static assets)
+- Root configuration files (e.g., `astro.config.mjs`, `wrangler.jsonc`, `package.json`, `tsconfig.json`)
+
+If a task requires modifying or creating files outside these locations, you must notify the user.
+
+## 2. Architectural Constraints & Patterns
+
+This project follows the **Astro** framework architecture deployed via **Cloudflare Workers/Pages**:
+
+- **Routing:** Handled via `src/pages/`. Use `.astro` for UI pages and `.ts`/`.js` for API endpoints.
+- **Components:** Reusable UI elements go in `src/components/`.
+- **Layouts:** Page wrappers go in `src/layouts/`.
+- **Cloudflare Runtime:** API endpoints and server-side logic can access Cloudflare bindings via `Astro.locals.runtime.env` (provided by `@astrojs/cloudflare`).
+- **Islands Architecture:** Keep client-side JavaScript minimal. Only use client directives (`client:load`, `client:visible`, etc.) when interactivity is strictly required. Rely on standard HTML/CSS and Astro templating heavily.
+
+## 3. Testing Requirements
+
+> **✅ MANDATORY: USE VITEST.**
+> The testing framework for this project is `vitest`. 
+
+Testing is split into Unit and End-to-End (E2E) tests:
+- **Unit Tests:** Run via `npm run test:unit`. Place `*.test.ts` files alongside the code they test (omitting `src/e2e.test.ts`). Use `vitest` assertions (`describe`, `it`, `expect`, `vi.fn`).
+- **E2E Tests:** Run via `npm run test:e2e`. These tests use Puppeteer & Vitest, testing against the live dev server natively via `start-server-and-test`. E2E tests belong in `src/e2e.test.ts`.
+- **Full Suite:** Run `npm run test` or `npm run check:all` followed by tests to verify.
+
+Always execute the testing pipeline to ensure your changes do not introduce regressions.
+
+## 4. Code Quality and Formatting
+
+This repository uses ESLint, Prettier, Husky, and Commitlint to enforce high code quality.
+- Verify your code format using `npm run check:all`.
+- Automatically resolve linting/formatting issues by running `npm run fix:all`.
+
+## 5. No Helper Scripts
+
+You are forbidden from writing or committing quick-and-dirty helper scripts (e.g., Python, Bash) to generate source code. Produce all `.astro` and TypeScript directly following Astro and Cloudflare best practices.

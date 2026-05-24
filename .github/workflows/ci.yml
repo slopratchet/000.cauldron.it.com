@@ -1,0 +1,49 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest # 🟢 Contains Google Chrome pre-installed
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: 'npm'
+
+      # 📦 Install (Includes playwright-core, skips browser binaries)
+      - name: Install Dependencies
+        run: npm ci
+
+      # 🧹 Code Quality
+      - name: Check Format & Lint
+        run: npm run check
+
+      # 🏗️ Build Everything (Shared Types, Cloudflare Worker, React App)
+      - name: Build
+        run: npm run build
+
+      - name: Verify Bundle Isolation (V8 Guard)
+        run: npm run verify:bundle
+
+      # 🧪 Unit Tests (Vitest)
+      # This runs 'npm run test' at the root, which triggers:
+      # 1. Cloudflare Worker tests (vitest-pool-workers)
+      # 2. React App Unit tests (vitest jsdom)
+      - name: Run Unit Tests
+        run: npm run test
+
+      # 🎭 E2E Tests (Playwright Core)
+      # We run this explicitly. It uses the system Chrome on ubuntu-latest.
+      # It will auto-start the RSBuild dev server.
+      - name: Run E2E Tests (App)
+        run: npm run test:e2e
+        env:
+          CI: true

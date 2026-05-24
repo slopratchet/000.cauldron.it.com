@@ -1,0 +1,5 @@
+#!/bin/sh
+
+# This ensures that even if Jules runs 'git commit' manually,
+# the code is automatically formatted and linted first.
+npm run lint:staged

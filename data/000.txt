@@ -1,0 +1,5 @@
+./public/favicon.ico
+./public/favicon.svg
+./public/img/000.png
+./src/assets/astro.svg
+./src/assets/background.svg

@@ -1,0 +1,19 @@
+#!/bin/sh
+BRANCH=$(git rev-parse --abbrev-ref HEAD)
+PROTECTED="master main"
+
+for protected in $PROTECTED; do
+    if [ "$BRANCH" = "$protected" ]; then
+        echo "🛑 ERROR: Direct push to '$BRANCH' is disabled."
+        echo "💡 SOLUTION: Create a new branch (e.g., 'feat/update-login')."
+        exit 1
+    fi
+done
+
+# Regex: Allow only lowercase, numbers, and dashes
+if ! echo "$BRANCH" | grep -qE '^[a-z0-9/-]+$'; then
+    echo "🛑 ERROR: Branch name '$BRANCH' is invalid."
+    echo "💡 SOLUTION: Rename branch using only lowercase letters and dashes."
+    exit 1
+fi
+exit 0

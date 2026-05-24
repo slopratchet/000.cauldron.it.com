@@ -1,0 +1,18 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Chronicles from '../components/Chronicles.astro';
+import LifeLog from '../components/LifeLog.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <Header />
+  <Hero />
+  <main class="bg-paper dark:bg-background-dark relative z-30">
+    <Chronicles />
+    <LifeLog />
+  </main>
+  <Footer />
+</Layout>

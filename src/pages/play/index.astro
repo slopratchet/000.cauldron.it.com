@@ -1,0 +1,427 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout bodyClass="bg-background-light text-primary font-serif">
+  <div
+    class="relative flex h-screen w-full flex-col overflow-hidden border-[12px] border-primary"
+  >
+    <!-- Header -->
+    <header
+      class="flex flex-col md:flex-row items-center justify-between border-b-2 border-primary bg-background-light px-8 py-6"
+    >
+      <div class="flex flex-col items-start gap-1">
+        <div class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-5xl">menu_book</span>
+          <h1
+            class="font-display text-4xl md:text-6xl font-black tracking-tighter uppercase leading-none"
+          >
+            The Tome: 1970 Edition
+          </h1>
+        </div>
+        <p
+          class="font-mono text-[10px] md:text-xs font-bold tracking-widest uppercase mt-2"
+        >
+          The Grand Index of All Recorded Arcana, Creatures, and Heresies
+        </p>
+      </div>
+      <div class="flex flex-col items-end gap-4 mt-6 md:mt-0">
+        <div
+          class="border-2 border-primary px-3 py-2 flex items-center bg-white"
+        >
+          <span class="material-symbols-outlined text-2xl mr-2">search</span>
+          <input
+            class="bg-transparent border-none focus:ring-0 font-mono text-sm uppercase w-48 outline-none"
+            placeholder="QUERY INDEX..."
+            type="text"
+          />
+        </div>
+        <div class="flex gap-4 font-mono text-xs font-bold">
+          <span>VOL. IV</span>
+          <span class="opacity-50">/</span>
+          <span>1974 EDITION</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Grid -->
+    <main
+      class="flex-1 overflow-y-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-[2px] bg-primary border-y-2 border-primary p-[2px]"
+    >
+      <!-- Section 01 -->
+      <div
+        class="col-span-full bg-primary text-background-light px-4 py-3 font-display font-black uppercase tracking-widest flex justify-between items-center"
+      >
+        <span>01. Character Classes</span>
+        <span class="material-symbols-outlined">back_hand</span>
+      </div>
+
+      <!-- Dread Knight -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Dread Knight
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          The Dread Knight emerges not from a womb, but from the frigid
+          sepulchers of the Forgotten Reach. They are the spectral echoes of
+          fallen paladins, their noble vows twisted by the necrotic resonance of
+          the Void.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>REF: PAGE 112</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Flesh Weaver -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Flesh Weaver
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          They follow a rigid code known as the 'Liturgy of the Still Heart.' It
+          is a series of seventy-seven mandates that govern their every
+          movement, from the weight of their stride to the angle of their blade.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>REF: PAGE 124</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Void Acolyte -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Void Acolyte
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          Their weapon is an extension of their soul. Each kill feeds the blade,
+          and each drop of blood spilled serves to lubricate the grinding gears
+          of their eternal existence.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>REF: PAGE 140</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Iron Maiden -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Iron Maiden
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          Note to players: High-difficulty class. Their inability to heal
+          through standard clerical prayers makes them reliant on soul-leeching
+          mechanisms found in darker reaches.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>REF: PAGE 158</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Add New Record -->
+      <button
+        class="bg-background-light p-4 flex flex-col hover:bg-white transition-colors cursor-pointer group min-h-[16rem]"
+      >
+        <div
+          class="border-2 border-dashed border-primary/20 flex-1 flex items-center justify-center font-display font-black text-sm uppercase tracking-widest text-primary/60 w-full"
+        >
+          + ADD NEW RECORD
+        </div>
+      </button>
+
+      <!-- Empty cells for row alignment -->
+      <div class="hidden md:block bg-background-light"></div>
+      <div class="hidden xl:block bg-background-light"></div>
+      <div class="hidden xl:block bg-background-light"></div>
+
+      <!-- Section 02 -->
+      <div
+        class="col-span-full bg-primary text-background-light px-4 py-3 font-display font-black uppercase tracking-widest flex justify-between items-center"
+      >
+        <span>02. Grimoire of Spells</span>
+        <span class="material-symbols-outlined">auto_stories</span>
+      </div>
+
+      <!-- Necrosis -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Necrosis
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center opacity-50"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          The spectral echoes of fallen paladins, their noble vows twisted by
+          necrotic resonance. This spell allows for the total dissolution of
+          living tissue in a matter of heartbeats.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>LVL: III / PAGE 210</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Bone Shatter -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Bone Shatter
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center opacity-50"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          Deals 2d10 crushing damage and paralyzes living tissue for 1 turn. The
+          resonance will cause psychic damage per turn to any who witness the
+          fracture.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>LVL: V / PAGE 245</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Add New Record -->
+      <button
+        class="bg-background-light p-4 flex flex-col hover:bg-white transition-colors cursor-pointer group min-h-[16rem]"
+      >
+        <div
+          class="border-2 border-dashed border-primary/20 flex-1 flex items-center justify-center font-display font-black text-sm uppercase tracking-widest text-primary/60 w-full"
+        >
+          + ADD NEW RECORD
+        </div>
+      </button>
+
+      <!-- Empty cells for row alignment -->
+      <div class="hidden md:block lg:hidden xl:block bg-background-light"></div>
+
+      <!-- Section 03 -->
+      <div
+        class="col-span-full bg-primary text-background-light px-4 py-3 font-display font-black uppercase tracking-widest flex justify-between items-center"
+      >
+        <span>03. Bestiary of the Void</span>
+        <span class="material-symbols-outlined">skull</span>
+      </div>
+
+      <!-- Grave Stalker -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Grave Stalker
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          Creatures that emerge from the frigid sepulchers. In the company of
+          mortals, they remain silent, their presence marked only by the smell
+          of ancient parchment and ozone.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>CR: 12 / PAGE 402</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Soul Reaper -->
+      <a
+        href="/play/character"
+        class="bg-background-light p-4 flex flex-col gap-4 hover:bg-white transition-colors cursor-pointer group"
+      >
+        <div class="flex justify-between items-start">
+          <h3
+            class="font-display text-2xl font-black uppercase leading-none w-1/2"
+          >
+            Soul Reaper
+          </h3>
+          <div
+            class="w-16 h-16 border border-primary grayscale contrast-125 bg-cover bg-center"
+            style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAKNzjFJmyyAubw75N8PkgeIzleC5ayxs64PjCxfaFXeW-Ak1CSH0oGsFNw5XBKMX1Bl7E7rUJhcQ5vo_p1Sup5KxoqHknA8ZZELdjoVwpHlUbfLdmTFr59OA5LB_6WlmPHfDZvJyYpCY5NnrX_rnsw3qnsO9xIENlFMrupVYLrM6oiOyitkA9HOkyJyftv6cN9M72-4ufzGV6Y-wcP68YPt-WptTx9SfRQjaKC5npPCiwJNR-W50qNPfggVm6gNrE31ygOG-diAPoK");'
+          >
+          </div>
+        </div>
+        <p class="justified-slab text-sm leading-snug">
+          Each kill feeds their existence. They seek not glory, but the eventual
+          peace that comes only with the total dissolution of the world and its
+          spiritual anchors.
+        </p>
+        <div
+          class="mt-auto pt-4 border-t border-primary/20 flex justify-between items-center font-mono text-[10px] uppercase"
+        >
+          <span>CR: 20 / PAGE 512</span>
+          <span class="material-symbols-outlined text-sm">arrow_right_alt</span>
+        </div>
+      </a>
+
+      <!-- Add New Record -->
+      <button
+        class="bg-background-light p-4 flex flex-col hover:bg-white transition-colors cursor-pointer group min-h-[16rem]"
+      >
+        <div
+          class="border-2 border-dashed border-primary/20 flex-1 flex items-center justify-center font-display font-black text-sm uppercase tracking-widest text-primary/60 w-full"
+        >
+          + ADD NEW RECORD
+        </div>
+      </button>
+
+      <!-- Empty cells for row alignment -->
+      <div class="hidden md:block lg:hidden xl:block bg-background-light"></div>
+    </main>
+
+    <!-- Global Navigation -->
+    <aside class="w-full border-t-2 border-primary bg-background-light">
+      <div class="flex flex-col lg:flex-row">
+        <div
+          class="w-full lg:w-1/4 p-4 bg-primary text-background-light border-r-2 border-primary"
+        >
+          <h2 class="font-display font-black text-xl uppercase tracking-widest">
+            Global Navigation
+          </h2>
+          <p class="font-mono text-[10px] mt-2 opacity-70">
+            Direct access to the primary scrolls of the Great Library.
+          </p>
+        </div>
+        <div
+          class="flex-1 grid grid-cols-2 md:grid-cols-4 bg-primary gap-[2px]"
+        >
+          <a
+            class="bg-background-light p-6 hover:bg-primary hover:text-background-light transition-colors flex items-center justify-center gap-2 font-display font-bold uppercase text-sm tracking-widest"
+            href="#"
+          >
+            <span class="material-symbols-outlined">person_pin</span> Classes
+          </a>
+          <a
+            class="bg-background-light p-6 hover:bg-primary hover:text-background-light transition-colors flex items-center justify-center gap-2 font-display font-bold uppercase text-sm tracking-widest"
+            href="#"
+          >
+            <span class="material-symbols-outlined">auto_fix</span> Spells
+          </a>
+          <a
+            class="bg-background-light p-6 hover:bg-primary hover:text-background-light transition-colors flex items-center justify-center gap-2 font-display font-bold uppercase text-sm tracking-widest"
+            href="#"
+          >
+            <span class="material-symbols-outlined">pets</span> Bestiary
+          </a>
+          <a
+            class="bg-background-light p-6 hover:bg-primary hover:text-background-light transition-colors flex items-center justify-center gap-2 font-display font-bold uppercase text-sm tracking-widest"
+            href="#"
+          >
+            <span class="material-symbols-outlined">diamond</span> Relics
+          </a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Footer -->
+    <footer
+      class="bg-primary text-background-light px-8 py-3 flex flex-col md:flex-row justify-between items-center font-mono text-[10px] uppercase tracking-widest border-t-2 border-primary"
+    >
+      <div class="flex gap-4">
+        <span>The Tome &copy; 1974 - 1979 Chronos Systems</span>
+        <span class="hidden md:inline">|</span>
+        <span>PRINTED IN THE KINGDOM OF AEON</span>
+      </div>
+      <div class="mt-2 md:mt-0 flex gap-6">
+        <span>INDEXED ENTRIES: 666</span>
+        <span>REGISTERED USER: ADMIN_01</span>
+      </div>
+    </footer>
+  </div>
+</Layout>
+
+<style>
+  .justified-slab {
+    text-align: justify;
+    text-justify: inter-word;
+  }
+</style>

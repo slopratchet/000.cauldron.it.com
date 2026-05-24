@@ -1,0 +1,438 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+/**
+ * PROTOCOL: REGISTRATION (signup.astro)
+ * Stage 1: The Covenant (Data Entry + Metadata)
+ * Stage 2: The Transmission (OTP Pivot)
+ * Stage 3: The Integration (Session Extraction)
+ */
+
+// SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
+const auth = Astro.locals.auth();
+if (auth.userId) {
+  const target = '/play';
+  return Astro.redirect(target);
+}
+---
+
+<Layout title="Registration | Protocol Initialization">
+  <main
+    class="flex-1 flex items-center justify-center p-8 min-h-screen relative overflow-hidden"
+  >
+    <div class="w-full max-w-lg">
+      <div
+        class="border-4 border-primary bg-paper p-8 relative z-10 shadow-[20px_20px_0px_rgba(var(--color-primary),0.1)]"
+      >
+        <div
+          class="absolute -top-4 left-4 bg-primary text-paper px-4 py-1 font-display text-xs font-bold tracking-widest uppercase"
+        >
+          GENETIC_SEQUENCING_INIT
+        </div>
+
+        <div class="mb-10 mt-4 text-center">
+          <h2
+            class="font-display font-black text-3xl uppercase leading-none tracking-tighter mb-2 text-primary"
+          >
+            NEW_ACQUISITION
+          </h2>
+          <div class="h-1 w-12 bg-primary mx-auto"></div>
+        </div>
+
+        <form id="signup-form" class="space-y-6">
+          <div id="covenant-sector" class="space-y-6">
+            <!-- Phase 1: Identity -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label
+                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                  >NODE_NAME</label
+                >
+                <input
+                  id="username"
+                  name="username"
+                  required
+                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase text-primary transition-colors"
+                  placeholder="USERNAME..."
+                  type="text"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                  >GENETIC_ID (EMAIL)</label
+                >
+                <input
+                  id="emailAddress"
+                  name="emailAddress"
+                  required
+                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none lowercase text-primary transition-colors"
+                  placeholder="EMAIL..."
+                  type="email"
+                />
+              </div>
+            </div>
+
+            <div class="space-y-1">
+              <label
+                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                >ACCESS_CIPHER</label
+              >
+              <input
+                id="password"
+                name="password"
+                required
+                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none text-primary transition-colors"
+                placeholder="••••••••"
+                type="password"
+              />
+            </div>
+
+            <!-- Phase 2: Metadata Handshake -->
+            <div class="pt-4 border-t border-primary/10">
+              <h3
+                class="font-display text-[10px] font-black uppercase tracking-widest text-primary mb-4 opacity-80"
+              >
+                TACTICAL_BIOMETRICS
+              </h3>
+              <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="space-y-1">
+                  <label
+                    class="text-[8px] font-bold uppercase opacity-60 text-primary"
+                    >ORIGIN</label
+                  >
+                  <select
+                    name="origin"
+                    class="w-full border-2 border-primary bg-paper px-2 py-2 font-display text-[10px] font-bold uppercase outline-none text-primary focus:bg-white cursor-pointer"
+                  >
+                    <option value="EARTHBOUND">EARTHBOUND</option>
+                    <option value="VESSEL">VESSEL</option>
+                    <option value="SPECTRAL_REMNANT">SPECTRAL_REMNANT</option>
+                  </select>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-[8px] font-bold uppercase opacity-60 text-primary"
+                    >ARCHETYPE</label
+                  >
+                  <select
+                    name="archetype"
+                    class="w-full border-2 border-primary bg-paper px-2 py-2 font-display text-[10px] font-bold uppercase outline-none text-primary focus:bg-white cursor-pointer"
+                  >
+                    <option value="RUNNER">RUNNER</option>
+                    <option value="SPLICER">SPLICER</option>
+                    <option value="OBSERVER">OBSERVER</option>
+                  </select>
+                </div>
+                <div class="space-y-1">
+                  <label
+                    class="text-[8px] font-bold uppercase opacity-60 text-primary"
+                    >ALIGNMENT</label
+                  >
+                  <select
+                    name="alignment"
+                    class="w-full border-2 border-primary bg-paper px-2 py-2 font-display text-[10px] font-bold uppercase outline-none text-primary focus:bg-white cursor-pointer"
+                  >
+                    <option value="PRIMAL">PRIMAL</option>
+                    <option value="VOID">VOID</option>
+                    <option value="HARMONIC">HARMONIC</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Transmission (OTP) -->
+          <div
+            id="transmission-sector"
+            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500"
+          >
+            <div class="space-y-1 text-center">
+              <label
+                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                >PULSE_VERIFICATION_CODE</label
+              >
+              <input
+                id="verification_code"
+                name="verification_code"
+                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-3xl font-black tracking-[0.5em] text-center focus:ring-0 focus:bg-white outline-none text-primary transition-colors"
+                placeholder="000000"
+                type="text"
+                maxlength="6"
+              />
+              <p
+                class="text-[8px] font-bold uppercase opacity-40 tracking-tighter mt-2"
+              >
+                SECURE CHANNEL: CHECK YOUR SIGNAL BUFFER (EMAIL)
+              </p>
+            </div>
+          </div>
+
+          <!-- Sync State -->
+          <div
+            id="integration-sector"
+            class="hidden py-10 text-center animate-pulse"
+          >
+            <div class="mb-4">
+              <span
+                class="material-symbols-outlined text-5xl text-primary animate-spin"
+                >cyclone</span
+              >
+            </div>
+            <h3
+              class="font-display font-black text-xl uppercase tracking-widest text-primary"
+            >
+              SYNCHRONIZING SIMULATION...
+            </h3>
+            <p class="text-[8px] font-bold uppercase opacity-40 mt-2">
+              EXTRACTING METADATA FROM VOID...
+            </p>
+          </div>
+
+          <div class="space-y-4 pt-2">
+            <label class="flex items-start gap-3 cursor-pointer group">
+              <div class="relative flex items-center pt-1">
+                <input
+                  id="covenant-check"
+                  type="checkbox"
+                  required
+                  class="peer h-4 w-4 border-2 border-primary bg-paper appearance-none checked:bg-primary transition-all cursor-pointer"
+                />
+                <span
+                  class="material-symbols-outlined absolute text-paper text-[14px] opacity-0 peer-checked:opacity-100 pointer-events-none left-[1px]"
+                  >done</span
+                >
+              </div>
+              <span
+                class="font-display text-[9px] font-bold uppercase tracking-tight text-primary/70 leading-relaxed group-hover:text-primary transition-colors"
+              >
+                I_ACCEPT_THE_COVENANT: I bind my soul to the simulation rules
+                and the eternal surveillance of Primal Mama.
+              </span>
+            </label>
+          </div>
+
+          <div
+            id="error-message"
+            class="hidden border-l-2 border-red-600 bg-red-50 p-3 font-display text-[10px] font-bold uppercase text-red-600 tracking-tight"
+          >
+          </div>
+
+          <div id="actions-sector" class="pt-4">
+            <button
+              id="submit-btn"
+              type="submit"
+              class="w-full bg-primary text-paper font-display font-black text-sm py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-primary border-2 border-transparent hover:border-primary transition-all active:scale-[0.98] disabled:opacity-50"
+            >
+              INITIALIZE_COVENANT
+            </button>
+            <p
+              class="text-[8px] font-bold uppercase opacity-40 text-center mt-4"
+            >
+              ALREADY REGISTERED? <a
+                href="/login"
+                class="underline hover:text-primary">EXECUTE_LOGIN</a
+              >
+            </p>
+          </div>
+        </form>
+
+        <div
+          class="mt-8 pt-6 border-t border-primary/10 flex justify-between items-center font-display text-[8px] font-bold opacity-40 uppercase tracking-widest text-primary"
+        >
+          <span>TX_READY</span>
+          <span>SYSTEM_VERSION: 1.0.4 - BONE_EYE</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.04;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 0 L40 20 L20 40 L0 20 Z' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+    }
+  </style>
+
+  <script>
+    import { $clerkStore } from '@clerk/astro/client';
+
+    const signupForm = document.getElementById(
+      'signup-form',
+    ) as HTMLFormElement;
+    const errorDiv = document.getElementById('error-message');
+    const submitBtn = document.getElementById(
+      'submit-btn',
+    ) as HTMLButtonElement;
+
+    // Sectors
+    const covenantSector = document.getElementById('covenant-sector');
+    const transmissionSector = document.getElementById('transmission-sector');
+    const integrationSector = document.getElementById('integration-sector');
+    const actionsSector = document.getElementById('actions-sector');
+
+    const RESERVED_NAMES = [
+      'ADMIN',
+      'SYSTEM',
+      'ROOT',
+      'MAMA',
+      'GHOST',
+      'RUNNER',
+      'ALLIGATOR',
+      'PRIMAL_MAMA',
+    ];
+
+    let currentSignUp: any = null;
+
+    signupForm?.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      errorDiv?.classList.add('hidden');
+
+      const formData = new FormData(signupForm);
+      const username = formData.get('username') as string;
+      const emailAddress = formData.get('emailAddress') as string;
+      const password = formData.get('password') as string;
+      const code = formData.get('verification_code') as string;
+
+      const clerk = $clerkStore.get();
+      if (!clerk || !clerk.client) return;
+
+      try {
+        setLoading(true);
+
+        // STAGE 1: THE COVENANT (Registration)
+        if (!currentSignUp && !code) {
+          // Namespace Protection
+          if (RESERVED_NAMES.includes(username.toUpperCase())) {
+            throw new Error('IDENTIFIER RESERVED BY THE ARCHITECT.');
+          }
+
+          // Covenant Agreement Check
+          const covenantCheck = document.getElementById(
+            'covenant-check',
+          ) as HTMLInputElement;
+          if (covenantCheck && !covenantCheck.checked) {
+            throw new Error('THE COVENANT REMAINS UNSIGNED. ACCESS DENIED.');
+          }
+
+          const tacticalMetadata = {
+            username, // Preserving chosen identity in metadata
+            origin: formData.get('origin'),
+            archetype: formData.get('archetype'),
+            alignment: formData.get('alignment'),
+            registered_at: new Date().toISOString(),
+          };
+
+          currentSignUp = await clerk.client.signUp.create({
+            emailAddress,
+            password,
+            unsafeMetadata: tacticalMetadata,
+          });
+
+          if (currentSignUp.status === 'missing_requirements') {
+            await currentSignUp.prepareEmailAddressVerification();
+            pivotToTransmission();
+            handleNotice('PULSE_SENT: VERIFY SIGNAL IN BUFFER');
+          }
+        }
+        // STAGE 2: THE TRANSMISSION (OTP)
+        else if (currentSignUp && code) {
+          currentSignUp = await currentSignUp.attemptEmailAddressVerification({
+            code,
+          });
+
+          if (currentSignUp.status === 'complete') {
+            await clerk.setActive({ session: currentSignUp.createdSessionId });
+            pivotToIntegration();
+
+            // STAGE 3: THE INTEGRATION (Wait for Metadata Sync)
+            let syncRetries = 0;
+            const target = '/play';
+
+            // Artificial delay for immersion and to ensure Clerk backend pulses
+            await new Promise((r) => setTimeout(r, 2000));
+            window.location.href = target;
+          }
+        }
+      } catch (err: any) {
+        console.error('PROTOCOL_ERR:', err);
+        const code = err.errors?.[0]?.code;
+        let vernacularMsg = 'Protocol Error: Transmission Corrupted.';
+
+        if (code === 'form_identifier_exists')
+          vernacularMsg = 'This genetic sequence is already claimed.';
+        else if (code === 'form_password_pwned')
+          vernacularMsg = 'Cipher compromised. Choose a stronger anchor.';
+        else if (err.message)
+          vernacularMsg = `ERR: ${err.message.toUpperCase()}`;
+
+        handleError(vernacularMsg);
+      } finally {
+        setLoading(false);
+      }
+    });
+
+    function pivotToTransmission() {
+      covenantSector?.classList.add('hidden');
+      transmissionSector?.classList.remove('hidden');
+      submitBtn.innerText = 'VERIFY_PULSE';
+
+      // Clear required on hidden fields
+      (document.getElementById('username') as HTMLInputElement).required =
+        false;
+      (document.getElementById('password') as HTMLInputElement).required =
+        false;
+      (document.getElementById('emailAddress') as HTMLInputElement).required =
+        false;
+      (
+        document.getElementById('verification_code') as HTMLInputElement
+      ).required = true;
+      (
+        document.getElementById('verification_code') as HTMLInputElement
+      ).focus();
+    }
+
+    function pivotToIntegration() {
+      transmissionSector?.classList.add('hidden');
+      actionsSector?.classList.add('hidden');
+      integrationSector?.classList.remove('hidden');
+    }
+
+    function setLoading(loading: boolean) {
+      if (!submitBtn) return;
+      submitBtn.disabled = loading;
+      if (loading) {
+        submitBtn.dataset.oldText = submitBtn.innerText;
+        submitBtn.innerText = 'PROCESSING_TX...';
+      } else if (submitBtn.dataset.oldText) {
+        submitBtn.innerText = submitBtn.dataset.oldText;
+      }
+    }
+
+    function handleError(msg: string) {
+      if (errorDiv) {
+        errorDiv.innerText = msg;
+        errorDiv.classList.remove('hidden');
+        errorDiv.className =
+          'border-l-2 border-red-600 bg-red-50 p-3 font-display text-[10px] font-bold uppercase text-red-600 tracking-tight';
+      }
+    }
+
+    function handleNotice(msg: string) {
+      if (errorDiv) {
+        errorDiv.innerText = `NOTICE: ${msg}`;
+        errorDiv.classList.remove('hidden');
+        errorDiv.className =
+          'border-l-2 border-primary bg-primary/10 p-3 font-display text-[10px] font-bold uppercase text-primary tracking-tight';
+      }
+    }
+  </script>
+</Layout>
