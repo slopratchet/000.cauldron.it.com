@@ -1,7 +1,7 @@
 {
-  "name": "002-astro-site",
+  "name": "002-actor-tristan-stag",
   "type": "module",
-  "version": "0.2.",
+  "version": "0.2.01",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
@@ -28,10 +28,16 @@
   },
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
+    "@astrojs/react": "^5.0.5",
     "@clerk/astro": "^3.0.15",
     "@tailwindcss/vite": "^4.2.2",
+    "@types/react": "^19.2.15",
+    "@types/react-dom": "^19.2.3",
     "astro": "^6.3.3",
+    "lucide-react": "^1.16.0",
     "nanostores": "^1.2.0",
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
     "tailwindcss": "^4.2.2"
   },
   "devDependencies": {

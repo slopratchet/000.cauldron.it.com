@@ -62,6 +62,11 @@
   --font-body: 'Newsreader', serif;
   --font-label: 'Space Grotesk', sans-serif;
 
+  /* Cimmerian Sheet specific fonts */
+  --font-sans: 'Archivo Narrow', ui-sans-serif, system-ui, sans-serif;
+  --font-serif: 'Source Serif 4', ui-serif, Georgia, Cambria, serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+
   --radius-DEFAULT: 0px;
   --radius-lg: 0px;
   --radius-xl: 0px;
@@ -128,6 +133,44 @@
   & th {
     border: 1px solid var(--color-primary);
     padding: 4px 8px;
+  }
+}
+
+@layer base {
+  .cimmerian-theme {
+    background-color: #fcf9f8;
+    color: #1b1c1c;
+    cursor: crosshair;
+
+    /* Custom scrollbar for retro table layout */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #fcf9f8;
+      border-left: 1px solid #000;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #000;
+    }
+  }
+}
+
+/* Print layout optimizations to look like a real character sheet */
+@media print {
+  .cimmerian-theme {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
+  .cimmerian-theme .no-print {
+    display: none !important;
+  }
+  .cimmerian-theme .print-full {
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 }
 

@@ -1,0 +1,19 @@
+<<<<<<< SEARCH
+    // Check for some text that should be on the page
+    const content = await page.content();
+    expect(content).toContain(
+      'Experiencing the Intimacy of the Tuning you own RPG',
+    );
+
+    // Verify the 'Now Open A Vein And Own Your Own Mess' registration link is present
+    const forgeLink = await page.$('a[href="/market"]');
+    expect(forgeLink).not.toBeNull();
+  }, 30000);
+=======
+    // Check for some text that should be on the page
+    const content = await page.content();
+    expect(content).toContain(
+      'PROTOCOL ENTRY POINT',
+    );
+  }, 30000);
+>>>>>>> REPLACE

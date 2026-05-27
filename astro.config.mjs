@@ -3,6 +3,8 @@ import cloudflare from '@astrojs/cloudflare';
 import tailwindcss from '@tailwindcss/vite';
 import clerk from '@clerk/astro';
 
+import react from '@astrojs/react';
+
 function edgeCompatibilityPlugin() {
   return {
     name: 'edge-compatibility',
@@ -57,7 +59,7 @@ export default defineConfig({
   adapter: cloudflare({
     prerenderEnvironment: 'node',
   }),
-  integrations: [clerk()],
+  integrations: [clerk(), react()],
   vite: {
     plugins: [tailwindcss(), edgeCompatibilityPlugin()],
     ssr: {

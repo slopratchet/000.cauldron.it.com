@@ -23,22 +23,16 @@ describe('E2E Sanity Check', () => {
     }
   });
 
-  it('should load the home page', async () => {
+  it('should redirect the home page to character selection if local', async () => {
     // Increased timeout for slow dev server starts
     await page.goto('http://localhost:4321', {
       waitUntil: 'networkidle0',
       timeout: 60000,
     });
 
-    // Check for some text that should be on the page
+    // Check for some text that should be on the page (character page)
     const content = await page.content();
-    expect(content).toContain(
-      'Experiencing the Intimacy of the Tuning you own RPG',
-    );
-
-    // Verify the 'Now Open A Vein And Own Your Own Mess' registration link is present
-    const forgeLink = await page.$('a[href="/market"]');
-    expect(forgeLink).not.toBeNull();
+    expect(content).toContain('CIMMERIAN HERO TACTICAL CONSOLE');
   }, 30000);
 
   it.skipIf(!hasClerkKeys)(
