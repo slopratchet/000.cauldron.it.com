@@ -1,0 +1,267 @@
+---
+import '../styles/global.css';
+
+const imgUrl = '/img/000.png';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Biomechanical Anatomy</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@400;700;800;900&family=JetBrains+Mono:wght@400;500;700;800&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="flex flex-col h-screen bg-[#fcf9f8] text-[#1b1c1c] select-none font-['Source_Serif_4',serif]"
+    >
+      <div class="flex flex-1 overflow-hidden">
+        {/* MAIN AREA */}
+        <main
+          class="flex-1 flex flex-col pt-8 px-10 pb-0 overflow-y-auto overflow-x-hidden relative scrollbar-hide"
+        >
+          <div class="flex flex-col flex-1 max-w-[1240px] w-full mx-auto">
+            <h2
+              class="font-['Archivo_Narrow',sans-serif] text-[72px] leading-none font-[900] uppercase tracking-tighter mb-2"
+            >
+              Biomechanical Anatomy
+            </h2>
+            <p
+              class="font-['JetBrains_Mono',monospace] text-[11px] font-[500] leading-relaxed text-[#64635c] break-all max-w-[100%] mb-12 tracking-widest uppercase"
+            >
+              CATALOG_ID: {imgUrl}
+            </p>
+
+            {/* Content Grid */}
+            <div class="flex gap-10 items-stretch shrink-0 h-[580px]">
+              {/* Left Col - Image */}
+              <div
+                class="flex-1 border-[3px] border-[#1b1c1c] flex flex-col relative bg-[#fcf9f8]"
+              >
+                <div
+                  class="absolute top-0 left-0 bg-[#1b1c1c] text-[#fcf9f8] px-4 py-[6px] font-['JetBrains_Mono',monospace] text-[13px] font-[700] tracking-widest uppercase z-10 border-b-[3px] border-r-[3px] border-[#1b1c1c]"
+                >
+                  VISUAL_FEED_01
+                </div>
+                <div
+                  class="flex-1 p-[40px] flex items-center justify-center overflow-hidden h-full mt-4"
+                >
+                  <img
+                    src={imgUrl}
+                    alt="Anatomy Diagram"
+                    referrerpolicy="no-referrer"
+                    class="w-full h-full object-contain mix-blend-multiply filter contrast-125 saturate-0"
+                  />
+                </div>
+                <div
+                  class="bg-[#1b1c1c] text-[#fcf9f8] px-6 py-3 font-['JetBrains_Mono',monospace] text-[14px] font-[700] tracking-[0.1em] uppercase border-t-[3px] border-[#1b1c1c]"
+                >
+                  THE TOME: BIOMECHANICAL ANATOMY - 1970 EDITION
+                </div>
+              </div>
+
+              {/* Right Col - Stats Lists */}
+              <div class="w-[420px] flex flex-col space-y-8 shrink-0 pt-0">
+                {/* RIGGING COMPLEXITY */}
+                <div>
+                  <div
+                    class="bg-[#1b1c1c] text-[#fcf9f8] px-4 py-[6px] font-['JetBrains_Mono',monospace] text-[13px] font-[700] tracking-widest uppercase inline-block"
+                  >
+                    RIGGING COMPLE...
+                  </div>
+                  <div
+                    class="border-[3px] border-[#1b1c1c] flex flex-col mt-[-1px]"
+                  >
+                    <div
+                      class="bg-[#e2e0d7] p-[12px] px-5 border-b-[3px] border-[#1b1c1c] font-['JetBrains_Mono',monospace] text-[14px] font-[700] tracking-[0.15em] uppercase"
+                    >
+                      JOINT_NODES
+                    </div>
+                    <div
+                      class="p-[12px] px-5 border-b-[3px] border-[#1b1c1c] font-['JetBrains_Mono',monospace] text-[14px] font-[700] tracking-[0.15em] uppercase"
+                    >
+                      WEIGHT_MAPS
+                    </div>
+                    <div
+                      class="bg-[#e2e0d7] p-[12px] px-5 border-b-[3px] border-[#1b1c1c] font-['JetBrains_Mono',monospace] text-[14px] font-[700] tracking-[0.15em] uppercase"
+                    >
+                      DEFORMERS
+                    </div>
+                    <div
+                      class="p-[12px] px-5 font-['JetBrains_Mono',monospace] text-[14px] font-[700] tracking-[0.15em] uppercase"
+                    >
+                      DRIVEN_KEYS
+                    </div>
+                  </div>
+                </div>
+
+                {/* ANIMATION LOOP */}
+                <div>
+                  <div
+                    class="bg-[#1b1c1c] text-[#fcf9f8] px-4 py-[6px] flex items-center space-x-3 font-['JetBrains_Mono',monospace] text-[13px] font-[700] tracking-widest uppercase inline-block"
+                  >
+                    <div
+                      class="w-[10px] h-[10px] bg-[#ba1a1a] inline-block mb-[-2px]"
+                    >
+                    </div>
+                    <span class="inline-block">ANIMATION L...</span>
+                  </div>
+                  <div
+                    class="border-[3px] border-[#1b1c1c] flex flex-col mt-[-1px]"
+                  >
+                    <div
+                      class="p-4 flex flex-col bg-[#e2e0d7] justify-center min-h-[96px]"
+                    >
+                      <div
+                        class="text-center font-['JetBrains_Mono',monospace] text-[11px] font-[700] tracking-[0.2em] text-[#64635c] mb-2 uppercase"
+                      >
+                        IDLE
+                      </div>
+                      <div
+                        class="text-center font-['JetBrains_Mono',monospace] text-[22px] font-[900] tracking-[0.15em] uppercase text-[#1b1c1c]"
+                      >
+                        ACTIVE
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* MATERIAL LOD B... */}
+                <div class="flex-1 flex flex-col">
+                  <div
+                    class="bg-[#1b1c1c] text-[#fcf9f8] px-4 py-[6px] font-['JetBrains_Mono',monospace] text-[13px] font-[700] tracking-widest uppercase inline-block self-start"
+                  >
+                    MATERIAL LOD B...
+                  </div>
+                  <div
+                    class="border-[3px] border-[#1b1c1c] flex flex-col p-6 space-y-[24px] mt-[-1px] flex-1 justify-center bg-[#fcf9f8]"
+                  >
+                    <div
+                      class="flex flex-col space-y-[12px] font-['JetBrains_Mono',monospace]"
+                    >
+                      <div
+                        class="text-[13px] font-[700] tracking-[0.15em] uppercase text-[#1b1c1c]"
+                      >
+                        LOD_0 (HIGH)
+                      </div>
+                      <div
+                        class="bg-[#e5e2da] h-[18px] w-full border-[3px] border-[#1b1c1c] flex"
+                      >
+                        <div
+                          class="bg-[#1b1c1c] h-full"
+                          style={{ width: `100%` }}
+                        >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="flex flex-col space-y-[12px] font-['JetBrains_Mono',monospace]"
+                    >
+                      <div
+                        class="text-[13px] font-[700] tracking-[0.15em] uppercase text-[#1b1c1c]"
+                      >
+                        LOD_1 (MED)
+                      </div>
+                      <div
+                        class="bg-[#e5e2da] h-[18px] w-full border-[3px] border-[#1b1c1c] flex"
+                      >
+                        <div
+                          class="bg-[#1b1c1c] h-full"
+                          style={{ width: `100%` }}
+                        >
+                        </div>
+                      </div>
+                    </div>
+
+                    <div
+                      class="flex flex-col space-y-[12px] font-['JetBrains_Mono',monospace]"
+                    >
+                      <div
+                        class="text-[13px] font-[700] tracking-[0.15em] uppercase text-[#1b1c1c]"
+                      >
+                        LOD_2 (LOW)
+                      </div>
+                      <div
+                        class="bg-[#e5e2da] h-[18px] w-full border-[3px] border-[#1b1c1c] flex"
+                      >
+                        <div
+                          class="bg-[#1b1c1c] h-full"
+                          style={{ width: `22%` }}
+                        >
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Core Log */}
+            <div class="flex gap-10 mt-24 pb-16 shrink-0">
+              <div class="flex-1 flex flex-col">
+                <div
+                  class="bg-[#1b1c1c] text-[#fcf9f8] px-4 py-[6px] font-['JetBrains_Mono',monospace] text-[13px] font-[700] tracking-widest uppercase self-start border-[1px] border-[#1b1c1c]"
+                >
+                  CORE_LOG_ENTRY
+                </div>
+                <div
+                  class="border-[3px] border-[#1b1c1c] p-[32px] mt-[-1px] bg-[#fcf9f8]"
+                >
+                  <p
+                    class="text-[20px] leading-[1.7] text-justify text-[#1b1c1c] font-['Source_Serif_4',serif]"
+                  >
+                    Observed specimen exhibits high-frequency neural pulse
+                    activity. The skeletal structure, composed of "Synthetic
+                    Exoskyelten", suggests a 1970-era industrial fabrication
+                    combined with illegal cybernetic grafting. Initial scans
+                    indicate a volatile rigging complexity that exceeds standard
+                    system parameters. Caution is advised when engaging
+                    animation loops at high velocities.
+                  </p>
+                </div>
+              </div>
+              <button
+                class="min-w-[280px] border-[3px] border-[#1b1c1c] flex items-center justify-center px-10 py-6 hover:bg-[#1b1c1c] hover:text-[#fcf9f8] transition-colors mt-[30px] group bg-[#fcf9f8]"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="32"
+                  height="32"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="lucide lucide-download mr-6"
+                  ><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                  ></path><polyline points="7 10 12 15 17 10"></polyline><line
+                    x1="12"
+                    x2="12"
+                    y1="15"
+                    y2="3"></line></svg
+                >
+                <span
+                  class="font-['JetBrains_Mono',monospace] font-[700] tracking-[0.15em] text-[20px]"
+                  >EXPORT</span
+                >
+              </button>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
