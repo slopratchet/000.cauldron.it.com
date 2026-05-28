@@ -23,9 +23,9 @@ describe('E2E Sanity Check', () => {
     }
   });
 
-  it('should redirect the home page to character selection if local', async () => {
+  it('should redirect the /log-in page to character selection if local', async () => {
     // Increased timeout for slow dev server starts
-    await page.goto('http://localhost:4321', {
+    await page.goto('http://localhost:4321/log-in', {
       waitUntil: 'networkidle0',
       timeout: 60000,
     });
