@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Tinos:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap');
 @import 'tailwindcss';
 
 @theme {
@@ -211,4 +212,104 @@
       background-size: 40px 40px;
     }
   }
+}
+
+/* IndexApp specific styles */
+
+@theme {
+  --color-secondary: #5f5e5a;
+  --color-dark-orange: #d97706;
+  --color-surface: #f9f9f9;
+  --color-ink-wash: #333333;
+  --color-parchment-deep: #e6e2d8;
+
+  --spacing-margin-page: 2rem;
+  --spacing-gutter: 1.5rem;
+  --spacing-stack-sm: 0.5rem;
+  --spacing-stack-lg: 2rem;
+  --spacing-stack-md: 1rem;
+}
+
+@utility font-headline-lg {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+}
+@utility text-headline-lg {
+  font-size: 48px;
+  line-height: 52px;
+  letter-spacing: 0.02em;
+}
+
+@utility font-headline-md {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+}
+@utility text-headline-md {
+  font-size: 24px;
+  line-height: 32px;
+  letter-spacing: 0.04em;
+}
+
+@utility font-headline-xl {
+  font-family: 'Jost', sans-serif;
+  font-weight: 500;
+}
+@utility text-headline-xl {
+  font-size: 84px;
+  line-height: 90px;
+  letter-spacing: 0.02em;
+}
+
+@utility font-body-md {
+  font-family: 'Tinos', serif;
+  font-weight: 400;
+}
+@utility text-body-md {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility font-body-lg {
+  font-family: 'Tinos', serif;
+  font-weight: 400;
+}
+@utility text-body-lg {
+  font-size: 18px;
+  line-height: 28px;
+}
+
+@utility font-body-italic {
+  font-family: 'Tinos', serif;
+  font-weight: 400;
+  font-style: italic;
+}
+@utility text-body-italic {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+@utility font-label-md {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 500;
+}
+@utility text-label-md {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+@utility font-label-sm {
+  font-family: 'JetBrains Mono', monospace;
+  font-weight: 700;
+}
+@utility text-label-sm {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+}
+
+@utility brutalist-shadow {
+  box-shadow: 4px 4px 0px 0px #000000;
+}
+@utility brutalist-shadow-lg {
+  box-shadow: 8px 8px 0px 0px #000000;
 }
