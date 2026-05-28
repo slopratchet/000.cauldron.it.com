@@ -1,535 +1,380 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
-const auth = Astro.locals.auth();
-const isLocal =
-  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
-if (auth.userId || isLocal) {
-  const target = '/character';
-  return Astro.redirect(target);
-}
+import '../styles/global.css';
 ---
 
-<Layout title="Login | Protocol Entry Point">
-  <main
-    class="flex-1 flex items-center justify-center p-8 min-h-screen relative overflow-hidden"
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Alligator.inks.it</title>
+  </head>
+  <body
+    class="bg-parchment-deep text-primary font-body-md overflow-x-hidden min-h-screen flex flex-col"
   >
-    <div class="w-full max-w-md">
-      <div class="border-4 border-primary bg-paper p-8 relative z-10">
+    <div class="font-body-md overflow-x-hidden min-h-screen flex flex-col">
+      <!-- TopAppBar -->
+      <header
+        class="bg-parchment-deep full-width top-0 border-b-4 border-primary flex justify-between items-center w-full px-margin-page py-stack-sm sticky z-50"
+      >
         <div
-          class="absolute -top-4 left-4 bg-primary text-paper px-4 py-1 font-display text-xs font-bold tracking-widest uppercase"
+          class="font-headline-md text-headline-md tracking-tight text-primary flex items-center gap-2"
         >
-          PROTOCOL ENTRY POINT
+          <span class="material-symbols-outlined text-[32px]">history_edu</span>
+          alligator.inks.it
         </div>
-
-        <div class="mb-10 mt-4 text-center">
-          <h2
-            class="font-display font-black text-3xl uppercase leading-none tracking-tighter mb-2 text-primary"
+        <nav class="hidden md:flex items-center gap-gutter">
+          <a
+            class="font-label-md text-label-md text-primary font-bold border-b-2 border-dark-orange hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#home">HOME</a
           >
-            MAMA VERIFICATION
-          </h2>
-          <div class="h-1 w-12 bg-primary mx-auto"></div>
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#faq">FAQ</a
+          >
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#cast">CAST</a
+          >
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#play">PLAY</a
+          >
+        </nav>
+        <div class="flex items-center gap-stack-md">
+          <div class="hidden lg:block relative">
+            <input
+              class="bg-white border-2 border-primary px-3 py-1 font-label-sm text-label-sm focus:ring-0 focus:outline-none w-72 brutalist-shadow"
+              placeholder="ENTER EMAIL TO STAY IN THE LOOP"
+              type="email"
+            />
+          </div>
+          <button
+            class="bg-primary text-parchment-deep px-4 py-2 border-2 border-primary font-label-md text-label-md active:scale-95 transition-transform hover:bg-white hover:text-primary"
+          >
+            JOIN THE PARTY
+          </button>
         </div>
+      </header>
 
-        <form id="login-form" class="space-y-6">
-          <div id="credentials-sector" class="space-y-6">
-            <div class="space-y-1">
-              <label
-                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
-              >
-                USER_IDENTIFIER
-              </label>
-              <input
-                id="identifier"
-                name="identifier"
-                required
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase placeholder:opacity-30 text-primary transition-colors"
-                placeholder="ENTER ID..."
-                type="text"
-              />
-            </div>
-
-            <div class="space-y-1">
-              <label
-                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
-              >
-                ACCESS_PHRASE
-              </label>
-              <input
-                id="password"
-                name="password"
-                required
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none placeholder:opacity-30 text-primary transition-colors"
-                placeholder="••••••••"
-                type="password"
-              />
-            </div>
-            <div class="flex justify-end">
-              <button
-                id="forgot-password-btn"
-                type="button"
-                class="font-display text-[9px] font-bold uppercase tracking-widest text-primary opacity-60 hover:opacity-100 hover:underline transition-all"
-              >
-                FORGOT_PHRASE?
-              </button>
-            </div>
-          </div>
-
+      <main class="flex-grow">
+        <!-- Split Hero Section -->
+        <section
+          class="min-h-[870px] grid grid-cols-1 lg:grid-cols-2 border-b-4 border-primary"
+        >
+          <!-- Hero Left: Messaging -->
           <div
-            id="reset-sector"
-            class="hidden space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500"
+            class="flex flex-col justify-center p-margin-page bg-parchment-deep border-r-0 lg:border-r-4 border-primary relative overflow-hidden"
           >
-            <div class="space-y-1">
-              <label
-                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+            <div class="z-10">
+              <span
+                class="bg-dark-orange text-white font-label-sm text-label-sm px-3 py-1 mb-stack-md inline-block uppercase tracking-widest"
+                >Online Tabletop RPG Simulation</span
               >
-                VERIFICATION_CODE
-              </label>
-              <input
-                id="reset_code"
-                name="reset_code"
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-lg font-black tracking-[0.5em] text-center focus:ring-0 focus:bg-white outline-none text-primary transition-colors"
-                placeholder="000000"
-                type="text"
-                maxlength="6"
-              />
-            </div>
-
-            <div class="space-y-1">
-              <label
-                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+              <h1
+                class="font-headline-xl text-headline-xl uppercase leading-none mb-stack-lg"
               >
-                NEW_ACCESS_PHRASE
-              </label>
-              <input
-                id="new_password"
-                name="new_password"
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none placeholder:opacity-30 text-primary transition-colors"
-                placeholder="••••••••"
-                type="password"
-              />
-            </div>
-          </div>
-
-          <div
-            id="verification-sector"
-            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500"
-          >
-            <div class="space-y-1">
-              <label
-                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
-              >
-                VERIFICATION_CODE (SENT TO EMAIL)
-              </label>
-              <input
-                id="verification_code"
-                name="verification_code"
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-lg font-black tracking-[0.5em] text-center focus:ring-0 focus:bg-white outline-none text-primary transition-colors"
-                placeholder="000000"
-                type="text"
-                maxlength="6"
-              />
+                A LIVE ADVENTURE EXPERIENCE
+              </h1>
               <p
-                class="text-[8px] font-bold uppercase opacity-40 text-center tracking-tighter"
+                class="font-body-lg text-body-lg max-w-xl mb-stack-lg border-l-4 border-primary pl-gutter"
               >
-                SECURE CHANNEL: CHECK INBOX FOR 6-DIGIT PULSE
+                Step into the 1970 edition of the world's most dangerous
+                procedural narrative. This isn't just a game; it's a technical
+                manual for high-stakes survival. Every roll is recorded. Every
+                choice is permanent.
+              </p>
+              <div class="flex flex-wrap gap-gutter">
+                <button
+                  class="bg-primary text-parchment-deep px-8 py-4 border-2 border-primary font-headline-md text-headline-md brutalist-shadow-lg active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 transition-all"
+                >
+                  WATCH PAST PERFORMANCES
+                </button>
+                <button
+                  class="bg-white text-primary px-8 py-4 border-2 border-primary font-headline-md text-headline-md brutalist-shadow active:translate-x-1 active:translate-y-1 active:shadow-none hover:bg-parchment-deep transition-all"
+                >
+                  VIEW MANIFESTO
+                </button>
+              </div>
+            </div>
+            <!-- Background decoration: Ink lines -->
+            <div
+              class="absolute bottom-0 right-0 opacity-10 pointer-events-none text-primary"
+            >
+              <span
+                class="material-symbols-outlined text-[300px]"
+                style="font-variation-settings: 'FILL' 1;"
+              >
+                grid_on
+              </span>
+            </div>
+          </div>
+
+          <!-- Hero Right: Portrait -->
+          <div
+            class="relative bg-ink-wash min-h-[500px] lg:min-h-0 overflow-hidden group"
+          >
+            <img
+              alt="The Dread Knight"
+              class="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3HrtjSunI3CG82qNuoskiWlt425JasvlCnuOVzNcma7Sq2ndG701q_fUIL012IcXSbtB5VZ_rFKMcEGpBh_Rw883jKUY6O9yvGd6UWTI4DyMyupQvOkQYUuY7q4rF2iIEvBdc5uCy6_3u7hctuns10xQN_frrwMPGz1Yc7Fx6i630cPGScnsqXNGcFUMUyXmNkk2BAtrFOJBtsCa-EqAMslSL3gZxJ81EYdAECYz4gJWMGHrykHtaCUREfjVt-Wbzv2RBx8a4YnNW"
+            />
+
+            <!-- Overlay Info -->
+            <div
+              class="absolute bottom-margin-page left-margin-page right-margin-page"
+            >
+              <div
+                class="bg-white border-2 border-primary p-gutter brutalist-shadow-lg max-w-sm"
+              >
+                <h2 class="font-headline-md text-headline-md uppercase mb-1">
+                  ENTITY: THE DREAD KNIGHT
+                </h2>
+                <div class="flex gap-2 mb-2">
+                  <span class="w-full h-4 bg-primary relative overflow-hidden">
+                    <span
+                      class="absolute left-0 top-0 h-full w-[85%] bg-dark-orange"
+                    ></span>
+                  </span>
+                </div>
+                <div class="flex justify-between font-label-sm text-label-sm">
+                  <span>THREAT LEVEL: OMEGA</span>
+                  <span>HP: 850/1000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Feature Horizontal Cards -->
+        <section class="p-margin-page bg-surface">
+          <div
+            class="flex justify-between items-end mb-stack-lg border-b-2 border-primary pb-stack-sm"
+          >
+            <h3
+              class="font-headline-lg text-headline-lg uppercase flex-1 break-words"
+            >
+              SHOW MODULES
+            </h3>
+            <span
+              class="font-label-md text-label-md font-bold hidden sm:block whitespace-nowrap ml-4"
+              >REVISION 1974.B</span
+            >
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            <!-- Card 1 -->
+            <div
+              class="border-4 border-primary p-stack-md bg-dark-orange text-white brutalist-shadow hover:-translate-y-1 transition-transform"
+            >
+              <div class="flex items-center gap-stack-sm mb-stack-md">
+                <div
+                  class="border-2 border-white p-2 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-white"
+                    style="font-variation-settings: 'FILL' 1;">history</span
+                  >
+                </div>
+                <h4 class="font-headline-md text-headline-md uppercase">
+                  LIVE LOGS
+                </h4>
+              </div>
+              <p class="font-body-md text-body-md mb-stack-md mx-0 opacity-90">
+                Watch history unfold in real-time. Our global ledger tracks
+                every casualty, every critical hit, and every legendary item
+                found across the server.
+              </p>
+              <a
+                class="font-label-sm text-label-sm font-bold underline hover:text-parchment-deep transition-colors"
+                href="#logs">JOIN FEED &rarr;</a
+              >
+            </div>
+
+            <!-- Card 2 -->
+            <div
+              class="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform"
+            >
+              <div class="flex items-center gap-stack-sm mb-stack-md">
+                <div
+                  class="border-2 border-primary p-2 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary"
+                    style="font-variation-settings: 'FILL' 1;">menu_book</span
+                  >
+                </div>
+                <h4 class="font-headline-md text-headline-md uppercase">
+                  LORE ARCHIVES
+                </h4>
+              </div>
+              <p class="font-body-md text-body-md mb-stack-md">
+                Over 600 pages of procedural history generated by the Archivist.
+                Every playthrough carves a new chapter into the tome's permanent
+                record.
+              </p>
+              <a
+                class="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                href="#lore">BROWSE LORE &rarr;</a
+              >
+            </div>
+
+            <!-- Card 3 -->
+            <div
+              class="border-2 border-primary p-stack-md bg-parchment-deep brutalist-shadow hover:-translate-y-1 transition-transform"
+            >
+              <div class="flex items-center gap-stack-sm mb-stack-md">
+                <div
+                  class="border-2 border-primary p-2 flex items-center justify-center"
+                >
+                  <span
+                    class="material-symbols-outlined text-primary"
+                    style="font-variation-settings: 'FILL' 1;">bolt</span
+                  >
+                </div>
+                <h4 class="font-headline-md text-headline-md uppercase">
+                  Total Conflict
+                </h4>
+              </div>
+              <p class="font-body-md text-body-md mb-stack-md">
+                A rigid, hex-based movement system that punishes hesitation. Use
+                the environment to gain cover or trap your foes in inescapable
+                bottlenecks.
+              </p>
+              <a
+                class="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                href="#tactical">READ MANUAL &rarr;</a
+              >
+            </div>
+          </div>
+        </section>
+
+        <!-- Technical Specs -->
+        <section
+          class="flex flex-col border-t-4 border-primary bg-parchment-deep"
+        >
+          <div class="p-margin-page border-b-4 border-primary">
+            <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
+              UPCOMING PERFORMANCES
+            </h3>
+            <div class="overflow-x-auto">
+              <table
+                class="w-full font-label-md text-label-md border-collapse min-w-[300px]"
+              >
+                <thead>
+                  <tr class="bg-primary text-parchment-deep">
+                    <th class="border-2 border-primary p-2 text-left"
+                      >EPISODE</th
+                    >
+                    <th class="border-2 border-primary p-2 text-left">STATUS</th
+                    >
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="border-2 border-primary p-2"
+                      >CPU (Mental Capacity)</td
+                    >
+                    <td
+                      class="border-2 border-primary p-2 text-dark-orange font-bold"
+                      >OPTIMIZED</td
+                    >
+                  </tr>
+                  <tr>
+                    <td class="border-2 border-primary p-2"
+                      >VRAM (Visual Imagination)</td
+                    >
+                    <td
+                      class="border-2 border-primary p-2 text-dark-orange font-bold"
+                      >REQUIRED</td
+                    >
+                  </tr>
+                  <tr>
+                    <td class="border-2 border-primary p-2"
+                      >STORAGE (Inventory)</td
+                    >
+                    <td class="border-2 border-primary p-2">64 BLOCK</td>
+                  </tr>
+                  <tr>
+                    <td class="border-2 border-primary p-2"
+                      >NETWORK (The Party)</td
+                    >
+                    <td class="border-2 border-primary p-2">ACTIVE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div
+            class="p-margin-page bg-white relative overflow-hidden flex items-center justify-center min-h-[400px]"
+          >
+            <div class="relative z-10 text-center">
+              <h4
+                class="font-headline-xl text-headline-xl opacity-10 leading-none"
+              >
+                THE ARCHIVIST IS WATCHING
+              </h4>
+              <p
+                class="font-body-italic text-body-italic max-w-md mx-auto -mt-4 lg:-mt-12 text-on-surface-variant relative z-20"
+              >
+                "To play is to suffer, to suffer is to learn, to learn is to
+                eventually become a entry in the archives."
               </p>
             </div>
-          </div>
-
-          <div
-            id="error-message"
-            class="hidden border-l-2 border-red-600 bg-red-50 p-2 font-display text-[10px] font-bold uppercase text-red-600 tracking-tight"
-          >
-          </div>
-
-          <div class="pt-4">
-            <button
-              id="submit-btn"
-              type="submit"
-              class="w-full bg-primary text-paper font-display font-black text-sm py-4 uppercase tracking-[0.2em] hover:bg-white hover:text-primary border-2 border-transparent hover:border-primary transition-all active:scale-[0.98] disabled:opacity-50 disabled:cursor-wait"
+            <!-- Decorative tech pattern -->
+            <div
+              class="absolute inset-0 opacity-5 pointer-events-none"
+              style="background-image: radial-gradient(#000 1px, transparent 1px); background-size: 20px 20px;"
             >
-              INITIALIZE_SESSION
-            </button>
+            </div>
           </div>
-        </form>
+        </section>
+      </main>
 
+      <!-- Footer -->
+      <footer
+        class="bg-primary border-t-2 border-primary flex flex-col md:flex-row justify-between items-center px-gutter py-4 z-50 mt-margin-page"
+      >
         <div
-          class="mt-8 pt-6 border-t border-primary/10 flex justify-between items-center font-display text-[8px] font-bold opacity-40 uppercase tracking-widest text-primary"
+          class="font-label-md text-label-md font-bold text-parchment-deep uppercase mb-4 md:mb-0 text-center md:text-left"
         >
-          <span>SECURED_CHANNEL_A1</span>
-          <span>ENC: RSA-4096</span>
+          Alligator.inks.it 2014-2026 Camp Candor | REGISTERED USER: <a
+            href="/log-in"
+            class="hover:text-white transition-colors underline">LOG IN</a
+          >
         </div>
-      </div>
+        <div class="flex gap-gutter flex-wrap justify-center">
+          <span
+            class="font-label-sm text-label-sm uppercase text-parchment-deep opacity-80"
+            >LAST UPDATE : 2026-05-28 18:04</span
+          >
+        </div>
+      </footer>
     </div>
-  </main>
 
-  <style>
-    /* Biopunk-Noir Background Pattern */
-    main::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.06;
-      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 10 L30 10 L40 20 L30 30 L10 30 Z' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
-      background-size: 40px 40px;
-    }
-  </style>
-
-  <script>
-    import { $clerkStore } from '@clerk/astro/client';
-
-    console.log('BIO_PUNK_UI: INITIALIZING_SCRIPT_LOAD');
-
-    // Subscribe to store to handle the case where user is already signed in on client side
-    const unsubscribe = $clerkStore.subscribe((clerk) => {
-      if (clerk && clerk.user) {
-        console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
-        window.location.href = '/character';
-      }
-    });
-
-    // Selectors for the Biopunk UI
-
-    const loginForm = document.getElementById('login-form') as HTMLFormElement;
-    const errorDiv = document.getElementById('error-message');
-    const submitBtn = document.getElementById(
-      'submit-btn',
-    ) as HTMLButtonElement;
-    const identifierInput = document.getElementById(
-      'identifier',
-    ) as HTMLInputElement;
-    const passwordInput = document.getElementById(
-      'password',
-    ) as HTMLInputElement;
-
-    console.log('BIO_PUNK_UI: SELECTORS_READY', {
-      hasForm: !!loginForm,
-      hasBtn: !!submitBtn,
-      clerkReady: !!$clerkStore.get(),
-      publishableKey:
-        import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY?.substring(0, 10) + '...',
-    });
-
-    // UI SECTORS
-    const credentialsSector = document.getElementById('credentials-sector');
-    const verificationSector = document.getElementById('verification-sector');
-    const resetSector = document.getElementById('reset-sector');
-    const forgotPasswordBtn = document.getElementById('forgot-password-btn');
-
-    if (
-      import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY?.startsWith('pk_test_') &&
-      window.location.hostname !== 'localhost'
-    ) {
-      console.warn(
-        'CRITICAL: Using a TEST Clerk key on a PRODUCTION domain. This will prevent hydration.',
-      );
-    }
-
-    // Track the state machine for the login sequence
-    let currentAttempt: any = null;
-    let isResetMode = false;
-
-    forgotPasswordBtn?.addEventListener('click', async () => {
-      console.log('BIO_PUNK_UI: FORGOT_PHRASE_IMPULSE_RECEIVED');
-      const identifier = identifierInput?.value;
-
-      if (!identifier) {
-        handleError('ERR: IDENTIFIER_REQUIRED_FOR_RESET');
-        return;
-      }
-
-      errorDiv?.classList.add('hidden');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'PREPARING_RESET...';
-      }
-
-      try {
-        let clerk = $clerkStore.get();
-        if (!clerk || !clerk.client) {
-          handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
-          return;
+    <script>
+      // Atmospheric Micro-interaction
+      const handleMouseMove = (e: MouseEvent) => {
+        // Very subtle ink splatter effect occasionally
+        if (Math.random() > 0.995) {
+          const splash = document.createElement('div');
+          splash.style.position = 'fixed';
+          splash.style.left = e.clientX + 'px';
+          splash.style.top = e.clientY + 'px';
+          splash.style.width = Math.random() * 10 + 'px';
+          splash.style.height = splash.style.width;
+          splash.style.backgroundColor = '#000';
+          splash.style.borderRadius = '50%';
+          splash.style.pointerEvents = 'none';
+          splash.style.zIndex = '100';
+          splash.style.opacity = '0.3';
+          document.body.appendChild(splash);
+          setTimeout(() => splash.remove(), 2000);
         }
+      };
 
-        console.log('BIO_PUNK_UI: INITIATING_PASSWORD_RESET_HANDSHAKE...');
-        currentAttempt = await clerk.client.signIn.create({
-          identifier,
-        });
-
-        await currentAttempt.prepareFirstFactor({
-          strategy: 'reset_password_email_code',
-        });
-
-        isResetMode = true;
-        pivotToReset();
-        handleNotice('RESET_PULSE_SENT_TO_SIGNAL_BUFFER');
-      } catch (err: any) {
-        console.error('BIO_PUNK_UI: RESET_INIT_ERROR', err);
-        const message =
-          err.errors?.[0]?.longMessage ||
-          err.message ||
-          'UNKNOWN_RESET_FAILURE';
-        handleError(`ERR: ${message.toUpperCase()}`);
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          if (isResetMode) {
-            submitBtn.innerText = 'COMPLETE_RESET';
-          } else {
-            submitBtn.innerText = 'INITIALIZE_SESSION';
-          }
-        }
-      }
-    });
-
-    loginForm?.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      console.log('BIO_PUNK_UI: SUBMIT_IMPULSE_RECEIVED');
-
-      // 1. INITIALIZE UI STATE
-      errorDiv?.classList.add('hidden');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.innerText = 'PROCESSING_IMPULSE...';
-      }
-
-      // 2. TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
-      console.log('BIO_PUNK_UI: WAITING_FOR_CLERK_HYDRATION...');
-      let clerk = $clerkStore.get();
-      let retryCount = 0;
-      while (!clerk && retryCount < 15) {
-        console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
-        await new Promise((resolve) => setTimeout(resolve, 200));
-        clerk = $clerkStore.get();
-        retryCount++;
-      }
-
-      if (!clerk || !clerk.client) {
-        console.error('BIO_PUNK_UI: HYDRATION_FAILURE', {
-          clerk: !!clerk,
-          hasClient: !!clerk?.client,
-        });
-        handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
-        return;
-      }
-
-      console.log('BIO_PUNK_UI: CLERK_CLIENT_READY_PROCEEDING');
-
-      // 3. EXTRACT INPUTS
-      const formData = new FormData(loginForm);
-      const identifier = formData.get('identifier') as string;
-      const password = formData.get('password') as string;
-      const code = formData.get('verification_code') as string;
-      const resetCode = formData.get('reset_code') as string;
-      const newPassword = formData.get('new_password') as string;
-
-      console.log('BIO_PUNK_UI: DATA_EXTRACTED', {
-        hasIdentifier: !!identifier,
-        hasPassword: !!password,
-        hasCode: !!code,
-        isResetMode,
-      });
-
-      try {
-        // PHASE RESET: PASSWORD RECONSTRUCTION
-        if (isResetMode && resetCode && newPassword && currentAttempt) {
-          console.log('BIO_PUNK_UI: ATTEMPTING_PASSWORD_RESET...');
-          currentAttempt = await currentAttempt.attemptFirstFactor({
-            strategy: 'reset_password_email_code',
-            code: resetCode,
-            password: newPassword,
-          });
-        }
-        // PHASE A: INITIAL HANDSHAKE
-        else if (!code && !currentAttempt) {
-          console.log('BIO_PUNK_UI: STARTING_SIGN_IN_CREATE_HANDSHAKE...');
-          currentAttempt = await clerk.client.signIn.create({
-            identifier,
-            password,
-          });
-          console.log('BIO_PUNK_UI: SIGN_IN_RESPONSE_RECEIVED', {
-            status: currentAttempt?.status,
-          });
-        }
-        // PHASE B: VERIFICATION SEQUENCE
-        else if (code && currentAttempt) {
-          console.log('BIO_PUNK_UI: STARTING_MFA_VERIFICATION...');
-          currentAttempt = await currentAttempt.attemptFirstFactor({
-            strategy: 'email_code',
-            code,
-          });
-          console.log('BIO_PUNK_UI: MFA_RESPONSE_RECEIVED', {
-            status: currentAttempt?.status,
-          });
-        }
-
-        // 4. HANDLE OUTPUT STATES
-        if (currentAttempt.status === 'complete') {
-          console.log('BIO_PUNK_UI: SIGN_IN_COMPLETE_SETTING_ACTIVE...');
-          await clerk.setActive({ session: currentAttempt.createdSessionId });
-
-          // Metadata Fork: Determine landing zone
-          const userRole = clerk.user?.publicMetadata?.role;
-          const target = '/character';
-          console.log('BIO_PUNK_UI: REDIRECT_TRIGGERED', { target, userRole });
-          window.location.href = target;
-        } else if (
-          currentAttempt.status === 'needs_client_trust' ||
-          currentAttempt.status === 'needs_first_factor'
-        ) {
-          console.log('BIO_PUNK_UI: PIVOTING_TO_CLIENT_TRUST_PROTOCOL', {
-            status: currentAttempt.status,
-          });
-
-          // 1. Identify the Email Factor
-          const emailFactor = currentAttempt.supportedFirstFactors.find(
-            (f: any) => f.strategy === 'email_code',
-          );
-
-          if (!emailFactor) {
-            throw new Error(
-              'No secure email factor found for trust verification',
-            );
-          }
-
-          // 2. Trigger the Email Send (Pulse Initialization)
-          await currentAttempt.prepareFirstFactor({
-            strategy: 'email_code',
-            emailAddressId: emailFactor.emailAddressId,
-          });
-
-          // 3. UI STATE PIVOT
-          pivotToVerification();
-          handleNotice('VERIFICATION_PULSE_SENT_TO_SIGNAL_BUFFER');
-        } else {
-          console.warn('BIO_PUNK_UI: UNHANDLED_SIGN_IN_STATUS', {
-            status: currentAttempt.status,
-          });
-        }
-      } catch (err: any) {
-        console.error('BIO_PUNK_UI: HANDSHAKE_ERROR', err);
-        const message =
-          err.errors?.[0]?.longMessage ||
-          err.message ||
-          'UNKNOWN_IMPULSE_FAILURE';
-
-        if (message.toUpperCase().includes('ALREADY SIGNED IN')) {
-          window.location.href = '/character';
-          return;
-        }
-
-        handleError(`ERR: ${message.toUpperCase()}`);
-        // If the attempt is corrupted (422), reset to allow a clean restart
-        if (err.status === 422) currentAttempt = null;
-      } finally {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          // Check if we are in verification mode to update button text
-          const isVerifying = !verificationSector?.classList.contains('hidden');
-          const isResetting = !resetSector?.classList.contains('hidden');
-
-          if (isResetting) {
-            submitBtn.innerText = 'COMPLETE_RESET';
-          } else if (isVerifying) {
-            submitBtn.innerText = 'VERIFY_CODE';
-          } else {
-            submitBtn.innerText = 'INITIALIZE_SESSION';
-          }
-        }
-      }
-    });
-
-    // UI HELPER: Switch to MFA input mode
-    function pivotToVerification() {
-      credentialsSector?.classList.add('hidden');
-      verificationSector?.classList.remove('hidden');
-      resetSector?.classList.add('hidden');
-
-      // CRITICAL: Remove 'required' from hidden fields to prevent browser validation errors
-      if (identifierInput) {
-        identifierInput.required = false;
-      }
-      if (passwordInput) {
-        passwordInput.required = false;
-      }
-
-      // Autofocus verification input
-      const codeInput = document.getElementById(
-        'verification_code',
-      ) as HTMLInputElement;
-      if (codeInput) {
-        codeInput.required = true;
-        codeInput.focus();
-      }
-    }
-
-    // UI HELPER: Switch to Reset mode
-    function pivotToReset() {
-      credentialsSector?.classList.add('hidden');
-      verificationSector?.classList.add('hidden');
-      resetSector?.classList.remove('hidden');
-
-      if (identifierInput) {
-        identifierInput.required = false;
-      }
-      if (passwordInput) {
-        passwordInput.required = false;
-      }
-
-      const resetCodeInput = document.getElementById(
-        'reset_code',
-      ) as HTMLInputElement;
-      const newPasswordInput = document.getElementById(
-        'new_password',
-      ) as HTMLInputElement;
-
-      if (resetCodeInput) {
-        resetCodeInput.required = true;
-        resetCodeInput.focus();
-      }
-      if (newPasswordInput) {
-        newPasswordInput.required = true;
-      }
-    }
-
-    // UI HELPER: Handle System Notices
-    function handleNotice(msg: string) {
-      if (errorDiv) {
-        errorDiv.innerText = `NOTICE: ${msg}`;
-        errorDiv.classList.remove('hidden');
-        errorDiv.className =
-          'border-l-2 border-primary bg-primary/10 p-2 font-display text-[10px] font-bold uppercase text-primary tracking-tight';
-      }
-    }
-
-    // UI HELPER: Handle Protocol Errors
-    function handleError(msg: string) {
-      if (errorDiv) {
-        errorDiv.innerText = msg;
-        errorDiv.classList.remove('hidden');
-        errorDiv.className =
-          'border-l-2 border-red-600 bg-red-50 p-2 font-display text-[10px] font-bold uppercase text-red-600 tracking-tight';
-      }
-      if (submitBtn) {
-        submitBtn.disabled = false;
-        const isVerifying = !verificationSector?.classList.contains('hidden');
-        const isResetting = !resetSector?.classList.contains('hidden');
-
-        if (isResetting) {
-          submitBtn.innerText = 'RETRY_RESET';
-        } else if (isVerifying) {
-          submitBtn.innerText = 'RETRY_VERIFICATION';
-        } else {
-          submitBtn.innerText = 'REINITIALIZE_SESSION';
-        }
-      }
-    }
-  </script>
-</Layout>
+      document.addEventListener('mousemove', handleMouseMove);
+    </script>
+  </body>
+</html>
