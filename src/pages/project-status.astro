@@ -1,0 +1,23 @@
+---
+import App from '../components/ProjectStatus';
+import '../styles/global.css';
+
+// SECTOR_RECOVERY_PROTOCOL: Block unauthorized access
+const auth = Astro.locals.auth();
+const isLocal =
+  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
+if (!auth.userId && !isLocal) {
+  return Astro.redirect('/');
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Project Status</title>
+  </head>
+  <body class="dashboard-theme min-h-screen">
+    <App client:load />
+  </body>
+</html>

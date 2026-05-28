@@ -23,7 +23,7 @@ describe('E2E Sanity Check', () => {
     }
   });
 
-  it('should redirect the home page to character selection if local', async () => {
+  it('should redirect the home page to project status if local', async () => {
     // Increased timeout for slow dev server starts
     await page.goto('http://localhost:4321', {
       waitUntil: 'networkidle0',
@@ -32,7 +32,7 @@ describe('E2E Sanity Check', () => {
 
     // Check for some text that should be on the page (character page)
     const content = await page.content();
-    expect(content).toContain('CIMMERIAN HERO TACTICAL CONSOLE');
+    expect(content).toContain('Project Status');
   }, 30000);
 
   it.skipIf(!hasClerkKeys)(
