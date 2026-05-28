@@ -67,12 +67,22 @@ export const onRequest = sequence(
     const auth = locals.auth();
     const { pathname } = new URL(request.url);
 
+    // Redirect authenticated users away from public pages (like login)
+    // to their project-status dashboard.
+    const authPaths = ['/', '/log-in', '/login', '/signup'];
+    const isAuthPath = authPaths.some(
+      (path) => pathname === path || pathname.startsWith(path + '/'),
+    );
+
+    if (auth.userId && isAuthPath) {
+      return redirect('/project-status');
+    }
+
     // GATE 1: Unauthorized access to protected sectors
     // (If the user isn't logged in and tries to access non-public routes)
     const publicPaths = [
       '/',
-      '/login',
-      '/sign-in',
+      '/log-in',
       '/signup',
       '/api/moon',
       '/api/gitAgent',
@@ -84,7 +94,7 @@ export const onRequest = sequence(
     );
 
     if (!auth.userId && !isPublic) {
-      return redirect('/login');
+      return redirect('/log-in');
     }
 
     // GATE 2: Role-based isolation for the 'Runner' sector
