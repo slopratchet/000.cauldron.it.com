@@ -84,7 +84,13 @@ export const onRequest = sequence(
     );
 
     if (!auth.userId && !isPublic) {
-      return redirect('/login');
+      return redirect('/log-in');
+    }
+
+    // Redirect authenticated users away from public auth pages
+    const authRoutes = ['/', '/login', '/log-in', '/sign-in', '/signup'];
+    if (auth.userId && authRoutes.includes(pathname)) {
+      return redirect('/project-status');
     }
 
     // GATE 2: Role-based isolation for the 'Runner' sector
