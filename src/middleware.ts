@@ -88,6 +88,7 @@ export const onRequest = sequence(
       '/api/gitAgent',
       '/guest',
       '/market',
+      '/screen',
     ];
     const isPublic = publicPaths.some(
       (path) => pathname === path || pathname.startsWith(path + '/'),
