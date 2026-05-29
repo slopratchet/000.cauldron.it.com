@@ -97,15 +97,15 @@ export const onRequest = sequence(
       return redirect('/log-in');
     }
 
+    //DISABLING THIS relaTED TO RUNNER FOR NOW
     // GATE 2: Role-based isolation for the 'Runner' sector
     // Redirect non-Showrunners back to the Player Dashboard
     if (pathname.startsWith('/runner')) {
-      const role =
-        auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
-
-      if (role !== 'showrunner') {
-        return redirect('/play');
-      }
+      //const role =
+      //  auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
+      //if (role !== 'showrunner') {
+      //  return redirect('/play');
+      // }
     }
 
     return next();
