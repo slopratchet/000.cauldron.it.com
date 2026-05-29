@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;500;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,700;1,8..60,400&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Tinos:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import 'tailwindcss';
 
@@ -181,6 +182,59 @@
   .brutalist-shadow-lg {
     box-shadow: 8px 8px 0px 0px #000000;
   }
+
+  .screen-font-headline-xl {
+    font-family: var(--font-plex);
+    font-size: 48px;
+    line-height: 56px;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+  .screen-font-headline-lg {
+    font-family: var(--font-plex);
+    font-size: 32px;
+    line-height: 40px;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+  }
+  .screen-font-headline-md {
+    font-family: var(--font-plex);
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 700;
+  }
+  .screen-font-headline-sm {
+    font-family: var(--font-plex);
+    font-size: 20px;
+    line-height: 28px;
+    font-weight: 700;
+  }
+  .screen-font-body-md {
+    font-family: var(--font-plex);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  .screen-font-label-md {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 18px;
+    letter-spacing: 0.05em;
+    font-weight: 600;
+  }
+  .screen-font-label-sm {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 16px;
+    letter-spacing: 0.05em;
+    font-weight: 500;
+  }
+  .screen-font-code-md {
+    font-family: var(--font-mono);
+    font-size: 14px;
+    line-height: 20px;
+    font-weight: 400;
+  }
 }
 
 @utility brutalist-grid {
@@ -247,6 +301,23 @@
 }
 
 @layer base {
+  .screen-theme {
+    --color-surface: #f7f9fb;
+    --color-on-surface: #191c1e;
+    --color-on-surface-variant: #45474c;
+    --color-surface-variant: #e0e3e5;
+    --color-surface-container-low: #f2f4f6;
+    --color-primary: #091426;
+    --color-secondary: #904d00;
+    --color-secondary-container: #fe932c;
+    --color-on-secondary-container: #663500;
+    --color-blood-red: #a62626;
+    --color-ink-wash: #1a1a1a;
+    --spacing-gutter: 24px;
+    --font-plex: 'IBM Plex Sans', sans-serif;
+    --font-mono: 'Space Mono', monospace;
+  }
+
   .cimmerian-theme {
     background-color: #fcf9f8;
     color: #1b1c1c;
@@ -334,4 +405,68 @@
 
 .animate-marquee {
   animation: marquee 25s linear infinite;
+}
+
+.signal-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.3;
+  }
+}
+
+.block-shadow {
+  box-shadow: 4px 4px 0px #904d00;
+}
+
+.scanline {
+  width: 100%;
+  height: 2px;
+  background: rgba(144, 77, 0, 0.1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  animation: scan 8s linear infinite;
+  z-index: 10;
+  pointer-events: none;
+}
+
+@keyframes scan {
+  0% {
+    top: 0%;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #091426;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
