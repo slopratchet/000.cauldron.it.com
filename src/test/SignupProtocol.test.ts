@@ -258,19 +258,19 @@ describe('Protocol Stage II: The Transmission (State Machine)', () => {
 // STAGE III: ROLE-BASED SECTOR ISOLATION
 // ────────────────────────────────────────────────────────────────────────────
 describe('Protocol Stage III: Role-Based Sector Isolation', () => {
-  it('should confirm a gamerunner role from publicMetadata', () => {
+  it('should confirm a showrunner role from publicMetadata', () => {
     const store = $clerkStore.get() as any;
-    expect(store.user.publicMetadata.role).toBe('gamerunner');
+    expect(store.user.publicMetadata.role).toBe('showrunner');
   });
 
-  it('should deny runner-sector access for non-gamerunner roles', () => {
+  it('should deny runner-sector access for non-showrunner roles', () => {
     const mockStore = $clerkStore as any;
     mockStore.get.mockReturnValueOnce({
       user: { publicMetadata: { role: 'habitant' } },
     });
 
     const store = $clerkStore.get() as any;
-    const canAccessRunner = store.user.publicMetadata.role === 'gamerunner';
+    const canAccessRunner = store.user.publicMetadata.role === 'showrunner';
     expect(canAccessRunner).toBe(false);
   });
 
@@ -281,7 +281,7 @@ describe('Protocol Stage III: Role-Based Sector Isolation', () => {
     });
 
     const store = $clerkStore.get() as any;
-    const canAccessRunner = store.user.publicMetadata.role === 'gamerunner';
+    const canAccessRunner = store.user.publicMetadata.role === 'showrunner';
     expect(canAccessRunner).toBe(false);
   });
 });

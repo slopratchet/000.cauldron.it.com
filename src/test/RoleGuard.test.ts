@@ -3,9 +3,9 @@ import './clerk-mock'; // Initialize mocks
 import { $clerkStore } from '@clerk/astro/client';
 
 describe('RoleGuard (Production Sector Isolation)', () => {
-  it('should identify a user as a GameRunner based on metadata', () => {
+  it('should identify a user as a Showrunner based on metadata', () => {
     const store = $clerkStore.get() as any;
-    expect(store.user.publicMetadata.role).toBe('gamerunner');
+    expect(store.user.publicMetadata.role).toBe('showrunner');
   });
 
   it('should simulate a 403-equivalent rejection for non-runner sectors', () => {
@@ -16,6 +16,6 @@ describe('RoleGuard (Production Sector Isolation)', () => {
     });
 
     const store = $clerkStore.get() as any;
-    expect(store.user.publicMetadata.role).not.toBe('gamerunner');
+    expect(store.user.publicMetadata.role).not.toBe('showrunner');
   });
 });

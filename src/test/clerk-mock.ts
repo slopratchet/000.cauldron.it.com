@@ -8,7 +8,7 @@ import { vi } from 'vitest';
 
 export const mockUser = {
   id: 'user_123',
-  publicMetadata: { role: 'gamerunner' },
+  publicMetadata: { role: 'showrunner' },
   organizationMemberships: [],
 };
 

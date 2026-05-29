@@ -98,12 +98,12 @@ export const onRequest = sequence(
     }
 
     // GATE 2: Role-based isolation for the 'Runner' sector
-    // Redirect non-GameRunners back to the Player Dashboard
+    // Redirect non-Showrunners back to the Player Dashboard
     if (pathname.startsWith('/runner')) {
       const role =
         auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
 
-      if (role !== 'gamerunner') {
+      if (role !== 'showrunner') {
         return redirect('/play');
       }
     }
