@@ -1,0 +1,22 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ScreenView from '../components/ScreenView.tsx';
+import '../styles/global.css';
+import '../styles/screen.css';
+
+const auth = Astro.locals.auth();
+const isLocal =
+  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
+
+if (!auth.userId && !isLocal) {
+  const target = '/log-in';
+  return Astro.redirect(target);
+}
+---
+
+<Layout
+  title="Screen"
+  bodyClass="screen-theme !bg-surface text-on-surface selection:bg-secondary-container selection:text-on-secondary-container"
+>
+  <ScreenView client:load />
+</Layout>
