@@ -43,6 +43,7 @@ export default tseslint.config(
     },
     rules: {
       '@typescript-eslint/no-empty-object-type': 'off',
+      '@typescript-eslint/no-unused-vars': 'warn',
       // Allow console and process in our specialized test/middleware files
       'no-console': 'off',
     },
