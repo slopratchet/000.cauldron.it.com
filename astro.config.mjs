@@ -62,6 +62,7 @@ export default defineConfig({
   integrations: [clerk(), react()],
   vite: {
     plugins: [tailwindcss(), edgeCompatibilityPlugin()],
+    optimizeDeps: { include: ['lucide-react'] },
     ssr: {
       noExternal: [/@clerk/],
       external: [
