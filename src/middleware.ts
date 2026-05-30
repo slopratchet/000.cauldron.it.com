@@ -2,16 +2,59 @@ import { clerkMiddleware } from '@clerk/astro/server';
 import { defineMiddleware, sequence } from 'astro:middleware';
 import { env as cfEnv } from 'cloudflare:workers';
 
-/**
- * PROTOCOL_ACCESS_ORCHESTRATOR
- * 1. Initialize Clerk (Auth Impulse)
- * 2. Enforce Role-Based Boundaries (Sector Isolation)
- */
-export const onRequest = sequence(
-  defineMiddleware(async (context, next) => {
-    // Extract keys from Cloudflare runtime or local env shims
-    const env = cfEnv || (globalThis as any).process?.env || import.meta.env;
+// ==========================================
+// 1. ACCESS CONTROL CONFIGURATION (ACL)
+// ==========================================
 
+/**
+ * Strict structural definitions for our network sectors.
+ * Add new paths here to scale without touching engine logic.
+ */
+const ACCESS_CONFIG = {
+  publicPrefixes: [
+    '/log-in',
+    '/signup',
+    '/api/moon',
+    '/api/gitAgent',
+    '/guest',
+    '/market',
+    '/screen',
+  ],
+  publicExact: ['/'],
+  // Paths reserved strictly for authenticating users to prevent auth-looping
+  authGateways: ['/', '/log-in', '/login', '/signup'],
+};
+
+/**
+ * Evaluates whether a given pathname belongs to a public sector.
+ */
+function isPublicRoute(pathname: string): boolean {
+  if (ACCESS_CONFIG.publicExact.includes(pathname)) return true;
+  return ACCESS_CONFIG.publicPrefixes.some(
+    (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`),
+  );
+}
+
+/**
+ * Evaluates whether a route is an authentication entry point.
+ */
+function isAuthGateway(pathname: string): boolean {
+  return ACCESS_CONFIG.authGateways.some(
+    (gate) => pathname === gate || pathname.startsWith(`${gate}/`),
+  );
+}
+
+// ==========================================
+// 2. MIDDLEWARE ENGINE
+// ==========================================
+
+export const onRequest = sequence(
+  /**
+   * PHASE 1: AUTH IMPULSE INITIALIZATION
+   * Resolves environment variables, handles test shims, and invokes Clerk.
+   */
+  defineMiddleware(async (context, next) => {
+    const env = cfEnv || (globalThis as any).process?.env || import.meta.env;
     const publishableKey = env.PUBLIC_CLERK_PUBLISHABLE_KEY;
     const secretKey = env.CLERK_SECRET_KEY;
 
@@ -19,6 +62,7 @@ export const onRequest = sequence(
       console.warn(
         'CRITICAL: Clerk keys are missing from the runtime environment.',
       );
+
       const isDevOrTest =
         import.meta.env.DEV ||
         (globalThis as any).process?.env?.NODE_ENV === 'test' ||
@@ -26,9 +70,8 @@ export const onRequest = sequence(
 
       if (isDevOrTest) {
         console.warn(
-          'DEV/TEST/CI MODE: Bypassing Clerk middleware to prevent keyless handshake failures.',
+          'DEV/TEST/CI MODE: Injecting mock authentication context.',
         );
-        // Provide mock locals.auth so the app doesn't crash on auth calls
         context.locals.auth = () => ({
           userId: null,
           sessionId: null,
@@ -43,71 +86,64 @@ export const onRequest = sequence(
         });
         return next();
       }
+
+      // Production fail-closed state if keys are completely missing
+      return new Response('Security Architecture Misconfiguration', {
+        status: 500,
+      });
     }
 
-    // Initialize Clerk dynamically for this request context
-    const handler = clerkMiddleware({
-      publishableKey,
-      secretKey,
-    });
-
-    return handler(context, next);
+    // Execute the Clerk engine with the extracted edge environment context
+    return clerkMiddleware({ publishableKey, secretKey })(context, next);
   }),
+
+  /**
+   * PHASE 2: SECTOR ISOLATION & RBAC
+   * Enforces security boundaries based on the resolved Auth identity.
+   */
   defineMiddleware(async ({ locals, request, redirect }, next) => {
-    // DEV BYPASS: Allow full access in local development
+    // DEV BYPASS: Retained for localized speed. Remove if testing local RBAC.
     if (import.meta.env.DEV) {
       return next();
     }
 
-    // Safety check: ensure the Auth impulse is active
+    // Fail-secure: If Clerk didn't bind properly, do not allow traffic to fall through
     if (typeof locals.auth !== 'function') {
-      return next();
+      console.error(
+        'CRITICAL: Authentication context missing from lifecycle execution.',
+      );
+      return new Response('Unauthorized Lifecycle Error', { status: 401 });
     }
 
     const auth = locals.auth();
     const { pathname } = new URL(request.url);
 
-    // Redirect authenticated users away from public pages (like login)
-    // to their project-status dashboard.
-    const authPaths = ['/', '/log-in', '/login', '/signup'];
-    const isAuthPath = authPaths.some(
-      (path) => pathname === path || pathname.startsWith(path + '/'),
-    );
-
-    if (auth.userId && isAuthPath) {
+    // --- GATE 1: REDIRECT AUTHENTICATED USERS AWAY FROM PUBLIC AUTH PATHS ---
+    if (auth.userId && isAuthGateway(pathname)) {
       const role =
         auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
-      if (role !== 'showrunner') {
+
+      if (role === 'artist') {
         return redirect('/project-status');
+      } else {
+        return redirect('/lobby');
       }
     }
 
-    // GATE 1: Unauthorized access to protected sectors
-    // (If the user isn't logged in and tries to access non-public routes)
-    const publicPaths = [
-      '/',
-      '/log-in',
-      '/signup',
-      '/api/moon',
-      '/api/gitAgent',
-      '/guest',
-      '/market',
-      '/screen',
-    ];
-    const isPublic = publicPaths.some(
-      (path) => pathname === path || pathname.startsWith(path + '/'),
-    );
-
-    if (!auth.userId && !isPublic) {
+    // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---
+    if (!auth.userId && !isPublicRoute(pathname)) {
       return redirect('/log-in');
     }
 
-    //DISABLING THIS relaTED TO RUNNER FOR NOW
-    // GATE 2: Role-based isolation for the 'Runner' sector
-    // Redirect non-Showrunners back to the Player Dashboard
-    //if (pathname.startsWith('/runner')) {
-
-    //}
+    // --- GATE 3: FUTURE RBAC SECTOR ISOLATION (E.G., RUNNER INFRASTRUCTURE) ---
+    if (pathname.startsWith('/runner')) {
+      const role =
+        auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
+      if (role !== 'artist') {
+        // Enforce a hard 404/403 or redirect to obscure high-clearance sectors
+        return redirect('/project-status');
+      }
+    }
 
     return next();
   }),
