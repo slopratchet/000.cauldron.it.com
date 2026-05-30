@@ -21,15 +21,15 @@ const isOnline = status === 'ONLINE';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Screen Page</title>
-  </head><div class="font-label text-[10px] tracking-widest uppercase">
-    CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
-      id="status-indicator"
-      class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
-    >
-  </div>
-
-
+  </head>
   <body>
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
+      >
+    </div>
+
     <div class="screen-theme">
       <ScreenApp client:load />
     </div>
