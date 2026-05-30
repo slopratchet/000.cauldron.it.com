@@ -75,7 +75,11 @@ export const onRequest = sequence(
     );
 
     if (auth.userId && isAuthPath) {
-      return redirect('/project-status');
+      const role =
+        auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
+      if (role !== 'showrunner') {
+        return redirect('/project-status');
+      }
     }
 
     // GATE 1: Unauthorized access to protected sectors
@@ -101,13 +105,9 @@ export const onRequest = sequence(
     //DISABLING THIS relaTED TO RUNNER FOR NOW
     // GATE 2: Role-based isolation for the 'Runner' sector
     // Redirect non-Showrunners back to the Player Dashboard
-    if (pathname.startsWith('/runner')) {
-      //const role =
-      //  auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
-      //if (role !== 'showrunner') {
-      //  return redirect('/play');
-      // }
-    }
+    //if (pathname.startsWith('/runner')) {
+
+    //}
 
     return next();
   }),
