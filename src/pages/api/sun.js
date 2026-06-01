@@ -1,7 +1,7 @@
 export const GET = async () => {
   const queryFn = async () => {
     const response = await fetch(
-      'https://primal-mama-worker-gatekeeper.berad4000.workers.dev/server',
+      'https://worker-sower.berad4000.workers.dev/ws',
     );
     if (!response.ok) {
       throw new Error('Network response was not ok');
