@@ -1,12 +1,11 @@
 export const GET = async () => {
   const queryFn = async () => {
-    const response = await fetch(
-      'https://zero00-server.onrender.com/api/server/test',
-    );
+    const response = await fetch('https://worker-sower.berad4000.workers.dev/');
     if (!response.ok) {
       throw new Error('Network response was not ok');
     }
-    return response.json();
+    const text = await response.text();
+    return { status: text };
   };
 
   console.log('the moon is going down ');
