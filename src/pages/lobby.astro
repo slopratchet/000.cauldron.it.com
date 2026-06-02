@@ -3,15 +3,6 @@ import Layout from '../layouts/Layout.astro';
 import CharacterSheet from '../components/character-sheet/CharacterSheet.tsx';
 
 let status = 'OFFLINE';
-try {
-  const response = await fetch(new URL('/api/sun', Astro.url));
-  if (response.ok) {
-    const data = await response.json();
-    status = data.status;
-  }
-} catch (e) {
-  console.error('Failed to fetch system status:', e);
-}
 
 const isOnline = status === 'ONLINE';
 ---
@@ -27,49 +18,4 @@ const isOnline = status === 'ONLINE';
       class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
     >
   </div>
-
-  <!-- WebSocket Logs -->
-  <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
-    <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
-      LIVE TRANSMISSION
-    </h3>
-    <div
-      id="ws-logs"
-      class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
-    >
-      [SYSTEM] Waiting for connection to worker...
-    </div>
-  </section>
-
-  <script>
-    // WebSocket Connection
-    const wsLogs = document.getElementById('ws-logs');
-    if (wsLogs) {
-      // Connect directly to the worker WebSocket
-      const ws = new WebSocket('wss://worker-sower.berad4000.workers.dev/ws');
-
-      ws.onopen = () => {
-        wsLogs.innerHTML += '<br/>[SYSTEM] Connected to worker.';
-      };
-
-      ws.onmessage = (event) => {
-        let data = event.data;
-        try {
-          const parsed = JSON.parse(data);
-          data = JSON.stringify(parsed);
-        } catch (e) {}
-        wsLogs.innerHTML += `<br/><span class="text-white">[TICK]</span> ${data}`;
-        wsLogs.scrollTop = wsLogs.scrollHeight;
-      };
-
-      ws.onerror = (error) => {
-        wsLogs.innerHTML +=
-          '<br/><span class="text-red-500">[ERROR] Connection failed.</span>';
-      };
-
-      ws.onclose = () => {
-        wsLogs.innerHTML += '<br/>[SYSTEM] Connection closed.';
-      };
-    }
-  </script>
 </Layout>

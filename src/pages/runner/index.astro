@@ -2,15 +2,6 @@
 import Layout from '../../layouts/Layout.astro';
 
 let status = 'OFFLINE';
-try {
-  const response = await fetch(new URL('/api/moon', Astro.url));
-  if (response.ok) {
-    const data = await response.json();
-    status = data.status;
-  }
-} catch (e) {
-  console.error('Failed to fetch system status:', e);
-}
 
 const isOnline = status === 'ONLINE';
 ---
@@ -524,35 +515,4 @@ const isOnline = status === 'ONLINE';
       <span class="opacity-40">TIMESTAMP: 14:22:01.09</span>
     </div>
   </footer>
-
-  <script>
-    const statusIndicator = document.getElementById('status-indicator');
-
-    async function updateStatus() {
-      try {
-        const response = await fetch('/api/moon');
-        const data = await response.json();
-
-        if (statusIndicator) {
-          statusIndicator.textContent = data.status;
-          if (data.status === 'ONLINE') {
-            statusIndicator.classList.remove('text-red-400');
-            statusIndicator.classList.add('text-green-400');
-          } else {
-            statusIndicator.classList.remove('text-green-400');
-            statusIndicator.classList.add('text-red-400');
-          }
-        }
-      } catch (error) {
-        if (statusIndicator) {
-          statusIndicator.textContent = 'OFFLINE';
-          statusIndicator.classList.remove('text-green-400');
-          statusIndicator.classList.add('text-red-400');
-        }
-      }
-    }
-
-    // Update status every 30 seconds
-    setInterval(updateStatus, 30000);
-  </script>
 </Layout>

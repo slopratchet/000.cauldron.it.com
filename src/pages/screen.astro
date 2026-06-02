@@ -3,15 +3,6 @@ import '../styles/global.css';
 import ScreenApp from '../components/ScreenApp.tsx';
 
 let status = 'OFFLINE';
-try {
-  const response = await fetch(new URL('/api/moon', Astro.url));
-  if (response.ok) {
-    const data = await response.json();
-    status = data.status;
-  }
-} catch (e) {
-  console.error('Failed to fetch system status:', e);
-}
 
 const isOnline = status === 'ONLINE';
 ---
