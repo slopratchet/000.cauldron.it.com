@@ -3,6 +3,14 @@ import '../styles/global.css';
 import ScreenApp from '../components/ScreenApp.tsx';
 
 let status = 'OFFLINE';
+try {
+  const response = await fetch(new URL('/api/moon', Astro.url));
+  if (response.ok) {
+    status = 'ONLINE';
+  }
+} catch (e) {
+  console.error('Failed to fetch system status:', e);
+}
 
 const isOnline = status === 'ONLINE';
 ---
@@ -12,18 +20,94 @@ const isOnline = status === 'ONLINE';
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Screen Page</title>
-  </head><div class="font-label text-[10px] tracking-widest uppercase">
-    CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
-      id="status-indicator"
-      class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
-    >
-  </div>
+  </head>
 
   <body>
     <div class="screen-theme">
       <ScreenApp client:load />
     </div>
+
+    <!-- WebSocket Logs -->
+    <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
+      <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
+        LIVE TRANSMISSION
+      </h3>
+      <div
+        id="ws-logs"
+        class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
+      >
+        [SYSTEM] Waiting for connection to worker...
+      </div>
+    </section>
+
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
+      >
+    </div>
+
+    <script>
+      // WebSocket Connection
+      const wsLogs = document.getElementById('ws-logs');
+      if (wsLogs) {
+        let ws;
+        let usingFallback = false;
+
+        const appendLog = (htmlContent) => {
+          wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
+        };
+
+        const connect = (url, isFallback = false) => {
+          ws = new WebSocket(url);
+
+          ws.onopen = () => {
+            document.getElementById('status-indicator').innerText = 'ONLINE';
+            document.getElementById('status-indicator').className =
+              'text-green-400';
+            appendLog(
+              `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}.`,
+            );
+          };
+
+          ws.onmessage = (event) => {
+            let data = event.data;
+            try {
+              const parsed = JSON.parse(data);
+              data = JSON.stringify(parsed);
+            } catch (e) {}
+            appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+          };
+
+          ws.onerror = (error) => {
+            if (!isFallback && !usingFallback) {
+              usingFallback = true;
+              appendLog(
+                '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+              );
+              connect('wss://worker-sower.berad4000.workers.dev/ws', true);
+            } else {
+              document.getElementById('status-indicator').innerText = 'OFFLINE';
+              document.getElementById('status-indicator').className =
+                'text-red-400';
+              appendLog(
+                '<span class="text-red-500">[ERROR] Connection failed.</span>',
+              );
+            }
+          };
+
+          ws.onclose = () => {
+            document.getElementById('status-indicator').innerText = 'OFFLINE';
+            document.getElementById('status-indicator').className =
+              'text-red-400';
+            appendLog('[SYSTEM] Connection closed.');
+          };
+        };
+
+        const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+        const wsUrl = `${protocol}//${window.location.host}/api/sun`;
+        connect(wsUrl);
+      }
+    </script>
   </body>
-
-
 </html>
