@@ -5,13 +5,11 @@ let status = 'OFFLINE';
 try {
   const response = await fetch(new URL('/api/moon', Astro.url));
   if (response.ok) {
-    status = 'ONLINE';
+    status = 'WAITING';
   }
 } catch (e) {
   console.error('Failed to fetch system status:', e);
 }
-
-const isOnline = status === 'ONLINE';
 ---
 
 <Layout bodyClass="cimmerian-theme">
@@ -22,7 +20,11 @@ const isOnline = status === 'ONLINE';
   <div class="font-label text-[10px] tracking-widest uppercase">
     CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
       id="status-indicator"
-      class={isOnline ? 'text-green-400' : 'text-red-400'}>{status}</span
+      class={status === 'ONLINE'
+        ? 'text-green-400'
+        : status === 'WAITING'
+          ? 'text-yellow-400'
+          : 'text-red-400'}>{status}</span
     >
   </div>
 
@@ -54,15 +56,19 @@ const isOnline = status === 'ONLINE';
         ws = new WebSocket(url);
 
         ws.onopen = () => {
-          document.getElementById('status-indicator').innerText = 'ONLINE';
-          document.getElementById('status-indicator').className =
-            'text-green-400';
           appendLog(
-            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}.`,
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
           );
         };
 
+        let hasReceivedTick = false;
         ws.onmessage = (event) => {
+          if (!hasReceivedTick) {
+            hasReceivedTick = true;
+            document.getElementById('status-indicator').innerText = 'ONLINE';
+            document.getElementById('status-indicator').className =
+              'text-green-400';
+          }
           let data = event.data;
           try {
             const parsed = JSON.parse(data);
