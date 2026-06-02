@@ -187,6 +187,36 @@ if (auth.userId || isLocal) {
 
     console.log('BIO_PUNK_UI: INITIALIZING_SCRIPT_LOAD');
 
+    // Intercept fetch to detect 403 errors from Clerk
+    const originalFetch = window.fetch;
+    window.fetch = async function (...args) {
+      const response = await originalFetch.apply(this, args);
+      if (
+        response.status === 403 &&
+        response.url &&
+        response.url.includes('/v1/client')
+      ) {
+        console.error('Intercepted 403 Forbidden from Clerk:', response.url);
+
+        // Check if alert already exists to prevent duplicates
+        if (!document.getElementById('clerk-403-alert')) {
+          const alertDiv = document.createElement('div');
+          alertDiv.id = 'clerk-403-alert';
+          alertDiv.className =
+            'fixed top-4 left-1/2 -translate-x-1/2 z-50 border-4 border-red-600 bg-paper p-4 w-[90%] max-w-md shadow-[8px_8px_0px_0px_rgba(220,38,38,1)]';
+          alertDiv.innerHTML = `
+            <div class="font-display font-black text-xl uppercase text-red-600 mb-2">CRITICAL ALERT</div>
+            <div class="font-display text-xs font-bold uppercase text-red-600 tracking-tight">
+              403 FORBIDDEN: Access to authentication server denied.
+            </div>
+            <button onclick="this.parentElement.remove()" class="mt-4 bg-red-600 text-white font-display font-black text-xs py-2 px-4 uppercase hover:bg-paper hover:text-red-600 border-2 border-red-600 transition-colors cursor-pointer">DISMISS</button>
+          `;
+          document.body.appendChild(alertDiv);
+        }
+      }
+      return response;
+    };
+
     // Subscribe to store to handle the case where user is already signed in on client side
     const unsubscribe = $clerkStore.subscribe((clerk) => {
       if (clerk && clerk.user) {
