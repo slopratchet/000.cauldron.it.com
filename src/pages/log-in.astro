@@ -531,5 +531,25 @@ if (auth.userId || isLocal) {
         }
       }
     }
+
+    // Global fetch interceptor to catch 403 Forbidden errors from Clerk
+    const originalFetch = window.fetch;
+    window.fetch = async function (...args) {
+      const response = await originalFetch.apply(window, args);
+      if (response.status === 403) {
+        let url = '';
+        if (typeof args[0] === 'string') {
+          url = args[0];
+        } else if (args[0] instanceof Request) {
+          url = args[0].url;
+        } else if (args[0] instanceof URL) {
+          url = args[0].toString();
+        }
+        if (url.includes('clerk')) {
+          handleError('ERR: 403 FORBIDDEN - CLERK ACCESS DENIED');
+        }
+      }
+      return response;
+    };
   </script>
 </Layout>
