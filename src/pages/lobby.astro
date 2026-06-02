@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-let status = 'OFFFLINE';
+let status = 'OFFLINE';
 try {
   const response = await fetch(new URL('/api/moon', Astro.url));
   if (response.ok) {
@@ -54,6 +54,9 @@ const isOnline = status === 'ONLINE';
         ws = new WebSocket(url);
 
         ws.onopen = () => {
+          document.getElementById('status-indicator').innerText = 'ONLINE';
+          document.getElementById('status-indicator').className =
+            'text-green-400';
           appendLog(
             `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}.`,
           );
@@ -76,6 +79,9 @@ const isOnline = status === 'ONLINE';
             );
             connect('wss://worker-sower.berad4000.workers.dev/ws', true);
           } else {
+            document.getElementById('status-indicator').innerText = 'OFFLINE';
+            document.getElementById('status-indicator').className =
+              'text-red-400';
             appendLog(
               '<span class="text-red-500">[ERROR] Connection failed.</span>',
             );
@@ -83,6 +89,9 @@ const isOnline = status === 'ONLINE';
         };
 
         ws.onclose = () => {
+          document.getElementById('status-indicator').innerText = 'OFFLINE';
+          document.getElementById('status-indicator').className =
+            'text-red-400';
           appendLog('[SYSTEM] Connection closed.');
         };
       };
