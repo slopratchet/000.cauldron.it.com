@@ -1,7 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-let status = 'OFFLINE';
+let status = 'ONLINE';
 try {
   const response = await fetch(new URL('/api/sun', Astro.url));
   if (response.ok) {
