@@ -1,11 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 
-let status = 'ONLINE';
+let status = 'OFFFLINE';
 try {
   const response = await fetch(new URL('/api/moon', Astro.url));
   if (response.ok) {
-    // We do not need the response body to determine if we got an ok response
     status = 'ONLINE';
   }
 } catch (e) {
