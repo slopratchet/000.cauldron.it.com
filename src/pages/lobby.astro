@@ -3,10 +3,10 @@ import Layout from '../layouts/Layout.astro';
 
 let status = 'OFFLINE';
 try {
-  const response = await fetch(new URL('/api/sun', Astro.url));
+  const response = await fetch(new URL('/api/moon', Astro.url));
   if (response.ok) {
-    const data = await response.json();
-    status = data.status;
+    // We do not need the response body to determine if we got an ok response
+    status = 'ONLINE';
   }
 } catch (e) {
   console.error('Failed to fetch system status:', e);
