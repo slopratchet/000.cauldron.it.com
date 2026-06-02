@@ -1,6 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import CharacterSheet from '../components/character-sheet/CharacterSheet.tsx';
 
 let status = 'OFFLINE';
 try {
@@ -45,31 +44,53 @@ const isOnline = status === 'ONLINE';
     // WebSocket Connection
     const wsLogs = document.getElementById('ws-logs');
     if (wsLogs) {
-      // Connect directly to the worker WebSocket
-      const ws = new WebSocket('wss://worker-sower.berad4000.workers.dev/ws');
+      let ws;
+      let usingFallback = false;
 
-      ws.onopen = () => {
-        wsLogs.innerHTML += '<br/>[SYSTEM] Connected to worker.';
+      const appendLog = (htmlContent) => {
+        wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
       };
 
-      ws.onmessage = (event) => {
-        let data = event.data;
-        try {
-          const parsed = JSON.parse(data);
-          data = JSON.stringify(parsed);
-        } catch (e) {}
-        wsLogs.innerHTML += `<br/><span class="text-white">[TICK]</span> ${data}`;
-        wsLogs.scrollTop = wsLogs.scrollHeight;
+      const connect = (url, isFallback = false) => {
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          appendLog(
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}.`,
+          );
+        };
+
+        ws.onmessage = (event) => {
+          let data = event.data;
+          try {
+            const parsed = JSON.parse(data);
+            data = JSON.stringify(parsed);
+          } catch (e) {}
+          appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+        };
+
+        ws.onerror = (error) => {
+          if (!isFallback && !usingFallback) {
+            usingFallback = true;
+            appendLog(
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+            );
+            connect('wss://worker-sower.berad4000.workers.dev/ws', true);
+          } else {
+            appendLog(
+              '<span class="text-red-500">[ERROR] Connection failed.</span>',
+            );
+          }
+        };
+
+        ws.onclose = () => {
+          appendLog('[SYSTEM] Connection closed.');
+        };
       };
 
-      ws.onerror = (error) => {
-        wsLogs.innerHTML +=
-          '<br/><span class="text-red-500">[ERROR] Connection failed.</span>';
-      };
-
-      ws.onclose = () => {
-        wsLogs.innerHTML += '<br/>[SYSTEM] Connection closed.';
-      };
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${protocol}//${window.location.host}/api/sun`;
+      connect(wsUrl);
     }
   </script>
 </Layout>
