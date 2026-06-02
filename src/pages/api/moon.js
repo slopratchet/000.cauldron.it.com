@@ -1,7 +1,7 @@
 export const GET = async () => {
   const queryFn = async () => {
     const response = await fetch(
-      'https://primal-mama-worker-gatekeeper.berad4000.workers.dev/server',
+      'https://zero00-server.onrender.com/api/server/test',
     );
     if (!response.ok) {
       throw new Error('Network response was not ok');
