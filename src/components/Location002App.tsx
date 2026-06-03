@@ -29,10 +29,10 @@ export default function App() {
         <header className="col-span-12 flex flex-col md:flex-row justify-between items-end border-b-4 border-black pb-[var(--spacing-stack-sm)] mb-[var(--spacing-stack-md)]">
           <div>
             <h1 className="font-headline-xl text-headline-xl uppercase tracking-tighter leading-none">
-              THE ONTOLOGICAL ENGINE
+              THE PRIMAL RECEPTACLE
             </h1>
             <p className="font-label-md text-label-md mt-2 opacity-70">
-              SUBJECT ID: ALLIGATOR-FARM-PONDS-PRIMAL // REF: VECTOR ALPHA
+              SUBJECT ID: ALLIGATOR-FARM-PONDS // REF: STRESS TEST OF CREATION
             </p>
           </div>
           <div className="flex gap-4 mt-[var(--spacing-stack-md)] md:mt-0">
@@ -106,10 +106,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-black"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Paradox Collider
+                    Topological Plumbing
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Free Belief Injection
+                    Heavy-lead conduits
                   </span>
                 </div>
               </li>
@@ -117,10 +117,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-surface-container-highest"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Fractal Loom
+                    Thermal Sink
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Bimodal Syntax Compilation
+                    Saturated Silt
                   </span>
                 </div>
               </li>
@@ -128,10 +128,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-[var(--color-blood-red)]"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Macro-Ledger
+                    Biological Processors
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Garbage Collection Routing
+                    The Archosaurs
                   </span>
                 </div>
               </li>
@@ -139,10 +139,10 @@ export default function App() {
                 <div className="w-4 h-4 dashed-ink-border bg-white"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Alligator Farm Ponds Primal
+                    Bimodal Sigil
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Entropic Debt Receptacle
+                    GET / POST Syntax
                   </span>
                 </div>
               </li>
@@ -156,33 +156,32 @@ export default function App() {
             <div className="space-y-4">
               <div className="border-l-4 border-black pl-3 py-1">
                 <p className="font-label-sm text-label-sm uppercase font-bold text-[var(--color-blood-red)]">
-                  01. SPIN-UP
+                  01. THE COMPILATION
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Three million vat-grown brains inject absolute joy and
-                  agony."
+                  "The GET request is fulfilled. Impossible rain falls."
                 </p>
               </div>
               <div className="border-l-4 border-black pl-3 py-1">
                 <p className="font-label-sm text-label-sm uppercase font-bold">
-                  02. TRANSLATION
+                  02. ROUTING OF BLOWBACK
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Translate Armada Coordinates to Core World Orbit."
+                  "Universe generates massive payload of chaotic desiccation."
                 </p>
               </div>
               <div className="border-l-4 border-black pl-3 py-1 opacity-50">
                 <p className="font-label-sm text-label-sm uppercase font-bold">
-                  03. GARBAGE COLLECTION
+                  03. STATE TRANSLATION
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Route spatial friction to Alligator Farm Ponds Primal."
+                  "Route spatial friction to Bimodal Sigil."
                 </p>
               </div>
             </div>
           </div>
           <InteractableButton className="w-full bg-[var(--color-primary)] text-white ink-border-heavy py-4 brutalist-shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center justify-center gap-3 font-headline-md text-headline-md uppercase tracking-widest">
-            <span>EXECUTE SPATIAL TRANSLATION</span>
+            <span>EXECUTE MASSIVE STATE TRANSLATION</span>
             <span className="material-symbols-outlined">verified</span>
           </InteractableButton>
         </aside>
