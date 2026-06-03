@@ -1,4 +1,4 @@
-import { Operation } from './types';
+import type { Operation } from './types';
 
 export const INITIAL_OPERATIONS: Operation[] = [
   {
