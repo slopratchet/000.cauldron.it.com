@@ -1,0 +1,309 @@
+---
+
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Location 002</title>
+    <style is:global>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@0,100..800;1,100..800&family=Source+Serif+4:ital,opsz,wght@0,8..60,200..900;1,8..60,200..900&display=swap');
+      @import 'tailwindcss';
+
+      @theme {
+        --color-surface: #fcf9f8;
+        --color-surface-dim: #dcd9d9;
+        --color-surface-bright: #ffffff;
+        --color-primary: #000000;
+        --color-on-surface: #1b1c1c;
+        --color-border: #000000;
+        --color-surface-container-low: #f6f3f2;
+
+        --font-sans: 'Archivo Narrow', ui-sans-serif, system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+        --font-serif: 'Source Serif 4', ui-serif, Georgia, serif;
+
+        --border-thick: 4px;
+        --border-medium: 2px;
+      }
+
+      body {
+        background-color: var(--color-surface);
+        color: var(--color-on-surface);
+        font-family: var(--font-sans);
+      }
+
+      .brutalist-border {
+        border: var(--border-thick) solid var(--color-border);
+      }
+      .brutalist-border-medium {
+        border: var(--border-medium) solid var(--color-border);
+      }
+      .brutalist-border-bottom {
+        border-bottom: var(--border-thick) solid var(--color-border);
+      }
+      .brutalist-border-right {
+        border-right: var(--border-thick) solid var(--color-border);
+      }
+      .pattern-bg {
+        background-image: radial-gradient(
+          var(--color-surface-dim) 1px,
+          transparent 1px
+        );
+        background-size: 8px 8px;
+      }
+      .mono-text {
+        font-family: var(--font-mono);
+      }
+      .grid-bg {
+        background-image:
+          linear-gradient(var(--color-surface-dim) 1px, transparent 1px),
+          linear-gradient(90deg, var(--color-surface-dim) 1px, transparent 1px);
+        background-size: 20px 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="flex flex-col md:flex-row antialiased selection:bg-primary selection:text-surface min-h-screen bg-surface font-sans text-on-surface"
+    >
+      <main class="flex flex-col min-w-0 flex-1">
+        <div class="p-4 md:p-8 flex-1 overflow-y-auto pattern-bg h-screen">
+          <div class="max-w-7xl mx-auto space-y-8">
+            <!-- Header Block -->
+            <div
+              class="brutalist-border bg-surface p-6 sm:p-8 relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 p-4 opacity-10 pointer-events-none"
+              >
+                <svg
+                  fill="none"
+                  height="120"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  width="120"
+                >
+                  <path
+                    d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"
+                  ></path>
+                </svg>
+              </div>
+              <h1
+                class="text-5xl sm:text-7xl font-black uppercase tracking-tighter mb-2 leading-none"
+              >
+                ALLIGATOR FARM PONDS PRIMAL
+              </h1>
+              <h2
+                class="text-xl sm:text-2xl font-mono uppercase tracking-widest text-primary border-t-4 border-border pt-2 inline-block"
+              >
+                Entropic Debt Receptacle // Sector Gamma-7
+              </h2>
+            </div>
+
+            <!-- Overview Image Section -->
+            <div class="brutalist-border bg-surface p-2 relative">
+              <div
+                class="absolute top-0 left-0 bg-primary text-surface px-2 py-1 text-xs font-mono z-10"
+              >
+                SATELLITE DOWNLINK // REF. IMAGE 89
+              </div>
+              <img
+                alt="Alligator Farm Ponds Primal entropic debt receptacle"
+                class="w-full h-[300px] md:h-[400px] object-cover border-2 border-border grayscale"
+                src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
+              />
+            </div>
+
+            <!-- Three-Column Data Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              <!-- Column 1: Climate Data -->
+              <div class="space-y-6">
+                <div
+                  class="brutalist-border bg-surface p-6 h-full flex flex-col"
+                >
+                  <h3
+                    class="text-2xl font-black uppercase mb-4 bg-primary text-surface p-2 text-center"
+                  >
+                    Climate Data
+                  </h3>
+                  <div class="flex-1 space-y-6">
+                    <div class="space-y-2">
+                      <div
+                        class="flex justify-between border-b border-border font-mono text-sm py-1"
+                      >
+                        <span class="font-bold">Avg Temp:</span>
+                        <span>-45.5&deg;C</span>
+                      </div>
+                      <div
+                        class="flex justify-between border-b border-border font-mono text-sm py-1"
+                      >
+                        <span class="font-bold">Wind Velocity:</span>
+                        <span>142 km/h</span>
+                      </div>
+                      <div
+                        class="flex justify-between border-b border-border font-mono text-sm py-1"
+                      >
+                        <span class="font-bold">Precipitation:</span>
+                        <span>Heavy Snowfall</span>
+                      </div>
+                      <div
+                        class="flex justify-between border-b border-border font-mono text-sm py-1"
+                      >
+                        <span class="font-bold">Visibility:</span>
+                        <span>&lt; 5 Meters</span>
+                      </div>
+                    </div>
+                    <div
+                      class="p-4 bg-surface-container-low border-2 border-border italic text-sm font-serif"
+                    >
+                      "Blizzard conditions are persistent. Isolation protocol
+                      active. Structural integrity currently monitored at 88%
+                      due to sustained gale-force impacts."
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 2: Strategic Utility -->
+              <div class="space-y-6">
+                <div
+                  class="brutalist-border bg-surface p-6 h-full flex flex-col grid-bg"
+                >
+                  <h3
+                    class="text-2xl font-black uppercase mb-4 bg-surface border-2 border-border p-2 text-center"
+                  >
+                    Strategic Utility
+                  </h3>
+                  <div
+                    class="bg-surface p-4 border-2 border-border space-y-4 flex-1"
+                  >
+                    <div>
+                      <h4
+                        class="text-lg font-bold uppercase border-b border-border pb-1 mb-2"
+                      >
+                        Network Hub
+                      </h4>
+                      <p class="text-sm font-serif leading-relaxed">
+                        Central relay for sub-zero communication arrays.
+                        Critical for deep-range scanning across the Sector
+                        Gamma-7 expanse.
+                      </p>
+                    </div>
+                    <div>
+                      <h4
+                        class="text-lg font-bold uppercase border-b border-border pb-1 mb-2"
+                      >
+                        Tactical Advantage
+                      </h4>
+                      <ul class="list-none font-mono text-xs space-y-2">
+                        <li class="flex items-start gap-2">
+                          <span
+                            class="font-bold text-primary text-lg leading-none mt-0.5"
+                            >&bull;</span
+                          >
+                          <span class="leading-tight"
+                            >High-altitude visibility for thermal tracking.</span
+                          >
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span
+                            class="font-bold text-primary text-lg leading-none mt-0.5"
+                            >&bull;</span
+                          >
+                          <span class="leading-tight"
+                            >Natural fortification via extreme terrain.</span
+                          >
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span
+                            class="font-bold text-primary text-lg leading-none mt-0.5"
+                            >&bull;</span
+                          >
+                          <span class="leading-tight"
+                            >Secured underground storage bunkers.</span
+                          >
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Column 3: Research Objectives -->
+              <div class="space-y-6">
+                <div
+                  class="brutalist-border bg-surface p-6 h-full flex flex-col"
+                >
+                  <h3
+                    class="text-2xl font-black uppercase mb-4 bg-surface-dim border-b-4 border-border p-2 text-center"
+                  >
+                    Research Objectives
+                  </h3>
+                  <div class="flex-1">
+                    <ul class="font-mono text-sm space-y-3">
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Atmospheric isotope analysis</span>
+                      </li>
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Deep-crust seismic monitoring</span>
+                      </li>
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Long-range signal decryption</span>
+                      </li>
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Permafrost organic sampling</span>
+                      </li>
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Sub-zero polymer stress testing</span>
+                      </li>
+                      <li
+                        class="flex items-center space-x-3 border-b border-border border-dashed pb-2"
+                      >
+                        <span class="w-3 h-3 bg-primary shrink-0"></span>
+                        <span>Neural-link environmental acclimation</span>
+                      </li>
+                    </ul>
+                    <div
+                      class="mt-6 pt-4 border-t-2 border-border border-double text-[10px] font-mono opacity-60"
+                    >
+                      AUTH: RESEARCH_COUNCIL_INTERNAL // CLASSIFIED
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Narrative Footer / Technical Note -->
+            <div
+              class="brutalist-border bg-primary text-surface p-6 sm:p-8 italic text-lg sm:text-xl font-medium border-l-[16px] border-l-surface-dim font-serif"
+            >
+              "The silence at Gamma-7 isn't just a lack of sound; it's a
+              presence. Between the gusts of the blizzard, the equipment hums a
+              melody of cold logic. We are the only eyes on this peak, and the
+              only ones who know what truly lies beneath the ice."
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
