@@ -1,0 +1,6 @@
+{
+  "name": "Charity Vaughn Character Sheet",
+  "description": "A retro-manual styled tactical character sheet.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
