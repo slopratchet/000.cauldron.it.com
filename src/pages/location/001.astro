@@ -1,0 +1,310 @@
+---
+import Location001App from '../../components/Location001App.tsx';
+import '../../styles/global.css';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Metropolis Recon</title>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;700&display=swap');
+
+      @theme {
+        --color-surface: #fcf9f8;
+        --color-surfaceDim: #dcd9d9;
+        --color-primary: #000000;
+        --color-onSurface: #1a1a1a;
+        --color-border: #000000;
+
+        --font-sans: 'Archivo Narrow', sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
+
+      body {
+        background-color: var(--color-surface);
+        color: var(--color-onSurface);
+        font-family: var(--font-sans);
+      }
+
+      @layer utilities {
+        .brutalist-border {
+          border: 4px solid var(--color-border);
+        }
+        .brutalist-border-medium {
+          border: 2px solid var(--color-border);
+        }
+        .brutalist-border-bottom {
+          border-bottom: 4px solid var(--color-border);
+        }
+        .brutalist-border-right {
+          border-right: 4px solid var(--color-border);
+        }
+        .pattern-bg {
+          background-image: radial-gradient(
+            var(--color-surfaceDim) 1px,
+            transparent 1px
+          );
+          background-size: 8px 8px;
+        }
+        .grid-bg {
+          background-image:
+            linear-gradient(var(--color-surfaceDim) 1px, transparent 1px),
+            linear-gradient(90deg, var(--color-surfaceDim) 1px, transparent 1px);
+          background-size: 20px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="min-h-screen flex-col antialiased selection:bg-primary selection:text-surface flex"
+    >
+      <main class="flex-1 flex flex-col min-w-0 bg-surface">
+        <div class="w-full mb-8">
+          <Location001App client:load />
+        </div>
+        <div class="w-full border-t-4 border-border mt-8 mb-8"></div>
+        <div
+          class="p-4 md:p-8 flex-1 overflow-y-auto pattern-bg text-onSurface"
+        >
+          <div class="max-w-7xl mx-auto space-y-8">
+            <!-- Header Block -->
+            <div
+              class="brutalist-border bg-surface p-6 sm:p-8 relative overflow-hidden flex flex-col md:flex-row md:items-end justify-between gap-4"
+            >
+              <div class="relative z-10">
+                <h1
+                  class="text-5xl sm:text-7xl font-black uppercase tracking-tighter mb-2 leading-none"
+                >
+                  ONTOLOGICAL ENGINE
+                </h1>
+                <h2
+                  class="text-xl sm:text-2xl font-mono uppercase tracking-widest text-primary border-t-4 border-border pt-2 inline-block"
+                >
+                  Stress Test of Creation
+                </h2>
+              </div>
+              <div
+                class="flex flex-col items-end text-right font-mono text-xs space-y-1"
+              >
+                <div class="bg-primary text-surface px-2 py-1 font-bold">
+                  TYPE III CIVILIZATION
+                </div>
+                <div>OPERATION: ARMADA RESCUE</div>
+                <div>DISTANCE: 100 LIGHTYEARS</div>
+              </div>
+            </div>
+
+            <!-- Asymmetrical Grid Layout -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+              <!-- Left Column (Wider): Visual Data -->
+              <div class="lg:col-span-8 space-y-8">
+                <!-- Main Recon Image -->
+                <div class="brutalist-border bg-surface p-2 pb-12 relative">
+                  <div
+                    class="absolute top-4 left-4 bg-primary text-surface px-3 py-1 text-sm font-mono z-10 font-bold"
+                  >
+                    VISUAL FEED: PARADOX COLLIDER
+                  </div>
+                  <img
+                    alt="High-contrast brutalist technical photograph of a sprawling urban ruin."
+                    class="w-full h-auto object-cover border-2 border-border"
+                    src="https://lh3.googleusercontent.com/aida/ADBb0uhwITCgUwC9T_XQGR7MnvzNs07UN-qZP2yLzaDkijnhPA-3ib8u1ESDTUs1jyDoMTvaEJMW0diLH9S2VTA2j_ODvSuEh8NuUgXT9wJArYqvCdVo71iW1mQGuwTnA-9Z14PrxAjTR89_tSZZ79DNJxBdYA22sd7Yi2Izuk-6xYbyxuk4-bcOmS7YSO7dNnT2blnHOrhF6YEDowN2DO4_DQrd8eBSa9QfWH_9rzzgDsUV6-D9UFiOtzFUvHEm"
+                  />
+                  <div
+                    class="absolute bottom-3 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase opacity-60"
+                  >
+                    <div>// SENSORS DETECT ABSOLUTE JOY AND AGONY //</div>
+                    <div class="text-right">FREE_BELIEF_GENERATION</div>
+                  </div>
+                </div>
+
+                <!-- Cognitive Architecture Matrix -->
+                <div class="brutalist-border bg-surface p-6 sm:p-8 grid-bg">
+                  <div
+                    class="flex items-center justify-between mb-6 border-b-4 border-border pb-2"
+                  >
+                    <h3 class="text-3xl font-black uppercase">
+                      Cognitive Architecture
+                    </h3>
+                    <span
+                      class="font-mono text-xs font-bold border-2 border-border px-2 py-1 bg-surface"
+                    >
+                      MUTUAL ANNIHILATION
+                    </span>
+                  </div>
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    <div class="brutalist-border-medium p-4 bg-surface">
+                      <h4
+                        class="font-bold uppercase text-sm mb-2 border-b border-border"
+                      >
+                        Engine Status
+                      </h4>
+                      <ul class="font-mono text-sm space-y-2">
+                        <li class="flex items-start gap-2">
+                          <span class="mt-1 w-2 h-2 bg-primary flex-shrink-0"
+                          ></span>
+                          <span>Paradox Collider engaged</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="mt-1 w-2 h-2 bg-primary flex-shrink-0"
+                          ></span>
+                          <span>Free Belief volume critical</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                          <span class="mt-1 w-2 h-2 bg-primary flex-shrink-0"
+                          ></span>
+                          <span>Bimodal Syntax compiled</span>
+                        </li>
+                      </ul>
+                    </div>
+                    <div class="brutalist-border-medium p-4 bg-surface">
+                      <h4
+                        class="font-bold uppercase text-sm mb-2 border-b border-border"
+                      >
+                        State Translation
+                      </h4>
+                      <div class="space-y-3 font-mono text-sm">
+                        <div class="flex justify-between">
+                          <span>ARMADA:</span><span class="font-bold"
+                            >TRANSLATED</span
+                          >
+                        </div>
+                        <div class="flex justify-between">
+                          <span>LOCATION:</span><span
+                            class="font-bold text-red-600">CORE WORLD</span
+                          >
+                        </div>
+                        <div
+                          class="w-full bg-surfaceDim h-4 brutalist-border-medium relative overflow-hidden"
+                        >
+                          <div class="absolute inset-0 bg-primary w-3/4"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right Column (Narrower): Tactical Analysis -->
+              <div class="lg:col-span-4 space-y-8">
+                <!-- Catastrophic Garbage Collection Box -->
+                <div class="brutalist-border bg-primary text-surface p-6">
+                  <h3
+                    class="text-2xl font-black uppercase mb-4 border-b-2 border-white/30 pb-2"
+                  >
+                    Catastrophic Garbage Collection
+                  </h3>
+                  <div class="space-y-4 font-sans text-lg">
+                    <p class="leading-tight">
+                      The spatial displacement of a thousand ships has generated
+                      an unfathomable volume of unassigned entropy (Vector
+                      Alpha).
+                    </p>
+                    <div
+                      class="brutalist-border-medium border-surface/50 bg-white/10 p-3 font-mono text-xs"
+                    >
+                      <p class="font-bold mb-1">ROUTING:</p>
+                      <ul class="list-none space-y-1">
+                        <li>- Macro-Ledger checked</li>
+                        <li>- Entropy routed to Delta-9</li>
+                        <li>- Thermodynamic friction applied</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Penal Colony Delta-9 -->
+                <div class="brutalist-border bg-surface p-6 relative">
+                  <div
+                    class="absolute -top-3 right-4 bg-surface px-2 border-2 border-border text-[10px] font-bold font-mono"
+                  >
+                    ENTROPIC DEBT
+                  </div>
+                  <h3
+                    class="text-2xl font-black uppercase mb-4 border-b-2 border-border pb-2"
+                  >
+                    Penal Colony Delta-9
+                  </h3>
+                  <div class="space-y-3">
+                    <div
+                      class="brutalist-border-medium p-3 bg-surfaceDim mt-2 bg-opacity-30"
+                    >
+                      <span
+                        class="text-xs font-bold font-mono text-primary uppercase block mb-1"
+                      >
+                        Biological Hardware
+                      </span>
+                      <p class="text-sm">
+                        Three billion cloned drones instantly calcify into dust.
+                      </p>
+                    </div>
+                    <div class="brutalist-border-medium p-3">
+                      <span
+                        class="text-xs font-bold font-mono text-primary uppercase block mb-1"
+                      >
+                        Planetary Crust
+                      </span>
+                      <p class="text-sm">
+                        Shatters under sudden immense weight. Reduced to
+                        radioactive cinder.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Technical Specs Nested Grid -->
+                <div
+                  class="brutalist-border bg-surfaceDim p-4 font-mono text-xs space-y-4"
+                >
+                  <div class="grid grid-cols-2 gap-4">
+                    <div class="p-2 border border-border bg-surface">
+                      <span class="block font-bold opacity-50 uppercase"
+                        >Grid Ref</span
+                      >
+                      <span class="text-sm">MACRO-LEDGER</span>
+                    </div>
+                    <div class="p-2 border border-border bg-surface">
+                      <span class="block font-bold opacity-50 uppercase"
+                        >Sector ID</span
+                      >
+                      <span class="text-sm">CLOSED LOOP</span>
+                    </div>
+                  </div>
+                  <div class="p-2 border border-border bg-surface">
+                    <span class="block font-bold opacity-50 uppercase mb-1"
+                      >Final Ledger</span
+                    >
+                    <p class="leading-relaxed">
+                      The armada is safe. The ledger reads zero. The Empire
+                      survives for another day, sustained by the industrialized
+                      calculus of outsourcing the pain.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Data Footer -->
+            <div
+              class="flex flex-col sm:flex-row justify-between items-center brutalist-border bg-surface p-4 text-xs font-mono uppercase tracking-widest gap-4"
+            >
+              <div class="flex gap-4">
+                <span>// ONTOLOGICAL SYSTEM</span>
+                <span class="opacity-40">TERMINAL INTERFACE</span>
+              </div>
+              <div class="flex gap-4">
+                <span class="font-bold">END OF FILE</span>
+                <span class="bg-primary text-surface px-2"
+                  >REF: TYPE-III-SPELL</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
