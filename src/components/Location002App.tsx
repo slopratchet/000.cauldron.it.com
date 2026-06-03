@@ -29,10 +29,10 @@ export default function App() {
         <header className="col-span-12 flex flex-col md:flex-row justify-between items-end border-b-4 border-black pb-[var(--spacing-stack-sm)] mb-[var(--spacing-stack-md)]">
           <div>
             <h1 className="font-headline-xl text-headline-xl uppercase tracking-tighter leading-none">
-              THE ONTOLOGICAL ENGINE
+              PRIMAL PONDS ALLIGATOR FARM
             </h1>
             <p className="font-label-md text-label-md mt-2 opacity-70">
-              SUBJECT ID: ALLIGATOR-FARM-PONDS-PRIMAL // REF: VECTOR ALPHA
+              SUBJECT ID: BIOLOGICAL PROCESSORS // REF: VECTOR ALPHA
             </p>
           </div>
           <div className="flex gap-4 mt-[var(--spacing-stack-md)] md:mt-0">
@@ -106,10 +106,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-black"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Paradox Collider
+                    Topological Plumbing
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Free Belief Injection
+                    The Ley-Lines of Rot
                   </span>
                 </div>
               </li>
@@ -117,10 +117,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-surface-container-highest"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Fractal Loom
+                    Thermal Sink
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Bimodal Syntax Compilation
+                    The Saturated Silt
                   </span>
                 </div>
               </li>
@@ -128,10 +128,10 @@ export default function App() {
                 <div className="w-4 h-4 ink-border bg-[var(--color-blood-red)]"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Macro-Ledger
+                    Biological Processors
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Garbage Collection Routing
+                    The Archosaurs
                   </span>
                 </div>
               </li>
@@ -139,10 +139,10 @@ export default function App() {
                 <div className="w-4 h-4 dashed-ink-border bg-white"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Alligator Farm Ponds Primal
+                    Voluntary Crucible
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
-                    Entropic Debt Receptacle
+                    The Upkeep
                   </span>
                 </div>
               </li>
@@ -156,33 +156,32 @@ export default function App() {
             <div className="space-y-4">
               <div className="border-l-4 border-black pl-3 py-1">
                 <p className="font-label-sm text-label-sm uppercase font-bold text-[var(--color-blood-red)]">
-                  01. SPIN-UP
+                  01. THE COMPILATION
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Three million vat-grown brains inject absolute joy and
-                  agony."
+                  "The GET request is fulfilled. The crops are saved."
                 </p>
               </div>
               <div className="border-l-4 border-black pl-3 py-1">
                 <p className="font-label-sm text-label-sm uppercase font-bold">
-                  02. TRANSLATION
+                  02. ROUTING BLOWBACK
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Translate Armada Coordinates to Core World Orbit."
+                  "Massive payload of chaotic desiccation routes to Ponds."
                 </p>
               </div>
               <div className="border-l-4 border-black pl-3 py-1 opacity-50">
                 <p className="font-label-sm text-label-sm uppercase font-bold">
-                  03. GARBAGE COLLECTION
+                  03. THE IMPACT
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Route spatial friction to Alligator Farm Ponds Primal."
+                  "Thermodynamic friction hits organic hardware."
                 </p>
               </div>
             </div>
           </div>
           <InteractableButton className="w-full bg-[var(--color-primary)] text-white ink-border-heavy py-4 brutalist-shadow-sm hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all flex items-center justify-center gap-3 font-headline-md text-headline-md uppercase tracking-widest">
-            <span>EXECUTE SPATIAL TRANSLATION</span>
+            <span>EXECUTE STRESS TEST</span>
             <span className="material-symbols-outlined">verified</span>
           </InteractableButton>
         </aside>
@@ -194,10 +193,10 @@ export default function App() {
             </p>
             <div className="flex items-end gap-2">
               <span className="font-headline-lg text-headline-lg leading-none">
-                68°F
+                212°F
               </span>
               <span className="font-label-md text-label-md mb-2">
-                / HUMIDITY 45%
+                / FLASH-BOIL
               </span>
             </div>
           </div>
@@ -207,10 +206,10 @@ export default function App() {
             </p>
             <div className="flex items-end gap-2">
               <span className="font-headline-lg text-headline-lg leading-none">
-                942
+                36
               </span>
               <span className="font-label-md text-label-md mb-2">
-                / 1200 MAX
+                / UNITS RUPTURED
               </span>
             </div>
           </div>
@@ -220,10 +219,10 @@ export default function App() {
             </p>
             <div className="flex items-end gap-2">
               <span className="font-headline-lg text-headline-lg leading-none text-[var(--color-blood-red)]">
-                92%
+                ZERO
               </span>
               <span className="font-label-md text-label-md mb-2">
-                / NOMINAL
+                / CITY PRISTINE
               </span>
             </div>
           </div>
