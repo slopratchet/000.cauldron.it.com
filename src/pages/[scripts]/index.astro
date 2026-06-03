@@ -1,0 +1,19 @@
+---
+const auth = Astro.locals.auth();
+const isLocal =
+  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
+if (!auth.userId && !isLocal) {
+  return Astro.redirect('/log-in');
+}
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Scripts</title>
+  </head>
+  <body>
+    <h1>Protected Scripts Area</h1>
+  </body>
+</html>
