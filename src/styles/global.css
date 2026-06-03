@@ -6,6 +6,10 @@
 @import 'tailwindcss';
 
 @theme {
+  --font-anton: 'Anton', sans-serif;
+  --font-tinos: 'Tinos', serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+
   --color-surface-dim: #dcd9d9;
   --color-surface-lowest: #ffffff;
   --color-surface-container: #f0eded;

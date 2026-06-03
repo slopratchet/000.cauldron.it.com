@@ -19,6 +19,7 @@ export default tseslint.config(
   {
     ignores: [
       'vcode/**',
+      'data/**',
       'node_modules/**',
       '.astro/**',
       'dist/**',
