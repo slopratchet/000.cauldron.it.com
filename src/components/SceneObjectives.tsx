@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
 import { SceneObjective } from '../types';
-import { CheckSquare, Square, AlertTriangle, ListChecks, Plus, Trash2 } from 'lucide-react';
+import {
+  CheckSquare,
+  Square,
+  AlertTriangle,
+  ListChecks,
+  Plus,
+  Trash2,
+} from 'lucide-react';
 
 interface SceneObjectivesProps {
   objectives: SceneObjective[];
@@ -8,7 +15,11 @@ interface SceneObjectivesProps {
   onArmedChange?: (isArmed: boolean) => void;
 }
 
-export default function SceneObjectives({ objectives, onUpdateObjectives, onArmedChange }: SceneObjectivesProps) {
+export default function SceneObjectives({
+  objectives,
+  onUpdateObjectives,
+  onArmedChange,
+}: SceneObjectivesProps) {
   const [newObjectiveText, setNewObjectiveText] = useState('');
   const [isAdding, setIsAdding] = useState(false);
 
@@ -96,7 +107,9 @@ export default function SceneObjectives({ objectives, onUpdateObjectives, onArme
             <div className="flex items-start gap-2 max-w-[85%]">
               <span className="mt-0.5 select-none text-zinc-400 group-hover:text-white transition-colors">
                 {obj.checked ? (
-                  <CheckSquare className={`w-4 h-4 ${obj.isCritical ? 'text-blood-red' : 'text-intel-orange'}`} />
+                  <CheckSquare
+                    className={`w-4 h-4 ${obj.isCritical ? 'text-blood-red' : 'text-intel-orange'}`}
+                  />
                 ) : (
                   <Square className="w-4 h-4" />
                 )}
@@ -112,7 +125,10 @@ export default function SceneObjectives({ objectives, onUpdateObjectives, onArme
 
             <div className="flex items-center gap-1">
               {obj.isCritical && (
-                <span className="text-blood-red animate-pulse" title="System critical warning">
+                <span
+                  className="text-blood-red animate-pulse"
+                  title="System critical warning"
+                >
                   <AlertTriangle className="w-3.5 h-3.5" />
                 </span>
               )}

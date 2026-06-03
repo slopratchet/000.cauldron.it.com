@@ -38,18 +38,22 @@ export default function ClassifiedAugmentation({
       const data = await res.json();
       if (data.success && Array.isArray(data.scriptBlocks)) {
         // Map generated objects to ensure unique keys
-        const mappedBlocks: ScriptLine[] = data.scriptBlocks.map((b: any, index: number) => ({
-          id: `ai_line_${Date.now()}_${index}`,
-          type: b.type || 'dialogue',
-          characterName: b.characterName?.toUpperCase(),
-          parenthetical: b.parenthetical,
-          text: b.text,
-        }));
+        const mappedBlocks: ScriptLine[] = data.scriptBlocks.map(
+          (b: unknown, index: number) => ({
+            id: `ai_line_${Date.now()}_${index}`,
+            type: b.type || 'dialogue',
+            characterName: b.characterName?.toUpperCase(),
+            parenthetical: b.parenthetical,
+            text: b.text,
+          }),
+        );
 
         onUpdateLines([...operation.scriptLines, ...mappedBlocks]);
         setAiPrompt('');
       } else {
-        alert(data.error || 'The script engine was unable to parse that frequency.');
+        alert(
+          data.error || 'The script engine was unable to parse that frequency.',
+        );
       }
     } catch (err) {
       console.error(err);
@@ -70,31 +74,48 @@ export default function ClassifiedAugmentation({
           <Command className="w-3.5 h-3.5 text-[#FFAA00]" />
           CLASSIFIED SCRIPT AUGMENTATION PROTOCOL
         </span>
-        <span className="text-[8px] text-gray-400 select-none">SECURE DIRECT COUPLING</span>
+        <span className="text-[8px] text-gray-400 select-none">
+          SECURE DIRECT COUPLING
+        </span>
       </div>
 
       <p className="font-serif text-[11px] text-zinc-600 mb-3 leading-relaxed">
-        Instruct the server-side Gemini 3.5 engine to automatically craft and append the next sequence in strict 1970s screenplay alignment code.
+        Instruct the server-side Gemini 3.5 engine to automatically craft and
+        append the next sequence in strict 1970s screenplay alignment code.
       </p>
 
       <div className="flex gap-1.5 mb-3 select-none flex-wrap">
-        <span className="text-[9px] text-gray-500 self-center">Quick Presets:</span>
+        <span className="text-[9px] text-gray-500 self-center">
+          Quick Presets:
+        </span>
         <button
-          onClick={() => preloadPrompt('Spot the rogue submarine on radar, Steve panics slightly.')}
+          onClick={() =>
+            preloadPrompt(
+              'Spot the rogue submarine on radar, Steve panics slightly.',
+            )
+          }
           className="text-[8.5px] p-1 bg-white border border-gray-300 hover:border-black text-black font-semibold transition-colors cursor-pointer"
           id="preset-1"
         >
           Spot Submarine
         </button>
         <button
-          onClick={() => preloadPrompt('Klaus feels ignored and claims Ned is trying to steal his captain.')}
+          onClick={() =>
+            preloadPrompt(
+              'Klaus feels ignored and claims Ned is trying to steal his captain.',
+            )
+          }
           className="text-[8.5px] p-1 bg-white border border-gray-300 hover:border-black text-black font-semibold transition-colors cursor-pointer"
           id="preset-2"
         >
           Klaus Siblings
         </button>
         <button
-          onClick={() => preloadPrompt('A sudden mechanical alarm starts buzzing, orange tracking lights flicker.')}
+          onClick={() =>
+            preloadPrompt(
+              'A sudden mechanical alarm starts buzzing, orange tracking lights flicker.',
+            )
+          }
           className="text-[8.5px] p-1 bg-white border border-gray-300 hover:border-black text-black font-semibold transition-colors cursor-pointer"
           id="preset-3"
         >

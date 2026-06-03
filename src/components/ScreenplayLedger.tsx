@@ -15,13 +15,14 @@ export default function ScreenplayLedger({
   activeOpId,
   setActiveOpId,
 }: ScreenplayLedgerProps) {
-
   const isProgrammaticScroll = useRef(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Easing transition: Scroll active operation sheet to view when selected programmatically
   useEffect(() => {
-    const targetElement = document.getElementById(`operation-sheet-${activeOpId}`);
+    const targetElement = document.getElementById(
+      `operation-sheet-${activeOpId}`,
+    );
     if (targetElement) {
       isProgrammaticScroll.current = true;
 
@@ -56,7 +57,7 @@ export default function ScreenplayLedger({
         root: null, // Viewport
         rootMargin: '-20% 0px -60% 0px', // Focused band near upper middle
         threshold: 0,
-      }
+      },
     );
 
     operations.forEach((op) => {
@@ -74,11 +75,18 @@ export default function ScreenplayLedger({
     window.print();
   };
 
-  const handleRemoveLine = (opId: string, lineId: string, e: React.MouseEvent) => {
+  const handleRemoveLine = (
+    opId: string,
+    lineId: string,
+    e: React.MouseEvent,
+  ) => {
     e.stopPropagation();
     const op = operations.find((o) => o.id === opId);
     if (op) {
-      onUpdateOpLines(opId, op.scriptLines.filter((l) => l.id !== lineId));
+      onUpdateOpLines(
+        opId,
+        op.scriptLines.filter((l) => l.id !== lineId),
+      );
     }
   };
 
@@ -99,9 +107,11 @@ export default function ScreenplayLedger({
             }`}
           >
             {/* Script Accoutrements Top Right */}
-            <div className={`absolute top-4 right-4 flex gap-2 z-10 print:hidden select-none transition-opacity duration-305 ${
-              isFirstPage ? 'opacity-100' : 'opacity-0 hover:opacity-100'
-            }`}>
+            <div
+              className={`absolute top-4 right-4 flex gap-2 z-10 print:hidden select-none transition-opacity duration-305 ${
+                isFirstPage ? 'opacity-100' : 'opacity-0 hover:opacity-100'
+              }`}
+            >
               {isActive && isFirstPage && (
                 <div className="hidden sm:flex items-center mr-2 animate-pulse">
                   <span className="text-[9px] font-mono border-2 border-blood-red text-blood-red px-1.5 py-0.5 tracking-wider font-extrabold uppercase bg-red-50 rotate-[-2deg]">
@@ -110,7 +120,11 @@ export default function ScreenplayLedger({
                 </div>
               )}
               <button
-                onClick={() => alert(`Dossier telemetry attached for ${op.title}. Files are locked and ready in the archives.`)}
+                onClick={() =>
+                  alert(
+                    `Dossier telemetry attached for ${op.title}. Files are locked and ready in the archives.`,
+                  )
+                }
                 className="p-1 hover:bg-parchment-deep border-2 border-black transition-all bg-white active:translate-y-[1px] hover:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] cursor-pointer"
                 title="Attach files to dossier"
               >
@@ -164,7 +178,9 @@ export default function ScreenplayLedger({
                                 <span
                                   key={widx}
                                   className="relative group/word inline-block cursor-pointer mx-0.5"
-                                  onClick={(e) => handleRemoveLine(op.id, line.id, e)}
+                                  onClick={(e) =>
+                                    handleRemoveLine(op.id, line.id, e)
+                                  }
                                 >
                                   <span className="hover:text-blood-red transition-colors duration-150">
                                     {part}
@@ -216,14 +232,19 @@ export default function ScreenplayLedger({
                     }
 
                     if (line.type === 'dialogue') {
-                      const isFriendUnderlined = line.text.toLowerCase().includes('ate my friend');
+                      const isFriendUnderlined = line.text
+                        .toLowerCase()
+                        .includes('ate my friend');
                       const dialogueText = isFriendUnderlined
                         ? "Let me tell you about my boat. She's a good ship. A little tired, maybe. But she's seen things. Like the thing that ate my friend."
                         : line.text;
                       const words = dialogueText.split(/(\s+)/);
 
                       return (
-                        <div key={line.id} className="relative group md:w-3/4 mx-auto py-1">
+                        <div
+                          key={line.id}
+                          className="relative group md:w-3/4 mx-auto py-1"
+                        >
                           <div className="text-center font-mono font-extrabold text-[11px] uppercase tracking-wide mb-1 leading-none text-black">
                             {line.characterName}
                           </div>
@@ -237,14 +258,19 @@ export default function ScreenplayLedger({
                               if (/\s+/.test(part)) {
                                 return part;
                               }
-                              const isUnderlinePart = isFriendUnderlined && widx >= 38;
+                              const isUnderlinePart =
+                                isFriendUnderlined && widx >= 38;
                               return (
                                 <span
                                   key={widx}
                                   className={`relative group/word inline-block cursor-pointer mx-0.5 ${
-                                    isUnderlinePart ? 'red-ink underline decoration-wavy font-semibold text-blood-red/90' : ''
+                                    isUnderlinePart
+                                      ? 'red-ink underline decoration-wavy font-semibold text-blood-red/90'
+                                      : ''
                                   }`}
-                                  onClick={(e) => handleRemoveLine(op.id, line.id, e)}
+                                  onClick={(e) =>
+                                    handleRemoveLine(op.id, line.id, e)
+                                  }
                                 >
                                   <span className="hover:text-blood-red transition-colors duration-150">
                                     {part}

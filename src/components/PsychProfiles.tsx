@@ -1,6 +1,15 @@
 import React, { useState } from 'react';
 import { Character } from '../types';
-import { UserPlus, Sparkles, Trash2, HeartCrack, Skull, CircleDot, RefreshCw, Send } from 'lucide-react';
+import {
+  UserPlus,
+  Sparkles,
+  Trash2,
+  HeartCrack,
+  Skull,
+  CircleDot,
+  RefreshCw,
+  Send,
+} from 'lucide-react';
 
 interface PsychProfilesProps {
   characters: Character[];
@@ -8,14 +17,20 @@ interface PsychProfilesProps {
   onSelectCharacter?: (charName: string) => void;
 }
 
-export default function PsychProfiles({ characters, onUpdateCharacters, onSelectCharacter }: PsychProfilesProps) {
+export default function PsychProfiles({
+  characters,
+  onUpdateCharacters,
+  onSelectCharacter,
+}: PsychProfilesProps) {
   const [isAdding, setIsAdding] = useState(false);
   const [isLoadingAi, setIsLoadingAi] = useState<string | null>(null);
 
   // Form states
   const [newName, setNewName] = useState('');
   const [newRole, setNewRole] = useState('');
-  const [newStatus, setNewStatus] = useState<'ACTIVE' | 'DECEASED' | 'MIA' | 'CLASSIFIED'>('ACTIVE');
+  const [newStatus, setNewStatus] = useState<
+    'ACTIVE' | 'DECEASED' | 'MIA' | 'CLASSIFIED'
+  >('ACTIVE');
 
   const handleAddSubject = () => {
     if (!newName) return;
@@ -52,7 +67,11 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
       const res = await fetch('/api/generate-psych', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: pureName, role: char.role, status: char.status }),
+        body: JSON.stringify({
+          name: pureName,
+          role: char.role,
+          status: char.status,
+        }),
       });
       const data = await res.json();
       if (data.success) {
@@ -97,7 +116,9 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
       {isAdding && (
         <div className="border border-black p-3 bg-parchment-deep/30 space-y-2.5 font-mono text-xs">
           <div>
-            <label className="block text-[10px] font-bold text-gray-700">SUBJECT NAME:</label>
+            <label className="block text-[10px] font-bold text-gray-700">
+              SUBJECT NAME:
+            </label>
             <input
               type="text"
               placeholder="e.g. Ned Plimpton"
@@ -108,7 +129,9 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
             />
           </div>
           <div>
-            <label className="block text-[10px] font-bold text-gray-700">ROLE / CALLSIGN:</label>
+            <label className="block text-[10px] font-bold text-gray-700">
+              ROLE / CALLSIGN:
+            </label>
             <input
               type="text"
               placeholder="e.g. Co-Pilot / Camera Operative"
@@ -120,10 +143,20 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[10px] font-bold text-gray-700">STATUS:</label>
+              <label className="block text-[10px] font-bold text-gray-700">
+                STATUS:
+              </label>
               <select
                 value={newStatus}
-                onChange={(e) => setNewStatus(e.target.value as any)}
+                onChange={(e) =>
+                  setNewStatus(
+                    e.target.value as
+                      | 'ACTIVE'
+                      | 'DECEASED'
+                      | 'MIA'
+                      | 'CLASSIFIED',
+                  )
+                }
                 className="w-full border border-black bg-white p-1 text-xs focus:ring-1 focus:ring-black focus:outline-none"
                 id="new-subj-status"
               >
@@ -175,12 +208,16 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
                       char.status === 'DECEASED'
                         ? 'border-blood-red text-blood-red bg-red-100/30'
                         : char.status === 'ACTIVE'
-                        ? 'border-black text-black bg-zinc-100'
-                        : 'border-yellow-600 text-yellow-600 bg-yellow-50'
+                          ? 'border-black text-black bg-zinc-100'
+                          : 'border-yellow-600 text-yellow-600 bg-yellow-50'
                     }`}
                   >
-                    {char.status === 'DECEASED' && <Skull className="w-2.5 h-2.5" />}
-                    {char.status === 'ACTIVE' && <HeartCrack className="w-2.5 h-2.5" />}
+                    {char.status === 'DECEASED' && (
+                      <Skull className="w-2.5 h-2.5" />
+                    )}
+                    {char.status === 'ACTIVE' && (
+                      <HeartCrack className="w-2.5 h-2.5" />
+                    )}
                     {char.status}
                   </span>
                   <button
@@ -215,11 +252,13 @@ export default function PsychProfiles({ characters, onUpdateCharacters, onSelect
                 >
                   {isLoadingAi === char.id ? (
                     <>
-                      <RefreshCw className="w-2.5 h-2.5 animate-spin" /> SCANNING...
+                      <RefreshCw className="w-2.5 h-2.5 animate-spin" />{' '}
+                      SCANNING...
                     </>
                   ) : (
                     <>
-                      <Sparkles className="w-2.5 h-2.5 text-intel-orange" /> AI_DIAGNOSTIC_SCAN
+                      <Sparkles className="w-2.5 h-2.5 text-intel-orange" />{' '}
+                      AI_DIAGNOSTIC_SCAN
                     </>
                   )}
                 </button>

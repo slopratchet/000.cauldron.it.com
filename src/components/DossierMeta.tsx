@@ -7,7 +7,10 @@ interface DossierMetaProps {
   onUpdateMeta: (updates: Partial<Operation>) => void;
 }
 
-export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProps) {
+export default function DossierMeta({
+  operation,
+  onUpdateMeta,
+}: DossierMetaProps) {
   const [isEditing, setIsEditing] = useState(false);
   const [loc, setLoc] = useState(operation.location);
   const [time, setTime] = useState(operation.time);
@@ -44,14 +47,20 @@ export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProp
           title={isEditing ? 'Save metadata' : 'Edit metadata'}
           id="meta-edit-btn"
         >
-          {isEditing ? <Check className="w-3.5 h-3.5" /> : <Edit2 className="w-3.5 h-3.5" />}
+          {isEditing ? (
+            <Check className="w-3.5 h-3.5" />
+          ) : (
+            <Edit2 className="w-3.5 h-3.5" />
+          )}
         </button>
       </div>
 
       {isEditing ? (
         <div className="space-y-2 font-mono text-xs text-black">
           <div>
-            <label className="block text-gray-500 font-bold mb-0.5">LOCATION:</label>
+            <label className="block text-gray-500 font-bold mb-0.5">
+              LOCATION:
+            </label>
             <input
               type="text"
               value={loc}
@@ -61,7 +70,9 @@ export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProp
             />
           </div>
           <div>
-            <label className="block text-gray-500 font-bold mb-0.5">TIMESTAMP:</label>
+            <label className="block text-gray-500 font-bold mb-0.5">
+              TIMESTAMP:
+            </label>
             <input
               type="text"
               value={time}
@@ -71,7 +82,9 @@ export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProp
             />
           </div>
           <div>
-            <label className="block text-gray-500 font-bold mb-0.5">TARGET OBJ:</label>
+            <label className="block text-gray-500 font-bold mb-0.5">
+              TARGET OBJ:
+            </label>
             <input
               type="text"
               value={target}
@@ -81,7 +94,9 @@ export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProp
             />
           </div>
           <div>
-            <label className="block text-gray-500 font-bold mb-0.5">CLEARANCE LEVEL:</label>
+            <label className="block text-gray-500 font-bold mb-0.5">
+              CLEARANCE LEVEL:
+            </label>
             <input
               type="text"
               value={clearance}
@@ -96,17 +111,23 @@ export default function DossierMeta({ operation, onUpdateMeta }: DossierMetaProp
           <div className="text-gray-500 font-medium flex items-center gap-1">
             <MapPin className="w-3.5 h-3.5 text-gray-700" /> LOC:
           </div>
-          <div className="font-bold tracking-tight">{operation.location || 'N/A'}</div>
+          <div className="font-bold tracking-tight">
+            {operation.location || 'N/A'}
+          </div>
 
           <div className="text-gray-500 font-medium flex items-center gap-1">
             <Clock className="w-3.5 h-3.5 text-gray-700" /> TIME:
           </div>
-          <div className="font-bold tracking-tight">{operation.time || 'N/A'}</div>
+          <div className="font-bold tracking-tight">
+            {operation.time || 'N/A'}
+          </div>
 
           <div className="text-gray-500 font-medium flex items-center gap-1">
             <Crosshair className="w-3.5 h-3.5 text-gray-700" /> TARGET:
           </div>
-          <div className="font-bold tracking-tight text-black">{operation.target || 'N/A'}</div>
+          <div className="font-bold tracking-tight text-black">
+            {operation.target || 'N/A'}
+          </div>
 
           <div className="text-gray-500 font-medium flex items-center gap-1">
             <Shield className="w-3.5 h-3.5 text-black" /> CLEARANCE:

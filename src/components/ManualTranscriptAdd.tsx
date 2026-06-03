@@ -14,7 +14,9 @@ export default function ManualTranscriptAdd({
   characters,
 }: ManualTranscriptAddProps) {
   const [isAddingLine, setIsAddingLine] = useState(false);
-  const [newLineType, setNewLineType] = useState<'heading' | 'action' | 'dialogue' | 'alert'>('dialogue');
+  const [newLineType, setNewLineType] = useState<
+    'heading' | 'action' | 'dialogue' | 'alert'
+  >('dialogue');
   const [newCharacterName, setNewCharacterName] = useState('STEVE');
   const [newParenthetical, setNewParenthetical] = useState('');
   const [newLineText, setNewLineText] = useState('');
@@ -25,8 +27,12 @@ export default function ManualTranscriptAdd({
     const newLine: ScriptLine = {
       id: `line_${Date.now()}`,
       type: newLineType,
-      characterName: newLineType === 'dialogue' ? newCharacterName.toUpperCase() : undefined,
-      parenthetical: newLineType === 'dialogue' && newParenthetical ? `(${newParenthetical})` : undefined,
+      characterName:
+        newLineType === 'dialogue' ? newCharacterName.toUpperCase() : undefined,
+      parenthetical:
+        newLineType === 'dialogue' && newParenthetical
+          ? `(${newParenthetical})`
+          : undefined,
       text: newLineText,
     };
 
@@ -52,10 +58,20 @@ export default function ManualTranscriptAdd({
 
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="block text-[9px] font-bold text-gray-500 mb-0.5">BLOCK TYPE:</label>
+              <label className="block text-[9px] font-bold text-gray-500 mb-0.5">
+                BLOCK TYPE:
+              </label>
               <select
                 value={newLineType}
-                onChange={(e) => setNewLineType(e.target.value as any)}
+                onChange={(e) =>
+                  setNewLineType(
+                    e.target.value as
+                      | 'action'
+                      | 'dialogue'
+                      | 'heading'
+                      | 'alert',
+                  )
+                }
                 className="w-full border border-black bg-white p-1 text-[11px] focus:ring-1 focus:ring-black focus:outline-none font-bold"
                 id="select-sidebar-line-type"
               >
@@ -68,7 +84,9 @@ export default function ManualTranscriptAdd({
 
             {newLineType === 'dialogue' && (
               <div>
-                <label className="block text-[9px] font-bold text-gray-500 mb-0.5">SPEAKER:</label>
+                <label className="block text-[9px] font-bold text-gray-500 mb-0.5">
+                  SPEAKER:
+                </label>
                 <input
                   type="text"
                   value={newCharacterName}
@@ -83,7 +101,9 @@ export default function ManualTranscriptAdd({
 
           {newLineType === 'dialogue' && (
             <div>
-              <label className="block text-[9px] font-bold text-gray-500 mb-0.5">PARENTHETICAL ACTORS:</label>
+              <label className="block text-[9px] font-bold text-gray-500 mb-0.5">
+                PARENTHETICAL ACTORS:
+              </label>
               <input
                 type="text"
                 value={newParenthetical}
@@ -96,7 +116,9 @@ export default function ManualTranscriptAdd({
           )}
 
           <div>
-            <label className="block text-[9px] font-bold text-gray-500 mb-0.5">RAW TRANSCRIPT TEXT:</label>
+            <label className="block text-[9px] font-bold text-gray-500 mb-0.5">
+              RAW TRANSCRIPT TEXT:
+            </label>
             <textarea
               value={newLineText}
               onChange={(e) => setNewLineText(e.target.value)}
@@ -121,7 +143,8 @@ export default function ManualTranscriptAdd({
             className="w-full border border-dashed border-gray-400 hover:border-black bg-white hover:bg-neutral-50 py-2.5 font-mono text-[10px] uppercase font-bold text-gray-600 hover:text-black transition-all inline-flex items-center justify-center gap-1.5 cursor-pointer"
             id="btn-sidebar-trigger-add"
           >
-            <Plus className="w-3.5 h-3.5 text-gray-600 group-hover:text-black" /> ADD_MANUAL_TRANSCRIPT_LINE
+            <Plus className="w-3.5 h-3.5 text-gray-600 group-hover:text-black" />{' '}
+            ADD_MANUAL_TRANSCRIPT_LINE
           </button>
         </div>
       )}

@@ -40,14 +40,18 @@ export default function NavConsoleCard() {
           <span className="flex items-center gap-1">
             <Sliders className="w-3 h-3 text-black" /> METER_CONTROLS:
           </span>
-          <span className="text-zinc-500 text-[9px]">SENSITIVITY // CALIBRATED</span>
+          <span className="text-zinc-500 text-[9px]">
+            SENSITIVITY // CALIBRATED
+          </span>
         </div>
 
         {/* Sonar Depth Dial */}
         <div>
           <div className="flex justify-between text-[9px] mb-0.5 leading-none font-bold text-zinc-700">
             <span>DEPTH TARGET:</span>
-            <span className="text-black font-extrabold">{sonarRange} METERS</span>
+            <span className="text-black font-extrabold">
+              {sonarRange} METERS
+            </span>
           </div>
           <input
             type="range"
@@ -89,13 +93,18 @@ export default function NavConsoleCard() {
             }`}
             id="btn-sonar-ping"
           >
-            <Radio className="w-3 h-3" /> {pingsActive ? 'ECHO_PING_ON' : 'TRIGGER_PING'}
+            <Radio className="w-3 h-3" />{' '}
+            {pingsActive ? 'ECHO_PING_ON' : 'TRIGGER_PING'}
           </button>
 
           <div className="w-1/2 border border-black/40 text-[9px] px-1 py-0.5 flex flex-col justify-center leading-normal bg-parchment-deep/30">
-            <span className="text-zinc-500 font-bold block text-[8px] uppercase">Telemetry Signal:</span>
+            <span className="text-zinc-500 font-bold block text-[8px] uppercase">
+              Telemetry Signal:
+            </span>
             <span className="font-bold font-mono text-[9px] text-black">
-              {pingsActive ? `${(4.8 * (signalGain / 50)).toFixed(1)} Khz / OK` : 'IDLE // SILENT'}
+              {pingsActive
+                ? `${(4.8 * (signalGain / 50)).toFixed(1)} Khz / OK`
+                : 'IDLE // SILENT'}
             </span>
           </div>
         </div>

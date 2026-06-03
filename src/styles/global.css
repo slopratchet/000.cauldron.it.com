@@ -5,7 +5,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
 @import 'tailwindcss';
 
-
 @theme {
   --color-surface-dim: #dcd9d9;
   --color-surface-lowest: #ffffff;
@@ -473,23 +472,22 @@
   }
 }
 
-
 html {
   scroll-behavior: smooth;
   scroll-padding-top: 2rem; /* Add some comfortable breathing room at the top when scrolling to elements */
 }
 
 @theme {
-  --color-parchment-deep: #E6E2D8;
-  --color-blood-red: #D10919;
-  --color-intel-orange: #D97706;
+  --color-parchment-deep: #e6e2d8;
+  --color-blood-red: #d10919;
+  --color-intel-orange: #d97706;
   --color-surface: #f9f9f9;
   --color-surface-container: #eeeeee;
   --color-ink-wash: #333333;
 
-  --font-anton: "Anton", sans-serif;
-  --font-tinos: "Tinos", serif;
-  --font-mono: "JetBrains Mono", monospace;
+  --font-anton: 'Anton', sans-serif;
+  --font-tinos: 'Tinos', serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
 @layer utilities {
@@ -507,8 +505,8 @@ html {
   }
 
   .stamp {
-    border: 3px solid #D10919;
-    color: #D10919;
+    border: 3px solid #d10919;
+    color: #d10919;
     padding: 0.15rem 0.4rem;
     transform: rotate(-12deg);
     display: inline-block;
@@ -518,13 +516,13 @@ html {
   }
 
   .red-ink {
-    color: #D10919;
-    font-family: "JetBrains Mono", monospace;
+    color: #d10919;
+    font-family: 'JetBrains Mono', monospace;
     font-style: italic;
   }
 
   .screenplay-text {
-    font-family: "Courier New", Courier, monospace;
+    font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
   }
 }
