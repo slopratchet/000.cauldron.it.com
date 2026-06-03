@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const auth = Astro.locals.auth?.();
+if (!auth?.userId) {
+  // If no auth middleware injected it, fall back to simple check
+  return Astro.redirect('/log-in');
+}
+---
+
+<Layout title="Scripts">
+  <main>
+    <h1>Scripts Page</h1>
+    <p>This is a protected route.</p>
+  </main>
+</Layout>
