@@ -1,12 +1,13 @@
 ---
-
+import Location001App from '../../components/Location001App.tsx';
+import '../../styles/global.css';
 ---
 
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
-    <title>Metropolis Recon</title>
+    <title>The Ontological Engine</title>
     <style>
       @import url('https://fonts.googleapis.com/css2?family=Archivo+Narrow:ital,wght@0,400..700;1,400..700&family=JetBrains+Mono:wght@400;700&display=swap');
 
@@ -61,6 +62,10 @@
       class="min-h-screen flex-col antialiased selection:bg-primary selection:text-surface flex"
     >
       <main class="flex-1 flex flex-col min-w-0 bg-surface">
+        <div class="w-full mb-8">
+          <Location001App client:load />
+        </div>
+        <div class="w-full border-t-4 border-border mt-8 mb-8"></div>
         <div
           class="p-4 md:p-8 flex-1 overflow-y-auto pattern-bg text-onSurface"
         >
@@ -73,21 +78,21 @@
                 <h1
                   class="text-5xl sm:text-7xl font-black uppercase tracking-tighter mb-2 leading-none"
                 >
-                  METROPOLIS RECON
+                  THE ONTOLOGICAL ENGINE
                 </h1>
                 <h2
                   class="text-xl sm:text-2xl font-mono uppercase tracking-widest text-primary border-t-4 border-border pt-2 inline-block"
                 >
-                  Urban Decay Study Plate 012
+                  Crucible Stress Test Plate 001
                 </h2>
               </div>
               <div
                 class="flex flex-col items-end text-right font-mono text-xs space-y-1"
               >
                 <div class="bg-primary text-surface px-2 py-1 font-bold">
-                  URBAN RUIN CONTEXT
+                  SYSTEM OVERLOAD CONTEXT
                 </div>
-                <div>SCAN DATE: 1970-08-12</div>
+                <div>EXEC DATE: CYCLE 884</div>
                 <div>SCALE: 1:5000</div>
               </div>
             </div>
@@ -101,12 +106,12 @@
                   <div
                     class="absolute top-4 left-4 bg-primary text-surface px-3 py-1 text-sm font-mono z-10 font-bold"
                   >
-                    VISUAL FEED: SECTOR A-12
+                    VISUAL FEED: PONDS PRIMAL CRUST
                   </div>
                   <img
                     alt="High-contrast brutalist technical photograph of a sprawling urban ruin."
                     class="w-full h-auto object-cover border-2 border-border"
-                    src="https://lh3.googleusercontent.com/aida/ADBb0uhwITCgUwC9T_XQGR7MnvzNs07UN-qZP2yLzaDkijnhPA-3ib8u1ESDTUs1jyDoMTvaEJMW0diLH9S2VTA2j_ODvSuEh8NuUgXT9wJArYqvCdVo71iW1mQGuwTnA-9Z14PrxAjTR89_tSZZ79DNJxBdYA22sd7Yi2Izuk-6xYbyxuk4-bcOmS7YSO7dNnT2blnHOrhF6YEDowN2DO4_DQrd8eBSa9QfWH_9rzzgDsUV6-D9UFiOtzFUvHEm"
+                    src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1600&q=80"
                   />
                   <div
                     class="absolute bottom-3 left-4 right-4 flex justify-between items-end font-mono text-[10px] uppercase opacity-60"
@@ -116,18 +121,18 @@
                   </div>
                 </div>
 
-                <!-- Biomass Infestation Matrix -->
+                <!-- Entropic Debt Matrix -->
                 <div class="brutalist-border bg-surface p-6 sm:p-8 grid-bg">
                   <div
                     class="flex items-center justify-between mb-6 border-b-4 border-border pb-2"
                   >
                     <h3 class="text-3xl font-black uppercase">
-                      Biomass Infestation
+                      Entropic Debt Matrix
                     </h3>
                     <span
                       class="font-mono text-xs font-bold border-2 border-border px-2 py-1 bg-surface"
                     >
-                      LEVEL 3 DETECTED
+                      VECTOR ALPHA DETECTED
                     </span>
                   </div>
                   <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
@@ -135,7 +140,7 @@
                       <h4
                         class="font-bold uppercase text-sm mb-2 border-b border-border"
                       >
-                        Biological Markers
+                        Thermodynamic Markers
                       </h4>
                       <ul class="font-mono text-sm space-y-2">
                         <li class="flex items-start gap-2">
@@ -146,7 +151,7 @@
                         <li class="flex items-start gap-2">
                           <span class="mt-1 w-2 h-2 bg-primary flex-shrink-0"
                           ></span>
-                          <span>Spore concentration in flooded zones</span>
+                          <span>Unassigned entropy in sector 7</span>
                         </li>
                         <li class="flex items-start gap-2">
                           <span class="mt-1 w-2 h-2 bg-primary flex-shrink-0"
@@ -159,16 +164,15 @@
                       <h4
                         class="font-bold uppercase text-sm mb-2 border-b border-border"
                       >
-                        Atmospheric Data
+                        System Load Data
                       </h4>
                       <div class="space-y-3 font-mono text-sm">
                         <div class="flex justify-between">
-                          <span>HUMIDITY:</span><span class="font-bold"
-                            >92%</span
+                          <span>ENTROPY:</span><span class="font-bold">92%</span
                           >
                         </div>
                         <div class="flex justify-between">
-                          <span>TOXICITY:</span><span
+                          <span>FRICTION:</span><span
                             class="font-bold text-red-600">MODERATE</span
                           >
                         </div>
@@ -185,32 +189,33 @@
 
               <!-- Right Column (Narrower): Tactical Analysis -->
               <div class="lg:col-span-4 space-y-8">
-                <!-- Collapse Risk Box -->
+                <!-- Ontological Collapse Risk Box -->
                 <div class="brutalist-border bg-primary text-surface p-6">
                   <h3
                     class="text-2xl font-black uppercase mb-4 border-b-2 border-white/30 pb-2"
                   >
-                    Collapse Risk
+                    Ontological Collapse Risk
                   </h3>
                   <div class="space-y-4 font-sans text-lg">
                     <p class="leading-tight">
-                      Structural integrity of monoliths is compromised. Zone A
-                      displays imminent failure indicators.
+                      Biological hardware is calcifying into dust. Crust of the
+                      planet is shattering under displaced thermodynamic
+                      friction.
                     </p>
                     <div
                       class="brutalist-border-medium border-surface/50 bg-white/10 p-3 font-mono text-xs"
                     >
                       <p class="font-bold mb-1">WARNINGS:</p>
                       <ul class="list-none space-y-1">
-                        <li>- Severe rebar corrosion</li>
-                        <li>- Foundation displacement</li>
-                        <li>- Hydrostatic pressure buildup</li>
+                        <li>- Colony reduction to radioactive cinder</li>
+                        <li>- Spatial displacement of 1000 ships</li>
+                        <li>- Absolute joy/agony injection overload</li>
                       </ul>
                     </div>
                   </div>
                 </div>
 
-                <!-- Infiltration Routes -->
+                <!-- Spatial Routing -->
                 <div class="brutalist-border bg-surface p-6 relative">
                   <div
                     class="absolute -top-3 right-4 bg-surface px-2 border-2 border-border text-[10px] font-bold font-mono"
@@ -220,7 +225,7 @@
                   <h3
                     class="text-2xl font-black uppercase mb-4 border-b-2 border-border pb-2"
                   >
-                    Infiltration Routes
+                    Spatial Routing
                   </h3>
                   <div class="space-y-3">
                     <div
@@ -229,22 +234,22 @@
                       <span
                         class="text-xs font-bold font-mono text-primary uppercase block mb-1"
                       >
-                        Primary Route: Sub-Street
+                        Primary Route: Alligator Farm Ponds Primal
                       </span>
                       <p class="text-sm">
-                        Accessible via flooded subway vents. High stealth,
-                        medium hazard from structural shifting.
+                        Routed through the bimodal syntax. Unfathomable volume
+                        of unassigned entropy directed here.
                       </p>
                     </div>
                     <div class="brutalist-border-medium p-3">
                       <span
                         class="text-xs font-bold font-mono text-primary uppercase block mb-1"
                       >
-                        Secondary: Aerial
+                        Secondary: Core World Orbit
                       </span>
                       <p class="text-sm">
-                        Rappelling from Sector B skyscrapers. Visible to
-                        long-range sensors but avoids ground hazards.
+                        Armada ceases to exist in hostile space, perfectly
+                        rendered in orbit.
                       </p>
                     </div>
                   </div>
@@ -273,10 +278,9 @@
                       >Status Report</span
                     >
                     <p class="leading-relaxed">
-                      Urban decay has reached terminal velocity. Natural
-                      reclamation is exceeding forecasted rates. Suggest
-                      immediate evacuation or fortification of subterranean
-                      bunkers.
+                      Spatial displacement has generated unfathomable unassigned
+                      entropy. Engine follows Bimodal Sigil's routing. Colony
+                      reduced to radioactive cinder in a microsecond.
                     </p>
                   </div>
                 </div>
