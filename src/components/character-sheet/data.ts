@@ -1,4 +1,4 @@
-import { Character } from './types';
+import type { Character } from './types';
 
 export const OFFICIAL_CONAN: Character = {
   id: 'CIMMERIAN_001',
