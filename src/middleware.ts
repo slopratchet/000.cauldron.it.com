@@ -18,6 +18,8 @@ const ACCESS_CONFIG = {
     '/api/gitAgent',
     '/guest',
     '/market',
+    '/location',
+    '/location-001',
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
