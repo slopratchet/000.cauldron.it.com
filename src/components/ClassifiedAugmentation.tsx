@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Operation, ScriptLine, Character } from '../types';
+import type { Operation, ScriptLine, Character } from '../types';
 import { Command, Sparkles, RefreshCw } from 'lucide-react';
 
 interface ClassifiedAugmentationProps {

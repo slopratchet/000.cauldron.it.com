@@ -1,0 +1,16 @@
+@theme {
+  --color-parchment: #e6e2d8;
+  --color-ink: #000000;
+
+  --font-anton: 'Anton', sans-serif;
+  --font-tinos: 'Tinos', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+@layer base {
+  .profile000-theme {
+    background-color: var(--color-parchment);
+    color: var(--color-ink);
+    font-family: var(--font-tinos);
+  }
+}

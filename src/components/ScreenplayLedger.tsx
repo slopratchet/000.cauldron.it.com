@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Operation, ScriptLine } from '../types';
+import type { Operation, ScriptLine } from '../types';
 import { Paperclip, Printer } from 'lucide-react';
 
 interface ScreenplayLedgerProps {
