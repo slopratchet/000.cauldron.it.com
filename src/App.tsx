@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { INITIAL_OPERATIONS } from '../initialData';
-import { Operation, Character, ScriptLine, SceneObjective } from '../types';
-import DossierMeta from './DossierMeta';
-import PsychProfiles from './PsychProfiles';
-import SceneObjectives from './SceneObjectives';
-import NavConsoleCard from './NavConsoleCard';
-import ScreenplayLedger from './ScreenplayLedger';
-import ClassifiedAugmentation from './ClassifiedAugmentation';
-import ManualTranscriptAdd from './ManualTranscriptAdd';
+import { INITIAL_OPERATIONS } from './initialData';
+import { Operation, Character, ScriptLine, SceneObjective } from './types';
+import DossierMeta from './components/DossierMeta';
+import PsychProfiles from './components/PsychProfiles';
+import SceneObjectives from './components/SceneObjectives';
+import NavConsoleCard from './components/NavConsoleCard';
+import ScreenplayLedger from './components/ScreenplayLedger';
+import ClassifiedAugmentation from './components/ClassifiedAugmentation';
+import ManualTranscriptAdd from './components/ManualTranscriptAdd';
 import {
   BookOpenText,
   Menu,
@@ -42,7 +42,6 @@ export default function App() {
   const [customOperationTitle, setCustomOperationTitle] = useState('');
   const [isCreatingOp, setIsCreatingOp] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
-  const [isSidebarVisible, setIsSidebarVisible] = useState(true);
 
   const activeOp = operations.find((o) => o.id === activeOpId) || operations[0];
   const activeOpIndex = operations.findIndex((o) => o.id === activeOpId);
@@ -209,120 +208,100 @@ export default function App() {
       {/* Main Content Layout Canvas */}
       <main className="flex-grow flex flex-col md:flex-row p-4 md:p-8 gap-6 relative z-10 max-w-[1400px] mx-auto w-full">
         {/* Left Column: Technical intelligence dossier details */}
-        <aside
-          className={`flex flex-col gap-2 print:hidden transition-all duration-700 ease-in-out ${isSidebarVisible ? 'w-full md:w-1/3' : 'w-full md:w-12'}`}
-        >
-          <button
-            onClick={() => setIsSidebarVisible(!isSidebarVisible)}
-            className={`w-6 h-4 bg-zinc-300/50 hover:bg-zinc-400 flex items-center justify-center rounded-[2px] cursor-pointer transition-colors self-start shrink-0 ${isSidebarVisible ? '' : 'bg-zinc-400'}`}
-            title="Toggle Sidebar"
-          >
-            <div className="w-3 h-[2px] bg-zinc-600"></div>
-          </button>
-
-          <div
-            className={`grid transition-all duration-700 ease-in-out ${isSidebarVisible ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
-          >
-            <div className="overflow-hidden flex flex-col gap-5 min-w-[300px] md:min-w-0">
-              {/* LEDGER MISSION CHANGER */}
-              <div className="border-4 border-black bg-black text-white p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-2 font-mono">
-                <div className="flex justify-between items-center border-b border-zinc-700 pb-1.5 mb-1 select-none">
-                  <span className="text-[10px] font-bold text-intel-orange tracking-widest uppercase">
-                    ACTIVE_LEDGER_DIRECTORY
-                  </span>
-                  <button
-                    onClick={() => setIsCreatingOp(true)}
-                    className="text-[9px] bg-intel-orange text-black font-extrabold px-1.5 py-0.5 hover:bg-white transition-colors cursor-pointer"
-                    id="btn-sidebar-new-file"
-                  >
-                    + NEW PAGE
-                  </button>
-                </div>
-                <div className="flex flex-col gap-1.5 text-xs">
-                  {operations.map((op) => (
-                    <button
-                      key={op.id}
-                      onClick={() => setActiveOpId(op.id)}
-                      className={`text-left px-2 py-1 font-bold transition-all uppercase flex justify-between items-center cursor-pointer ${
-                        op.id === activeOpId
-                          ? 'bg-white text-black'
-                          : 'hover:bg-zinc-800 text-zinc-300'
-                      }`}
-                    >
-                      <span>{op.title.replace('Operation: ', '')}</span>
-                      <span className="text-[9px] opacity-70">
-                        {op.id === activeOpId ? '● ACTIVE' : '○ SECURE'}
-                      </span>
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* 1. Technical Metadata Extract card */}
-              <DossierMeta
-                operation={activeOp}
-                onUpdateMeta={handleUpdateActiveOp}
-              />
-
-              {/* 2. Character Profiles / Subjects */}
-              <PsychProfiles
-                characters={activeOp.characters}
-                onUpdateCharacters={handleUpdateCharacters}
-                onSelectCharacter={handleSelectCharacter}
-              />
-
-              {/* 3. Dramatic Scene Targets & Checklists */}
-              <SceneObjectives
-                objectives={activeOp.objectives}
-                onUpdateObjectives={handleUpdateObjectives}
-                onArmedChange={handleArmedStatus}
-              />
-
-              {/* 4. Gritty Navigation Instrument Gear Screen */}
-              <NavConsoleCard />
-
-              {/* Interactive simulated sounds desk */}
-              <div className="border border-black p-3 bg-zinc-100/80 font-mono text-[10px] text-zinc-700 flex justify-between items-center select-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
-                <span className="flex items-center gap-1">
-                  {audioSimulation ? (
-                    <Volume2 className="w-3.5 h-3.5 text-zinc-700" />
-                  ) : (
-                    <VolumeX className="w-3.5 h-3.5 text-zinc-400" />
-                  )}
-                  SYSTEM_AUDIO_MONITOR:{' '}
-                  {audioSimulation
-                    ? 'SOCIETY_SYNTH_LIVE'
-                    : 'SOCIETY_SYNTH_MUTED'}
-                </span>
+        <aside className="w-full md:w-1/3 flex flex-col gap-5 print:hidden">
+          {/* LEDGER MISSION CHANGER */}
+          <div className="border-4 border-black bg-black text-white p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-2 font-mono">
+            <div className="flex justify-between items-center border-b border-zinc-700 pb-1.5 mb-1 select-none">
+              <span className="text-[10px] font-bold text-intel-orange tracking-widest uppercase">
+                ACTIVE_LEDGER_DIRECTORY
+              </span>
+              <button
+                onClick={() => setIsCreatingOp(true)}
+                className="text-[9px] bg-intel-orange text-black font-extrabold px-1.5 py-0.5 hover:bg-white transition-colors cursor-pointer"
+                id="btn-sidebar-new-file"
+              >
+                + NEW PAGE
+              </button>
+            </div>
+            <div className="flex flex-col gap-1.5 text-xs">
+              {operations.map((op) => (
                 <button
-                  onClick={() => setAudioSimulation(!audioSimulation)}
-                  className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.2 hover:bg-white text-black font-bold cursor-pointer"
+                  key={op.id}
+                  onClick={() => setActiveOpId(op.id)}
+                  className={`text-left px-2 py-1 font-bold transition-all uppercase flex justify-between items-center cursor-pointer ${
+                    op.id === activeOpId
+                      ? 'bg-white text-black'
+                      : 'hover:bg-zinc-800 text-zinc-300'
+                  }`}
                 >
-                  TOGGLE
+                  <span>{op.title.replace('Operation: ', '')}</span>
+                  <span className="text-[9px] opacity-70">
+                    {op.id === activeOpId ? '● ACTIVE' : '○ SECURE'}
+                  </span>
                 </button>
-              </div>
-
-              <ClassifiedAugmentation
-                operation={activeOp}
-                onUpdateLines={handleUpdateLines}
-                characters={activeOp.characters}
-                aiPrompt={aiPrompt}
-                setAiPrompt={setAiPrompt}
-              />
-
-              <ManualTranscriptAdd
-                operation={activeOp}
-                onUpdateLines={handleUpdateLines}
-                characters={activeOp.characters}
-              />
+              ))}
             </div>
           </div>
+
+          {/* 1. Technical Metadata Extract card */}
+          <DossierMeta
+            operation={activeOp}
+            onUpdateMeta={handleUpdateActiveOp}
+          />
+
+          {/* 2. Character Profiles / Subjects */}
+          <PsychProfiles
+            characters={activeOp.characters}
+            onUpdateCharacters={handleUpdateCharacters}
+            onSelectCharacter={handleSelectCharacter}
+          />
+
+          {/* 3. Dramatic Scene Targets & Checklists */}
+          <SceneObjectives
+            objectives={activeOp.objectives}
+            onUpdateObjectives={handleUpdateObjectives}
+            onArmedChange={handleArmedStatus}
+          />
+
+          {/* 4. Gritty Navigation Instrument Gear Screen */}
+          <NavConsoleCard />
+
+          {/* Interactive simulated sounds desk */}
+          <div className="border border-black p-3 bg-zinc-100/80 font-mono text-[10px] text-zinc-700 flex justify-between items-center select-none shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]">
+            <span className="flex items-center gap-1">
+              {audioSimulation ? (
+                <Volume2 className="w-3.5 h-3.5 text-zinc-700" />
+              ) : (
+                <VolumeX className="w-3.5 h-3.5 text-zinc-400" />
+              )}
+              SYSTEM_AUDIO_MONITOR:{' '}
+              {audioSimulation ? 'SOCIETY_SYNTH_LIVE' : 'SOCIETY_SYNTH_MUTED'}
+            </span>
+            <button
+              onClick={() => setAudioSimulation(!audioSimulation)}
+              className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.2 hover:bg-white text-black font-bold cursor-pointer"
+            >
+              TOGGLE
+            </button>
+          </div>
+
+          <ClassifiedAugmentation
+            operation={activeOp}
+            onUpdateLines={handleUpdateLines}
+            characters={activeOp.characters}
+            aiPrompt={aiPrompt}
+            setAiPrompt={setAiPrompt}
+          />
+
+          <ManualTranscriptAdd
+            operation={activeOp}
+            onUpdateLines={handleUpdateLines}
+            characters={activeOp.characters}
+          />
         </aside>
 
         {/* Right Column: Screenplay Typewriter desk */}
-        <section
-          className={`transition-all duration-700 ease-in-out h-auto ${isSidebarVisible ? 'w-full md:w-2/3' : 'w-full max-w-4xl mx-auto md:-translate-x-9'}`}
-        >
+        <section className="w-full md:w-2/3 h-auto">
           <ScreenplayLedger
             operations={operations}
             onUpdateOpLines={handleUpdateOpLines}

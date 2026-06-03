@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Character } from '../types';
+import type { Character } from '../types';
 import {
   UserPlus,
   Sparkles,
