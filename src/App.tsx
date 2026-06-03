@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { INITIAL_OPERATIONS } from '../initialData';
-import { Operation, Character, ScriptLine, SceneObjective } from '../types';
-import DossierMeta from './DossierMeta';
-import PsychProfiles from './PsychProfiles';
-import SceneObjectives from './SceneObjectives';
-import NavConsoleCard from './NavConsoleCard';
-import ScreenplayLedger from './ScreenplayLedger';
-import ClassifiedAugmentation from './ClassifiedAugmentation';
-import ManualTranscriptAdd from './ManualTranscriptAdd';
+import { INITIAL_OPERATIONS } from './initialData';
+import { Operation, Character, ScriptLine, SceneObjective } from './types';
+import DossierMeta from './components/DossierMeta';
+import PsychProfiles from './components/PsychProfiles';
+import SceneObjectives from './components/SceneObjectives';
+import NavConsoleCard from './components/NavConsoleCard';
+import ScreenplayLedger from './components/ScreenplayLedger';
+import ClassifiedAugmentation from './components/ClassifiedAugmentation';
+import ManualTranscriptAdd from './components/ManualTranscriptAdd';
 import {
   BookOpenText,
   Menu,
