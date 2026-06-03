@@ -32,7 +32,7 @@ export default function App() {
               THE ONTOLOGICAL ENGINE
             </h1>
             <p className="font-label-md text-label-md mt-2 opacity-70">
-              SUBJECT ID: PENAL-COLONY-DELTA-9 // REF: VECTOR ALPHA
+              SUBJECT ID: ALLIGATOR-FARM-PONDS-PRIMAL // REF: VECTOR ALPHA
             </p>
           </div>
           <div className="flex gap-4 mt-[var(--spacing-stack-md)] md:mt-0">
@@ -139,7 +139,7 @@ export default function App() {
                 <div className="w-4 h-4 dashed-ink-border bg-white"></div>
                 <div className="flex flex-col">
                   <span className="font-label-md text-label-md font-bold uppercase">
-                    Penal Colony Delta-9
+                    Alligator Farm Ponds Primal
                   </span>
                   <span className="font-label-sm text-label-sm opacity-60">
                     Entropic Debt Receptacle
@@ -176,7 +176,7 @@ export default function App() {
                   03. GARBAGE COLLECTION
                 </p>
                 <p className="font-body-md text-body-md italic leading-tight">
-                  "Route spatial friction to Penal Colony Delta-9."
+                  "Route spatial friction to Alligator Farm Ponds Primal."
                 </p>
               </div>
             </div>
