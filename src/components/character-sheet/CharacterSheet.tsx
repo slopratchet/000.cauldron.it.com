@@ -13,7 +13,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from 'lucide-react';
-import { Character, Talent, RollLog } from './types';
+import type { Character, Talent, RollLog } from './types';
 import {
   PRESET_CHARACTERS,
   TALENTS_TEMPLATES,

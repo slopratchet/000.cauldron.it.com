@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Operation } from '../types';
+import type { Operation } from '../types';
 import { Shield, MapPin, Clock, Crosshair, Edit2, Check } from 'lucide-react';
 
 interface DossierMetaProps {
