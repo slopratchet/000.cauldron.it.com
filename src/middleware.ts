@@ -19,6 +19,8 @@ const ACCESS_CONFIG = {
     '/guest',
     '/market',
     '/location',
+    '/actor',
+    '/action',
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
