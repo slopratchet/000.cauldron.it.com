@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono:wght@400;500;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-display: 'Anton', sans-serif;
+  --font-serif: 'Tinos', serif;
+
+  --color-primary-brand: #000000;
+  --color-parchment: #f9f9f9;
+  --color-parchment-deep: #e6e2d8;
+  --color-blood-red: #c2410c;
+  --color-dark-orange: #c2410c;
+  --color-ink-wash: #333333;
+  --color-charcoal: #1b1b1b;
+
+  --shadow-brutalist-sm: 2px 2px 0px 0px #000000;
+  --shadow-brutalist: 4px 4px 0px 0px #000000;
+  --shadow-brutalist-md: 6px 6px 0px 0px #000000;
+  --shadow-brutalist-lg: 8px 8px 0px 0px #000000;
+  --shadow-brutalist-red: 4px 4px 0px 0px #c2410c;
+  --shadow-brutalist-orange: 4px 4px 0px 0px #c2410c;
+}
+
+@layer base {
+  body {
+    background-color: #f9f9f9;
+    color: #1b1b1b;
+    background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+    background-size: 24px 24px;
+    font-family: var(--font-serif);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Custom ink scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+::-webkit-scrollbar-track {
+  background: #e6e2d8;
+  border-left: 2px solid #000000;
+}
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 2px solid #e6e2d8;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #333333;
+}
