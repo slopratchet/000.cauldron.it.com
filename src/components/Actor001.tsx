@@ -1620,10 +1620,7 @@ export default function Actor001() {
 
                 {/* State variables */}
                 <div className="grid grid-cols-2 gap-4">
-                  <StatBlock
-                    label="CURRENT HP"
-                    value={current.currentHp}
-                  />
+                  <StatBlock label="CURRENT HP" value={current.currentHp} />
                   <StatBlock label="TEMP HP" value={current.temporaryHp} />
 
                   {/* VITALS_AND_WOUNDS TRACKER */}
