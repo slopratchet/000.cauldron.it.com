@@ -9,7 +9,7 @@ export const characterData = {
   },
   identity: {
     name: 'Charity Vaughn',
-    alignment: 'Lawful Neutral',
+    alignment: 'Lawful Order',
     background: 'Outlander',
     species: 'Human',
   },
