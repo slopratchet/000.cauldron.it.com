@@ -183,7 +183,7 @@ export default function DirectoryExplorer({
                           onDeleteSubject(charId);
                         }}
                         className={`text-[9.5px] uppercase hover:underline ml-2 ${
-                          isActive ? 'text-red-300' : 'text-red-800'
+                          isActive ? 'text-orange-300' : 'text-orange-800'
                         }`}
                       >
                         [PURGE]

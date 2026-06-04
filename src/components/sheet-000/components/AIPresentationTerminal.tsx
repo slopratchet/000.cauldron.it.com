@@ -56,9 +56,7 @@ export default function AIPresentationTerminal({
 
   const runLogSequence = async (newSubject: CharacterRecord) => {
     const scores = newSubject.definition.abilityScoreGeneration.scores;
-    const itemsCount = Object.keys(
-      newSubject.currentState.inventory.items,
-    ).length;
+    const itemsCount = Object.keys(newSubject.current.inventory.items).length;
     const logSteps = [
       'STATUS_PING: NEURAL PIPELINE ESTABLISHED...',
       'DIAGNOSTIC: LOADING UNIFIED D&D 5E PROTOCOLS via GEMINI-3.5-FLASH...',
@@ -122,12 +120,14 @@ export default function AIPresentationTerminal({
     } catch (err: unknown) {
       console.error(err);
       setErrorMsg(
-        (err as Error).message || 'Failed to process Neural generation.',
+        err instanceof Error
+          ? err.message
+          : String(err) || 'Failed to process Neural generation.',
       );
       setLogs((prev) => [
         ...prev,
         '!!! EXCEPTION_TRAPPED: SYNTHESIS COMPILATION HALTED.',
-        `!!! CAUSE_DUMP: ${(err as Error).message || 'Unknown hardware response state'}`,
+        `!!! CAUSE_DUMP: ${err instanceof Error ? err.message : 'Unknown hardware response state'}`,
       ]);
       setIsGenerating(false);
     }
@@ -218,7 +218,7 @@ export default function AIPresentationTerminal({
           <div className="bg-[#303030] border-b border-black text-[#f3f0f0] px-4 py-2 font-bold flex justify-between items-center text-[10px] uppercase">
             <span>CHRONOS_PRINTER_TERMINAL_V1.9</span>
             <span className="flex items-center gap-1.5 animate-pulse">
-              <span className="w-2 h-2 rounded-full bg-red-600 block" />{' '}
+              <span className="w-2 h-2 rounded-full bg-orange-600 block" />{' '}
               LINE_ENGAGED
             </span>
           </div>
@@ -229,7 +229,7 @@ export default function AIPresentationTerminal({
                 key={index}
                 className={
                   log.startsWith('!!!')
-                    ? 'text-red-500 font-bold'
+                    ? 'text-orange-500 font-bold'
                     : log.startsWith('STATUS_PING')
                       ? 'text-teal-400'
                       : log.includes('SUCCESS') || log.includes('SECURE')
@@ -291,8 +291,8 @@ export default function AIPresentationTerminal({
 
       {/* API Key Instructions fallback */}
       {errorMsg.toLowerCase().includes('key') && (
-        <div className="border border-red-800 bg-red-50 p-4 font-mono text-xs text-red-800 flex gap-3">
-          <AlertOctagon className="w-5 h-5 text-red-800 shrink-0" />
+        <div className="border border-orange-800 bg-orange-50/50 p-4 font-mono text-xs text-orange-800 flex gap-3">
+          <AlertOctagon className="w-5 h-5 text-orange-800 shrink-0" />
           <div>
             <span className="font-bold block uppercase mb-1">
               PROMPT SECRET ERROR TRAPPED
