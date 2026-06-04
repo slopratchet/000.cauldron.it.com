@@ -4684,6 +4684,13 @@ export default function Actor000() {
               <p>UPDATED: {meta.updatedAt}</p>
             </div>
           </section>
+
+          <a
+            href="/sheet/000"
+            className="block w-full mt-4 bg-black text-[#FAF8F5] text-center py-2 font-jetbrains text-[12px] font-bold uppercase tracking-wider hover:bg-neutral-800 transition-colors border-2 border-black"
+          >
+            View Character Sheet
+          </a>
         </main>
       </div>
     </>
