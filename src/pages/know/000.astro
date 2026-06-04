@@ -1,0 +1,79 @@
+---
+import '../../styles/global.css';
+import App from '../../components/know-000/App.tsx';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Know 000</title>
+    <style>
+      .know-000-wrapper {
+        --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+        --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+        --font-display: 'Anton', sans-serif;
+        --font-serif: 'Tinos', serif;
+
+        --color-primary-brand: #000000;
+        --color-parchment: #f9f9f9;
+        --color-parchment-deep: #e6e2d8;
+        --color-blood-red: #c2410c;
+        --color-dark-orange: #c2410c;
+        --color-ink-wash: #333333;
+        --color-charcoal: #1b1b1b;
+      }
+      .know-000-wrapper .shadow-brutalist-sm {
+        box-shadow: 2px 2px 0px 0px #000000;
+      }
+      .know-000-wrapper .shadow-brutalist {
+        box-shadow: 4px 4px 0px 0px #000000;
+      }
+      .know-000-wrapper .shadow-brutalist-md {
+        box-shadow: 6px 6px 0px 0px #000000;
+      }
+      .know-000-wrapper .shadow-brutalist-lg {
+        box-shadow: 8px 8px 0px 0px #000000;
+      }
+      .know-000-wrapper .shadow-brutalist-red {
+        box-shadow: 4px 4px 0px 0px #c2410c;
+      }
+      .know-000-wrapper .shadow-brutalist-orange {
+        box-shadow: 4px 4px 0px 0px #c2410c;
+      }
+
+      .know-000-wrapper {
+        background-color: #f9f9f9;
+        color: #1b1b1b;
+        background-image: radial-gradient(#e6e2d8 1px, transparent 1px);
+        background-size: 24px 24px;
+        font-family: var(--font-serif);
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Custom ink scrollbar */
+      .know-000-wrapper::-webkit-scrollbar {
+        width: 12px;
+        height: 12px;
+      }
+      .know-000-wrapper::-webkit-scrollbar-track {
+        background: #e6e2d8;
+        border-left: 2px solid #000000;
+      }
+      .know-000-wrapper::-webkit-scrollbar-thumb {
+        background: #000000;
+        border: 2px solid #e6e2d8;
+      }
+      .know-000-wrapper::-webkit-scrollbar-thumb:hover {
+        background: #333333;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="know-000-wrapper min-h-screen">
+      <App client:load />
+    </div>
+  </body>
+</html>

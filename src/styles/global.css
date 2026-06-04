@@ -6,6 +6,13 @@
 @import 'tailwindcss';
 
 @theme {
+  --shadow-brutalist-sm: 2px 2px 0px 0px #000000;
+  --shadow-brutalist: 4px 4px 0px 0px #000000;
+  --shadow-brutalist-md: 6px 6px 0px 0px #000000;
+  --shadow-brutalist-lg: 8px 8px 0px 0px #000000;
+  --shadow-brutalist-red: 4px 4px 0px 0px #c2410c;
+  --shadow-brutalist-orange: 4px 4px 0px 0px #c2410c;
+  --color-charcoal: #1b1b1b;
   --font-anton: 'Anton', sans-serif;
   --font-tinos: 'Tinos', serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
