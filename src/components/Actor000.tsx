@@ -4684,6 +4684,14 @@ export default function Actor000() {
               <p>UPDATED: {meta.updatedAt}</p>
             </div>
           </section>
+
+          {/* Link to Sheet 000 */}
+          <a
+            href="/sheet/000"
+            className="w-full mt-4 block text-center border border-black bg-white hover:bg-black hover:text-white text-black font-jetbrains text-[10px] font-bold uppercase tracking-widest py-2 transition-colors cursor-pointer"
+          >
+            Access Sheet 000
+          </a>
         </main>
       </div>
     </>
