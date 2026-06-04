@@ -751,16 +751,24 @@ export const DEFAULT_SUBJECTS: CharacterRecord[] = [
         title: 'DESIRES',
         items: [
           {
-            title: 'SUBJUGATING THE NORTHERN TRIBES', description: 'To brutally conquer all remaining independent warbands and unify them under the iron banner of the Bloodforged Horde.',
+            title: 'SUBJUGATING THE NORTHERN TRIBES',
+            description:
+              'To brutally conquer all remaining independent warbands and unify them under the iron banner of the Bloodforged Horde.',
           },
           {
-            title: 'SLAUGHTERING THE DRAGON OF IRON-CRAG', description: 'To hunt down and defeat the ancient red dragon that slumbers in his ancestral homeland, claiming its scales as armor.',
+            title: 'SLAUGHTERING THE DRAGON OF IRON-CRAG',
+            description:
+              'To hunt down and defeat the ancient red dragon that slumbers in his ancestral homeland, claiming its scales as armor.',
           },
           {
-            title: 'ERASING THE WEAK FROM HISTORY', description: 'To completely obliterate the capitals of the soft southern kingdoms, ensuring their names are forgotten by time.',
+            title: 'ERASING THE WEAK FROM HISTORY',
+            description:
+              'To completely obliterate the capitals of the soft southern kingdoms, ensuring their names are forgotten by time.',
           },
           {
-            title: 'FORGING THE PERFECT CHAMPION', description: 'To find a warrior strong enough to one day defeat him in single combat and take control of the Horde.',
+            title: 'FORGING THE PERFECT CHAMPION',
+            description:
+              'To find a warrior strong enough to one day defeat him in single combat and take control of the Horde.',
           },
         ],
       },
@@ -774,10 +782,14 @@ export const DEFAULT_SUBJECTS: CharacterRecord[] = [
               'Permanently charred, bark-hardened, and infused with raw wild magic conducting paths during her ascension event, rendering it numb to normal touch.',
           },
           {
-            title: 'A PEACEFUL DEATH', description: 'Has sworn an oath to the Blood God that he will only die in the heat of battle, never of old age or sickness.',
+            title: 'A PEACEFUL DEATH',
+            description:
+              'Has sworn an oath to the Blood God that he will only die in the heat of battle, never of old age or sickness.',
           },
           {
-            title: 'HIS FIRSTBORN SON', description: 'Sacrificed his own child to a dark deity in exchange for the supernatural strength required to lift the Warlord\'s Greataxe.',
+            title: 'HIS FIRSTBORN SON',
+            description:
+              "Sacrificed his own child to a dark deity in exchange for the supernatural strength required to lift the Warlord's Greataxe.",
           },
           {
             title: 'METROPOLITAN REPUTATION & STATUS',
