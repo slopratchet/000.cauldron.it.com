@@ -10,52 +10,59 @@ export const FAQ_DATA: FAQItem[] = [
     id: 'pass-one',
     category: 'THE ANATOMY OF THE CREATIVE INTERROGATION',
     question: 'PASS ONE: THE VISCERAL RESPONSE',
-    answer: "The first read-through must be done without analytical pausing. The objective is to experience the story as a pure piece of cinema or theater. The Output: The designer captures immediate, instinctual gut reactions. Is the world oppressive or expansive? Does the story feel cold, damp, or sun-bleached?",
+    answer:
+      'The first read-through must be done without analytical pausing. The objective is to experience the story as a pure piece of cinema or theater. The Output: The designer captures immediate, instinctual gut reactions. Is the world oppressive or expansive? Does the story feel cold, damp, or sun-bleached?',
   },
   {
     id: 'pass-two',
     category: 'THE ANATOMY OF THE CREATIVE INTERROGATION',
     question: 'PASS TWO: THE STRUCTURAL DECONSTRUCTION',
-    answer: "The second read is an exhaustive, scene-by-scene interrogation where the script is treated as a crime scene. The designer looks for explicit facts, implicit requirements, and structural transitions.",
+    answer:
+      'The second read is an exhaustive, scene-by-scene interrogation where the script is treated as a crime scene. The designer looks for explicit facts, implicit requirements, and structural transitions.',
   },
   {
     id: 'pass-three',
     category: 'THE ANATOMY OF THE CREATIVE INTERROGATION',
     question: 'PASS THREE: THE PSYCHOLOGICAL & THEMATIC SUBTEXT',
-    answer: "The third read looks past the text and into the subtext. It examines character arcs, thematic motifs, and psychological states, mapping them directly onto physical spaces.",
+    answer:
+      'The third read looks past the text and into the subtext. It examines character arcs, thematic motifs, and psychological states, mapping them directly onto physical spaces.',
   },
   {
     id: 'color-coding',
     category: 'THE PHYSICAL MECHANICS',
     question: 'STANDARDIZED COLOR CODING?',
-    answer: "To prevent visual chaos, colors are strictly mapped: Violet/Purple for Architecture, Blue for Environmental/SFX, Green for Set Dressing, Yellow for Action Props, Pink/Magenta for Vehicles, and Orange for Graphic Design.",
+    answer:
+      'To prevent visual chaos, colors are strictly mapped: Violet/Purple for Architecture, Blue for Environmental/SFX, Green for Set Dressing, Yellow for Action Props, Pink/Magenta for Vehicles, and Orange for Graphic Design.',
   },
   {
     id: 'geometric-syntax',
     category: 'THE PHYSICAL MECHANICS',
     question: 'GEOMETRIC SYNTAX?',
-    answer: "The Bracket [ Text ] for transitions, The Circle ( Word ) for specific elements, The Arrow -> for spatial vectors, The Delta Δ for change in state, and The Double Underline = for historical anchors.",
+    answer:
+      'The Bracket [ Text ] for transitions, The Circle ( Word ) for specific elements, The Arrow -> for spatial vectors, The Delta Δ for change in state, and The Double Underline = for historical anchors.',
   },
   {
     id: 'spatial-volume',
     category: 'SCENOGRAPHIC INTERPRETATION',
     question: 'SPATIAL VOLUME?',
-    answer: "The script dictates where a scene happens, but the designer determines how much space that scene needs to convey its psychological reality. Compression vs. Expansion.",
+    answer:
+      'The script dictates where a scene happens, but the designer determines how much space that scene needs to convey its psychological reality. Compression vs. Expansion.',
   },
   {
     id: 'chronological-metric',
     category: 'SCENOGRAPHIC INTERPRETATION',
     question: 'CHRONOLOGICAL METRIC?',
-    answer: "Sets should rarely look like they were built yesterday; they must look like they have existed across time. The designer scans the text for clues about the history of the environment.",
+    answer:
+      'Sets should rarely look like they were built yesterday; they must look like they have existed across time. The designer scans the text for clues about the history of the environment.',
   },
   {
     id: 'psychological-architecture',
     category: 'SCENOGRAPHIC INTERPRETATION',
     question: 'PSYCHOLOGICAL ARCHITECTURE?',
-    answer: "The environment must act as an externalization of the characters' internal worlds. The designer tracks emotional arcs through architectural transitions.",
+    answer:
+      "The environment must act as an externalization of the characters' internal worlds. The designer tracks emotional arcs through architectural transitions.",
   },
 ];
-
 
 export const SYSTEM_WARNING = {
   header: 'SYSTEM WARNING',

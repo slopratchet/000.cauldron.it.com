@@ -91,7 +91,8 @@ export default function FaqScreen({
           <div className="lg:col-span-4 lg:pt-14">
             <div className="border-l-4 border-black pl-4 py-1">
               <p className="font-serif italic text-lg md:text-xl text-[#4c4546] leading-relaxed">
-                "A production designer’s script markup is not a passive reading exercise; it is an act of forensic translation."
+                "A production designer’s script markup is not a passive reading
+                exercise; it is an act of forensic translation."
               </p>
             </div>
           </div>
@@ -125,15 +126,21 @@ export default function FaqScreen({
                   className={`border-4 border-black p-6 shadow-brutalist flex flex-col justify-between ${index % 3 == 0 ? 'bg-white' : index % 3 == 1 ? 'bg-parchment-deep' : 'bg-black text-parchment'}`}
                 >
                   <div>
-                    <h3 className={`font-display text-2xl uppercase border-b-4 pb-2 mb-4 ${index % 3 == 2 ? 'border-parchment text-parchment' : 'border-black text-black'}`}>
+                    <h3
+                      className={`font-display text-2xl uppercase border-b-4 pb-2 mb-4 ${index % 3 == 2 ? 'border-parchment text-parchment' : 'border-black text-black'}`}
+                    >
                       {faq.question}
                     </h3>
-                    <p className={`font-serif text-sm leading-relaxed ${index % 3 == 2 ? 'text-parchment-deep' : 'text-charcoal'}`}>
+                    <p
+                      className={`font-serif text-sm leading-relaxed ${index % 3 == 2 ? 'text-parchment-deep' : 'text-charcoal'}`}
+                    >
                       {faq.answer}
                     </p>
                   </div>
                   {faq.category && (
-                    <div className={`font-mono text-[10px] mt-4 pt-2 border-t uppercase tracking-widest ${index % 3 == 2 ? 'border-neutral-800 text-neutral-400' : 'border-neutral-300 text-[#848484]'}`}>
+                    <div
+                      className={`font-mono text-[10px] mt-4 pt-2 border-t uppercase tracking-widest ${index % 3 == 2 ? 'border-neutral-800 text-neutral-400' : 'border-neutral-300 text-[#848484]'}`}
+                    >
                       {faq.category}
                     </div>
                   )}
