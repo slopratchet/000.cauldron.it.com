@@ -14,6 +14,7 @@ export interface Meta {
 
 export interface Identity {
   name: string;
+  gender?: string;
   alignment: string;
   background: string;
   species: string;

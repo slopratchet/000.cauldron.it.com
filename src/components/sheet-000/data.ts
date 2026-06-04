@@ -16,7 +16,8 @@ export const DEFAULT_SUBJECTS: CharacterRecord[] = [
       updatedAt: '2026-03-19T14:30:00Z',
     },
     identity: {
-      name: 'Elias Thorne',
+      name: 'Charity Vaughn',
+      gender: 'woman',
       alignment: 'Lawful Neutral',
       background: 'Outlander',
       species: 'Human',
