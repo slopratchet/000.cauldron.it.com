@@ -337,7 +337,7 @@ export default function SubjectDossier({
           </h1>
           <div className="flex flex-wrap gap-2 text-xs font-mono font-medium mt-1">
             <span className="bg-white/10 px-2 py-0.5 border border-white/20 uppercase">
-              {subject.identity.species}
+              {subject.identity.species} // {subject.identity.gender}
             </span>
             <span className="bg-white/10 px-2 py-0.5 border border-white/20 uppercase">
               {subject.identity.background}
