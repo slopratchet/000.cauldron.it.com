@@ -23,6 +23,7 @@ function isValidSubject(s: unknown): s is CharacterRecord {
     typeof s.identity.background === 'string' &&
     typeof s.identity.species === 'string' &&
     s.description &&
+    typeof s.description.gender === 'string' &&
     s.personality &&
     typeof s.notes === 'string' &&
     s.definition &&

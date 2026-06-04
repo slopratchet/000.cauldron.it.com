@@ -411,6 +411,10 @@ export default function SubjectDossier({
           </span>
           <div className="flex flex-col gap-3 font-mono text-xs">
             <div className="flex justify-between border-b border-black/10 pb-1">
+              <span className="font-bold">gender:</span>
+              <span>{subject.description.gender}</span>
+            </div>
+            <div className="flex justify-between border-b border-black/10 pb-1">
               <span className="font-bold">age:</span>
               <span>{subject.description.age}</span>
             </div>

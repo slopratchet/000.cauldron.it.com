@@ -16,12 +16,13 @@ export const DEFAULT_SUBJECTS: CharacterRecord[] = [
       updatedAt: '2026-03-19T14:30:00Z',
     },
     identity: {
-      name: 'Elias Thorne',
+      name: 'Charity Vaughn',
       alignment: 'Lawful Neutral',
       background: 'Outlander',
       species: 'Human',
     },
     description: {
+      gender: 'Woman',
       age: 68,
       height: '5\' 11"',
       weight: '185 lbs',
