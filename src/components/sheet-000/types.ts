@@ -14,7 +14,6 @@ export interface Meta {
 
 export interface Identity {
   name: string;
-  gender?: string;
   alignment: string;
   background: string;
   species: string;
@@ -34,6 +33,7 @@ export interface Personality {
   ideals: string;
   bonds: string;
   flaws: string;
+  familyHistory?: string;
 }
 
 export interface LevelProgressionChoice {
@@ -60,14 +60,34 @@ export interface AbilityScores {
   Charisma: number;
 }
 
+export interface MagicScores {
+  FORC: string;
+  FRIC: string;
+  SPED: string;
+  MASS: string;
+  BEIN: string;
+  CTRL: string;
+  RSLV: string;
+  WITS: string;
+  TUDE: string;
+  VIZN: string;
+  POST: string;
+  STYL: string;
+  KOUD: string;
+  GRIT: string;
+  BYTE: string;
+  FLOW: string;
+}
+
 export interface AbilityScoreGeneration {
   method: string;
   scores: AbilityScores;
+  magicScores?: MagicScores;
 }
 
 export interface Definition {
   abilityScoreGeneration: AbilityScoreGeneration;
-  levelProgression: { [key: string]: LevelProgressionItem };
+  progression: { [key: string]: LevelProgressionItem };
 }
 
 export interface ProficiencySkill {
@@ -76,13 +96,26 @@ export interface ProficiencySkill {
   modifier: string;
 }
 
+export interface DetailedSkill {
+  isClassSkill: boolean;
+  name: string;
+  keyAbility: string;
+  modifier: number;
+  abilityMod: number;
+  ranks: number;
+  miscMod: number;
+}
+
 export interface Proficiencies {
   skills: ProficiencySkill[];
+  detailedSkills?: DetailedSkill[];
   saving_throws: string[];
   armor: string[];
   weapons: string[];
   tools: string[];
   languages: string[];
+  loreCards?: LoreProficiencyCard[];
+  loreRegisters?: LoreRegisters;
 }
 
 export interface SpellcastingSource {
@@ -161,15 +194,146 @@ export interface CurrentState {
   inventory: Inventory;
 }
 
+export interface VitalRecords {
+  gender: string;
+  placeOfBirth: string;
+  dateOfBirth: string;
+  employerAffiliation: string;
+}
+
 export interface CharacterRecord {
   meta: Meta;
   identity: Identity;
   description: Description;
   personality: Personality;
+  vitalRecords?: VitalRecords;
   notes: string;
   definition: Definition;
   proficiencies: Proficiencies;
   spellcasting: Spellcasting;
-  currentState: CurrentState;
+  current: CurrentState;
+  capabilities?: Capability[];
+  registries?: RegistryNode[];
+  arsenal?: Arsenal;
+  outfitting?: OutfittingPiece[];
+  psychology?: PsychologySection;
   is_custom?: boolean;
+}
+
+export interface Capability {
+  category: string;
+  skillAffiliation: string;
+  rank: number;
+  effectName: string;
+  effectDescription: string;
+}
+
+export interface RegistryItem {
+  title: string;
+  description: string;
+}
+
+export interface RegistryNode {
+  nodeId: string;
+  title: string;
+  items: RegistryItem[];
+}
+
+export interface ArsenalWeapon {
+  weaponId: string;
+  name: string;
+  atkBonus: string;
+  damage: string;
+  critical: string;
+  range: string;
+  weight: string;
+  type: string;
+  size: string;
+  specialProperties: string;
+  narrativeLore?: string;
+}
+
+export interface ArsenalAmmo {
+  ammoId: string;
+  label: string;
+  capacity: number;
+  currentCount: number;
+  lines: string[];
+}
+
+export interface Arsenal {
+  weapons: ArsenalWeapon[];
+  ammunition: ArsenalAmmo[];
+}
+
+export interface OutfittingPiece {
+  pieceId: string;
+  name: string;
+  location: string;
+  type: string;
+  equipBonus: string;
+  isProficient: boolean;
+  penalty: string;
+  weight: string;
+  speed: string;
+  size: string;
+  maxDex: string;
+  specialProperties: string;
+  narrativeLore?: string;
+}
+
+export interface LoreProficiencyCard {
+  cardId: string;
+  type: string;
+  skillName: string;
+  modifier: string;
+  subtitle: string;
+  description: string;
+  footer: string;
+}
+
+export interface LoreRegisters {
+  savingThrowsHeader: string;
+  savingThrowsText: string;
+  toolsHeader: string;
+  toolsText: string;
+  languagesHeader: string;
+  languagesText: string;
+  combatHeader: string;
+  combatText: string;
+}
+
+export interface MentalDiagnosticTracker {
+  insanity: number;
+  corruption: number;
+  synchronicity: number;
+  inspiration: number;
+}
+
+export interface SupplyMetricTracker {
+  waterWine: number;
+  rations: number;
+  feed: number;
+  stabilizers: number;
+  bioOil: number;
+  weldingSlag: number;
+}
+
+export interface OperativeNotes {
+  column1: string;
+  column2: string;
+}
+
+export interface ActionRow {
+  actionId: string;
+  name: string;
+  type: string;
+}
+
+export interface PsychologySection {
+  diagnostics: MentalDiagnosticTracker;
+  supplies: SupplyMetricTracker;
+  manifestations: string;
+  operativeNotes: OperativeNotes;
+  actions?: ActionRow[];
 }
