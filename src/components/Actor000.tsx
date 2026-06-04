@@ -4670,7 +4670,7 @@ export default function Actor000() {
           </section>
 
           {/* Metadata */}
-          <section className="brutalist-border p-4 bg-black text-gray-400 font-jetbrains text-[10px] uppercase flex flex-col md:flex-row justify-between break-all gap-4">
+          <section className="brutalist-border p-4 bg-black text-gray-400 font-jetbrains text-[10px] uppercase flex flex-col md:flex-row justify-between break-all gap-4 mb-4">
             <div>
               <p>CHARACTER ID: {meta.character_id}</p>
               <p>USER ID: {meta.user_id}</p>
@@ -4684,6 +4684,14 @@ export default function Actor000() {
               <p>UPDATED: {meta.updatedAt}</p>
             </div>
           </section>
+
+          {/* Link to Sheet 000 */}
+          <a
+            href="/sheet/000"
+            className="block w-full border-[2px] border-black bg-[#FAF8F5] hover:bg-black hover:text-[#E6E2D8] text-black text-center font-jetbrains text-[11px] md:text-[12px] font-bold uppercase tracking-[0.1em] py-2 transition-all cursor-pointer brutalist-shadow-sm"
+          >
+            [ LINK: /sheet/000 ]
+          </a>
         </main>
       </div>
     </>
