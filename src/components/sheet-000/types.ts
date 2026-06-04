@@ -20,6 +20,7 @@ export interface Identity {
 }
 
 export interface Description {
+  gender: string;
   age: number;
   height: string;
   weight: string;
