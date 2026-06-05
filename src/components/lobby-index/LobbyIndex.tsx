@@ -18,6 +18,7 @@ export default function LobbyIndex() {
     { title: '/know/001', url: '/know/001', section: 'KNOW' },
     { title: '/know/002', url: '/know/002', section: 'KNOW' },
     { title: '/know/003', url: '/know/003', section: 'KNOW' },
+    { title: '/rule/000', url: '/rule/000', section: 'RULE' },
   ];
 
   const filteredItems = searchQuery
@@ -89,7 +90,7 @@ export default function LobbyIndex() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8">
             {/* ================= COLUMN 1 ================= */}
             <div className="flex flex-col">
               <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
@@ -277,6 +278,30 @@ export default function LobbyIndex() {
                     <span className="font-semibold text-left">
                       /profile/000
                     </span>
+                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* ================= COLUMN 6 ================= */}
+            <div className="flex flex-col">
+              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
+                DECK_06 // RULE
+              </div>
+
+              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
+                <div className="border-b border-neutral-300 pb-3 mb-4">
+                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
+                    Rule
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="/rule/000"
+                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
+                  >
+                    <span className="font-semibold text-left">/rule/000</span>
                     <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
                   </a>
                 </div>
