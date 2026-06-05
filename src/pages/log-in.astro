@@ -6,7 +6,7 @@ const auth = Astro.locals.auth();
 const isLocal =
   Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
 if (auth.userId || isLocal) {
-  const target = '/character';
+  const target = '/lobby';
   return Astro.redirect(target);
 }
 ---
@@ -191,7 +191,7 @@ if (auth.userId || isLocal) {
     const unsubscribe = $clerkStore.subscribe((clerk) => {
       if (clerk && clerk.user) {
         console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
-        window.location.href = '/character';
+        window.location.href = '/lobby';
       }
     });
 
@@ -377,7 +377,7 @@ if (auth.userId || isLocal) {
 
           // Metadata Fork: Determine landing zone
           const userRole = clerk.user?.publicMetadata?.role;
-          const target = '/character';
+          const target = '/lobby';
           console.log('BIO_PUNK_UI: REDIRECT_TRIGGERED', { target, userRole });
           window.location.href = target;
         } else if (
@@ -421,7 +421,7 @@ if (auth.userId || isLocal) {
           'UNKNOWN_IMPULSE_FAILURE';
 
         if (message.toUpperCase().includes('ALREADY SIGNED IN')) {
-          window.location.href = '/character';
+          window.location.href = '/lobby';
           return;
         }
 
