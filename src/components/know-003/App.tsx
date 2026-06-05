@@ -39,7 +39,8 @@ export default function App() {
                 </h1>
                 <div className="font-label-sm text-neutral-500 uppercase">
                   A Supplemental Codex on Temporal Allocation, Intentional
-                  Queueing, and the Eradication of Fifth Edition Vancian Slack
+                  Queueing, and the Eradication of Table Top Role-Playing
+                  Vancian Slack
                 </div>
               </div>
             </div>
@@ -57,7 +58,7 @@ export default function App() {
               me to elevate it. You ask me to graft the brutal, uncompromising
               physics of Ontological Engineering directly into the fragile,
               skeuomorphic mechanics of the{' '}
-              <strong>Fifth Edition System Reference Document</strong>.
+              <strong>Table Top Role-Playing System Reference Document</strong>.
             </p>
             <p className="font-body-italic opacity-90">
               You wish to eradicate the infantile concepts of "Spell Slots" and
@@ -83,18 +84,19 @@ export default function App() {
               I. PREAMBLE: THE HERESY OF THE REST-DRIVEN RECHARGE
             </h2>
             <p>
-              The standard model of reality-manipulation in your Fifth Edition
-              rulebooks—as erroneously documented in legacy frameworks under the
-              headings of "Spellcasting" and "Resting"—posits a biological
-              absurdity. It dictates that the cognitive and metaphysical
-              infrastructure required to alter the cosmic state vector refreshes
-              automatically after a localized period of somatic dormancy. This
-              "Vancian Sloth" assumes that the universe is a passive, forgiving
-              battery, merely waiting for a meatware processor (your "Wizard" or
-              "Cleric") to sleep for eight hours before resetting its magical
-              allocation bubbles. It implies that the matrix forgets the
-              thermodynamic debt drawn from it simply because an organism closed
-              its eyes, chewed a ration, and dreamed.
+              The standard model of reality-manipulation in your Table Top
+              Role-Playing rulebooks—as erroneously documented in legacy
+              frameworks under the headings of "Spellcasting" and
+              "Resting"—posits a biological absurdity. It dictates that the
+              cognitive and metaphysical infrastructure required to alter the
+              cosmic state vector refreshes automatically after a localized
+              period of somatic dormancy. This "Vancian Sloth" assumes that the
+              universe is a passive, forgiving battery, merely waiting for a
+              meatware processor (your "Wizard" or "Cleric") to sleep for eight
+              hours before resetting its magical allocation bubbles. It implies
+              that the matrix forgets the thermodynamic debt drawn from it
+              simply because an organism closed its eyes, chewed a ration, and
+              dreamed.
             </p>
             <p>
               This is a lie born of mortal frailty and game-design cowardice.
@@ -106,9 +108,10 @@ export default function App() {
               void.
             </p>
             <p>
-              To bridge the gap between traditional Fifth Edition casting tiers
-              and the absolute laws of Thermodynamic Sorcery, we must formalize
-              the <strong>Temporal Intent Queueing System</strong>. In this
+              To bridge the gap between traditional Table Top Role-Playing
+              casting tiers and the absolute laws of Thermodynamic Sorcery, we
+              must formalize the{' '}
+              <strong>Temporal Intent Queueing System</strong>. In this
               architectural framework, a "Spell" is no longer a fluid that
               drains and refills via biological rest. It is a series of
               hard-coded, chronologically anchored{' '}
@@ -119,8 +122,8 @@ export default function App() {
               days, months, or seasons in advance.
             </p>
             <p>
-              If traditional Fifth Edition spellcasting is an artillery piece
-              casually loaded on the battlefield,{' '}
+              If traditional Table Top Role-Playing spellcasting is an artillery
+              piece casually loaded on the battlefield,{' '}
               <strong>Temporal Queueing</strong> is the construction of a
               non-Euclidean railway line that strikes a specific mountain at an
               exact, pre-calculated millisecond. If you do not cross the
@@ -140,7 +143,7 @@ export default function App() {
               the following rules upon your spellcasters.
             </p>
             <div className="bg-stone-100 p-4 font-mono text-sm border-2 border-black overflow-x-auto whitespace-pre">
-              {`[ THE TEMPORAL ALLOCATION PIPELINE : D&D 5E INTEGRATION ]
+              {`[ THE TEMPORAL ALLOCATION PIPELINE : TABLE TOP ROLE-PLAYING INTEGRATION ]
 
 +---------------------------------------+
 |  1. THE INTENTIONAL ANCHOR            |  <- Player permanently locks Spell & Target Day
@@ -311,7 +314,7 @@ export default function App() {
                   <em>Haste</em> and a 4th-level <em>Polymorph</em> to overlap
                   on the same Tuesday), the timelines clip. This creates a{' '}
                   <strong>Chrono-Resonance Feedback Loop</strong>. The mechanics
-                  of "Concentration" in Fifth Edition are a gross
+                  of "Concentration" in Table Top Role-Playing are a gross
                   oversimplification of this law. Under the True System, if a
                   caster holds an active spell and takes damage, the resulting
                   Constitution saving throw is not merely to "stay focused." It
@@ -356,10 +359,10 @@ export default function App() {
             </h2>
             <p>
               To fully replace the legacy rest-and-slot mechanics, we must
-              completely overhaul the Fifth Edition character sheet for all
-              spellcasting classes (Bards, Clerics, Druids, Paladins, Rangers,
-              Sorcerers, Warlocks, and Wizards). The bubble-grid of expendable
-              slots is deleted. It is replaced by the{' '}
+              completely overhaul the Table Top Role-Playing character sheet for
+              all spellcasting classes (Bards, Clerics, Druids, Paladins,
+              Rangers, Sorcerers, Warlocks, and Wizards). The bubble-grid of
+              expendable slots is deleted. It is replaced by the{' '}
               <strong>Matrix of Intentional Leases</strong>.
             </p>
             <p>
@@ -376,7 +379,7 @@ export default function App() {
                       Metaphysical Attribute
                     </th>
                     <th className="border border-black p-2 font-bold">
-                      Legacy Vancian Framework (Fifth Edition SRD)
+                      Legacy Vancian Framework (Table Top Role-Playing SRD)
                     </th>
                     <th className="border border-black p-2 font-bold">
                       The Closed Loop Temporal Queueing System
@@ -466,8 +469,8 @@ export default function App() {
               IV. OPERATIONAL PROTOCOLS OF THE TEMPORAL TIERS
             </h2>
             <p>
-              The mathematical translation from standard Fifth Edition spell
-              levels to the Temporal Intent Queueing System is strict and
+              The mathematical translation from standard Table Top Role-Playing
+              spell levels to the Temporal Intent Queueing System is strict and
               unforgiving. Here follow the implementation guidelines for
               configuring a magic user’s active repertoire under the laws of
               Ontological Engineering. Every spellcaster must maintain a strict,
@@ -671,13 +674,14 @@ export default function App() {
             <hr className="border-black my-8" />
 
             <h2 className="font-headline-md uppercase text-2xl border-b-2 border-black pb-1 select-none mt-8 mb-4">
-              V. TRANSLATING THE MATRIX: A TACTICAL D&D 5E CASE STUDY
+              V. TRANSLATING THE MATRIX: A TACTICAL TABLE TOP ROLE-PLAYING CASE
+              STUDY
             </h2>
             <p>
               To understand the brutal reality of this architecture at your
               gaming table, we must analyze an actual operational record
-              decompiled from the chronicles of a Fifth Edition campaign
-              utilizing the True Physics.
+              decompiled from the chronicles of a Table Top Role-Playing
+              campaign utilizing the True Physics.
             </p>
 
             <h3 className="font-bold text-xl mb-2 mt-6">
@@ -852,12 +856,12 @@ the archived consciousness of his designated digital ancestor, permanently delet
               VI. THE VENGEANCE DAEMON AND ENVIRONMENTAL CORRUPTION
             </h2>
             <p>
-              When designing a Fifth Edition campaign setting around the{' '}
-              <strong>Temporal Intent Queueing System</strong>, the Game Master
-              must understand that a world populated by magic users will not
-              look like a high-fantasy utopia like the Forgotten Realms. It will
-              resemble an industrialized landscape scarred by chemical run-off
-              and systemic infrastructure stress. Magic is pollution.
+              When designing a Table Top Role-Playing campaign setting around
+              the <strong>Temporal Intent Queueing System</strong>, the Game
+              Master must understand that a world populated by magic users will
+              not look like a high-fantasy utopia like the Forgotten Realms. It
+              will resemble an industrialized landscape scarred by chemical
+              run-off and systemic infrastructure stress. Magic is pollution.
             </p>
 
             <div className="bg-stone-100 p-4 font-mono text-sm border-2 border-black overflow-x-auto whitespace-pre mb-6 mt-4">
@@ -1074,13 +1078,16 @@ THE CHRONO-ACTUARY       THE HOROLOGIST          THE TIME-BANDIT
                 </p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>
-                    <strong>5e Mechanic Integration:</strong> At 2nd Level, the
-                    Chrono-Actuary gains the <strong>Macro-Dilation</strong>{' '}
-                    feature. When they queue a spell with a Macro-Window of a
-                    week or longer, they can halve the spell's entropic backlash
-                    damage if it misses its target, routing the remainder into a
-                    localized bureaucratic ledger (a specialized spellbook that
-                    slowly physically rots over time).
+                    <strong>
+                      Table Top Role-Playing Mechanic Integration:
+                    </strong>{' '}
+                    At 2nd Level, the Chrono-Actuary gains the{' '}
+                    <strong>Macro-Dilation</strong> feature. When they queue a
+                    spell with a Macro-Window of a week or longer, they can
+                    halve the spell's entropic backlash damage if it misses its
+                    target, routing the remainder into a localized bureaucratic
+                    ledger (a specialized spellbook that slowly physically rots
+                    over time).
                   </li>
                   <li>
                     <strong>Operational Protocol:</strong> They specialize in{' '}
@@ -1107,14 +1114,16 @@ THE CHRONO-ACTUARY       THE HOROLOGIST          THE TIME-BANDIT
                 </p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>
-                    <strong>5e Mechanic Integration:</strong> At 3rd Level, the
-                    Horologist gains the <strong>Micro-Precision Strike</strong>
-                    . They can compress a spell or Ki-empowered strike into an
-                    absolute Micro-Window (a specific Initiative count). If they
-                    unleash the strike on exactly that Initiative count, the
-                    attack automatically scores a Critical Hit and ignores all
-                    Resistances. If they miss the window, they suffer the damage
-                    themselves.
+                    <strong>
+                      Table Top Role-Playing Mechanic Integration:
+                    </strong>{' '}
+                    At 3rd Level, the Horologist gains the{' '}
+                    <strong>Micro-Precision Strike</strong>. They can compress a
+                    spell or Ki-empowered strike into an absolute Micro-Window
+                    (a specific Initiative count). If they unleash the strike on
+                    exactly that Initiative count, the attack automatically
+                    scores a Critical Hit and ignores all Resistances. If they
+                    miss the window, they suffer the damage themselves.
                   </li>
                   <li>
                     <strong>Operational Protocol:</strong> The Horologist
@@ -1144,17 +1153,20 @@ THE CHRONO-ACTUARY       THE HOROLOGIST          THE TIME-BANDIT
                 </p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>
-                    <strong>5e Mechanic Integration:</strong> At 1st level, the
-                    Time-Bandit gains <strong>Temporal Spoofing</strong>. They
-                    may cast any spell on their list without a pre-booked
-                    Chrono-Lease. However, doing so requires an immediate
-                    Charisma (Deception) check against the universe's background
-                    routing daemon (DC 10 + Spell Level + Regional
-                    Interference). On a success, the universe believes the spell
-                    was queued months ago. On a failure, the spell triggers an
-                    immediate Wild Magic Surge and the caster takes 1d10 Force
-                    damage per spell level as the matrix forcibly extracts the
-                    unassigned entropy from their marrow.
+                    <strong>
+                      Table Top Role-Playing Mechanic Integration:
+                    </strong>{' '}
+                    At 1st level, the Time-Bandit gains{' '}
+                    <strong>Temporal Spoofing</strong>. They may cast any spell
+                    on their list without a pre-booked Chrono-Lease. However,
+                    doing so requires an immediate Charisma (Deception) check
+                    against the universe's background routing daemon (DC 10 +
+                    Spell Level + Regional Interference). On a success, the
+                    universe believes the spell was queued months ago. On a
+                    failure, the spell triggers an immediate Wild Magic Surge
+                    and the caster takes 1d10 Force damage per spell level as
+                    the matrix forcibly extracts the unassigned entropy from
+                    their marrow.
                   </li>
                   <li>
                     <strong>Operational Protocol:</strong> They attempt to trick
