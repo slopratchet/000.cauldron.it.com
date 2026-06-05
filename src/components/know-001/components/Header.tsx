@@ -40,18 +40,18 @@ export default function Header({
           className="flex items-center gap-2 cursor-pointer group"
           id="header-brand-logo"
         >
-          <div className="p-1 border-2 border-black bg-black text-parchment group-hover:bg-blood-red group-hover:border-blood-red transition-colors duration-150">
+          <div className="p-1 border-2 border-black bg-black text-parchment group-hover:bg-[#D97706] group-hover:border-[#D97706] transition-colors duration-150">
             <BookOpen className="h-5 w-5" />
           </div>
           <span className="font-display text-2xl tracking-tighter leading-none select-none text-black">
-            THE TOME: <span className="text-blood-red">MARKUP</span> EDITION
+            THE TOME: <span className="text-[#D97706]">MARKUP</span> EDITION
           </span>
         </div>
 
         {/* Right side search & action items */}
         <div className="flex items-center gap-3 flex-grow md:flex-grow-0 justify-end">
           {/* Query Index Search Bar */}
-          <div className="relative flex items-center border-2 border-black bg-white focus-within:ring-2 focus-within:ring-blood-red">
+          <div className="relative flex items-center border-2 border-black bg-white focus-within:ring-2 focus-within:ring-[#D97706]">
             <span className="pl-3 pr-1 text-black font-bold">
               <Search className="h-4 w-4" />
             </span>
@@ -73,7 +73,7 @@ export default function Header({
                   setSearchQuery('');
                   setIsSearching(false);
                 }}
-                className="pr-2 text-xs font-mono text-blood-red hover:underline font-bold"
+                className="pr-2 text-xs font-mono text-[#D97706] hover:underline font-bold"
               >
                 [X]
               </button>
@@ -89,7 +89,7 @@ export default function Header({
           <button
             id="join-party-btn"
             onClick={onJoinParty}
-            className="border-2 border-black bg-black hover:bg-blood-red hover:border-blood-red text-parchment text-xs font-bold py-1.5 px-4 tracking-widest uppercase transition-all duration-150 shrink-0 shadow-brutalist-sm hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px]"
+            className="border-2 border-black bg-black hover:bg-[#D97706] hover:border-[#D97706] text-parchment text-xs font-bold py-1.5 px-4 tracking-widest uppercase transition-all duration-150 shrink-0 shadow-brutalist-sm hover:translate-x-[1px] hover:translate-y-[1px] active:translate-x-[2px] active:translate-y-[2px]"
           >
             JOIN THE PARTY
           </button>

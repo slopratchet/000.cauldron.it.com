@@ -147,7 +147,7 @@ export default function HomeScreen({
             <h1 className="font-display text-5xl md:text-6xl tracking-tighter text-black select-none leading-none pt-4 uppercase">
               THE TOME:
               <br />
-              <span className="text-blood-red text-6xl md:text-7.5xl">
+              <span className="text-[#D97706] text-6xl md:text-7.5xl">
                 1970 EDITION
               </span>
             </h1>
@@ -173,7 +173,7 @@ export default function HomeScreen({
                   <span>SECTION I: RULES INDEX</span>
                   <button
                     onClick={onNavigateToFaq}
-                    className="text-blood-red hover:underline uppercase"
+                    className="text-[#D97706] hover:underline uppercase"
                   >
                     [OPEN FAQ]
                   </button>
@@ -207,7 +207,7 @@ export default function HomeScreen({
               <button
                 id="home-pledge-fealty-btn"
                 onClick={onJoinParty}
-                className="border-2 border-black bg-black hover:bg-blood-red hover:border-blood-red text-parchment font-mono font-extrabold text-xs py-2.5 px-5 uppercase tracking-widest shadow-brutalist-sm transition-colors duration-150"
+                className="border-2 border-black bg-black hover:bg-[#D97706] hover:border-[#D97706] text-parchment font-mono font-extrabold text-xs py-2.5 px-5 uppercase tracking-widest shadow-brutalist-sm transition-colors duration-150"
               >
                 PLEDGE FEALTY
               </button>
@@ -241,7 +241,7 @@ export default function HomeScreen({
                   placeholder="e.g. Sir Elliot of Cloud Run"
                   value={characterName}
                   onChange={(e) => setCharacterName(e.target.value)}
-                  className="w-full border-2 border-black bg-parchment focus:bg-white text-sm font-mono font-bold tracking-wider py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-blood-red"
+                  className="w-full border-2 border-black bg-parchment focus:bg-white text-sm font-mono font-bold tracking-wider py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-[#D97706]"
                 />
               </div>
 
@@ -259,7 +259,7 @@ export default function HomeScreen({
                       );
                       if (found) setSelectedClass(found);
                     }}
-                    className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-blood-red"
+                    className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-[#D97706]"
                   >
                     {CHARACTER_CLASSES.map((cls) => (
                       <option key={cls.name} value={cls.name}>
@@ -273,7 +273,7 @@ export default function HomeScreen({
 
             {/* Class description microcard */}
             <div className="border-2 border-black bg-parchment p-3 mb-6 font-mono text-xs text-charcoal">
-              <span className="text-blood-red font-black uppercase block mb-1">
+              <span className="text-[#D97706] font-black uppercase block mb-1">
                 CLASS OVERVIEW ({selectedClass.name}):
               </span>
               <p className="font-serif italic text-sm">
@@ -311,7 +311,7 @@ export default function HomeScreen({
                   id="roll-acc-character-btn"
                   onClick={generateCharacter}
                   disabled={isRolling}
-                  className="border-2 border-black bg-black hover:bg-blood-red hover:border-blood-red disabled:bg-neutral-600 text-parchment text-xs font-mono font-black py-2.5 px-4 uppercase tracking-wider transition-colors shadow-brutalist-sm"
+                  className="border-2 border-black bg-black hover:bg-[#D97706] hover:border-[#D97706] disabled:bg-neutral-600 text-parchment text-xs font-mono font-black py-2.5 px-4 uppercase tracking-wider transition-colors shadow-brutalist-sm"
                 >
                   {isRolling ? 'ROLLING...' : 'ROLL SHEET!'}
                 </button>
@@ -323,7 +323,7 @@ export default function HomeScreen({
           {character && (
             <div
               id="resulted-character-sheet"
-              className="border-4 border-black bg-white p-6 shadow-brutalist relative border-t-blood-red border-t-8"
+              className="border-4 border-black bg-white p-6 shadow-brutalist relative border-t-[#D97706] border-t-8"
             >
               {/* Badge Badge */}
               <div className="absolute top-4 right-4 bg-emerald-100 text-emerald-800 border-2 border-emerald-800 font-mono font-extrabold text-[10px] px-2.5 py-1 uppercase rotate-[4deg]">
@@ -346,7 +346,7 @@ export default function HomeScreen({
                 <div className="space-y-1.5">
                   <div className="flex justify-between font-mono text-xs font-black text-black">
                     <span>LIFELONG STAMINA INDEX (HP):</span>
-                    <span className="text-blood-red font-black">
+                    <span className="text-[#D97706] font-black">
                       {character.hp} / {character.hp} HP
                     </span>
                   </div>
@@ -391,7 +391,7 @@ export default function HomeScreen({
                     <span className="text-[#4c4546] font-black uppercase text-2xs block">
                       SIGNATURE MOVE:
                     </span>
-                    <span className="text-blood-red font-black tracking-wide uppercase">
+                    <span className="text-[#D97706] font-black tracking-wide uppercase">
                       {character.signatureSpell}
                     </span>
                   </div>

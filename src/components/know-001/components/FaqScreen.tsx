@@ -103,11 +103,11 @@ export default function FaqScreen({
           <div className="mb-6 bg-parchment-deep border-2 border-black p-3 font-mono text-xs flex items-center justify-between">
             <div>
               <span>SEARCH FILTER ACTIVE: </span>
-              <span className="text-blood-red font-bold">"{searchQuery}"</span>
+              <span className="text-[#D97706] font-bold">"{searchQuery}"</span>
               <span> ({filteredFaqs.length} entries found)</span>
             </div>
             {filteredFaqs.length === 0 && (
-              <span className="text-blood-red animate-pulse font-bold">
+              <span className="text-[#D97706] animate-pulse font-bold">
                 [ARCHIVIST ALMANAC DEFENSE OVERRIDE]
               </span>
             )}
@@ -157,14 +157,14 @@ export default function FaqScreen({
               className="border-4 border-black bg-white p-6 shadow-brutalist relative"
             >
               {/* Heavy warning system outline banner */}
-              <div className="border-2 border-blood-red p-4 bg-orange-50/50">
+              <div className="border-2 border-[#D97706] p-4 bg-orange-50/50">
                 <div className="flex items-center gap-2 mb-2">
-                  <AlertTriangle className="h-5 w-5 text-blood-red shrink-0" />
-                  <span className="font-mono font-black text-blood-red tracking-widest text-xs uppercase animate-pulse">
+                  <AlertTriangle className="h-5 w-5 text-[#D97706] shrink-0" />
+                  <span className="font-mono font-black text-[#D97706] tracking-widest text-xs uppercase animate-pulse">
                     CAUTION ADVENTURER
                   </span>
                 </div>
-                <div className="font-mono text-xs text-blood-red font-bold uppercase mb-3 border-b border-blood-red pb-1">
+                <div className="font-mono text-xs text-[#D97706] font-bold uppercase mb-3 border-b border-[#D97706] pb-1">
                   TACTICAL ENGAGEMENT ZONE
                 </div>
                 <p className="font-serif italic text-sm text-neutral-800 leading-relaxed">
@@ -212,7 +212,7 @@ export default function FaqScreen({
                       </div>
 
                       {isSoldOut ? (
-                        <div className="bg-blood-red text-white py-1.5 px-3 border border-black font-extrabold tracking-widest text-[10px] animate-pulse shadow-brutalist-sm rotate-[-2deg] select-none shrink-0 uppercase">
+                        <div className="bg-[#D97706] text-white py-1.5 px-3 border border-black font-extrabold tracking-widest text-[10px] animate-pulse shadow-brutalist-sm rotate-[-2deg] select-none shrink-0 uppercase">
                           SOLD OUT
                         </div>
                       ) : (
@@ -232,7 +232,7 @@ export default function FaqScreen({
               <button
                 id="view-schedule-redirect-btn"
                 onClick={onNavigateToTour}
-                className="mt-6 w-full border-2 border-black bg-black hover:bg-blood-red hover:border-blood-red text-parchment font-mono font-black text-xs py-3 px-4 uppercase tracking-wider shadow-brutalist transition-colors duration-150 hover:translate-x-[1px] hover:translate-y-[1px] select-none"
+                className="mt-6 w-full border-2 border-black bg-black hover:bg-[#D97706] hover:border-[#D97706] text-parchment font-mono font-black text-xs py-3 px-4 uppercase tracking-wider shadow-brutalist transition-colors duration-150 hover:translate-x-[1px] hover:translate-y-[1px] select-none"
               >
                 VIEW FULL SCHEDULE
               </button>
@@ -241,7 +241,7 @@ export default function FaqScreen({
             {/* SIDE BOX C: REAL-TIME STATISTICS MONITOR (Added flavor fitting the theme perfectly) */}
             <div className="border-2 border-black bg-parchment-deep p-4 font-mono text-2xs md:text-xs">
               <div className="text-black font-black uppercase mb-2 border-b border-black pb-1 flex items-center gap-1.5">
-                <Zap className="h-3.5 w-3.5 text-blood-red" /> TAVERN SENSORS
+                <Zap className="h-3.5 w-3.5 text-[#D97706]" /> TAVERN SENSORS
               </div>
               <ul className="space-y-1 text-charcoal font-bold p-1">
                 <li className="flex justify-between">
@@ -254,7 +254,7 @@ export default function FaqScreen({
                 </li>
                 <li className="flex justify-between">
                   <span>CRITICAL FAILS:</span>
-                  <span className="text-blood-red">49 Tenday avg</span>
+                  <span className="text-[#D97706]">49 Tenday avg</span>
                 </li>
                 <li className="flex justify-between">
                   <span>DRAGON ALERT:</span>

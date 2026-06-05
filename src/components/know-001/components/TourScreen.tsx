@@ -190,12 +190,12 @@ export default function TourScreen() {
                       {/* Right Date info */}
                       <div className="text-right shrink-0">
                         {isSoldOut ? (
-                          <span className="text-blood-red font-black text-xs uppercase bg-orange-100 border border-blood-red p-1 rotate-[-2deg] inline-block font-sans animate-pulse">
+                          <span className="text-[#D97706] font-black text-xs uppercase bg-orange-100 border border-[#D97706] p-1 rotate-[-2deg] inline-block font-sans animate-pulse">
                             SOLD OUT
                           </span>
                         ) : (
                           <div
-                            className={`font-mono text-xs font-black ${isSelected ? 'text-blood-red' : 'text-black'}`}
+                            className={`font-mono text-xs font-black ${isSelected ? 'text-[#D97706]' : 'text-black'}`}
                           >
                             {t.dateStr}
                           </div>
@@ -217,7 +217,7 @@ export default function TourScreen() {
               </h3>
 
               <div className="mb-4 text-xs font-mono bg-parchment p-3 border-2 border-black">
-                <span className="text-blood-red font-black">ARENA:</span>{' '}
+                <span className="text-[#D97706] font-black">ARENA:</span>{' '}
                 {selectedTour.city} — {selectedTour.venue} |{' '}
                 <span className="text-black font-extrabold">
                   ${selectedTour.ticketPrice} / TICKET
@@ -236,7 +236,7 @@ export default function TourScreen() {
                     placeholder="Enter full real name..."
                     value={attendeeName}
                     onChange={(e) => setAttendeeName(e.target.value)}
-                    className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold tracking-wider py-2 px-3 focus:outline-none focus:ring-2 focus:ring-blood-red text-black"
+                    className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold tracking-wider py-2 px-3 focus:outline-none focus:ring-2 focus:ring-[#D97706] text-black"
                   />
                 </div>
 
@@ -249,7 +249,7 @@ export default function TourScreen() {
                     <select
                       value={seatingRole}
                       onChange={(e) => setSeatingRole(e.target.value)}
-                      className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-blood-red"
+                      className="w-full border-2 border-black bg-parchment text-sm font-mono font-bold py-2 px-3 text-black focus:outline-none focus:ring-2 focus:ring-[#D97706]"
                     >
                       <option value="Wizard of the Front Row">
                         Front Row Spellcasters
@@ -322,7 +322,7 @@ export default function TourScreen() {
                       type="button"
                       onClick={rollUpgrade}
                       disabled={isRolling}
-                      className="border border-black bg-black py-1.5 px-3 text-white hover:bg-blood-red uppercase tracking-wider font-mono font-black text-2xs"
+                      className="border border-black bg-black py-1.5 px-3 text-white hover:bg-[#D97706] uppercase tracking-wider font-mono font-black text-2xs"
                     >
                       ROLL!
                     </button>
@@ -339,7 +339,7 @@ export default function TourScreen() {
                 {/* Booking triggers */}
                 <button
                   type="submit"
-                  className="w-full border-2 border-black bg-black text-parchment hover:bg-blood-red hover:border-blood-red font-mono font-black text-xs tracking-widest uppercase py-3 shadow-brutalist transition-transform duration-150 active:translate-x-0.5 active:translate-y-0.5"
+                  className="w-full border-2 border-black bg-black text-parchment hover:bg-[#D97706] hover:border-[#D97706] font-mono font-black text-xs tracking-widest uppercase py-3 shadow-brutalist transition-transform duration-150 active:translate-x-0.5 active:translate-y-0.5"
                 >
                   FORGE TICKET CONFIRMATION
                 </button>
@@ -350,7 +350,7 @@ export default function TourScreen() {
             {bookedReceipt && (
               <div
                 id="ticket-booking-receipt"
-                className="border-4 border-black bg-white p-6 shadow-brutalist border-t-blood-red border-t-8 relative select-none"
+                className="border-4 border-black bg-white p-6 shadow-brutalist border-t-[#D97706] border-t-8 relative select-none"
               >
                 {/* Stamp */}
                 <div className="absolute bottom-6 right-6 border-4 border-dotted border-orange-600 text-orange-600 font-display text-2xl uppercase tracking-widest px-3 py-1 rotate-[-12deg] opacity-60">
@@ -367,7 +367,7 @@ export default function TourScreen() {
                       {bookedReceipt.timestamp}
                     </span>
                   </div>
-                  <TicketPercent className="h-8 w-8 text-blood-red shrink-0" />
+                  <TicketPercent className="h-8 w-8 text-[#D97706] shrink-0" />
                 </div>
 
                 {/* Receipt Details Table */}
@@ -408,7 +408,7 @@ export default function TourScreen() {
                     <span className="font-bold uppercase text-neutral-400 text-2xs">
                       DISCOUNT ATTRIBUTE:
                     </span>
-                    <span className="font-bold text-blood-red">
+                    <span className="font-bold text-[#D97706]">
                       {bookedReceipt.discountDetails}
                     </span>
                   </div>

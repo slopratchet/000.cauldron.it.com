@@ -25,13 +25,13 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-4 md:px-8 flex flex-col md:flex-row items-center justify-between gap-3 text-center md:text-left select-none">
         {/* Left Side System Copyright */}
         <div className="flex items-center gap-2 flex-wrap justify-center">
-          <Terminal className="h-4.5 w-4.5 text-blood-red animate-pulse" />
+          <Terminal className="h-4.5 w-4.5 text-[#D97706] animate-pulse" />
           <span className="text-parchment font-bold">
             THE TOME © 1974 - 1979 CHRONOS SYSTEMS
           </span>
           <span className="text-neutral-600">|</span>
           <span>REGISTERED USER:</span>
-          <span className="text-parchment font-bold underline decoration-blood-red">
+          <span className="text-parchment font-bold underline decoration-[#D97706]">
             ADMIN_elliot
           </span>
         </div>
@@ -55,7 +55,7 @@ export default function Footer() {
 
         {/* Right Side Stats */}
         <div className="flex items-center gap-3">
-          <span className="text-blood-red font-bold">PAGE 112 OF 666</span>
+          <span className="text-[#D97706] font-bold">PAGE 112 OF 666</span>
           <span className="text-neutral-600">|</span>
           <span className="hover:text-parchment cursor-pointer uppercase transition-colors flex items-center gap-1">
             <Eye className="h-3.5 w-3.5" /> LEGAL LORE

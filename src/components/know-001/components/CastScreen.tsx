@@ -127,7 +127,7 @@ export default function CastScreen() {
                           </span>
                         </div>
                         {isSelected && (
-                          <div className="bg-blood-red text-white text-[9px] px-1.5 py-0.5 uppercase tracking-widest leading-none shrink-0 border border-black">
+                          <div className="bg-[#D97706] text-white text-[9px] px-1.5 py-0.5 uppercase tracking-widest leading-none shrink-0 border border-black">
                             ACTIVE
                           </div>
                         )}
@@ -142,7 +142,7 @@ export default function CastScreen() {
             <div className="border-4 border-black bg-black text-parchment p-5 shadow-brutalist">
               <h3 className="font-mono font-bold uppercase text-xs tracking-wider text-[#848484] border-b border-neutral-800 pb-1 mb-3 flex items-center justify-between">
                 <span>INITIATIVE LOGS</span>
-                <Dices className="h-4 w-4 text-blood-red" />
+                <Dices className="h-4 w-4 text-[#D97706]" />
               </h3>
 
               {combatLog.length === 0 ? (
@@ -202,7 +202,7 @@ export default function CastScreen() {
                     <h3 className="font-display text-4xl leading-none text-black select-none">
                       {selectedCast.name}
                     </h3>
-                    <span className="font-mono text-xs font-bold text-blood-red uppercase tracking-wider">
+                    <span className="font-mono text-xs font-bold text-[#D97706] uppercase tracking-wider">
                       {selectedCast.title}
                     </span>
                   </div>
@@ -281,7 +281,7 @@ export default function CastScreen() {
                       id={`duel-trigger-btn-${selectedCast.id}`}
                       onClick={() => triggerDuel(selectedCast)}
                       disabled={isDueling}
-                      className="border-2 border-black bg-black hover:bg-blood-red hover:border-blood-red text-parchment font-mono font-black text-xs py-2.5 px-5 uppercase tracking-wider shadow-brutalist-sm transition-colors"
+                      className="border-2 border-black bg-black hover:bg-[#D97706] hover:border-[#D97706] text-parchment font-mono font-black text-xs py-2.5 px-5 uppercase tracking-wider shadow-brutalist-sm transition-colors"
                     >
                       {isDueling ? 'DUELING...' : 'CHALLENGE ABILITY!'}
                     </button>
