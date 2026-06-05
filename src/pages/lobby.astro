@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import LobbyIndex from '../components/LobbyIndex/LobbyIndex';
 
 let status = 'OFFLINE';
 try {
@@ -28,6 +29,7 @@ try {
     >
   </div>
 
+  <LobbyIndex client:load />
   <!-- WebSocket Logs -->
   <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
     <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
