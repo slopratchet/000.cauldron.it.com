@@ -89,42 +89,11 @@ export default function LobbyIndex() {
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-8 lg:grid-cols-4">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-5">
             {/* ================= COLUMN 1 ================= */}
             <div className="flex flex-col">
               <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_01 // SCRIPT
-              </div>
-
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Script
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/script/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/script/000</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/script/001"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/script/001</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* ================= COLUMN 2 ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_02 // ACTOR
+                DECK_01 // ACTOR
               </div>
 
               <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
@@ -166,10 +135,10 @@ export default function LobbyIndex() {
                 </div>
               </div>
             </div>
-            {/* ================= COLUMN 3 ================= */}
+            {/* ================= COLUMN 2 ================= */}
             <div className="flex flex-col">
               <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_03 // ACTION
+                DECK_02 // ACTION
               </div>
 
               <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
@@ -201,13 +170,77 @@ export default function LobbyIndex() {
                     <span className="font-semibold text-left">/action/002</span>
                     <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
                   </a>
+                  <a
+                    href="/action/005"
+                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
+                  >
+                    <span className="font-semibold text-left">/action/005</span>
+                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* ================= COLUMN 3 ================= */}
+            <div className="flex flex-col">
+              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
+                DECK_03 // PROFILE
+              </div>
+
+              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
+                <div className="border-b border-neutral-300 pb-3 mb-4">
+                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
+                    Profile
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="/profile/000"
+                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
+                  >
+                    <span className="font-semibold text-left">
+                      /profile/000
+                    </span>
+                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                  </a>
                 </div>
               </div>
             </div>
             {/* ================= COLUMN 4 ================= */}
             <div className="flex flex-col">
               <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_04 // KNOW
+                DECK_04 // SCRIPT
+              </div>
+
+              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
+                <div className="border-b border-neutral-300 pb-3 mb-4">
+                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
+                    Script
+                  </h3>
+                </div>
+
+                <div className="space-y-4">
+                  <a
+                    href="/script/000"
+                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
+                  >
+                    <span className="font-semibold text-left">/script/000</span>
+                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                  </a>
+                  <a
+                    href="/script/001"
+                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
+                  >
+                    <span className="font-semibold text-left">/script/001</span>
+                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                  </a>
+                </div>
+              </div>
+            </div>
+            {/* ================= COLUMN 5 ================= */}
+            <div className="flex flex-col">
+              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
+                DECK_05 // KNOW
               </div>
 
               <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
