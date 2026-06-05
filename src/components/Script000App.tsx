@@ -47,6 +47,7 @@ export default function App() {
   const [customOperationTitle, setCustomOperationTitle] = useState('');
   const [isCreatingOp, setIsCreatingOp] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
+  const [isStreaming, setIsStreaming] = useState(false);
 
   const activeOp = operations.find((o) => o.id === activeOpId) || operations[0];
   const activeOpIndex = operations.findIndex((o) => o.id === activeOpId);
@@ -54,6 +55,24 @@ export default function App() {
   const totalPages = operations.length;
 
   // Update operation values
+  const handleDeleteOperation = (opId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (operations.length <= 1) {
+      alert('At least one operation dossier must remain in the archives.');
+      return;
+    }
+    const confirmed = confirm(
+      'Are you sure you want to delete this operation?',
+    );
+    if (!confirmed) return;
+
+    const newOps = operations.filter((op) => op.id !== opId);
+    setOperations(newOps);
+    if (activeOpId === opId) {
+      setActiveOpId(newOps[0].id);
+    }
+  };
+
   const handleUpdateActiveOp = (updates: Partial<Operation>) => {
     setOperations((prev) =>
       prev.map((op) => (op.id === activeOpId ? { ...op, ...updates } : op)),
@@ -217,9 +236,17 @@ export default function App() {
           {/* LEDGER MISSION CHANGER */}
           <div className="border-4 border-black bg-black text-white p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-2 font-mono">
             <div className="flex justify-between items-center border-b border-zinc-700 pb-1.5 mb-1 select-none">
-              <span className="text-[10px] font-bold text-intel-orange tracking-widest uppercase">
-                ACTIVE_LEDGER_DIRECTORY
-              </span>
+              <button
+                onClick={() => setIsStreaming(!isStreaming)}
+                className={`text-[9px] font-bold tracking-widest uppercase px-1.5 py-0.5 border cursor-pointer select-none transition-all duration-200 ${
+                  isStreaming
+                    ? 'bg-emerald-600 border-emerald-500 text-white animate-pulse'
+                    : 'bg-transparent border-intel-orange text-intel-orange hover:bg-intel-orange hover:text-black'
+                }`}
+                title="Toggle performance streaming mode"
+              >
+                {isStreaming ? 'STREAM_PERFORMANCE' : 'STREAM_PERFORMANCE'}
+              </button>
               <button
                 onClick={() => setIsCreatingOp(true)}
                 className="text-[9px] bg-intel-orange text-black font-extrabold px-1.5 py-0.5 hover:bg-white transition-colors cursor-pointer"
@@ -230,20 +257,34 @@ export default function App() {
             </div>
             <div className="flex flex-col gap-1.5 text-xs">
               {operations.map((op) => (
-                <button
+                <div
                   key={op.id}
-                  onClick={() => setActiveOpId(op.id)}
-                  className={`text-left px-2 py-1 font-bold transition-all uppercase flex justify-between items-center cursor-pointer ${
+                  className={`text-left font-bold transition-all uppercase flex justify-between items-center ${
                     op.id === activeOpId
                       ? 'bg-white text-black'
                       : 'hover:bg-zinc-800 text-zinc-300'
                   }`}
                 >
-                  <span>{op.title.replace('Operation: ', '')}</span>
-                  <span className="text-[9px] opacity-70">
-                    {op.id === activeOpId ? '● ACTIVE' : '○ SECURE'}
+                  <button
+                    onClick={() => setActiveOpId(op.id)}
+                    className="flex-grow text-left px-2 py-1 cursor-pointer font-bold uppercase"
+                  >
+                    {op.title.replace('Operation: ', '')}
+                  </button>
+                  <span className="text-[9px] opacity-70 pr-2">
+                    {op.id === activeOpId ? (
+                      '● ACTIVE'
+                    ) : (
+                      <button
+                        onClick={(e) => handleDeleteOperation(op.id, e)}
+                        className="text-red-500 hover:text-red-400 font-bold hover:underline cursor-pointer lowercase"
+                        title="Delete operation"
+                      >
+                        ○ delete
+                      </button>
+                    )}
                   </span>
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -573,6 +614,24 @@ export default function App() {
             className="hidden sm:block uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
           >
             PAGE {currentPage} OF {totalPages}
+          </button>
+          <button
+            onClick={() => setShowFaq(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            FAQ
+          </button>
+          <button
+            onClick={() => setShowTour(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            TOUR
+          </button>
+          <button
+            onClick={() => setShowPartyRequest(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            JOIN EXPEDITION
           </button>
         </div>
       </footer>
