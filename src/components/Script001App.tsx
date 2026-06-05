@@ -6,13 +6,13 @@ import type {
   ScriptLine,
   SceneObjective,
 } from '../types';
-import DossierMeta from './DossierMeta';
-import PsychProfiles from './PsychProfiles';
-import SceneObjectives from './SceneObjectives';
-import NavConsoleCard from './NavConsoleCard';
-import ScreenplayLedger from './ScreenplayLedger';
-import ClassifiedAugmentation from './ClassifiedAugmentation';
-import ManualTranscriptAdd from './ManualTranscriptAdd';
+import DossierMeta from './script-001/DossierMeta';
+import PsychProfiles from './script-001/PsychProfiles';
+import SceneObjectives from './script-001/SceneObjectives';
+import NavConsoleCard from './script-001/NavConsoleCard';
+import ScreenplayLedger from './script-001/ScreenplayLedger';
+import ClassifiedAugmentation from './script-001/ClassifiedAugmentation';
+import ManualTranscriptAdd from './script-001/ManualTranscriptAdd';
 import {
   BookOpenText,
   Menu,

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Operation, ScriptLine, Character } from '../types';
+import { Operation, ScriptLine, Character } from '../../types';
 import { Command, Sparkles, RefreshCw } from 'lucide-react';
 
 interface ClassifiedAugmentationProps {
@@ -39,12 +39,12 @@ export default function ClassifiedAugmentation({
       if (data.success && Array.isArray(data.scriptBlocks)) {
         // Map generated objects to ensure unique keys
         const mappedBlocks: ScriptLine[] = data.scriptBlocks.map(
-          (b: unknown, index: number) => ({
+          (b: Partial<ScriptLine>, index: number) => ({
             id: `ai_line_${Date.now()}_${index}`,
             type: b.type || 'dialogue',
             characterName: b.characterName?.toUpperCase(),
             parenthetical: b.parenthetical,
-            text: b.text,
+            text: b.text || '',
           }),
         );
 
@@ -72,7 +72,7 @@ export default function ClassifiedAugmentation({
       <div className="flex items-center justify-between mb-2">
         <span className="text-[10px] font-extrabold text-[#FFAA00] tracking-widest flex items-center gap-1 select-none">
           <Command className="w-3.5 h-3.5 text-[#FFAA00]" />
-          CLASSIFIED SCRIPT AUGMENTATION PROTOCOL
+          CREATIVE SCRIPT AUGMENTATION PROTOCOL
         </span>
         <span className="text-[8px] text-gray-400 select-none">
           SECURE DIRECT COUPLING
@@ -124,13 +124,13 @@ export default function ClassifiedAugmentation({
       </div>
 
       <div className="flex flex-col gap-2">
-        <input
-          type="text"
+        <textarea
           placeholder="e.g. Klaus is looking through radar scope, spots a school of neon jellyfish..."
           value={aiPrompt}
           onChange={(e) => setAiPrompt(e.target.value)}
-          className="w-full border border-black p-2 bg-white text-xs font-mono focus:ring-1 focus:ring-black focus:outline-none"
+          className="w-full border border-black p-2 bg-white text-xs font-mono focus:ring-1 focus:ring-black focus:outline-none min-h-[96px] h-24 resize-none"
           id="input-ai-prompt"
+          rows={3}
         />
         <button
           onClick={handleAiExpand}

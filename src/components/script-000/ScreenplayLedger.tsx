@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import type { Operation, ScriptLine } from '../types';
+import { Operation, ScriptLine } from '../../types';
 import { Paperclip, Printer } from 'lucide-react';
 
 interface ScreenplayLedgerProps {
@@ -253,7 +253,7 @@ export default function ScreenplayLedger({
                               {line.parenthetical}
                             </div>
                           )}
-                          <div className="text-center text-[13px] md:text-sm font-serif px-8 leading-relaxed max-w-sm mx-auto">
+                          <div className="text-left text-[13px] md:text-sm font-serif px-8 leading-relaxed max-w-sm mx-auto">
                             {words.map((part, widx) => {
                               if (/\s+/.test(part)) {
                                 return part;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { SceneObjective } from '../types';
+import { SceneObjective } from '../../types';
 import {
   CheckSquare,
   Square,
