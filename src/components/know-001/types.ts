@@ -1,79 +1,41 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
-export type ScreenType = 'HOME' | 'FAQ' | 'CAST' | 'TOUR';
-
-export interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-  category?: string;
-  highlightWords?: string[];
-  portalLink?: string;
+export enum MagicSchool {
+  EVOCATION = 'Evocation',
+  ABJURATION = 'Abjuration',
+  CONJURATION = 'Conjuration',
+  TRANSMUTATION = 'Transmutation',
+  DIVINATION = 'Divination',
+  ENCHANTMENT = 'Enchantment',
 }
 
-export interface CharacterClass {
-  name: string;
+export type LogStatus = 'normal' | 'warning' | 'error';
+
+export interface Coordinates {
+  x: number; // percentage width
+  y: number; // percentage height
+  label: string;
+}
+
+export interface Incantation {
+  id: string; // e.g. "I-740921-A"
+  code: string; // e.g. "G-14"
+  school: MagicSchool;
+  section: string; // e.g. "1.0", "2.0"
+  temporalMark: string; // e.g. "21 SEP 1974"
+  dateUnix: number; // for sorting
   description: string;
-  baseHp: number;
-  perD20Multiplier: number;
-  abilities: {
-    STR: number;
-    DEX: number;
-    CON: number;
-    INT: number;
-    WIS: number;
-    CHA: number;
-  };
-  specialMove: string;
+  status: LogStatus;
+  resonance: number; // 1-100 score
+  deployments: number;
+  errorsFound: number;
+  coordinates: Coordinates;
+  operator: string;
+  pylonRef: string;
+  harmonicIndex: number; // Hz feedback
 }
 
-export interface PlayerCharacter {
-  name: string;
-  classType: string;
-  hp: number;
-  stats: {
-    STR: number;
-    DEX: number;
-    CON: number;
-    INT: number;
-    WIS: number;
-    CHA: number;
-  };
-  backstory: string;
-  signatureSpell: string;
-  diceRollsHistory: number[];
-}
-
-export interface CastMember {
-  id: string;
-  name: string;
-  role: string;
-  title: string;
-  hp: number;
-  maxHp: number;
-  stats: {
-    STR: number;
-    DEX: number;
-    CON: number;
-    INT: number;
-    WIS: number;
-    CHA: number;
-  };
-  signatureAbility: string;
-  quote: string;
-  bio: string;
-  woodcutImg: string; // fallback illustration URL or SVGs
-}
-
-export interface TourDate {
-  id: string;
-  city: string;
-  venue: string;
-  dateStr: string;
-  status: 'SOLD OUT' | 'SEATS OPEN' | 'LIMITED';
-  capacityPercentage: number;
-  ticketPrice: number;
+export interface Statistics {
+  totalDeployments: number;
+  totalSchools: number;
+  totalResonance: number;
+  totalErrors: number;
 }
