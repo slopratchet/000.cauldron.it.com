@@ -79,8 +79,8 @@ Your role is to make decisions. When your pack is cornered in a deserted 1970s r
 - **Caern:** A spiritual node of high purity and power.
 - **Delirium:** The ancestral terror-haze that clouds human minds when they witness a Garou in their Crinos war-form.
 - **Garou:** Half-man, half-wolf. The changing breed.
-- **Gnosis:** The measure of a werewolf's connection to the spirit world.
-- **Rage:** The raw, primary energy of Gaia's vengeance flowing through your blood.
+- **Gnosis:** The measure of a werewolf\'s connection to the spirit world.
+- **Rage:** The raw, primary energy of Gaia\'s vengeance flowing through your blood.
 - **Umbra:** The spirit world that lies parallel to the physical realm.
 - **Wyrm:** The great cosmic serpent, originally the force of balance, now corrupted into a frantic engine of rot and madness.`,
       },
@@ -265,6 +265,77 @@ When locked onto an active spirit or Bane, the collar hums at a high frequency, 
         content: `A heavy, spherical focal point constructed from depleted Gnosis crystals and sheathed in lead-lined steel plates. It vibrates at a constant 12Hz, a frequency that matches the residual feedback loop of long-destroyed woodland Caerns.
 
 By plugging the core into a terminal array, a pack can tap into the deep energy reserves of lost holy places, though prolonged exposure risks infecting the local spirit network with a cold, sterile numbness.`,
+      },
+    ],
+  },
+  {
+    id: 'deck_05',
+    deckLabel: 'DECK_05 // PROFILE',
+    title: 'Profile',
+    page: 200,
+    items: [
+      {
+        id: 'lineage-record',
+        title: 'Lineage Record',
+        page: 200,
+        sectionId: 'deck_05',
+        content: `Every Garou is born into a lineage that stretches back to the first pack under the primordial sky. Checking your lineage record defines your blood-purity and ancestral memories.
+
+A high lineage rating grants access to ancient spirit compacts but invites the direct, jealous attention of the agents of entropy.`,
+      },
+      {
+        id: 'tribe-alignment',
+        title: 'Tribe Alignment',
+        page: 204,
+        sectionId: 'deck_05',
+        content: `Your Tribe is your political and spiritual family. It governs how you view the dying world, how you interact with humanity, and which spirits you call allies.
+
+Alignments are registered in the core directory to coordinate large-scale defensive operations against the corporate expansion of Pentex.`,
+      },
+      {
+        id: 'racial-matrix',
+        title: 'Racial Matrix',
+        page: 210,
+        sectionId: 'deck_05',
+        content: `The intersection of human DNA, grey wolf biology, and raw spirit-stuff is monitored through the system's racial matrix.
+
+This biological balance determines how long you can sustain the Crinos war-form before cellular fatigue forces you to collapse back into a human or wolf state.`,
+      },
+    ],
+  },
+  {
+    id: 'deck_06',
+    deckLabel: 'DECK_06 // RULE',
+    title: 'Rule',
+    page: 220,
+    items: [
+      {
+        id: 'the-litany',
+        title: 'The Litany',
+        page: 220,
+        sectionId: 'deck_06',
+        content: `The Litany is the sacred code of laws that binds all Garou. Written in blood and maintained through deep ancestral records, it dictates tribal hierarchy, pack discipline, and defensive operational procedures.
+
+• Garou Shall Not Mate with Garou.
+• Combat Corruption Wherever It Dwells.
+• Respect Those of Higher Station.
+• Accept an Honorable Surrender.`,
+      },
+      {
+        id: 'renown-system',
+        title: 'Renown System',
+        page: 224,
+        sectionId: 'deck_06',
+        content: `Your standing within Garou society is defined by Renown, divided into three categories: Glory, Honor, and Wisdom.
+
+Actions performed in defense of Gaia or through cleansing entropy are registered by spirits, who award recognized rank upgrades during tribal Moots.`,
+      },
+      {
+        id: 'gnosis-attunement',
+        title: 'Gnosis Attunement',
+        page: 230,
+        sectionId: 'deck_06',
+        content: `Gnosis is the raw, spiritual connection to the Earth-Mother. Spending Gnosis points allows a warrior to step sideways into the Umbra, attune to ancient talismans, or call upon ancestral spirits for celestial favors.`,
       },
     ],
   },
