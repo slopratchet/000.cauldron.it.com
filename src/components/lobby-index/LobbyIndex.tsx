@@ -1,0 +1,482 @@
+import { useEffect } from 'react';
+
+export default function LobbyIndex() {
+  useEffect(() => {
+    // Atmospheric Micro-interaction
+    const handleMouseMove = (e: MouseEvent) => {
+      // Very subtle ink splatter effect occasionally
+      if (Math.random() > 0.995) {
+        const splash = document.createElement('div');
+        splash.style.position = 'fixed';
+        splash.style.left = e.clientX + 'px';
+        splash.style.top = e.clientY + 'px';
+        splash.style.width = Math.random() * 10 + 'px';
+        splash.style.height = splash.style.width;
+        splash.style.backgroundColor = '#000';
+        splash.style.borderRadius = '50%';
+        splash.style.pointerEvents = 'none';
+        splash.style.zIndex = '100';
+        splash.style.opacity = '0.3';
+        document.body.appendChild(splash);
+        setTimeout(() => splash.remove(), 2000);
+      }
+    };
+
+    document.addEventListener('mousemove', handleMouseMove);
+    return () => document.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  return (
+    <div className="font-body-md overflow-x-hidden min-h-screen flex flex-col">
+      {/* TopAppBar */}
+      <header className="bg-parchment-deep full-width top-0 border-b-4 border-primary flex justify-between items-center w-full px-margin-page py-stack-sm sticky z-50">
+        <div className="font-headline-md text-headline-md tracking-tight text-primary flex items-center gap-2">
+          <span className="material-symbols-outlined text-[32px]">
+            history_edu
+          </span>
+          alligator.inks.it
+        </div>
+        <nav className="hidden md:flex items-center gap-gutter">
+          <a
+            className="font-label-md text-label-md text-primary font-bold border-b-2 border-dark-orange hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#home"
+          >
+            HOME
+          </a>
+          <a
+            className="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#faq"
+          >
+            FAQ
+          </a>
+          <a
+            className="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#cast"
+          >
+            CAST
+          </a>
+          <a
+            className="font-label-md text-label-md text-on-surface-variant hover:bg-primary hover:text-parchment-deep transition-colors duration-100 px-2 py-1"
+            href="#play"
+          >
+            PLAY
+          </a>
+        </nav>
+        <div className="flex items-center gap-stack-md">
+          <div className="hidden lg:block relative">
+            <input
+              className="bg-white border-2 border-primary px-3 py-1 font-label-sm text-label-sm focus:ring-0 focus:outline-none w-72 brutalist-shadow"
+              placeholder="ENTER EMAIL TO STAY IN THE LOOP"
+              type="email"
+            />
+          </div>
+          <button className="bg-primary text-parchment-deep px-4 py-2 border-2 border-primary font-label-md text-label-md active:scale-95 transition-transform hover:bg-white hover:text-primary">
+            JOIN THE PARTY
+          </button>
+        </div>
+      </header>
+
+      <main className="flex-grow">
+        {/* Split Hero Section */}
+        <section className="min-h-[870px] grid grid-cols-1 lg:grid-cols-2 border-b-4 border-primary">
+          {/* Hero Left: Messaging */}
+          <div className="flex flex-col justify-center p-margin-page bg-parchment-deep border-r-0 lg:border-r-4 border-primary relative overflow-hidden">
+            <div className="z-10">
+              <span className="bg-dark-orange text-white font-label-sm text-label-sm px-3 py-1 mb-stack-md inline-block uppercase tracking-widest">
+                Online Tabletop RPG Simulation
+              </span>
+              <h1 className="font-headline-xl text-headline-xl uppercase leading-none mb-stack-lg">
+                A LIVE ADVENTURE EXPERIENCE
+              </h1>
+              <p className="font-body-lg text-body-lg max-w-xl mb-stack-lg border-l-4 border-primary pl-gutter">
+                Step into the 1970 edition of the world's most dangerous
+                procedural narrative. This isn't just a game; it's a technical
+                manual for high-stakes survival. Every roll is recorded. Every
+                choice is permanent.
+              </p>
+              <div className="flex flex-wrap gap-gutter">
+                <button className="bg-primary text-parchment-deep px-8 py-4 border-2 border-primary font-headline-md text-headline-md brutalist-shadow-lg active:translate-x-1 active:translate-y-1 active:shadow-none hover:-translate-y-1 hover:-translate-x-1 transition-all">
+                  WATCH PAST PERFORMANCES
+                </button>
+                <button className="bg-white text-primary px-8 py-4 border-2 border-primary font-headline-md text-headline-md brutalist-shadow active:translate-x-1 active:translate-y-1 active:shadow-none hover:bg-parchment-deep transition-all">
+                  VIEW MANIFESTO
+                </button>
+              </div>
+            </div>
+            {/* Background decoration: Ink lines */}
+            <div className="absolute bottom-0 right-0 opacity-10 pointer-events-none text-primary">
+              <span
+                className="material-symbols-outlined text-[300px]"
+                style={{ fontVariationSettings: "'FILL' 1" }}
+              >
+                grid_on
+              </span>
+            </div>
+          </div>
+
+          {/* Hero Right: Portrait */}
+          <div className="relative bg-ink-wash min-h-[500px] lg:min-h-0 overflow-hidden group">
+            <img
+              alt="The Dread Knight"
+              className="w-full h-full object-cover grayscale brightness-75 group-hover:scale-105 transition-transform duration-700"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3HrtjSunI3CG82qNuoskiWlt425JasvlCnuOVzNcma7Sq2ndG701q_fUIL012IcXSbtB5VZ_rFKMcEGpBh_Rw883jKUY6O9yvGd6UWTI4DyMyupQvOkQYUuY7q4rF2iIEvBdc5uCy6_3u7hctuns10xQN_frrwMPGz1Yc7Fx6i630cPGScnsqXNGcFUMUyXmNkk2BAtrFOJBtsCa-EqAMslSL3gZxJ81EYdAECYz4gJWMGHrykHtaCUREfjVt-Wbzv2RBx8a4YnNW"
+            />
+
+            {/* Overlay Info */}
+            <div className="absolute bottom-margin-page left-margin-page right-margin-page">
+              <div className="bg-white border-2 border-primary p-gutter brutalist-shadow-lg max-w-sm">
+                <h2 className="font-headline-md text-headline-md uppercase mb-1">
+                  ENTITY: THE DREAD KNIGHT
+                </h2>
+                <div className="flex gap-2 mb-2">
+                  <span className="w-full h-4 bg-primary relative overflow-hidden">
+                    <span className="absolute left-0 top-0 h-full w-[85%] bg-dark-orange"></span>
+                  </span>
+                </div>
+                <div className="flex justify-between font-label-sm text-label-sm">
+                  <span>THREAT LEVEL: OMEGA</span>
+                  <span>HP: 850/1000</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Feature Horizontal Cards */}
+        <section className="p-margin-page bg-surface">
+          <div className="flex justify-between items-end mb-stack-lg border-b-2 border-primary pb-stack-sm">
+            <h3 className="font-headline-lg text-headline-lg uppercase flex-1 break-words">
+              SHOW MODULES
+            </h3>
+            <span className="font-label-md text-label-md font-bold hidden sm:block whitespace-nowrap ml-4">
+              REVISION 1974.B
+            </span>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+            {/* Card 1 */}
+            <div className="border-4 border-primary p-stack-md bg-dark-orange text-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <div className="border-2 border-white p-2 flex items-center justify-center">
+                  <span
+                    className="material-symbols-outlined text-white"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
+                    history
+                  </span>
+                </div>
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  LIVE LOGS
+                </h4>
+              </div>
+              <p className="font-body-md text-body-md mb-stack-md mx-0 opacity-90">
+                Watch history unfold in real-time. Our global ledger tracks
+                every casualty, every critical hit, and every legendary item
+                found across the server.
+              </p>
+              <a
+                className="font-label-sm text-label-sm font-bold underline hover:text-parchment-deep transition-colors"
+                href="#logs"
+              >
+                JOIN FEED &rarr;
+              </a>
+            </div>
+
+            {/* Card 2 */}
+            <div className="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <div className="border-2 border-primary p-2 flex items-center justify-center">
+                  <span
+                    className="material-symbols-outlined text-primary"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
+                    menu_book
+                  </span>
+                </div>
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  LORE ARCHIVES
+                </h4>
+              </div>
+              <p className="font-body-md text-body-md mb-stack-md">
+                Over 600 pages of procedural history generated by the Archivist.
+                Every playthrough carves a new chapter into the tome's permanent
+                record.
+              </p>
+              <a
+                className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                href="#lore"
+              >
+                BROWSE LORE &rarr;
+              </a>
+            </div>
+
+            {/* Card 3 */}
+            <div className="border-2 border-primary p-stack-md bg-parchment-deep brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <div className="border-2 border-primary p-2 flex items-center justify-center">
+                  <span
+                    className="material-symbols-outlined text-primary"
+                    style={{ fontVariationSettings: "'FILL' 1" }}
+                  >
+                    bolt
+                  </span>
+                </div>
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  Total Conflict
+                </h4>
+              </div>
+              <p className="font-body-md text-body-md mb-stack-md">
+                A rigid, hex-based movement system that punishes hesitation. Use
+                the environment to gain cover or trap your foes in inescapable
+                bottlenecks.
+              </p>
+              <a
+                className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                href="#tactical"
+              >
+                READ MANUAL &rarr;
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="p-margin-page bg-surface">
+          <div className="flex justify-between items-end mb-stack-lg border-b-2 border-primary pb-stack-sm">
+            <h3 className="font-headline-lg text-headline-lg uppercase flex-1 break-words">
+              DIRECTORIES
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+            <div className="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  Action
+                </h4>
+              </div>
+              <ul className="list-disc pl-5">
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/action/000"
+                  >
+                    /action/000
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/action/001"
+                  >
+                    /action/001
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/action/002"
+                  >
+                    /action/002
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  Actor
+                </h4>
+              </div>
+              <ul className="list-disc pl-5">
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/actor/000"
+                  >
+                    /actor/000
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/actor/001"
+                  >
+                    /actor/001
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/actor/002"
+                  >
+                    /actor/002
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/actor/005"
+                  >
+                    /actor/005
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  Script
+                </h4>
+              </div>
+              <ul className="list-disc pl-5">
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/script/000"
+                  >
+                    /script/000
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/script/001"
+                  >
+                    /script/001
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div className="border-2 border-primary p-stack-md bg-white brutalist-shadow hover:-translate-y-1 transition-transform">
+              <div className="flex items-center gap-stack-sm mb-stack-md">
+                <h4 className="font-headline-md text-headline-md uppercase">
+                  Know
+                </h4>
+              </div>
+              <ul className="list-disc pl-5">
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/know/000"
+                  >
+                    /know/000
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/know/001"
+                  >
+                    /know/001
+                  </a>
+                </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/know/002"
+                  >
+                    /know/002
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        {/* Technical Specs */}
+        <section className="flex flex-col border-t-4 border-primary bg-parchment-deep">
+          <div className="p-margin-page border-b-4 border-primary">
+            <h3 className="font-headline-lg text-headline-lg uppercase mb-stack-md">
+              UPCOMING PERFORMANCES
+            </h3>
+            <div className="overflow-x-auto">
+              <table className="w-full font-label-md text-label-md border-collapse min-w-[300px]">
+                <thead>
+                  <tr className="bg-primary text-parchment-deep">
+                    <th className="border-2 border-primary p-2 text-left">
+                      EPISODE
+                    </th>
+                    <th className="border-2 border-primary p-2 text-left">
+                      STATUS
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border-2 border-primary p-2">
+                      CPU (Mental Capacity)
+                    </td>
+                    <td className="border-2 border-primary p-2 text-dark-orange font-bold">
+                      OPTIMIZED
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-2 border-primary p-2">
+                      VRAM (Visual Imagination)
+                    </td>
+                    <td className="border-2 border-primary p-2 text-dark-orange font-bold">
+                      REQUIRED
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border-2 border-primary p-2">
+                      STORAGE (Inventory)
+                    </td>
+                    <td className="border-2 border-primary p-2">64 BLOCK</td>
+                  </tr>
+                  <tr>
+                    <td className="border-2 border-primary p-2">
+                      NETWORK (The Party)
+                    </td>
+                    <td className="border-2 border-primary p-2">ACTIVE</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div className="p-margin-page bg-white relative overflow-hidden flex items-center justify-center min-h-[400px]">
+            <div className="relative z-10 text-center">
+              <h4 className="font-headline-xl text-headline-xl opacity-10 leading-none">
+                THE ARCHIVIST IS WATCHING
+              </h4>
+              <p className="font-body-italic text-body-italic max-w-md mx-auto -mt-4 lg:-mt-12 text-on-surface-variant relative z-20">
+                "To play is to suffer, to suffer is to learn, to learn is to
+                eventually become a entry in the archives."
+              </p>
+            </div>
+            {/* Decorative tech pattern */}
+            <div
+              className="absolute inset-0 opacity-5 pointer-events-none"
+              style={{
+                backgroundImage: 'radial-gradient(#000 1px, transparent 1px)',
+                backgroundSize: '20px 20px',
+              }}
+            ></div>
+          </div>
+        </section>
+      </main>
+
+      {/* Footer */}
+      <footer className="bg-primary border-t-2 border-primary flex flex-col md:flex-row justify-between items-center px-gutter py-4 z-50 mt-margin-page">
+        <div className="font-label-md text-label-md font-bold text-parchment-deep uppercase mb-4 md:mb-0 text-center md:text-left">
+          Alligator.inks.it 2014-2026 Camp Candor | REGISTERED USER:{' '}
+          <a
+            href="#login"
+            className="hover:text-white transition-colors underline"
+          >
+            LOG IN
+          </a>
+        </div>
+        <div className="flex gap-gutter flex-wrap justify-center">
+          <span className="font-label-sm text-label-sm uppercase text-parchment-deep opacity-80">
+            LAST UPDATE : 2026-05-28 18:04
+          </span>
+        </div>
+      </footer>
+    </div>
+  );
+}
