@@ -381,6 +381,14 @@ export default function LobbyIndex() {
                     /know/002
                   </a>
                 </li>
+                <li>
+                  <a
+                    className="font-label-sm text-label-sm font-bold underline hover:text-dark-orange transition-colors"
+                    href="/know/003"
+                  >
+                    /know/003
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
