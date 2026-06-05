@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Index001 from '../components/Index001';
 
 let status = 'OFFLINE';
 try {
@@ -27,6 +28,8 @@ try {
           : 'text-red-400'}>{status}</span
     >
   </div>
+
+  <Index001 client:load />
 
   <!-- WebSocket Logs -->
   <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
