@@ -1,5 +1,5 @@
 import React from 'react';
-import { characterData } from './actorData';
+import { characterData } from './actorData002';
 import { Dices, RefreshCw, Plus, Trash2, ShieldAlert } from 'lucide-react';
 
 const LabeledBlock = ({
@@ -85,7 +85,7 @@ const SPELL_DETAILS: Record<string, { level: string; desc: string }> = {
   },
   'Freedom of Movement': {
     level: '4th Lvl',
-    desc: 'Target ignores swamp peat, difficult terrain, paralysis, or magical restraints.',
+    desc: 'Target ignores strong winds, difficult terrain, paralysis, or magical restraints.',
   },
   'Greater Restoration': {
     level: '5th Lvl',
@@ -109,7 +109,7 @@ const SPELL_DETAILS: Record<string, { level: string; desc: string }> = {
   },
   'Water Walk': {
     level: '3rd Lvl',
-    desc: 'Allows up to 10 targets to traverse liquid silt, boiling peat, or sulfur swamps as solid ground.',
+    desc: 'Allows up to 10 targets to traverse hurricane-force winds or ride updrafts safely.',
   },
   'Transmute Rock': {
     level: '5th Lvl',
@@ -117,7 +117,7 @@ const SPELL_DETAILS: Record<string, { level: string; desc: string }> = {
   },
   'Find Greater Steed': {
     level: '4th Lvl',
-    desc: 'Conjures a loyal, celestial mount (such as a giant corvid or swamp gryphon) with telepathic bonds.',
+    desc: 'Conjures a loyal, elemental mount (such as a storm roc or cloud strider) with telepathic bonds.',
   },
   Heal: {
     level: '6th Lvl',
@@ -125,7 +125,7 @@ const SPELL_DETAILS: Record<string, { level: string; desc: string }> = {
   },
   Whirlwind: {
     level: '7th Lvl',
-    desc: 'Summons a violent 10ft-wide, 30ft-tall vortex of howling peat wind and silt to batter enemies.',
+    desc: 'Summons a violent 10ft-wide, 30ft-tall vortex of howling wind and lightning to batter enemies.',
   },
 };
 
@@ -332,7 +332,7 @@ const WEAPONS_DEFAULT = [
 
 const AMMO_DEFAULT = {
   ammo1: [
-    '20x Silt-tipped Poison Bolts',
+    '20x Static-charged Bolts',
     '15x Standard Iron Bolts',
     'Empty extra pouch',
   ],
@@ -355,7 +355,7 @@ const ARMOR1_DEFAULT = {
   size: 'Medium',
   max_dex: '+4 Dex',
   special_properties:
-    'Provides advantage on saving throws to resist swamp gas & toxic mud.',
+    'Provides advantage on saving throws to resist lightning and thunder damage.',
 };
 
 const ARMOR2_DEFAULT = {
@@ -372,7 +372,7 @@ const ARMOR2_DEFAULT = {
   special_properties: 'Standard padded leather, supple and water-treated.',
 };
 
-export default function Actor000() {
+export default function Actor002() {
   const [talentsRolls, setTalentsRolls] = React.useState<
     Record<number, { val: number; isRolling: boolean; bonus: number }>
   >({});
@@ -396,7 +396,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_weapons_v3')
+          ? localStorage.getItem('catharsis_weapons_v3')
           : null
         : null;
     if (saved) {
@@ -413,7 +413,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_v3')
+          ? localStorage.getItem('catharsis_ammo_v3')
           : null
         : null;
     if (saved) {
@@ -430,7 +430,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker1_v1')
+          ? localStorage.getItem('catharsis_ammo_tracker1_v1')
           : null
         : null;
     if (saved) {
@@ -447,7 +447,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker2_v1')
+          ? localStorage.getItem('catharsis_ammo_tracker2_v1')
           : null
         : null;
     if (saved) {
@@ -464,7 +464,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker_size1_v1')
+          ? localStorage.getItem('catharsis_ammo_tracker_size1_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 20 : 20;
@@ -474,7 +474,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker_size2_v1')
+          ? localStorage.getItem('catharsis_ammo_tracker_size2_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 20 : 20;
@@ -486,7 +486,7 @@ export default function Actor000() {
       if (idx < next.length) {
         next[idx] = !next[idx];
       }
-      localStorage.setItem('charity_ammo_tracker1_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_ammo_tracker1_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -497,7 +497,7 @@ export default function Actor000() {
       if (idx < next.length) {
         next[idx] = !next[idx];
       }
-      localStorage.setItem('charity_ammo_tracker2_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_ammo_tracker2_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -505,7 +505,7 @@ export default function Actor000() {
   const handleResizeAmmo1 = (newSize: number) => {
     const size = Math.max(2, Math.min(60, newSize));
     setAmmoTrackerSize1(size);
-    localStorage.setItem('charity_ammo_tracker_size1_v1', String(size));
+    localStorage.setItem('catharsis_ammo_tracker_size1_v1', String(size));
     setAmmoTracker1((prev) => {
       let next = [...prev];
       if (next.length < size) {
@@ -513,7 +513,7 @@ export default function Actor000() {
       } else if (next.length > size) {
         next = next.slice(0, size);
       }
-      localStorage.setItem('charity_ammo_tracker1_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_ammo_tracker1_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -521,7 +521,7 @@ export default function Actor000() {
   const handleResizeAmmo2 = (newSize: number) => {
     const size = Math.max(2, Math.min(60, newSize));
     setAmmoTrackerSize2(size);
-    localStorage.setItem('charity_ammo_tracker_size2_v1', String(size));
+    localStorage.setItem('catharsis_ammo_tracker_size2_v1', String(size));
     setAmmoTracker2((prev) => {
       let next = [...prev];
       if (next.length < size) {
@@ -529,7 +529,7 @@ export default function Actor000() {
       } else if (next.length > size) {
         next = next.slice(0, size);
       }
-      localStorage.setItem('charity_ammo_tracker2_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_ammo_tracker2_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -538,7 +538,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_armor1_v4')
+          ? localStorage.getItem('catharsis_armor1_v4')
           : null
         : null;
     if (saved) {
@@ -555,7 +555,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_armor2_v4')
+          ? localStorage.getItem('catharsis_armor2_v4')
           : null
         : null;
     if (saved) {
@@ -640,7 +640,7 @@ export default function Actor000() {
       return w;
     });
     setWeapons(next);
-    localStorage.setItem('charity_weapons_v3', JSON.stringify(next));
+    localStorage.setItem('catharsis_weapons_v3', JSON.stringify(next));
   };
 
   const updateAmmoField = (
@@ -652,7 +652,7 @@ export default function Actor000() {
     nextGroup[lineIdx] = val;
     const nextAmmo = { ...ammo, [group]: nextGroup };
     setAmmo(nextAmmo);
-    localStorage.setItem('charity_ammo_v3', JSON.stringify(nextAmmo));
+    localStorage.setItem('catharsis_ammo_v3', JSON.stringify(nextAmmo));
   };
 
   const updateArmor1Field = (
@@ -661,7 +661,7 @@ export default function Actor000() {
   ) => {
     const next = { ...armor1, [field]: val };
     setArmor1(next);
-    localStorage.setItem('charity_armor1_v4', JSON.stringify(next));
+    localStorage.setItem('catharsis_armor1_v4', JSON.stringify(next));
   };
 
   const updateArmor2Field = (
@@ -670,7 +670,7 @@ export default function Actor000() {
   ) => {
     const next = { ...armor2, [field]: val };
     setArmor2(next);
-    localStorage.setItem('charity_armor2_v4', JSON.stringify(next));
+    localStorage.setItem('catharsis_armor2_v4', JSON.stringify(next));
   };
 
   const {
@@ -689,43 +689,43 @@ export default function Actor000() {
   const [contacts, setContacts] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_contacts_v3')
+        ? localStorage.getItem('catharsis_contacts_v3')
         : null) ||
       '• Elder Corvid of Bleak Sough — A grizzled, semi-feral raven informant who exchanges whispered secrets of the shifting mire pathways for dried silver-perch eyes.\n' +
-        '• The Mire-Dwellers Rover Caravan — A nomadic guild of river-runners and silt-traders who help Charity smuggle rare mosses, medicinal herbs, and insulated gear.\n' +
-        "• Oakhaven Frontier Outpost Warden — An old ranger colleague of Charity's who secretly leaves caches of rations, hand crossbow bolts, and fresh coffee beans near the western marsh boundaries.\n" +
-        '• Silt-Runner Smuggler Rings — A shady underground network that supplies Charity with rare spell scroll fragments and wild magic focal stones.'
+        '• The Cloud-Riders Guild — A nomadic guild of sky-runners and traders who help Catharsis smuggle rare aeromancy texts, medicinal herbs, and insulated gear.\n' +
+        "• Oakhaven Frontier Outpost Warden — An old ranger colleague of Catharsis's who secretly leaves caches of rations, hand crossbow bolts, and fresh coffee beans near the western marsh boundaries.\n" +
+        '• Sky-Smuggler Rings — A shady underground network that supplies Catharsis with rare spell scroll fragments and elemental focal stones.'
     );
   });
   const [fractions, setFractions] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_fractions_v3')
+        ? localStorage.getItem('catharsis_fractions_v3')
         : null) ||
       '• The Third Authority — A deeply secretive and enigmatic governing council that monitors continental magical balance and tracks planar anomalies across the Bleak Sough.\n' +
-        '• The Silt-Weavers Guild — An eccentric cabal of local river marsh cartographers and geomancers who study silt currents and draft private topographical charts.\n' +
-        '• The Crimson Canopy Rangers — A small, informal band of veteran forest-wanderers and archers who assist Charity in tracking hostile feral beast spawns.\n' +
-        "• The Oakhaven Botanical Conservatory — An academic circle that occasionally funds Charity's expeditions in exchange for rare swamp spore samples."
+        '• The Wind-Weavers Guild — An eccentric cabal of local sky cartographers and aeromancers who study wind currents and draft private topographical charts.\n' +
+        '• The Crimson Canopy Rangers — A small, informal band of veteran forest-wanderers and archers who assist Catharsis in tracking hostile feral beast spawns.\n' +
+        "• The Skyward Cartographers — An aviation circle that occasionally funds Catharsis's expeditions in exchange for wind current mapping."
     );
   });
   const [desires, setDesires] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_desires_v3')
+        ? localStorage.getItem('catharsis_desires_v3')
         : null) ||
-      '• Stabilizing the Bleak Sough Core — To isolate and permanently secure the volatile magical leakages in the central peat mire before they corrupt local spirits.\n' +
-        '• Deciphering the Left Arm Scarification — To decode the ancient, bark-like arcane sigils etched into her skin during a wild magic backlash decades ago.\n' +
-        '• Compiling the Siltland Atlas — A lifetime physical mapping project recording every active sulfur vent, dryad hollow, and safe pathway in the marsh.\n' +
-        '• Mentoring the Next Guide Generation — To pass on her old-school folklore and navigation techniques to keep future pathfinders alive in the shifting mires.'
+      '• Stabilizing the Eye of the Storm — To isolate and permanently secure the volatile magical leakages in the central maelstrom before they corrupt sky spirits.\n' +
+        "• Decoding the Sky's Whisper — To translate the ever-shifting atmospheric pressure drops and weather patterns into a new form of aeromancy.\n" +
+        '• Compiling the Cloud Atlas — A lifetime physical mapping project recording every active updraft, sky-island, and safe flight path in the atmosphere.\n' +
+        '• Mentoring the Next Flight Generation — To pass on her knowledge of riding thermals to keep future air-crews alive in shifting gales.'
     );
   });
   const [sacrifices, setSacrifices] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_sacrifices_v3')
+        ? localStorage.getItem('catharsis_sacrifices_v3')
         : null) ||
       "• Left Arm's Flesh & Sensation — Permanently charred, bark-hardened, and infused with raw wild magic conducting paths during her ascension event, rendering it numb to normal touch.\n" +
-        '• Tranquil and Safe Retirement — Gave up a life of warm comfort and bardic fame in metropolitan cities to remain a lonely vigilante in the hazardous swamps.\n' +
+        '• A Quiet Grounded Life — Gave up a stable, grounded life and inheritance to pursue the endless, chaotic freedom of the open sky.\n' +
         '• Her Handcrafted Silver Harmonica — Lost to the depths of an acidic sulfur geyser while desperately pacifying a maddened elder marsh elemental.\n' +
         "• Metropolitan Reputation & Status — Severed prestigious connections to academic guilds to protect the secret locations of Bleak Sough's mystical resources."
     );
@@ -733,10 +733,10 @@ export default function Actor000() {
   const [atonements, setAtonements] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_atonements_v3')
+        ? localStorage.getItem('catharsis_atonements_v3')
         : null) ||
-      '• Dusk "Requiem of Silt" Performance — Playing hauntingly beautiful harmonica melodies at sunset to quiet the restless spirits of wood-rot and decay.\n' +
-        '• Tending Displaced Dryad Saplings — Carefully replanting and warding young dryad seedlings away from acidic peat and sulfur vent pathways.\n' +
+      '• Dusk "Requiem of the Sky" Performance — Playing hauntingly beautiful flute melodies at sunset to quiet the restless storm spirits.\n' +
+        '• Tending Displaced Cloud-Sprite Core — Carefully nurturing and warding young storm elementals away from corrupted thunderheads.\n' +
         '• Free Safe Passage & Healing Salves — Guiding lost outcasts and healing wounded marsh travelers with homemade herbal remedies without asking for coin.\n' +
         "• Raven Offerings at the Elder Oak — Leaving daily offerings of fresh beetles and polished pebbles at the hollow oak to maintain the ravens' loyalty and favor."
     );
@@ -746,7 +746,7 @@ export default function Actor000() {
     setContacts(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_contacts_v3', val);
+        localStorage.setItem('catharsis_contacts_v3', val);
       }
     }
   };
@@ -754,7 +754,7 @@ export default function Actor000() {
     setFractions(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_fractions_v3', val);
+        localStorage.setItem('catharsis_fractions_v3', val);
       }
     }
   };
@@ -762,7 +762,7 @@ export default function Actor000() {
     setDesires(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_desires_v3', val);
+        localStorage.setItem('catharsis_desires_v3', val);
       }
     }
   };
@@ -770,7 +770,7 @@ export default function Actor000() {
     setSacrifices(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_sacrifices_v3', val);
+        localStorage.setItem('catharsis_sacrifices_v3', val);
       }
     }
   };
@@ -778,7 +778,7 @@ export default function Actor000() {
     setAtonements(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_atonements_v3', val);
+        localStorage.setItem('catharsis_atonements_v3', val);
       }
     }
   };
@@ -791,7 +791,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_vital_records_v1')
+          ? localStorage.getItem('catharsis_vital_records_v1')
           : null
         : null;
     if (saved) {
@@ -811,9 +811,9 @@ export default function Actor000() {
   const [familyHistory, setFamilyHistory] = React.useState<string>(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_family_history_v1')
+        ? localStorage.getItem('catharsis_family_history_v1')
         : null) ||
-      "Subject's immediate family perished during the '68 Sector Collapse. Raised in state-sponsored facility 88-B. " +
+      "Subject's immediate family perished during the Sky-Rift of '20. Raised among the skyship scavengers. " +
         'Minimal contact with remaining distant relatives in the outer agricultural zones. Exhibits strong detachment ' +
         'protocols typical of orphans from that era.\n' +
         'Note: Regular remittances sent to an unknown account in Sector 2. Investigate further.'
@@ -828,7 +828,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_assets_equipment_v1')
+          ? localStorage.getItem('catharsis_assets_equipment_v1')
           : null
         : null;
     if (saved) {
@@ -859,7 +859,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_mental_diagnostics_v1')
+          ? localStorage.getItem('catharsis_mental_diagnostics_v1')
           : null
         : null;
     if (saved) {
@@ -887,13 +887,13 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_manifestations_v1')
+          ? localStorage.getItem('catharsis_manifestations_v1')
           : null
         : null;
     if (saved) return saved;
     const mdSaved =
       typeof window !== 'undefined'
-        ? localStorage.getItem('charity_mental_diagnostics_v1')
+        ? localStorage.getItem('catharsis_mental_diagnostics_v1')
         : null;
     if (mdSaved) {
       try {
@@ -912,7 +912,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_action_summary_v3')
+          ? localStorage.getItem('catharsis_action_summary_v3')
           : null
         : null;
     if (saved) {
@@ -934,7 +934,7 @@ export default function Actor000() {
   const [operativeNotes, setOperativeNotes] = React.useState<string>(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_operative_notes_v1')
+        ? localStorage.getItem('catharsis_operative_notes_v1')
         : null) ||
       'Subject exhibits unusually high base Essence generation parameters, likely linked to the traumatic awakening incident recorded in File #77-A. Diagnostic scans indicate volatile fluctuations during stress events, suggesting the "Nightmares" drawback is a physiological manifestation of excess unstructured magical energy bleeding into the subconscious.\n\n' +
         "Recommend continued observation. Subject's mastery over Occult Knowledge is advancing at an accelerated rate, far outpacing standard training protocols. The current Channeling Level of 4 is borderline unstable for an operative with only 450 total logged field hours. Ensure standard suppression gear is maintained and audited weekly."
@@ -954,7 +954,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_supply_metrics_v2')
+          ? localStorage.getItem('catharsis_supply_metrics_v2')
           : null
         : null;
     if (saved) {
@@ -1128,7 +1128,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_max_ranks_v1')
+          ? localStorage.getItem('catharsis_max_ranks_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 23 : 23;
@@ -1147,7 +1147,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_skills_tracker_v1')
+          ? localStorage.getItem('catharsis_skills_tracker_v1')
           : null
         : null;
     if (saved) {
@@ -1309,7 +1309,7 @@ export default function Actor000() {
         }
         return row;
       });
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1327,7 +1327,7 @@ export default function Actor000() {
           miscModifier: 0,
         },
       ];
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1335,14 +1335,14 @@ export default function Actor000() {
   const handleRemoveSkillRow = (idx: number) => {
     setSkillsList((prev) => {
       const next = prev.filter((_, i) => i !== idx);
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
 
   const handleUpdateMaxRanks = (val: number) => {
     setMaxRanks(val);
-    localStorage.setItem('charity_max_ranks_v1', String(val));
+    localStorage.setItem('catharsis_max_ranks_v1', String(val));
   };
 
   const [vitalsAndWounds, setVitalsAndWounds] = React.useState<{
@@ -1354,7 +1354,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_vitals_wounds_v1')
+          ? localStorage.getItem('catharsis_vitals_wounds_v1')
           : null
         : null;
     if (saved) {
@@ -1384,7 +1384,7 @@ export default function Actor000() {
       if (field === 'maxHp') {
         next.majorWoundThreshold = Math.floor(val / 2);
       }
-      localStorage.setItem('charity_vitals_wounds_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_vitals_wounds_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1394,7 +1394,7 @@ export default function Actor000() {
       const nextWounds = [...prev.wounds];
       nextWounds[idx] = !nextWounds[idx];
       const next = { ...prev, wounds: nextWounds };
-      localStorage.setItem('charity_vitals_wounds_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_vitals_wounds_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1405,7 +1405,7 @@ export default function Actor000() {
   ) => {
     setVitalRecords((prev) => {
       const next = { ...prev, [field]: val };
-      localStorage.setItem('charity_vital_records_v1', JSON.stringify(next));
+      localStorage.setItem('catharsis_vital_records_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1414,7 +1414,7 @@ export default function Actor000() {
     setFamilyHistory(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_family_history_v1', val);
+        localStorage.setItem('catharsis_family_history_v1', val);
       }
     }
   };
@@ -1425,7 +1425,10 @@ export default function Actor000() {
   ) => {
     setAssetsEquipment((prev) => {
       const next = { ...prev, [field]: val };
-      localStorage.setItem('charity_assets_equipment_v1', JSON.stringify(next));
+      localStorage.setItem(
+        'catharsis_assets_equipment_v1',
+        JSON.stringify(next),
+      );
       return next;
     });
   };
@@ -1441,7 +1444,7 @@ export default function Actor000() {
     setMentalDiagnostics((prev) => {
       const next = { ...prev, [field]: val };
       localStorage.setItem(
-        'charity_mental_diagnostics_v1',
+        'catharsis_mental_diagnostics_v1',
         JSON.stringify(next),
       );
       return next;
@@ -1452,7 +1455,7 @@ export default function Actor000() {
     setManifestations(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_manifestations_v1', val);
+        localStorage.setItem('catharsis_manifestations_v1', val);
       }
     }
   };
@@ -1469,7 +1472,7 @@ export default function Actor000() {
         }
         return item;
       });
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('catharsis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1477,7 +1480,7 @@ export default function Actor000() {
   const handleAddActionSummaryRow = () => {
     setActionSummary((prev) => {
       const next = [...prev, { action: 'New Action', type: 'Half' }];
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('catharsis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1485,7 +1488,7 @@ export default function Actor000() {
   const handleRemoveActionSummaryRow = (idx: number) => {
     setActionSummary((prev) => {
       const next = prev.filter((_, i) => i !== idx);
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('catharsis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1494,7 +1497,7 @@ export default function Actor000() {
     setOperativeNotes(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_operative_notes_v1', val);
+        localStorage.setItem('catharsis_operative_notes_v1', val);
       }
     }
   };
@@ -1514,7 +1517,7 @@ export default function Actor000() {
       const nextGroup = [...prev[group]];
       nextGroup[idx] = val;
       const next = { ...prev, [group]: nextGroup };
-      localStorage.setItem('charity_supply_metrics_v2', JSON.stringify(next));
+      localStorage.setItem('catharsis_supply_metrics_v2', JSON.stringify(next));
       return next;
     });
   };
@@ -1555,7 +1558,7 @@ export default function Actor000() {
                 <div className="relative w-[576px] h-[576px] max-w-full aspect-square brutalist-border-thick p-2 bg-white overflow-hidden flex flex-col justify-end">
                   <img
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuC89Hu_52TdyLqB2irIngndK12akcKx4p_Yw5U6Hr4QBqA7xYNJEjIgfpw0j_ZRDqKFrDBLkV0x6tnXfZo9HGIPfuCYBB99cBT8ILOg50Txa2KsOoQNndUb6tTB7E9_vGA-Jlso3wcc7iDV23wxIsLrDVMMwNfyGE4J-TVt0mgyDwy1ikxr8f-Hub-64rWtzmVT7QKr0ZlO4ihLDSZNXIBTx8H451sXLG-YZPwbSxYvzDv-cCtz7p2N1915uJuvj_UXr4e-mcmTFz-4"
-                    alt="Charity Vaughn Character Portrait"
+                    alt="Catharsis Gale Character Portrait"
                     className="absolute inset-x-2 inset-y-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover grayscale contrast-125 block"
                     referrerPolicy="no-referrer"
                   />
@@ -1975,10 +1978,12 @@ export default function Actor000() {
                             </div>
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
-                            <strong>Deep Swamp Botany & Silt Spores:</strong>{' '}
-                            Charity understands the complex biological loops and
-                            fungal pathways of Bleak Sough like the back of her
-                            bark-scarred arm, cataloging silent toxic mists,
+                            <strong>
+                              Atmospheric Pressure & Wind Currents:
+                            </strong>{' '}
+                            Catharsis understands the complex biological loops
+                            and fungal pathways of Bleak Sough like the back of
+                            her bark-scarred arm, cataloging silent toxic mists,
                             decay cycles, and predicting localized magical
                             leakages with pristine scientific and arcane
                             accuracy.
@@ -2012,9 +2017,9 @@ export default function Actor000() {
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
                             <strong>Navigating Shifting Channels:</strong> Her
-                            68-year tenure as an expert marsh navigator allows
-                            her to track paths through ever-changing peat mires,
-                            detect treacherous quicksilt, secure fresh
+                            24 years living in the upper atmosphere allows her
+                            to track flight paths through ever-changing storm
+                            fronts, detect treacherous downdrafts, secure fresh
                             provisions from sulfur vents, and locate temporal
                             dryad clusters.
                           </p>
@@ -2047,12 +2052,12 @@ export default function Actor000() {
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
                             <strong>
-                              Eldritch Shanties & Coffee Cup Rhythms:
+                              Storm-Chasing Hymns & Thunder Rhythms:
                             </strong>{' '}
-                            Charity commands an unmatched acoustic repertoire of
-                            traditional folklore and twilight melodies. She uses
-                            her disposable cup as a percussion resonator and
-                            performs Twilight Requiems to pacify ancient
+                            Catharsis commands an unmatched acoustic repertoire
+                            of traditional folklore and twilight melodies. She
+                            uses her disposable cup as a percussion resonator
+                            and performs Twilight Requiems to pacify ancient
                             marshlands and focus her wild sorcery.
                           </p>
                         </div>
@@ -2083,10 +2088,10 @@ export default function Actor000() {
                             </div>
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
-                            <strong>Vanishing into Peat Mists:</strong>{' '}
+                            <strong>Vanishing into Storm Clouds:</strong>{' '}
                             Deceptively silent, she slides her heavy waders and
                             protective gear through deep bottom mud without
-                            disturbing the swamp surface, successfully vanishing
+                            disturbing the air currents, successfully vanishing
                             into thick reed banks, fog cover, and dense mangrove
                             shadows.
                           </p>
@@ -2119,10 +2124,11 @@ export default function Actor000() {
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
                             <strong>Marsh-Oak Root Balancing:</strong> Despite
-                            her advanced age of 68 and extremely solid muscular
+                            her young age of 24 and highly agile, lightweight
                             frame, her balance is unparalleled, letting her
-                            sprint across moss-slick roots, dodge swamp gas
-                            explosions, and traverse high hanging walkways.
+                            sprint across unstable riggings, dodge lightning
+                            strikes explosions, and traverse high hanging
+                            walkways.
                           </p>
                         </div>
                         <div className="font-jetbrains text-[10px] uppercase text-black font-semibold mt-4 text-right bg-[#EAE6DF] inline-block self-end px-2 py-0.5">
@@ -2153,7 +2159,7 @@ export default function Actor000() {
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
                             <strong>
-                              Sensing Silt Pressure & Spirit Whispers:
+                              Sensing Barometric Pressure & Wind Whispers:
                             </strong>{' '}
                             Her keen amber eyes spot tiny bubbles of escaping
                             gases in mud flats, perceive microscopic changes in
@@ -2178,8 +2184,8 @@ export default function Actor000() {
                         DEXTERITY (+8) & CHARISMA (+11)
                       </h5>
                       <p className="font-tinos text-[15px] text-gray-700 leading-relaxed">
-                        Dexterity guards Charity against sudden geysers, swamp
-                        cave-ins, and hostile sorcery, while her titanic
+                        Dexterity guards Catharsis against sudden microbursts,
+                        wind cave-ins, and hostile sorcery, while her titanic
                         Charisma resists cosmic planar aligning, psychic dryad
                         manipulations, and raw eldritch corruptions.
                       </p>
@@ -2188,16 +2194,16 @@ export default function Actor000() {
                     {/* Tools */}
                     <div className="brutalist-border bg-white p-4 hover:bg-[#FAF8F5] transition-all">
                       <p className="font-jetbrains text-[11px] font-bold uppercase border-b-2 border-black mb-2 pb-1 text-[#666]">
-                        // SWAMP TOOLS & TALISMANS
+                        // SKYSHIP TOOLS & TALISMANS
                       </p>
                       <h5 className="font-anton text-[20px] uppercase text-black mb-1">
                         Harmonica, Pan Flute, Cartographer's Tools
                       </h5>
                       <p className="font-tinos text-[15px] text-gray-700 leading-relaxed">
-                        Features her swamp-tuned standard Harmonica for focuses,
-                        her willow-wood Pan Flute to perform nature shanties,
-                        and mapmaking compasses to draft the Bleak Sough's
-                        shifting silt charts.
+                        Features her storm-tuned Windchime for focuses, her
+                        silver flute to perform sky-shanties, and mapmaking
+                        compasses to draft the Bleak Sough's shifting cloud
+                        charts.
                       </p>
                     </div>
 
@@ -2207,7 +2213,7 @@ export default function Actor000() {
                         // LINGUISTIC ALIGNMENTS
                       </p>
                       <h5 className="font-anton text-[20px] uppercase text-black mb-1">
-                        Elvish & Common (Silt-Trader Dialect)
+                        Auran & Common (Sky-Trader Dialect)
                       </h5>
                       <p className="font-tinos text-[15px] text-gray-700 leading-relaxed">
                         Speaks standard trade Common seasoned with local marsh
@@ -4687,10 +4693,10 @@ export default function Actor000() {
 
           {/* Link to Sheet 000 */}
           <a
-            href="/sheet/000"
+            href="/sheet/002"
             className="block w-full border-[2px] border-black bg-[#FAF8F5] hover:bg-black hover:text-[#E6E2D8] text-black text-center font-jetbrains text-[11px] md:text-[12px] font-bold uppercase tracking-[0.1em] py-2 transition-all cursor-pointer brutalist-shadow-sm"
           >
-            [ LINK: /sheet/000 ]
+            [ LINK: /sheet/002 ]
           </a>
         </main>
       </div>

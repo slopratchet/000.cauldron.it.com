@@ -1,5 +1,6 @@
 import React from 'react';
-import { characterData } from './actorData';
+import { DEFAULT_SUBJECTS } from './sheet-001/data';
+const characterData = DEFAULT_SUBJECTS[0];
 import { Dices, RefreshCw, Plus, Trash2, ShieldAlert } from 'lucide-react';
 
 const LabeledBlock = ({
@@ -372,7 +373,7 @@ const ARMOR2_DEFAULT = {
   special_properties: 'Standard padded leather, supple and water-treated.',
 };
 
-export default function Actor000() {
+export default function Actor001() {
   const [talentsRolls, setTalentsRolls] = React.useState<
     Record<number, { val: number; isRolling: boolean; bonus: number }>
   >({});
@@ -396,7 +397,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_weapons_v3')
+          ? localStorage.getItem('curtis_weapons_v3')
           : null
         : null;
     if (saved) {
@@ -413,7 +414,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_v3')
+          ? localStorage.getItem('curtis_ammo_v3')
           : null
         : null;
     if (saved) {
@@ -430,7 +431,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker1_v1')
+          ? localStorage.getItem('curtis_ammo_tracker1_v1')
           : null
         : null;
     if (saved) {
@@ -447,7 +448,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker2_v1')
+          ? localStorage.getItem('curtis_ammo_tracker2_v1')
           : null
         : null;
     if (saved) {
@@ -464,7 +465,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker_size1_v1')
+          ? localStorage.getItem('curtis_ammo_tracker_size1_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 20 : 20;
@@ -474,7 +475,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_ammo_tracker_size2_v1')
+          ? localStorage.getItem('curtis_ammo_tracker_size2_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 20 : 20;
@@ -486,7 +487,7 @@ export default function Actor000() {
       if (idx < next.length) {
         next[idx] = !next[idx];
       }
-      localStorage.setItem('charity_ammo_tracker1_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_ammo_tracker1_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -497,7 +498,7 @@ export default function Actor000() {
       if (idx < next.length) {
         next[idx] = !next[idx];
       }
-      localStorage.setItem('charity_ammo_tracker2_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_ammo_tracker2_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -505,7 +506,7 @@ export default function Actor000() {
   const handleResizeAmmo1 = (newSize: number) => {
     const size = Math.max(2, Math.min(60, newSize));
     setAmmoTrackerSize1(size);
-    localStorage.setItem('charity_ammo_tracker_size1_v1', String(size));
+    localStorage.setItem('curtis_ammo_tracker_size1_v1', String(size));
     setAmmoTracker1((prev) => {
       let next = [...prev];
       if (next.length < size) {
@@ -513,7 +514,7 @@ export default function Actor000() {
       } else if (next.length > size) {
         next = next.slice(0, size);
       }
-      localStorage.setItem('charity_ammo_tracker1_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_ammo_tracker1_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -521,7 +522,7 @@ export default function Actor000() {
   const handleResizeAmmo2 = (newSize: number) => {
     const size = Math.max(2, Math.min(60, newSize));
     setAmmoTrackerSize2(size);
-    localStorage.setItem('charity_ammo_tracker_size2_v1', String(size));
+    localStorage.setItem('curtis_ammo_tracker_size2_v1', String(size));
     setAmmoTracker2((prev) => {
       let next = [...prev];
       if (next.length < size) {
@@ -529,7 +530,7 @@ export default function Actor000() {
       } else if (next.length > size) {
         next = next.slice(0, size);
       }
-      localStorage.setItem('charity_ammo_tracker2_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_ammo_tracker2_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -538,7 +539,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_armor1_v4')
+          ? localStorage.getItem('curtis_armor1_v4')
           : null
         : null;
     if (saved) {
@@ -555,7 +556,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_armor2_v4')
+          ? localStorage.getItem('curtis_armor2_v4')
           : null
         : null;
     if (saved) {
@@ -640,7 +641,7 @@ export default function Actor000() {
       return w;
     });
     setWeapons(next);
-    localStorage.setItem('charity_weapons_v3', JSON.stringify(next));
+    localStorage.setItem('curtis_weapons_v3', JSON.stringify(next));
   };
 
   const updateAmmoField = (
@@ -652,7 +653,7 @@ export default function Actor000() {
     nextGroup[lineIdx] = val;
     const nextAmmo = { ...ammo, [group]: nextGroup };
     setAmmo(nextAmmo);
-    localStorage.setItem('charity_ammo_v3', JSON.stringify(nextAmmo));
+    localStorage.setItem('curtis_ammo_v3', JSON.stringify(nextAmmo));
   };
 
   const updateArmor1Field = (
@@ -661,7 +662,7 @@ export default function Actor000() {
   ) => {
     const next = { ...armor1, [field]: val };
     setArmor1(next);
-    localStorage.setItem('charity_armor1_v4', JSON.stringify(next));
+    localStorage.setItem('curtis_armor1_v4', JSON.stringify(next));
   };
 
   const updateArmor2Field = (
@@ -670,7 +671,7 @@ export default function Actor000() {
   ) => {
     const next = { ...armor2, [field]: val };
     setArmor2(next);
-    localStorage.setItem('charity_armor2_v4', JSON.stringify(next));
+    localStorage.setItem('curtis_armor2_v4', JSON.stringify(next));
   };
 
   const {
@@ -689,29 +690,29 @@ export default function Actor000() {
   const [contacts, setContacts] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_contacts_v3')
+        ? localStorage.getItem('curtis_contacts_v3')
         : null) ||
       '• Elder Corvid of Bleak Sough — A grizzled, semi-feral raven informant who exchanges whispered secrets of the shifting mire pathways for dried silver-perch eyes.\n' +
-        '• The Mire-Dwellers Rover Caravan — A nomadic guild of river-runners and silt-traders who help Charity smuggle rare mosses, medicinal herbs, and insulated gear.\n' +
-        "• Oakhaven Frontier Outpost Warden — An old ranger colleague of Charity's who secretly leaves caches of rations, hand crossbow bolts, and fresh coffee beans near the western marsh boundaries.\n" +
-        '• Silt-Runner Smuggler Rings — A shady underground network that supplies Charity with rare spell scroll fragments and wild magic focal stones.'
+        '• The Mire-Dwellers Rover Caravan — A nomadic guild of river-runners and silt-traders who help Curtis smuggle rare mosses, medicinal herbs, and insulated gear.\n' +
+        "• Oakhaven Frontier Outpost Warden — An old ranger colleague of Curtis's who secretly leaves caches of rations, hand crossbow bolts, and fresh coffee beans near the western marsh boundaries.\n" +
+        '• Silt-Runner Smuggler Rings — A shady underground network that supplies Curtis with rare spell scroll fragments and wild magic focal stones.'
     );
   });
   const [fractions, setFractions] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_fractions_v3')
+        ? localStorage.getItem('curtis_fractions_v3')
         : null) ||
       '• The Third Authority — A deeply secretive and enigmatic governing council that monitors continental magical balance and tracks planar anomalies across the Bleak Sough.\n' +
         '• The Silt-Weavers Guild — An eccentric cabal of local river marsh cartographers and geomancers who study silt currents and draft private topographical charts.\n' +
-        '• The Crimson Canopy Rangers — A small, informal band of veteran forest-wanderers and archers who assist Charity in tracking hostile feral beast spawns.\n' +
-        "• The Oakhaven Botanical Conservatory — An academic circle that occasionally funds Charity's expeditions in exchange for rare swamp spore samples."
+        '• The Crimson Canopy Rangers — A small, informal band of veteran forest-wanderers and archers who assist Curtis in tracking hostile feral beast spawns.\n' +
+        "• The Oakhaven Botanical Conservatory — An academic circle that occasionally funds Curtis's expeditions in exchange for rare swamp spore samples."
     );
   });
   const [desires, setDesires] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_desires_v3')
+        ? localStorage.getItem('curtis_desires_v3')
         : null) ||
       '• Stabilizing the Bleak Sough Core — To isolate and permanently secure the volatile magical leakages in the central peat mire before they corrupt local spirits.\n' +
         '• Deciphering the Left Arm Scarification — To decode the ancient, bark-like arcane sigils etched into her skin during a wild magic backlash decades ago.\n' +
@@ -722,7 +723,7 @@ export default function Actor000() {
   const [sacrifices, setSacrifices] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_sacrifices_v3')
+        ? localStorage.getItem('curtis_sacrifices_v3')
         : null) ||
       "• Left Arm's Flesh & Sensation — Permanently charred, bark-hardened, and infused with raw wild magic conducting paths during her ascension event, rendering it numb to normal touch.\n" +
         '• Tranquil and Safe Retirement — Gave up a life of warm comfort and bardic fame in metropolitan cities to remain a lonely vigilante in the hazardous swamps.\n' +
@@ -733,7 +734,7 @@ export default function Actor000() {
   const [atonements, setAtonements] = React.useState(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_atonements_v3')
+        ? localStorage.getItem('curtis_atonements_v3')
         : null) ||
       '• Dusk "Requiem of Silt" Performance — Playing hauntingly beautiful harmonica melodies at sunset to quiet the restless spirits of wood-rot and decay.\n' +
         '• Tending Displaced Dryad Saplings — Carefully replanting and warding young dryad seedlings away from acidic peat and sulfur vent pathways.\n' +
@@ -746,7 +747,7 @@ export default function Actor000() {
     setContacts(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_contacts_v3', val);
+        localStorage.setItem('curtis_contacts_v3', val);
       }
     }
   };
@@ -754,7 +755,7 @@ export default function Actor000() {
     setFractions(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_fractions_v3', val);
+        localStorage.setItem('curtis_fractions_v3', val);
       }
     }
   };
@@ -762,7 +763,7 @@ export default function Actor000() {
     setDesires(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_desires_v3', val);
+        localStorage.setItem('curtis_desires_v3', val);
       }
     }
   };
@@ -770,7 +771,7 @@ export default function Actor000() {
     setSacrifices(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_sacrifices_v3', val);
+        localStorage.setItem('curtis_sacrifices_v3', val);
       }
     }
   };
@@ -778,7 +779,7 @@ export default function Actor000() {
     setAtonements(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_atonements_v3', val);
+        localStorage.setItem('curtis_atonements_v3', val);
       }
     }
   };
@@ -791,7 +792,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_vital_records_v1')
+          ? localStorage.getItem('curtis_vital_records_v1')
           : null
         : null;
     if (saved) {
@@ -811,7 +812,7 @@ export default function Actor000() {
   const [familyHistory, setFamilyHistory] = React.useState<string>(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_family_history_v1')
+        ? localStorage.getItem('curtis_family_history_v1')
         : null) ||
       "Subject's immediate family perished during the '68 Sector Collapse. Raised in state-sponsored facility 88-B. " +
         'Minimal contact with remaining distant relatives in the outer agricultural zones. Exhibits strong detachment ' +
@@ -828,7 +829,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_assets_equipment_v1')
+          ? localStorage.getItem('curtis_assets_equipment_v1')
           : null
         : null;
     if (saved) {
@@ -859,7 +860,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_mental_diagnostics_v1')
+          ? localStorage.getItem('curtis_mental_diagnostics_v1')
           : null
         : null;
     if (saved) {
@@ -887,13 +888,13 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_manifestations_v1')
+          ? localStorage.getItem('curtis_manifestations_v1')
           : null
         : null;
     if (saved) return saved;
     const mdSaved =
       typeof window !== 'undefined'
-        ? localStorage.getItem('charity_mental_diagnostics_v1')
+        ? localStorage.getItem('curtis_mental_diagnostics_v1')
         : null;
     if (mdSaved) {
       try {
@@ -912,7 +913,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_action_summary_v3')
+          ? localStorage.getItem('curtis_action_summary_v3')
           : null
         : null;
     if (saved) {
@@ -934,7 +935,7 @@ export default function Actor000() {
   const [operativeNotes, setOperativeNotes] = React.useState<string>(() => {
     return (
       (typeof window !== 'undefined'
-        ? localStorage.getItem('charity_operative_notes_v1')
+        ? localStorage.getItem('curtis_operative_notes_v1')
         : null) ||
       'Subject exhibits unusually high base Essence generation parameters, likely linked to the traumatic awakening incident recorded in File #77-A. Diagnostic scans indicate volatile fluctuations during stress events, suggesting the "Nightmares" drawback is a physiological manifestation of excess unstructured magical energy bleeding into the subconscious.\n\n' +
         "Recommend continued observation. Subject's mastery over Occult Knowledge is advancing at an accelerated rate, far outpacing standard training protocols. The current Channeling Level of 4 is borderline unstable for an operative with only 450 total logged field hours. Ensure standard suppression gear is maintained and audited weekly."
@@ -954,7 +955,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_supply_metrics_v2')
+          ? localStorage.getItem('curtis_supply_metrics_v2')
           : null
         : null;
     if (saved) {
@@ -1128,7 +1129,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_max_ranks_v1')
+          ? localStorage.getItem('curtis_max_ranks_v1')
           : null
         : null;
     return saved ? parseInt(saved) || 23 : 23;
@@ -1147,7 +1148,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_skills_tracker_v1')
+          ? localStorage.getItem('curtis_skills_tracker_v1')
           : null
         : null;
     if (saved) {
@@ -1309,7 +1310,7 @@ export default function Actor000() {
         }
         return row;
       });
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1327,7 +1328,7 @@ export default function Actor000() {
           miscModifier: 0,
         },
       ];
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1335,14 +1336,14 @@ export default function Actor000() {
   const handleRemoveSkillRow = (idx: number) => {
     setSkillsList((prev) => {
       const next = prev.filter((_, i) => i !== idx);
-      localStorage.setItem('charity_skills_tracker_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_skills_tracker_v1', JSON.stringify(next));
       return next;
     });
   };
 
   const handleUpdateMaxRanks = (val: number) => {
     setMaxRanks(val);
-    localStorage.setItem('charity_max_ranks_v1', String(val));
+    localStorage.setItem('curtis_max_ranks_v1', String(val));
   };
 
   const [vitalsAndWounds, setVitalsAndWounds] = React.useState<{
@@ -1354,7 +1355,7 @@ export default function Actor000() {
     const saved =
       typeof window !== 'undefined'
         ? typeof window !== 'undefined'
-          ? localStorage.getItem('charity_vitals_wounds_v1')
+          ? localStorage.getItem('curtis_vitals_wounds_v1')
           : null
         : null;
     if (saved) {
@@ -1384,7 +1385,7 @@ export default function Actor000() {
       if (field === 'maxHp') {
         next.majorWoundThreshold = Math.floor(val / 2);
       }
-      localStorage.setItem('charity_vitals_wounds_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_vitals_wounds_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1394,7 +1395,7 @@ export default function Actor000() {
       const nextWounds = [...prev.wounds];
       nextWounds[idx] = !nextWounds[idx];
       const next = { ...prev, wounds: nextWounds };
-      localStorage.setItem('charity_vitals_wounds_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_vitals_wounds_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1405,7 +1406,7 @@ export default function Actor000() {
   ) => {
     setVitalRecords((prev) => {
       const next = { ...prev, [field]: val };
-      localStorage.setItem('charity_vital_records_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_vital_records_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1414,7 +1415,7 @@ export default function Actor000() {
     setFamilyHistory(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_family_history_v1', val);
+        localStorage.setItem('curtis_family_history_v1', val);
       }
     }
   };
@@ -1425,7 +1426,7 @@ export default function Actor000() {
   ) => {
     setAssetsEquipment((prev) => {
       const next = { ...prev, [field]: val };
-      localStorage.setItem('charity_assets_equipment_v1', JSON.stringify(next));
+      localStorage.setItem('curtis_assets_equipment_v1', JSON.stringify(next));
       return next;
     });
   };
@@ -1441,7 +1442,7 @@ export default function Actor000() {
     setMentalDiagnostics((prev) => {
       const next = { ...prev, [field]: val };
       localStorage.setItem(
-        'charity_mental_diagnostics_v1',
+        'curtis_mental_diagnostics_v1',
         JSON.stringify(next),
       );
       return next;
@@ -1452,7 +1453,7 @@ export default function Actor000() {
     setManifestations(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_manifestations_v1', val);
+        localStorage.setItem('curtis_manifestations_v1', val);
       }
     }
   };
@@ -1469,7 +1470,7 @@ export default function Actor000() {
         }
         return item;
       });
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('curtis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1477,7 +1478,7 @@ export default function Actor000() {
   const handleAddActionSummaryRow = () => {
     setActionSummary((prev) => {
       const next = [...prev, { action: 'New Action', type: 'Half' }];
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('curtis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1485,7 +1486,7 @@ export default function Actor000() {
   const handleRemoveActionSummaryRow = (idx: number) => {
     setActionSummary((prev) => {
       const next = prev.filter((_, i) => i !== idx);
-      localStorage.setItem('charity_action_summary_v3', JSON.stringify(next));
+      localStorage.setItem('curtis_action_summary_v3', JSON.stringify(next));
       return next;
     });
   };
@@ -1494,7 +1495,7 @@ export default function Actor000() {
     setOperativeNotes(val);
     if (typeof window !== 'undefined') {
       if (typeof window !== 'undefined') {
-        localStorage.setItem('charity_operative_notes_v1', val);
+        localStorage.setItem('curtis_operative_notes_v1', val);
       }
     }
   };
@@ -1514,7 +1515,7 @@ export default function Actor000() {
       const nextGroup = [...prev[group]];
       nextGroup[idx] = val;
       const next = { ...prev, [group]: nextGroup };
-      localStorage.setItem('charity_supply_metrics_v2', JSON.stringify(next));
+      localStorage.setItem('curtis_supply_metrics_v2', JSON.stringify(next));
       return next;
     });
   };
@@ -1555,7 +1556,7 @@ export default function Actor000() {
                 <div className="relative w-[576px] h-[576px] max-w-full aspect-square brutalist-border-thick p-2 bg-white overflow-hidden flex flex-col justify-end">
                   <img
                     src="https://lh3.googleusercontent.com/aida-public/AB6AXuC89Hu_52TdyLqB2irIngndK12akcKx4p_Yw5U6Hr4QBqA7xYNJEjIgfpw0j_ZRDqKFrDBLkV0x6tnXfZo9HGIPfuCYBB99cBT8ILOg50Txa2KsOoQNndUb6tTB7E9_vGA-Jlso3wcc7iDV23wxIsLrDVMMwNfyGE4J-TVt0mgyDwy1ikxr8f-Hub-64rWtzmVT7QKr0ZlO4ihLDSZNXIBTx8H451sXLG-YZPwbSxYvzDv-cCtz7p2N1915uJuvj_UXr4e-mcmTFz-4"
-                    alt="Charity Vaughn Character Portrait"
+                    alt="Curtis Vaughn Character Portrait"
                     className="absolute inset-x-2 inset-y-2 w-[calc(100%-16px)] h-[calc(100%-16px)] object-cover grayscale contrast-125 block"
                     referrerPolicy="no-referrer"
                   />
@@ -1940,7 +1941,7 @@ export default function Actor000() {
                         PROFICIENCIES
                       </h3>
                       <span className="font-jetbrains text-[10px] uppercase text-[#666666] tracking-wider block mt-1">
-                        LOG_NODE_CHARITY_CORE_CAPABILITIES
+                        LOG_NODE_CURTIS_CORE_CAPABILITIES
                       </span>
                     </div>
                     <span className="font-jetbrains text-[13px] bg-black text-[#E6E2D8] px-3 py-1 uppercase font-bold tracking-widest mt-2 sm:mt-0">
@@ -1976,7 +1977,7 @@ export default function Actor000() {
                           </div>
                           <p className="font-tinos text-[15px] leading-relaxed text-neutral-800">
                             <strong>Deep Swamp Botany & Silt Spores:</strong>{' '}
-                            Charity understands the complex biological loops and
+                            Curtis understands the complex biological loops and
                             fungal pathways of Bleak Sough like the back of her
                             bark-scarred arm, cataloging silent toxic mists,
                             decay cycles, and predicting localized magical
@@ -2049,7 +2050,7 @@ export default function Actor000() {
                             <strong>
                               Eldritch Shanties & Coffee Cup Rhythms:
                             </strong>{' '}
-                            Charity commands an unmatched acoustic repertoire of
+                            Curtis commands an unmatched acoustic repertoire of
                             traditional folklore and twilight melodies. She uses
                             her disposable cup as a percussion resonator and
                             performs Twilight Requiems to pacify ancient
@@ -2178,7 +2179,7 @@ export default function Actor000() {
                         DEXTERITY (+8) & CHARISMA (+11)
                       </h5>
                       <p className="font-tinos text-[15px] text-gray-700 leading-relaxed">
-                        Dexterity guards Charity against sudden geysers, swamp
+                        Dexterity guards Curtis against sudden geysers, swamp
                         cave-ins, and hostile sorcery, while her titanic
                         Charisma resists cosmic planar aligning, psychic dryad
                         manipulations, and raw eldritch corruptions.
@@ -4687,10 +4688,10 @@ export default function Actor000() {
 
           {/* Link to Sheet 000 */}
           <a
-            href="/sheet/000"
+            href="/sheet/001"
             className="block w-full border-[2px] border-black bg-[#FAF8F5] hover:bg-black hover:text-[#E6E2D8] text-black text-center font-jetbrains text-[11px] md:text-[12px] font-bold uppercase tracking-[0.1em] py-2 transition-all cursor-pointer brutalist-shadow-sm"
           >
-            [ LINK: /sheet/000 ]
+            [ LINK: /sheet/001 ]
           </a>
         </main>
       </div>
