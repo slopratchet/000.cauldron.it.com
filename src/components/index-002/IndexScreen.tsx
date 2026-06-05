@@ -143,8 +143,8 @@ export default function IndexScreen({
       {/* Persistent Page Divider Bar */}
       <div className="mt-12 h-0.5 bg-[#1b1b1b]" />
 
-      {/* 4-Column Table of Contents Grid */}
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4 mt-8">
+      {/* 2-Column Table of Contents Grid: exactly two decks per row */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 mt-8">
         {/* ================= COLUMN 1 ================= */}
         <div className="flex flex-col">
           <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
@@ -500,6 +500,124 @@ export default function IndexScreen({
                 <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
                 <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
                   190
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= COLUMN 5 ================= */}
+        <div className="flex flex-col">
+          <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
+            DECK_05 // PROFILE
+          </div>
+
+          <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
+            {/* Title block with Profile and Page Number */}
+            <div className="flex justify-between items-baseline border-b border-neutral-300 pb-3 mb-4">
+              <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
+                Profile
+              </h3>
+              <span className="font-accent text-[34px] text-blood-red select-none pl-2">
+                200
+              </span>
+            </div>
+
+            {/* List items for Profile */}
+            <div className="space-y-4">
+              {/* Lineage Record */}
+              <div
+                id="item-lineage-record"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">Lineage Record</span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  200
+                </span>
+              </div>
+
+              {/* Tribe Alignment */}
+              <div
+                id="item-tribe-alignment"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">Tribe Alignment</span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  204
+                </span>
+              </div>
+
+              {/* Racial Matrix */}
+              <div
+                id="item-racial-matrix"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">Racial Matrix</span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  210
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ================= COLUMN 6 ================= */}
+        <div className="flex flex-col">
+          <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
+            DECK_06 // RULE
+          </div>
+
+          <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
+            {/* Title block with Rule and Page Number */}
+            <div className="flex justify-between items-baseline border-b border-neutral-300 pb-3 mb-4">
+              <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
+                Rule
+              </h3>
+              <span className="font-accent text-[34px] text-blood-red select-none pl-2">
+                220
+              </span>
+            </div>
+
+            {/* List items for Rule */}
+            <div className="space-y-4">
+              {/* The Litany */}
+              <div
+                id="item-the-litany"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">The Litany</span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  220
+                </span>
+              </div>
+
+              {/* Renown System */}
+              <div
+                id="item-renown-system"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">Renown System</span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  224
+                </span>
+              </div>
+
+              {/* Gnosis Attunement */}
+              <div
+                id="item-gnosis-attunement"
+                className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b]"
+              >
+                <span className="font-semibold text-left">
+                  Gnosis Attunement
+                </span>
+                <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
+                <span className="font-mono text-xs font-bold bg-neutral-200/50 px-1.5 transition-colors">
+                  230
                 </span>
               </div>
             </div>
