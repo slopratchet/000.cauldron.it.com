@@ -5,7 +5,7 @@ import CreateAccount from './CreateAccount';
 import DiceSimulator from './DiceSimulator';
 import { manualSections } from './data/manualData';
 import { ActiveScreen, ManualItem } from './types';
-import { LayoutGrid, Dice5, UserPlus, BookOpen } from 'lucide-react';
+import { LayoutGrid } from 'lucide-react';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ActiveScreen>('index');

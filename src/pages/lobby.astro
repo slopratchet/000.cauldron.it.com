@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import LobbyIndex from '../components/lobby-index/LobbyIndex.tsx';
+import App from '../components/index-002/App.tsx';
+import '../components/index-002/index.css';
 
 let status = 'OFFLINE';
 try {
@@ -13,7 +14,7 @@ try {
 }
 ---
 
-<Layout bodyClass="cimmerian-theme">
+<Layout title="Lobby">
   <!-- We add the fonts needed for the Cimmerian Sheet -->
 
   LOBBY
@@ -29,7 +30,7 @@ try {
     >
   </div>
 
-  <LobbyIndex client:load />
+  <App client:load />
 
   <!-- WebSocket Logs -->
   <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
