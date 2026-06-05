@@ -8,22 +8,6 @@ import NavConsoleCard from './components/NavConsoleCard';
 import ScreenplayLedger from './components/ScreenplayLedger';
 import ClassifiedAugmentation from './components/ClassifiedAugmentation';
 import ManualTranscriptAdd from './components/ManualTranscriptAdd';
-import {
-  BookOpenText,
-  Menu,
-  HelpCircle,
-  Info,
-  ShieldAlert,
-  Terminal,
-  Volume2,
-  VolumeX,
-  X,
-  Sparkles,
-  RefreshCw,
-  Sliders,
-  ChevronRight,
-  UserCheck,
-} from 'lucide-react';
 
 export default function App() {
   const [operations, setOperations] = useState<Operation[]>(INITIAL_OPERATIONS);

@@ -11,14 +11,6 @@ import HomeScreen from './components/HomeScreen';
 import FaqScreen from './components/FaqScreen';
 import CastScreen from './components/CastScreen';
 import TourScreen from './components/TourScreen';
-import {
-  Sparkles,
-  Check,
-  Send,
-  AlertTriangle,
-  ShieldCheck,
-  HelpCircle,
-} from 'lucide-react';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ScreenType>('FAQ');

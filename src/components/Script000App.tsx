@@ -13,22 +13,6 @@ import NavConsoleCard from './NavConsoleCard';
 import ScreenplayLedger from './ScreenplayLedger';
 import ClassifiedAugmentation from './ClassifiedAugmentation';
 import ManualTranscriptAdd from './ManualTranscriptAdd';
-import {
-  BookOpenText,
-  Menu,
-  HelpCircle,
-  Info,
-  ShieldAlert,
-  Terminal,
-  Volume2,
-  VolumeX,
-  X,
-  Sparkles,
-  RefreshCw,
-  Sliders,
-  ChevronRight,
-  UserCheck,
-} from 'lucide-react';
 
 export default function App() {
   const [operations, setOperations] = useState<Operation[]>(INITIAL_OPERATIONS);

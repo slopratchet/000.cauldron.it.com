@@ -6,19 +6,10 @@
 import React, { useState, useEffect } from 'react';
 import type { ScreenType } from './types';
 import { MAGIC_ANSWERS, FAQ_DATA } from './data';
-import Header from './components/Header';
 import HomeScreen from './components/HomeScreen';
 import FaqScreen from './components/FaqScreen';
 import CastScreen from './components/CastScreen';
 import TourScreen from './components/TourScreen';
-import {
-  Sparkles,
-  Check,
-  Send,
-  AlertTriangle,
-  ShieldCheck,
-  HelpCircle,
-} from 'lucide-react';
 
 export default function App() {
   const [activeScreen, setActiveScreen] = useState<ScreenType>('FAQ');
