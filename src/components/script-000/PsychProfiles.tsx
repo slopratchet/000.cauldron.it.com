@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Character } from '../types';
+import { Character } from '../../types';
 import {
   UserPlus,
   Sparkles,
@@ -179,7 +179,7 @@ export default function PsychProfiles({
         </div>
       )}
 
-      <div className="space-y-4 max-h-[380px] overflow-y-auto pr-1">
+      <div className="space-y-4">
         {characters.map((char) => {
           const pureName = char.name.split(':').pop()?.trim() || char.name;
           const subjectCode = char.name.split(':')[0] || 'SUBJECT';

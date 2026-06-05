@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Operation } from '../types';
+import { Operation } from '../../types';
 import { Shield, MapPin, Clock, Crosshair, Edit2, Check } from 'lucide-react';
 
 interface DossierMetaProps {
@@ -29,10 +29,10 @@ export default function DossierMeta({
 
   return (
     <div className="border-4 border-black bg-white p-4 relative shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all">
-      {/* Confidential Stamp */}
+      {/* Progressing Stamp */}
       <div className="absolute top-3 right-3 select-none pointer-events-none z-10">
-        <span className="stamp font-mono text-sm tracking-widest border-blood-red text-blood-red">
-          CONFIDENTIAL
+        <span className="font-mono text-[10px] tracking-widest border-2 border-emerald-600 text-emerald-600 px-1.5 py-0.5 rotate-[-12deg] inline-block font-black opacity-85 uppercase">
+          PROGRESSING
         </span>
       </div>
 
@@ -56,7 +56,7 @@ export default function DossierMeta({
       </div>
 
       {isEditing ? (
-        <div className="space-y-2 font-mono text-xs text-black">
+        <div className="space-y-4 font-mono text-xs text-black">
           <div>
             <label className="block text-gray-500 font-bold mb-0.5">
               LOCATION:
@@ -93,18 +93,6 @@ export default function DossierMeta({
               id="input-meta-target"
             />
           </div>
-          <div>
-            <label className="block text-gray-500 font-bold mb-0.5">
-              CLEARANCE LEVEL:
-            </label>
-            <input
-              type="text"
-              value={clearance}
-              onChange={(e) => setClearance(e.target.value)}
-              className="w-full border border-black p-1 bg-parchment-deep uppercase focus:outline-none focus:ring-1 focus:ring-black"
-              id="input-meta-clearance"
-            />
-          </div>
         </div>
       ) : (
         <div className="grid grid-cols-2 gap-y-2.5 font-mono text-xs text-black">
@@ -127,13 +115,6 @@ export default function DossierMeta({
           </div>
           <div className="font-bold tracking-tight text-black">
             {operation.target || 'N/A'}
-          </div>
-
-          <div className="text-gray-500 font-medium flex items-center gap-1">
-            <Shield className="w-3.5 h-3.5 text-black" /> CLEARANCE:
-          </div>
-          <div className="font-extrabold text-blood-red tracking-wider">
-            {operation.clearanceLevel || 'LEVEL 1'}
           </div>
         </div>
       )}

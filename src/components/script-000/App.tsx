@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { INITIAL_OPERATIONS } from '../initialData';
-import type {
-  Operation,
-  Character,
-  ScriptLine,
-  SceneObjective,
-} from '../types';
+import { INITIAL_OPERATIONS } from '../../initialData';
+import { Operation, Character, ScriptLine, SceneObjective } from '../../types';
 import DossierMeta from './DossierMeta';
 import PsychProfiles from './PsychProfiles';
 import SceneObjectives from './SceneObjectives';
@@ -47,6 +42,7 @@ export default function App() {
   const [customOperationTitle, setCustomOperationTitle] = useState('');
   const [isCreatingOp, setIsCreatingOp] = useState(false);
   const [aiPrompt, setAiPrompt] = useState('');
+  const [isStreaming, setIsStreaming] = useState(false);
 
   const activeOp = operations.find((o) => o.id === activeOpId) || operations[0];
   const activeOpIndex = operations.findIndex((o) => o.id === activeOpId);
@@ -184,6 +180,24 @@ export default function App() {
     setCustomOperationTitle('');
   };
 
+  const handleDeleteOperation = (opId: string, e: React.MouseEvent) => {
+    e.stopPropagation();
+    if (operations.length <= 1) {
+      alert('At least one operation dossier must remain in the archives.');
+      return;
+    }
+    const confirmed = confirm(
+      'Are you sure you want to delete this operation?',
+    );
+    if (!confirmed) return;
+
+    const newOps = operations.filter((op) => op.id !== opId);
+    setOperations(newOps);
+    if (activeOpId === opId) {
+      setActiveOpId(newOps[0].id);
+    }
+  };
+
   return (
     <div className="bg-parchment-deep text-black min-h-screen flex flex-col font-tinos relative overflow-x-hidden pb-16 selection:bg-black selection:text-white">
       {/* Watermark in background */}
@@ -217,9 +231,17 @@ export default function App() {
           {/* LEDGER MISSION CHANGER */}
           <div className="border-4 border-black bg-black text-white p-3 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex flex-col gap-2 font-mono">
             <div className="flex justify-between items-center border-b border-zinc-700 pb-1.5 mb-1 select-none">
-              <span className="text-[10px] font-bold text-intel-orange tracking-widest uppercase">
-                ACTIVE_LEDGER_DIRECTORY
-              </span>
+              <button
+                onClick={() => setIsStreaming(!isStreaming)}
+                className={`text-[9px] font-bold tracking-widest uppercase px-1.5 py-0.5 border cursor-pointer select-none transition-all duration-200 ${
+                  isStreaming
+                    ? 'bg-emerald-600 border-emerald-500 text-white animate-pulse'
+                    : 'bg-transparent border-intel-orange text-intel-orange hover:bg-intel-orange hover:text-black'
+                }`}
+                title="Toggle performance streaming mode"
+              >
+                {isStreaming ? 'STOP_STREAM' : 'STREAM_PERFORMANCE'}
+              </button>
               <button
                 onClick={() => setIsCreatingOp(true)}
                 className="text-[9px] bg-intel-orange text-black font-extrabold px-1.5 py-0.5 hover:bg-white transition-colors cursor-pointer"
@@ -230,20 +252,34 @@ export default function App() {
             </div>
             <div className="flex flex-col gap-1.5 text-xs">
               {operations.map((op) => (
-                <button
+                <div
                   key={op.id}
-                  onClick={() => setActiveOpId(op.id)}
-                  className={`text-left px-2 py-1 font-bold transition-all uppercase flex justify-between items-center cursor-pointer ${
+                  className={`text-left font-bold transition-all uppercase flex justify-between items-center ${
                     op.id === activeOpId
                       ? 'bg-white text-black'
                       : 'hover:bg-zinc-800 text-zinc-300'
                   }`}
                 >
-                  <span>{op.title.replace('Operation: ', '')}</span>
-                  <span className="text-[9px] opacity-70">
-                    {op.id === activeOpId ? '● ACTIVE' : '○ SECURE'}
+                  <button
+                    onClick={() => setActiveOpId(op.id)}
+                    className="flex-grow text-left px-2 py-1 cursor-pointer font-bold uppercase"
+                  >
+                    {op.title.replace('Operation: ', '')}
+                  </button>
+                  <span className="text-[9px] opacity-70 pr-2">
+                    {op.id === activeOpId ? (
+                      '● ACTIVE'
+                    ) : (
+                      <button
+                        onClick={(e) => handleDeleteOperation(op.id, e)}
+                        className="text-red-500 hover:text-red-400 font-bold hover:underline cursor-pointer lowercase"
+                        title="Delete operation"
+                      >
+                        ○ delete
+                      </button>
+                    )}
                   </span>
-                </button>
+                </div>
               ))}
             </div>
           </div>
@@ -284,7 +320,7 @@ export default function App() {
             </span>
             <button
               onClick={() => setAudioSimulation(!audioSimulation)}
-              className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.2 hover:bg-white text-black font-bold cursor-pointer"
+              className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.5 hover:bg-white text-black font-bold cursor-pointer"
             >
               TOGGLE
             </button>
@@ -520,7 +556,7 @@ export default function App() {
             </h3>
             <p className="font-serif text-[12px] text-zinc-700 leading-relaxed mb-4">
               Initialize a brand-new classified operational target log into the
-              Chronos manual archives.
+              Camp Candor manual archives.
             </p>
 
             <div className="space-y-3">
@@ -553,9 +589,27 @@ export default function App() {
       {/* Standard Ledger Fixed Footer layout */}
       <footer className="fixed bottom-0 left-0 w-full flex justify-between items-center px-4 md:px-8 py-2.5 z-40 bg-black border-t-2 border-black text-parchment-deep font-mono text-[9px] tracking-tight selection:bg-white selection:text-black">
         <div className="uppercase">
-          THE TOME © 1974 - 1979 CHRONOS SYSTEMS | REGISTERED USER: ADMIN_01
+          THE TOME © 1974 - 1979 CAMP CANDOR SYSTEMS | REGISTERED USER: ADMIN_01
         </div>
         <div className="flex gap-4 md:gap-6">
+          <button
+            onClick={() => setShowFaq(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            FAQ
+          </button>
+          <button
+            onClick={() => setShowTour(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            TOUR
+          </button>
+          <button
+            onClick={() => setShowPartyRequest(true)}
+            className="uppercase text-parchment-deep hover:text-white transition-colors cursor-pointer"
+          >
+            JOIN EXPEDITION
+          </button>
           <button
             onClick={() =>
               alert(

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import type { Operation, ScriptLine, Character } from '../types';
+import { Operation, ScriptLine, Character } from '../../types';
 import { Plus } from 'lucide-react';
 
 interface ManualTranscriptAddProps {
@@ -66,10 +66,11 @@ export default function ManualTranscriptAdd({
                 onChange={(e) =>
                   setNewLineType(
                     e.target.value as
-                      | 'action'
                       | 'dialogue'
-                      | 'heading'
-                      | 'alert',
+                      | 'action'
+                      | 'scene_heading'
+                      | 'parenthetical'
+                      | 'transition',
                   )
                 }
                 className="w-full border border-black bg-white p-1 text-[11px] focus:ring-1 focus:ring-black focus:outline-none font-bold"
