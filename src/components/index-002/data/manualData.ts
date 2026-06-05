@@ -79,8 +79,8 @@ Your role is to make decisions. When your pack is cornered in a deserted 1970s r
 - **Caern:** A spiritual node of high purity and power.
 - **Delirium:** The ancestral terror-haze that clouds human minds when they witness a Garou in their Crinos war-form.
 - **Garou:** Half-man, half-wolf. The changing breed.
-- **Gnosis:** The measure of a werewolf\'s connection to the spirit world.
-- **Rage:** The raw, primary energy of Gaia\'s vengeance flowing through your blood.
+- **Gnosis:** The measure of a werewolf's connection to the spirit world.
+- **Rage:** The raw, primary energy of Gaia's vengeance flowing through your blood.
 - **Umbra:** The spirit world that lies parallel to the physical realm.
 - **Wyrm:** The great cosmic serpent, originally the force of balance, now corrupted into a frantic engine of rot and madness.`,
       },
