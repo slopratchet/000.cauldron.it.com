@@ -4,7 +4,7 @@
  */
 
 import React, { useEffect, useState } from 'react';
-import { Terminal, Shield, Hammer, Compass, Eye } from 'lucide-react';
+import { Terminal, Shield, Compass, Eye } from 'lucide-react';
 
 export default function Footer() {
   const [currentUtc, setCurrentUtc] = useState('2026-06-04 16:45:19 UTC');

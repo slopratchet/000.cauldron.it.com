@@ -5,7 +5,7 @@
 
 import React, { useState } from 'react';
 import { CharacterRecord } from '../types';
-import { Search, Shield, User, Clock } from 'lucide-react';
+import { Search, Shield, User } from 'lucide-react';
 
 interface DirectoryExplorerProps {
   subjects: CharacterRecord[];

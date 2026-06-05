@@ -40,7 +40,6 @@ export default function CastScreen() {
         setTargetAttackRoll(opponentRoll);
 
         let resultMessage = '';
-        const playerModifier = Math.floor((member.stats.INT - 10) / 2); // default INT check
 
         if (playerRoll > opponentRoll) {
           resultMessage = `⚔️ VICTORY! You rolled ${playerRoll} against ${member.name}'s ${opponentRoll}. The Archivist notes your outstanding tactical coordination!`;

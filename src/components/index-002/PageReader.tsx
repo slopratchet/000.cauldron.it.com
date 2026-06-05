@@ -27,7 +27,6 @@ export default function PageReader({
 }: PageReaderProps) {
   // Check if item is the golden rule or critical lore to style beautifully
   const isTheGoldenRule = item.id === 'the-golden-rule';
-  const isWalkersBetween = item.id === 'walkers-between';
   const isLexicon = item.id === 'lexicon';
 
   return (

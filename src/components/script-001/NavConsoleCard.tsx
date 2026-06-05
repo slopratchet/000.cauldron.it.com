@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Radio, Sliders, Volume2 } from 'lucide-react';
+import { Radio, Sliders } from 'lucide-react';
 
 export default function NavConsoleCard() {
   const [pulseFrequency, setPulseFrequency] = useState(400);

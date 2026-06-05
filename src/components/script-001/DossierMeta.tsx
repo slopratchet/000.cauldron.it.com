@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Operation } from './types';
-import { Shield, MapPin, Clock, Crosshair, Edit2, Check } from 'lucide-react';
+import { MapPin, Clock, Crosshair, Edit2, Check } from 'lucide-react';
 
 interface DossierMetaProps {
   operation: Operation;
@@ -15,7 +15,6 @@ export default function DossierMeta({
   const [loc, setLoc] = useState(operation.location);
   const [time, setTime] = useState(operation.time);
   const [target, setTarget] = useState(operation.target);
-  const [clearance, setClearance] = useState(operation.clearanceLevel);
 
   const handleSave = () => {
     onUpdateMeta({
