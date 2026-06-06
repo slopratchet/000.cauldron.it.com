@@ -48,19 +48,28 @@ if (iframeUrlStr == null) iframeUrlStr = 'none';
         baseUrl = iframe.dataset.iframeUrl;
       }
 
+      let clerkRetries = 0;
       const initIframe = async () => {
         const clerk = $clerkStore.get();
+        const hasPublishableKey = !!import.meta.env
+          .PUBLIC_CLERK_PUBLISHABLE_KEY;
 
         // Ensure clerk exists AND is fully loaded (so session is populated)
-        if (!clerk || !clerk.loaded) {
-          // Wait for Clerk to load
-          setTimeout(initIframe, 100);
-          return;
+        if (hasPublishableKey && (!clerk || !clerk.loaded)) {
+          clerkRetries++;
+          if (clerkRetries < 30) {
+            // Try for 3 seconds max (30 * 100ms)
+            setTimeout(initIframe, 100);
+            return;
+          }
+          console.warn(
+            'Clerk failed to load within 3 seconds. Initializing iframe without token.',
+          );
         }
 
         let token = null;
         try {
-          if (clerk.session) {
+          if (clerk && clerk.session) {
             token = await clerk.session.getToken();
           }
         } catch (err) {
