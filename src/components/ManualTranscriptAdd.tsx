@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Operation, ScriptLine, Character } from '../types';
+import type { Operation, ScriptLine, Character } from '../types';
 import { Plus } from 'lucide-react';
 
 interface ManualTranscriptAddProps {

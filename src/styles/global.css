@@ -6,6 +6,10 @@
 @import 'tailwindcss';
 
 @theme {
+  --font-anton: 'Anton', sans-serif;
+  --font-tinos: 'Tinos', serif;
+  --font-jetbrains: 'JetBrains Mono', monospace;
+
   --color-surface-dim: #dcd9d9;
   --color-surface-lowest: #ffffff;
   --color-surface-container: #f0eded;
@@ -19,6 +23,7 @@
 
   --color-dark-orange: #d97706;
   --color-ink-wash: #333333;
+  --color-parchment: #e6e2d8;
   --color-parchment-deep: #e6e2d8;
 
   --spacing-margin-page: 2rem;
@@ -478,6 +483,7 @@ html {
 }
 
 @theme {
+  --color-parchment: #e6e2d8;
   --color-parchment-deep: #e6e2d8;
   --color-blood-red: #d10919;
   --color-intel-orange: #d97706;

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Operation, ScriptLine } from '../types';
+import type { Operation, ScriptLine } from '../types';
 import { Paperclip, Printer } from 'lucide-react';
 
 interface ScreenplayLedgerProps {
@@ -87,6 +87,38 @@ export default function ScreenplayLedger({
         opId,
         op.scriptLines.filter((l) => l.id !== lineId),
       );
+    }
+  };
+
+  const handleRemoveWord = (
+    opId: string,
+    lineId: string,
+    wordIndex: number,
+    e: React.MouseEvent,
+  ) => {
+    e.stopPropagation();
+    const op = operations.find((o) => o.id === opId);
+    if (op) {
+      const newLines = op.scriptLines.map((l) => {
+        if (l.id === lineId) {
+          const isFriendUnderlined = l.text
+            .toLowerCase()
+            .includes('ate my friend');
+          let textToEdit = l.text;
+
+          if (l.type === 'dialogue' && isFriendUnderlined) {
+            textToEdit =
+              "Let me tell you about my boat. She's a good ship. A little tired, maybe. But she's seen things. Like the thing that ate my friend.";
+          }
+
+          const words = textToEdit.split(/(\s+)/);
+          words[wordIndex] = ''; // remove the word
+
+          return { ...l, text: words.join('') };
+        }
+        return l;
+      });
+      onUpdateOpLines(opId, newLines);
     }
   };
 
@@ -179,7 +211,7 @@ export default function ScreenplayLedger({
                                   key={widx}
                                   className="relative group/word inline-block cursor-pointer mx-0.5"
                                   onClick={(e) =>
-                                    handleRemoveLine(op.id, line.id, e)
+                                    handleRemoveWord(op.id, line.id, widx, e)
                                   }
                                 >
                                   <span className="hover:text-blood-red transition-colors duration-150">
@@ -269,7 +301,7 @@ export default function ScreenplayLedger({
                                       : ''
                                   }`}
                                   onClick={(e) =>
-                                    handleRemoveLine(op.id, line.id, e)
+                                    handleRemoveWord(op.id, line.id, widx, e)
                                   }
                                 >
                                   <span className="hover:text-blood-red transition-colors duration-150">
