@@ -24,6 +24,7 @@ const ACCESS_CONFIG = {
     '/action',
     '/script',
     '/sheet',
+    '/lobby',
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
