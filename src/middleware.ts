@@ -143,7 +143,10 @@ export const onRequest = sequence(
     }
 
     // --- GATE 3: FUTURE RBAC SECTOR ISOLATION (E.G., RUNNER INFRASTRUCTURE) ---
-    if (pathname.startsWith('/runner')) {
+    if (
+      pathname.startsWith('/runner') &&
+      !['/runner/iframe', '/runner/000-intent'].includes(pathname)
+    ) {
       const role =
         auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
       if (role !== 'artist') {
