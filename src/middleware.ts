@@ -146,7 +146,7 @@ export const onRequest = sequence(
         auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
       if (role !== 'artist') {
         // Enforce a hard 404/403 or redirect to obscure high-clearance sectors
-        return redirect('/project-status');
+        return redirect('/runner/iframe');
       }
     }
 
