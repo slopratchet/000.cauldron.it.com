@@ -1,6 +1,6 @@
 /* eslint-disable */
 import React from 'react';
-import { characterData } from './data';
+import { characterData } from '../../data/actor-000';
 import { Dices, RefreshCw, Plus, Trash2, ShieldAlert } from 'lucide-react';
 
 const LabeledBlock = ({
