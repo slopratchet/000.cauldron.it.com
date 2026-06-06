@@ -59,7 +59,7 @@ var iframeUrlStr = 'https://002-primal-mama-mobile-control.pages.dev/';
           .PUBLIC_CLERK_PUBLISHABLE_KEY;
 
         // Ensure clerk exists AND is fully loaded (so session is populated)
-        if (hasPublishableKey && (!clerk || !clerk.loaded)) {
+        if (!clerk || !clerk.loaded) {
           clerkRetries++;
           if (clerkRetries < 30) {
             // Try for 3 seconds max (30 * 100ms)
@@ -67,7 +67,8 @@ var iframeUrlStr = 'https://002-primal-mama-mobile-control.pages.dev/';
             return;
           }
           console.warn(
-            'Clerk failed to load within 3 seconds. Initializing iframe without token.',
+            'Clerk failed to load within 3 seconds. Initializing iframe without token. hasPublishableKey: ' +
+              hasPublishableKey,
           );
         }
 
@@ -75,9 +76,27 @@ var iframeUrlStr = 'https://002-primal-mama-mobile-control.pages.dev/';
         try {
           if (clerk && clerk.session) {
             token = await clerk.session.getToken();
+            console.log(
+              '🖥️ [iframe.astro] Clerk token successfully obtained:',
+              token
+                ? 'YES (truncated: ' + token.substring(0, 10) + '...)'
+                : 'NO (null/empty)',
+            );
+          } else {
+            console.log(
+              '🖥️ [iframe.astro] Clerk or clerk.session is missing. clerk exists:',
+              !!clerk,
+              'clerk.loaded:',
+              clerk?.loaded,
+              'clerk.session exists:',
+              !!clerk?.session,
+            );
           }
         } catch (err) {
-          console.error('Error fetching Clerk token client-side:', err);
+          console.error(
+            '🖥️ [iframe.astro] Error fetching Clerk token client-side:',
+            err,
+          );
         }
 
         let finalIframeUrl = baseUrl;
@@ -87,20 +106,42 @@ var iframeUrlStr = 'https://002-primal-mama-mobile-control.pages.dev/';
           } else {
             finalIframeUrl += '&token=' + encodeURIComponent(token);
           }
+          console.log('🖥️ [iframe.astro] Appending token to iframe URL');
+        } else {
+          console.log(
+            '🖥️ [iframe.astro] No token found, loading iframe URL without token',
+          );
         }
 
         if (iframe) {
+          console.log(
+            '🖥️ [iframe.astro] Setting iframe.src to:',
+            finalIframeUrl,
+          );
           // Set the src with the token in the URL first
           iframe.src = finalIframeUrl;
 
           // Also attempt postMessage for apps that prefer it,
           // but ensure it happens after load
           if (token) {
+            console.log(
+              '🖥️ [iframe.astro] Token exists, adding iframe.onload handler for postMessage',
+            );
             iframe.onload = function () {
+              console.log(
+                '🖥️ [iframe.astro] iframe.onload fired, preparing postMessage...',
+              );
               if (iframe.contentWindow) {
+                console.log(
+                  '🖥️ [iframe.astro] Sending CLERK_AUTH_TOKEN postMessage to iframe',
+                );
                 iframe.contentWindow.postMessage(
                   { type: 'CLERK_AUTH_TOKEN', payload: { token: token } },
                   '*',
+                );
+              } else {
+                console.warn(
+                  '🖥️ [iframe.astro] iframe.contentWindow is null, cannot send postMessage',
                 );
               }
             };
