@@ -325,7 +325,7 @@ export default function App() {
             </span>
             <button
               onClick={() => setAudioSimulation(!audioSimulation)}
-              className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.2 hover:bg-white text-black font-bold cursor-pointer"
+              className="text-[9px] uppercase tracking-tight border border-gray-400 px-1 py-0.5 hover:bg-white text-black font-bold cursor-pointer"
             >
               TOGGLE
             </button>

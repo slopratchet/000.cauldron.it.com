@@ -758,7 +758,7 @@ export default function SubjectDossier({ subject }: SubjectDossierProps) {
             {choice.type}:
           </span>
           {choice.value && (
-            <span className="font-semibold text-slate-900 border border-black/10 px-1 py-0.2 bg-black/5 rounded-sm uppercase">
+            <span className="font-semibold text-slate-900 border border-black/10 px-1 py-0.5 bg-black/5 rounded-sm uppercase">
               {choice.value}
             </span>
           )}
