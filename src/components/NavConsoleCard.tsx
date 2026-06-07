@@ -25,7 +25,7 @@ export default function NavConsoleCard() {
           </div>
         )}
 
-        <div className="absolute bottom-1 right-2 font-mono text-[9px] text-white/70 bg-black/65 px-1 py-0.2 select-none">
+        <div className="absolute bottom-1 right-2 font-mono text-[9px] text-white/70 bg-black/65 px-1 py-0.5 select-none">
           CHRONOS ARCHIVE // CAM: 01
         </div>
       </div>
