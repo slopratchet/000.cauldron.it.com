@@ -3,7 +3,7 @@
   "type": "module",
   "version": "0.2.01",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "cross-env NODE_OPTIONS=--max-old-space-size=8192 astro dev",
     "build": "astro build",
     "preview": "npm run build && wrangler dev",
     "astro": "astro",
@@ -49,6 +49,7 @@
     "@eslint/js": "^9.21.0",
     "@playwright/test": "^1.60.0",
     "@types/node": "^25.2.3",
+    "cross-env": "^10.1.0",
     "eslint": "^9.21.0",
     "eslint-plugin-astro": "^1.5.0",
     "globals": "^17.5.0",
