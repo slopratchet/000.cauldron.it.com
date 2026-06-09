@@ -542,7 +542,7 @@ export default function SubjectDossier({
                           </p>
                           {step.sub_nodes && step.sub_nodes.length > 0 && (
                             <div className="mt-1.5 pt-1.5 border-t border-current/10 flex flex-col gap-1">
-                              {step.sub_nodes.map((sub: any) => {
+                              {step.sub_nodes.map((sub: unknown) => {
                                 const subIcon =
                                   sub.state === 'completed'
                                     ? '☑'
@@ -1039,7 +1039,7 @@ export default function SubjectDossier({
               {/* Start recursive root tree render */}
               {(() => {
                 const helper = (
-                  val: any,
+                  val: unknown,
                   nodeKey: string = 'root',
                   path: string = '',
                 ): React.ReactNode => {
@@ -1165,7 +1165,7 @@ export default function SubjectDossier({
                 {subject.lore_web?.secrets &&
                 Object.entries(subject.lore_web.secrets).length > 0 ? (
                   Object.entries(subject.lore_web.secrets).map(
-                    ([sKey, value]: any) => {
+                    ([sKey, value]: unknown) => {
                       const activeSecret = value;
                       const isRevealed =
                         revealedSecrets[sKey] ||
@@ -1248,7 +1248,7 @@ export default function SubjectDossier({
                   .length > 0 ? (
                   Object.entries(
                     subject.party_integration.background_hooks,
-                  ).map(([bgName, value]: any) => (
+                  ).map(([bgName, value]: unknown) => (
                     <div
                       key={bgName}
                       className="border border-current/10 p-3 rounded"
@@ -1291,7 +1291,7 @@ export default function SubjectDossier({
                   Object.entries(subject.definitions.entities.npcs).length >
                     0 ? (
                     Object.entries(subject.definitions.entities.npcs).map(
-                      ([nKey, value]: any) => (
+                      ([nKey, value]: unknown) => (
                         <div
                           key={nKey}
                           className="border border-current/10 p-2.5 rounded bg-black/5"
@@ -1335,7 +1335,7 @@ export default function SubjectDossier({
                   Object.entries(subject.definitions.entities.items).length >
                     0 ? (
                     Object.entries(subject.definitions.entities.items).map(
-                      ([iKey, value]: any) => (
+                      ([iKey, value]: unknown) => (
                         <div
                           key={iKey}
                           className="border border-current/10 p-2.5 rounded bg-black/5"
@@ -1375,7 +1375,7 @@ export default function SubjectDossier({
                 Object.entries(subject.definitions.entities.monsters).length >
                   0 ? (
                   Object.entries(subject.definitions.entities.monsters).map(
-                    ([mKey, mon]: any) => {
+                    ([mKey, mon]: unknown) => {
                       const mId = mKey;
                       return (
                         <div
@@ -1447,7 +1447,7 @@ export default function SubjectDossier({
               {subject.definitions?.tables &&
               Object.entries(subject.definitions.tables).length > 0 ? (
                 Object.entries(subject.definitions.tables).map(
-                  ([tName, table]: any) => (
+                  ([tName, table]: unknown) => (
                     <div
                       key={tName}
                       className="border border-current/10 p-3 rounded bg-black/5 flex flex-col gap-2"
@@ -1486,7 +1486,7 @@ export default function SubjectDossier({
                       </div>
 
                       <div className="flex flex-col gap-1 text-[10.5px]">
-                        {table.entries?.map((ent: any, i: number) => (
+                        {table.entries?.map((ent: unknown, i: number) => (
                           <div
                             key={i}
                             className="flex justify-between items-center py-0.5 border-b border-current/5"
@@ -1528,7 +1528,7 @@ export default function SubjectDossier({
                 {subject.procedures &&
                 Object.keys(subject.procedures).length > 0 ? (
                   Object.entries(subject.procedures).map(
-                    ([pKey, pVal]: any) => (
+                    ([pKey, pVal]: unknown) => (
                       <div
                         key={pKey}
                         className="p-2 border border-current/10 rounded flex justify-between items-center bg-black/5"
@@ -1556,21 +1556,23 @@ export default function SubjectDossier({
                   2.0 ACTIONS SEQUENCES (scripts)
                 </span>
                 {subject.scripts && Object.keys(subject.scripts).length > 0 ? (
-                  Object.entries(subject.scripts).map(([sKey, sVal]: any) => (
-                    <div
-                      key={sKey}
-                      className="p-2 border border-current/10 rounded bg-black/5 flex flex-col gap-1"
-                    >
-                      <div className="flex justify-between items-center">
-                        <span className="font-bold text-slate-700 text-[11px] font-mono">
-                          {sKey}
-                        </span>
-                        <span className="text-[9px] text-gray-400 font-mono">
-                          Steps: {sVal.sequence?.length || 0}
-                        </span>
+                  Object.entries(subject.scripts).map(
+                    ([sKey, sVal]: unknown) => (
+                      <div
+                        key={sKey}
+                        className="p-2 border border-current/10 rounded bg-black/5 flex flex-col gap-1"
+                      >
+                        <div className="flex justify-between items-center">
+                          <span className="font-bold text-slate-700 text-[11px] font-mono">
+                            {sKey}
+                          </span>
+                          <span className="text-[9px] text-gray-400 font-mono">
+                            Steps: {sVal.sequence?.length || 0}
+                          </span>
+                        </div>
                       </div>
-                    </div>
-                  ))
+                    ),
+                  )
                 ) : (
                   <span className="text-gray-400 italic">
                     No action sequences registered.

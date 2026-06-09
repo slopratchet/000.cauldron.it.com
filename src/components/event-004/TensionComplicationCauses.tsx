@@ -21,7 +21,7 @@ const TENSION_ROLL_CAUSES: Record<string, string> = {
     'Slamming heavy iron gates, triggering dynamic explosive charges, or screaming in echo chambers.',
 };
 
-export function TensionComplicationCauses({ subject }: { subject: any }) {
+export function TensionComplicationCauses({ subject }: { subject: unknown }) {
   const maxDice = subject.tension_engine?.pool_mechanic?.max_dice || 6;
   const dieType = subject.tension_engine?.pool_mechanic?.die_type || 'd10';
 

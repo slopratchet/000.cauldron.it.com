@@ -182,10 +182,11 @@ function getFailureSignatures(challengeId: string): string[] {
 export function MechanicalSkillChallenges({
   activeAdventure,
 }: {
-  activeAdventure: any;
+  activeAdventure: unknown;
 }) {
   // Helper to get type-safe entries of an object
-  const entries = (obj: any): [string, any][] => Object.entries(obj || {});
+  const entries = (obj: unknown): [string, unknown][] =>
+    Object.entries(obj || {});
 
   // Extract all mechanical skill challenges dynamically from all active scenes
   const challengesList: MechanicalChallengeItem[] = [];
@@ -199,9 +200,9 @@ export function MechanicalSkillChallenges({
 
       // Process Social / Conversational Encounters
       if (scene.social_encounters && Array.isArray(scene.social_encounters)) {
-        scene.social_encounters.forEach((soc: any) => {
+        scene.social_encounters.forEach((soc: unknown) => {
           if (soc.skill_challenges && Array.isArray(soc.skill_challenges)) {
-            soc.skill_challenges.forEach((chal: any) => {
+            soc.skill_challenges.forEach((chal: unknown) => {
               const mscId = generateChallengeId(
                 sceneId,
                 'soc',
@@ -230,9 +231,9 @@ export function MechanicalSkillChallenges({
         scene.exploration_encounters &&
         Array.isArray(scene.exploration_encounters)
       ) {
-        scene.exploration_encounters.forEach((exp: any) => {
+        scene.exploration_encounters.forEach((exp: unknown) => {
           if (exp.skill_challenges && Array.isArray(exp.skill_challenges)) {
-            exp.skill_challenges.forEach((chal: any) => {
+            exp.skill_challenges.forEach((chal: unknown) => {
               const mscId = generateChallengeId(
                 sceneId,
                 'exp',

@@ -49,11 +49,12 @@ import {
 } from 'lucide-react';
 
 // Helper helper to get type-safe entries of an object as any to avoid 'unknown' TS complaints
-const entries = (obj: any): [string, any][] => Object.entries(obj || {});
+const entries = (obj: unknown): [string, unknown][] =>
+  Object.entries(obj || {});
 
 export default function App() {
   // Read active adventure (cached or fallback to default)
-  const [activeAdventure] = useState<any>(() => {
+  const [activeAdventure] = useState<unknown>(() => {
     if (typeof window !== 'undefined') {
       const cached = localStorage.getItem('elden_chronos_adventure');
       if (cached) {
@@ -66,13 +67,12 @@ export default function App() {
             return parsed;
           }
         } catch (e) {
-          console.error("Failed to parse cached adventure.", e);
+          console.error('Failed to parse cached adventure.', e);
         }
       }
     }
     return DEFAULT_ADVENTURE;
   });
-
 
   // Track currently highlighted screenplay and active preview script
   const [selectedScreenplayId, setSelectedScreenplayId] = useState<string>(
@@ -246,7 +246,7 @@ export default function App() {
                 </span>
                 <div className="flex flex-wrap gap-2">
                   {activeAdventure.safety_and_accessibility.content_warnings.map(
-                    (warn: any, idx: number) => (
+                    (warn: unknown, idx: number) => (
                       <span
                         key={idx}
                         className="px-2.5 py-1 bg-rose-500/10 border border-rose-600/30 text-rose-800 text-[10px] font-mono font-bold uppercase tracking-wider rounded"
@@ -300,7 +300,7 @@ export default function App() {
                       </span>
                       <div className="flex flex-wrap gap-1">
                         {filter.text_scrub_array.map(
-                          (scrubWord: any, sIdx: number) => (
+                          (scrubWord: unknown, sIdx: number) => (
                             <span
                               key={sIdx}
                               className="px-1.5 py-0.5 bg-neutral-100 border border-neutral-300 text-neutral-600 text-[8.5px] rounded"
@@ -373,7 +373,7 @@ export default function App() {
                   Active Celestial Bodies Track
                 </span>
                 {activeAdventure.chronology.celestial_bodies.map(
-                  (body: any, bIdx: number) => (
+                  (body: unknown, bIdx: number) => (
                     <div
                       key={bIdx}
                       className="bg-neutral-100 border border-neutral-300 rounded p-4 flex flex-col gap-2 font-mono text-xs"
@@ -1057,7 +1057,8 @@ export default function App() {
                                         {scene.description ||
                                           scene.actors
                                             .map(
-                                              (a: any) => `${a.id} (${a.role})`,
+                                              (a: unknown) =>
+                                                `${a.id} (${a.role})`,
                                             )
                                             .join(', ')}
                                       </span>
@@ -1338,7 +1339,7 @@ export default function App() {
                     </span>
                     <ul className="list-disc list-inside flex flex-col gap-1 text-[11px] text-neutral-600">
                       {activeAdventure.tension_engine.pool_mechanic.triggers_to_add_die.map(
-                        (trig: any, idx: number) => (
+                        (trig: unknown, idx: number) => (
                           <li key={idx}>
                             <code>{trig}</code>
                           </li>
@@ -1354,7 +1355,7 @@ export default function App() {
                     </span>
                     <ul className="list-disc list-inside flex flex-col gap-1 text-[11px] text-neutral-600">
                       {activeAdventure.tension_engine.pool_mechanic.triggers_to_roll_pool.map(
-                        (trig: any, idx: number) => (
+                        (trig: unknown, idx: number) => (
                           <li key={idx}>
                             <code>{trig}</code>
                           </li>
@@ -1402,7 +1403,7 @@ export default function App() {
                     </span>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
                       {activeAdventure.tension_engine.categories.map(
-                        (cat: any, cIdx: number) => (
+                        (cat: unknown, cIdx: number) => (
                           <div
                             key={cIdx}
                             className="border border-neutral-250 p-3 rounded bg-white flex flex-col gap-2"
@@ -1417,7 +1418,7 @@ export default function App() {
                             </div>
                             <div className="flex flex-col gap-1.5 border-t border-neutral-150 pt-2 mt-1">
                               {cat.sub_complications.map(
-                                (sub: any, sIdx: number) => (
+                                (sub: unknown, sIdx: number) => (
                                   <div
                                     key={sIdx}
                                     className="text-[10.5px] leading-snug flex items-start gap-1 justify-between"
@@ -1481,7 +1482,7 @@ export default function App() {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-3 mt-1.5">
                   {entries(
                     activeAdventure.audiovisual_cues.environment_groups,
-                  ).map(([presetId, preset]: any) => {
+                  ).map(([presetId, preset]: unknown) => {
                     const isSelected = presetId === activePresetId;
                     return (
                       <div
@@ -1963,7 +1964,7 @@ export default function App() {
                           </span>
                           <div className="flex flex-col gap-2">
                             {scene.encounters.map(
-                              (encNode: any, eIdx: number) => (
+                              (encNode: unknown, eIdx: number) => (
                                 <div
                                   key={eIdx}
                                   className="bg-white border border-neutral-200 p-2.5 rounded text-[10.5px]"
@@ -1972,7 +1973,7 @@ export default function App() {
                                     Encounter: <b>{encNode.id}</b>
                                   </div>
                                   {encNode.actors.map(
-                                    (mob: any, mIdx: number) => (
+                                    (mob: unknown, mIdx: number) => (
                                       <div
                                         key={mIdx}
                                         className="text-neutral-600 mt-0.5"
@@ -2006,7 +2007,7 @@ export default function App() {
                             </span>
                             <div className="flex flex-col gap-3">
                               {scene.social_encounters.map(
-                                (socNode: any, sIdx: number) => (
+                                (socNode: unknown, sIdx: number) => (
                                   <div
                                     key={sIdx}
                                     className="bg-white border border-blue-250 p-3 rounded text-[10.5px]"
@@ -2029,7 +2030,7 @@ export default function App() {
                                       </span>
                                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                         {socNode.skill_challenges.map(
-                                          (chal: any, cIdx: number) => {
+                                          (chal: unknown, cIdx: number) => {
                                             const challengeId =
                                               generateChallengeId(
                                                 scId,
@@ -2092,7 +2093,7 @@ export default function App() {
                             </span>
                             <div className="flex flex-col gap-3">
                               {scene.exploration_encounters.map(
-                                (expNode: any, eSIdx: number) => (
+                                (expNode: unknown, eSIdx: number) => (
                                   <div
                                     key={eSIdx}
                                     className="bg-white border border-emerald-250 p-3 rounded text-[10.5px]"
@@ -2116,7 +2117,7 @@ export default function App() {
                                       </span>
                                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                                         {expNode.skill_challenges.map(
-                                          (chal: any, cIdx: number) => {
+                                          (chal: unknown, cIdx: number) => {
                                             const challengeId =
                                               generateChallengeId(
                                                 scId,
@@ -2189,7 +2190,7 @@ export default function App() {
                           Scripted Scene Transition Paths Outcomes
                           Quick-Reference
                         </span>
-                        {scene.outcomes.map((out: any, oIdx: number) => (
+                        {scene.outcomes.map((out: unknown, oIdx: number) => (
                           <div key={oIdx} className="flex gap-2 items-center">
                             <span className="bg-neutral-100 border px-1 rounded text-black text-[9px]">
                               IF
@@ -2288,7 +2289,7 @@ export default function App() {
 
                     <div className="flex flex-col gap-2 text-[10px] leading-relaxed bg-neutral-50/50 p-2.5 rounded border border-neutral-200">
                       {screen.screenplay_blocks.map(
-                        (block: any, bIdx: number) => {
+                        (block: unknown, bIdx: number) => {
                           if (block.type === 'character') {
                             return (
                               <div
@@ -2403,7 +2404,7 @@ export default function App() {
                               Player Option Speeches
                             </span>
                             {node.player_options.map(
-                              (opt: any, oIdx: number) => (
+                              (opt: unknown, oIdx: number) => (
                                 <div
                                   key={oIdx}
                                   className="bg-neutral-50 border border-neutral-200/50 p-2.5 rounded text-[10.5px] flex flex-col gap-1.5 leading-snug font-mono"
@@ -2586,7 +2587,7 @@ export default function App() {
                         </p>
                       )}
                       <div className="grid grid-cols-1 gap-3 pl-1.5">
-                        {sValue.sequence?.map((step: any, sIdx: number) => (
+                        {sValue.sequence?.map((step: unknown, sIdx: number) => (
                           <div
                             key={sIdx}
                             className="text-[10px] text-neutral-600 bg-neutral-50/70 border border-neutral-200 p-2.5 rounded flex flex-col justify-between"
@@ -2674,7 +2675,7 @@ export default function App() {
                         Matrix Rows Outcome list
                       </span>
                       <div className="flex flex-col gap-1.5 text-[10.5px] text-neutral-700 font-mono">
-                        {table.entries.map((ent: any, eIdx: number) => (
+                        {table.entries.map((ent: unknown, eIdx: number) => (
                           <div
                             key={eIdx}
                             className="flex justify-between items-center py-1 border-b border-neutral-100 last:border-b-0"
@@ -2760,7 +2761,7 @@ export default function App() {
 
                   <div className="flex-1 flex flex-col gap-2.5 w-full md:max-w-2xl">
                     {scene.outcomes && scene.outcomes.length > 0 ? (
-                      scene.outcomes.map((out: any, oIdx: number) => (
+                      scene.outcomes.map((out: unknown, oIdx: number) => (
                         <div
                           key={oIdx}
                           className="bg-neutral-50 border border-neutral-250 p-2.5 rounded flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 text-[10px]"
@@ -2872,7 +2873,7 @@ export default function App() {
                     </span>
                     <div className="flex flex-wrap gap-1.5 mt-1">
                       {activeAdventure.world_state.completed_scenes.map(
-                        (cs: any, idx: number) => (
+                        (cs: unknown, idx: number) => (
                           <span
                             key={idx}
                             className="bg-stone-800 px-1.5 py-0.5 rounded text-[10px] text-stone-300 font-mono"
@@ -2891,7 +2892,7 @@ export default function App() {
                       activeAdventure.world_state.discovered_clues.length >
                         0 ? (
                         activeAdventure.world_state.discovered_clues.map(
-                          (clue: any, idx: number) => (
+                          (clue: unknown, idx: number) => (
                             <span
                               key={idx}
                               className="bg-stone-800 px-1.5 py-0.5 rounded text-[10px] text-amber-400 font-mono"
@@ -2915,7 +2916,7 @@ export default function App() {
                       activeAdventure.world_state.unlocked_secrets.length >
                         0 ? (
                         activeAdventure.world_state.unlocked_secrets.map(
-                          (sec: any, idx: number) => (
+                          (sec: unknown, idx: number) => (
                             <span
                               key={idx}
                               className="bg-stone-800 px-1.5 py-0.5 rounded text-[10px] text-rose-400 font-mono"
@@ -2939,7 +2940,7 @@ export default function App() {
                       activeAdventure.world_state.active_global_effects.length >
                         0 ? (
                         activeAdventure.world_state.active_global_effects.map(
-                          (eff: any, idx: number) => (
+                          (eff: unknown, idx: number) => (
                             <span
                               key={idx}
                               className="bg-stone-800 px-1.5 py-0.5 rounded text-[10px] text-emerald-400 font-mono"
@@ -3101,7 +3102,7 @@ export default function App() {
                   </span>
                   <div className="flex flex-wrap gap-2 animate-none">
                     {activeAdventure.world_state.discovered_clues.map(
-                      (clue: any, idx: number) => (
+                      (clue: unknown, idx: number) => (
                         <span
                           key={idx}
                           className="bg-stone-800 border border-stone-700 px-2 py-1 text-[10px] text-indigo-300 font-bold rounded"
