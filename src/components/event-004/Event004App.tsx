@@ -66,13 +66,12 @@ export default function App() {
             return parsed;
           }
         } catch (e) {
-          console.error("Failed to parse cached adventure.", e);
+          console.error('Failed to parse cached adventure.', e);
         }
       }
     }
     return DEFAULT_ADVENTURE;
   });
-
 
   // Track currently highlighted screenplay and active preview script
   const [selectedScreenplayId, setSelectedScreenplayId] = useState<string>(
