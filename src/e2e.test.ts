@@ -26,7 +26,7 @@ describe('E2E Sanity Check', () => {
   it('should redirect the /log-in page to lobby if local', async () => {
     // Increased timeout for slow dev server starts
     await page.goto('http://localhost:4321/log-in', {
-      waitUntil: 'networkidle0',
+      waitUntil: 'domcontentloaded',
       timeout: 60000,
     });
 
@@ -39,7 +39,7 @@ describe('E2E Sanity Check', () => {
     'should handle the multi-stage Client Trust handshake',
     async () => {
       await page.goto('http://localhost:4321/login', {
-        waitUntil: 'networkidle0',
+        waitUntil: 'domcontentloaded',
       });
 
       // 1. Enter Credentials
@@ -69,7 +69,7 @@ describe('E2E Sanity Check', () => {
     'should handle the multi-stage Registration handshake',
     async () => {
       await page.goto('http://localhost:4321/signup', {
-        waitUntil: 'networkidle0',
+        waitUntil: 'domcontentloaded',
       });
 
       // 1. Agree to The Covenant
@@ -96,7 +96,7 @@ describe('E2E Sanity Check', () => {
 
   it('should load the /signup page and render all Stage I form fields', async () => {
     await page.goto('http://localhost:4321/signup', {
-      waitUntil: 'networkidle0',
+      waitUntil: 'domcontentloaded',
       timeout: 30000,
     });
 
