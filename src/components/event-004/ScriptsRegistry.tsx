@@ -1954,7 +1954,7 @@ const cleanExample = (example: string) => {
     const cleanPart = p1
       .split(':')
       .map((part: string) => {
-        return part.replace(/_([a-z0-0])/g, (_: any, letter: string) =>
+        return part.replace(/_([a-z0-0])/g, (_: unknown, letter: string) =>
           letter.toUpperCase(),
         );
       })

@@ -211,7 +211,7 @@ const STAT_PATHS: SubPathDetails[] = [
   },
 ];
 
-export function AdventurePathCalculator({ subject }: { subject: any }) {
+export function AdventurePathCalculator({ subject }: { subject: unknown }) {
   return (
     <section
       id="section-adventurepath-calculator"

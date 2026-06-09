@@ -468,7 +468,7 @@ const TRIGGER_LABELS: Record<string, string> = {
   hourly_climate_shift: 'WEATHER CYCLE',
 };
 
-export function TriggerMechanisms({ subject }: { subject: any }) {
+export function TriggerMechanisms({ subject }: { subject: unknown }) {
   // Sort the triggers list alphabetically by clean display name
   const sortedTriggers = [...DETAILED_TRIGGERS].sort((a, b) => {
     const nameA = a.triggerName

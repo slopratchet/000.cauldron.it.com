@@ -123,7 +123,7 @@ export default function AIPresentationTerminal({
 
       // Print simulated retro VTT system logs
       await runLogSequence(advData);
-    } catch (err: any) {
+    } catch (err: unknown) {
       console.error(err);
       setErrorMsg(
         err.message || 'Failed to compile custom AI Adventure module.',

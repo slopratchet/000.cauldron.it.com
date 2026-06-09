@@ -382,7 +382,7 @@ export interface ScriptStep {
   item_id?: string;
   awakened?: boolean;
   key?: string;
-  value?: any;
+  value?: unknown;
   faction?: string;
   target?: string;
   new_status?: string;
@@ -410,7 +410,7 @@ export interface ScriptStep {
   ability?: string;
   damage_type?: string;
   roll?: string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 export interface ScriptAssociation {
@@ -455,7 +455,7 @@ export interface SceneInteractable {
       action: string;
       handout_id?: string;
       key?: string;
-      value?: any;
+      value?: unknown;
     };
   };
 }
