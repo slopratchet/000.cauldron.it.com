@@ -1,0 +1,16 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Home000App from '../../components/home.000.00/App.tsx';
+---
+
+<Layout title="Home 000 00">
+  <div class="home-000-00-wrapper min-h-screen">
+    <Home000App client:only="react" />
+  </div>
+</Layout>
+
+<style is:global>
+  .home-000-00-wrapper {
+    /* Scoped global styles from the app */
+  }
+</style>

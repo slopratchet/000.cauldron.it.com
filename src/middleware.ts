@@ -25,6 +25,7 @@ const ACCESS_CONFIG = {
     '/script',
     '/sheet',
     '/lobby',
+    '/template',
     '/profile',
   ],
   publicExact: ['/'],
