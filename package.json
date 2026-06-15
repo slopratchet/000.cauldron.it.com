@@ -27,7 +27,7 @@
     "test:e2e": "start-server-and-test dev http://localhost:4321 'vitest run src/e2e.test.ts'"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.5.1",
+    "@astrojs/cloudflare": "^13.7.0",
     "@astrojs/react": "^5.0.5",
     "@camp_candor/995.library": "file:../../work/995.library",
     "@clerk/astro": "^3.0.15",
