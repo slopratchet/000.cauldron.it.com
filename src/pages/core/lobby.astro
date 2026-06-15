@@ -67,6 +67,79 @@ const auth =
     </div>
   </section>
 
+  <!-- Database Visualization Component -->
+  <section
+    class="p-margin-page border-2 border-dashed border-neutral-600 mt-8 p-6 bg-[#121212] rounded"
+  >
+    <div class="flex items-start mb-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="text-primary mr-3 mt-1 flex-shrink-0"
+      >
+        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+        <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+        <path d="M3 12A9 3 0 0 0 21 12"></path>
+      </svg>
+      <div>
+        <h3
+          class="text-xl font-bold tracking-wide uppercase text-white leading-tight"
+        >
+          FULL SCHEMA DATABASE
+        </h3>
+        <p
+          class="text-[9px] tracking-widest uppercase text-neutral-400 font-mono mt-1"
+        >
+          ALL PARAMETERS, STRUCTURAL COORDINATES AND NESTED OBJECTS DISCLOSED
+          BELOW
+        </p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div
+        class="inline-block bg-[#1a1a1a] text-[#aaa] border border-[#333] text-[9px] font-mono py-1 px-2.5 rounded tracking-widest uppercase"
+      >
+        SYSTEM ROOT DECK // SCROLL TO EXPLAIN
+      </div>
+    </div>
+    <hr class="border-neutral-800 my-4" />
+    <div
+      class="relative bg-white text-black font-mono p-4 h-64 border-2 border-black brutalist-shadow flex flex-col"
+    >
+      <div
+        class="absolute top-2 right-2 bg-[#efefef] text-[#333] border border-[#ccc] text-[9px] font-mono py-1 px-2 rounded tracking-widest uppercase select-none"
+      >
+        UTF-8 // JSON FORMAT
+      </div>
+      <pre
+        id="db-json-display"
+        class="flex-1 overflow-y-auto text-xs whitespace-pre-wrap mt-6 select-text text-black bg-white font-mono leading-relaxed">{`{
+  "tableOfContents": {
+    "systemName": "Primal Mama",
+    "edition": "Core Rulebook",
+    "tabs": [
+      "OVERVIEW",
+      "TACTICAL RULES",
+      "CHARACTER CREATION",
+      "RACES",
+      "CLASSES",
+      "SKILLS",
+      "FEATS",
+      "EQUIPMENT",
+      "STARSHIPS"
+    ]
+  }
+}`}</pre>
+    </div>
+  </section>
+
   <script>
     // WebSocket Connection
     const wsLogs = document.getElementById('ws-logs');
@@ -83,7 +156,7 @@ const auth =
 
         ws.onopen = () => {
           appendLog(
-            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/moon'}. Waiting for ticks...`,
           );
         };
 
@@ -99,6 +172,11 @@ const auth =
           try {
             const parsed = JSON.parse(data);
             data = JSON.stringify(parsed);
+
+            const dbDisplay = document.getElementById('db-json-display');
+            if (dbDisplay) {
+              dbDisplay.textContent = JSON.stringify(parsed, null, 2);
+            }
           } catch (e) {}
           appendLog(`<span class="text-white">[TICK]</span> ${data}`);
         };
@@ -107,7 +185,7 @@ const auth =
           if (!isFallback && !usingFallback) {
             usingFallback = true;
             appendLog(
-              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/moon failed. Retrying with direct worker fallback...</span>',
             );
             connect('wss://worker-sower.berad4000.workers.dev/ws', true);
           } else {
@@ -129,7 +207,7 @@ const auth =
       };
 
       const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${window.location.host}/api/sun`;
+      const wsUrl = `${protocol}//${window.location.host}/api/moon`;
       connect(wsUrl);
     }
   </script>

@@ -1,4 +1,17 @@
-export const GET = async () => {
+export const GET = async ({ request }) => {
+  const upgradeHeader = request.headers.get('Upgrade');
+  if (upgradeHeader && upgradeHeader.toLowerCase() === 'websocket') {
+    try {
+      return await fetch('https://worker-sower.berad4000.workers.dev/ws', {
+        headers: request.headers,
+      });
+    } catch (e) {
+      return new Response('WebSocket connection failed: ' + e.message, {
+        status: 502,
+      });
+    }
+  }
+
   const queryFn = async () => {
     const response = await fetch('https://worker-sower.berad4000.workers.dev/');
     if (!response.ok) {
