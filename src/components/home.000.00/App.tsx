@@ -121,7 +121,9 @@ export default function Home000App() {
         setAmbientPlaying(true);
         try {
           const AudioCtx =
-            window.AudioContext || (window as any).webkitAudioContext;
+            window.AudioContext ||
+            (window as unknown as { webkitAudioContext: typeof AudioContext })
+              .webkitAudioContext;
           if (!AudioCtx) return;
           audioCtx = new AudioCtx();
 
@@ -170,7 +172,9 @@ export default function Home000App() {
   const playClack = () => {
     try {
       const AudioCtx =
-        window.AudioContext || (window as any).webkitAudioContext;
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext })
+          .webkitAudioContext;
       if (!AudioCtx) return;
       const ctx = new AudioCtx();
 

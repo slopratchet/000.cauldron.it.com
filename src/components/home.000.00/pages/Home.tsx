@@ -47,8 +47,8 @@ export interface HomeProps {
   bookedSeats: string[];
   onBookSeat: (role: string) => void;
   currentHash: string;
-  schemaData: any;
-  onSchemaChange: (newData: any) => void;
+  schemaData: unknown;
+  onSchemaChange: (newData: unknown) => void;
   schemaSource?: 'loading' | 'api' | 'fallback_local' | 'fallback_embedded';
 }
 
