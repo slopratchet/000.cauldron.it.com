@@ -15,16 +15,16 @@ export default function TheaterMap({
   return (
     <div
       id="theater-mapping-card"
-      className="border-2 border-black p-4 bg-white hard-shadow-sm flex flex-col font-mono h-full"
+      className="border-2 border-black p-4 bg-black text-[#E6E2D8] hard-shadow-sm flex flex-col font-mono h-full"
     >
       {/* Grid title panel */}
-      <h3 className="text-sm font-bold uppercase border-b-2 border-black pb-1.5 mb-4 flex items-center justify-between">
+      <h3 className="text-sm font-bold uppercase border-b-2 border-[#E6E2D8]/20 pb-1.5 mb-4 flex items-center justify-between">
         <span>Theater Mapping</span>
-        <Grid className="w-4 h-4 text-black" />
+        <Grid className="w-4 h-4 text-[#E6E2D8]" />
       </h3>
 
       {/* Grid mapping space */}
-      <div className="grid grid-cols-5 gap-1.5 p-1 bg-zinc-100 border border-black mb-4 flex-grow justify-items-center items-center">
+      <div className="grid grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat) => {
           const isOccupied = seat.status === 'OCCUPIED';
           const targetUrl =
@@ -54,16 +54,16 @@ export default function TheaterMap({
       </div>
 
       {/* Status Legend indices */}
-      <div className="mt-auto flex flex-wrap gap-4 text-xs font-bold uppercase border-t border-black/15 pt-3">
+      <div className="mt-auto flex flex-wrap gap-4 text-xs font-bold uppercase border-t border-[#E6E2D8]/20 pt-3">
         <div className="flex items-center gap-1.5">
-          <span className="w-3.5 h-3.5 bg-black border border-black inline-block"></span>
+          <span className="w-3.5 h-3.5 bg-black border border-[#E6E2D8] inline-block"></span>
           <span>Occupied</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <span className="w-3.5 h-3.5 bg-[#E6E2D8] border border-black inline-block"></span>
-          <span>Vacant</span>
+          <span className="w-3.5 h-3.5 bg-[#E6E2D8] border border-[#E6E2D8] inline-block"></span>
+          <span className="text-[#E6E2D8]">Vacant</span>
         </div>
-        <div className="ml-auto text-[10px] opacity-60 italic font-normal">
+        <div className="ml-auto text-[10px] opacity-60 italic font-normal text-[#E6E2D8]">
           Click coordinate to launch web page & toggle.
         </div>
       </div>
