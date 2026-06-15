@@ -3,9 +3,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Jost:wght@500;700&family=Tinos:ital,wght@0,400;0,700;1,400&family=JetBrains+Mono:wght@500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@600;800;900&family=Space+Grotesk:wght@400;500;700&family=JetBrains+Mono:wght@400;700;800&display=swap');
 @import 'tailwindcss';
 
 @theme {
+  --color-obsidian: #050505;
+  --color-bone: #f9f6ee;
+  --color-brass: #d4af37;
+  --color-blood: #8b0000;
+  --color-charcoal: #111111;
+  --color-crimson-dark: #2a0808;
+
+  --spacing-margin-page: 2.5rem;
+  --spacing-gutter: 2rem;
+  --spacing-stack-sm: 0.75rem;
+  --spacing-stack-md: 1.5rem;
+  --spacing-stack-lg: 3rem;
+  --spacing-stack-xl: 5rem;
+
   --font-anton: 'Anton', sans-serif;
   --font-tinos: 'Tinos', serif;
   --font-jetbrains: 'JetBrains Mono', monospace;
@@ -483,6 +498,20 @@ html {
 }
 
 @theme {
+  --color-obsidian: #050505;
+  --color-bone: #f9f6ee;
+  --color-brass: #d4af37;
+  --color-blood: #8b0000;
+  --color-charcoal: #111111;
+  --color-crimson-dark: #2a0808;
+
+  --spacing-margin-page: 2.5rem;
+  --spacing-gutter: 2rem;
+  --spacing-stack-sm: 0.75rem;
+  --spacing-stack-md: 1.5rem;
+  --spacing-stack-lg: 3rem;
+  --spacing-stack-xl: 5rem;
+
   --color-parchment: #e6e2d8;
   --color-parchment-deep: #e6e2d8;
   --color-blood-red: #d10919;
@@ -530,5 +559,123 @@ html {
   .screenplay-text {
     font-family: 'Courier New', Courier, monospace;
     line-height: 1.6;
+  }
+}
+
+/* Home 000 00 Styles */
+
+@layer base {
+  .home-000-00-wrapper {
+    background-color: var(--color-obsidian);
+    color: var(--color-bone);
+  }
+  ::-webkit-scrollbar {
+    width: 6px;
+    background: var(--color-obsidian);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-blood);
+  }
+}
+
+@layer utilities {
+  .font-serif-display {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+  }
+  .font-serif-body {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 500;
+  }
+  .font-mono-ui {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 700;
+  }
+  .font-archive {
+    font-family: 'Unbounded', sans-serif;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .text-hero-massive {
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    letter-spacing: -0.02em;
+  }
+  .text-h2-large {
+    font-size: clamp(2rem, 5vw, 4rem);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  .text-h3-gothic {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.05em;
+  }
+  .text-body-elegant {
+    font-size: 1.25rem;
+    line-height: 1.6;
+  }
+  .text-mono-sm {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.05em;
+  }
+
+  /* Tactile button clack animation */
+  .btn-brass {
+    position: relative;
+    border: 1px solid var(--color-bone);
+    background: transparent;
+    color: var(--color-bone);
+    transition: all 0s;
+  }
+  .btn-brass:hover {
+    border-color: var(--color-blood);
+    color: var(--color-bone);
+  }
+  .btn-brass::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--color-blood);
+    transition: width 0.1s steps(4, end);
+    transform: translateY(-50%);
+  }
+  .btn-brass:hover::after {
+    width: 100%;
+  }
+
+  /* Glitch text effect on hover */
+  .hover-glitch:hover {
+    animation: glitch-anim 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both
+      infinite;
+    color: var(--color-blood);
+  }
+}
+
+@keyframes glitch-anim {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 1px);
+  }
+  40% {
+    transform: translate(-1px, -1px);
+  }
+  60% {
+    transform: translate(2px, 1px);
+  }
+  80% {
+    transform: translate(1px, -1px);
+  }
+  100% {
+    transform: translate(0);
   }
 }
