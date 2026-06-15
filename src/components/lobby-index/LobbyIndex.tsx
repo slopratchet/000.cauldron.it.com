@@ -1,344 +1,579 @@
-import React, { useState } from 'react';
-import { Search } from 'lucide-react';
+import { useState, useRef, useEffect } from 'react';
+import { BookOpen, ShieldCheck } from 'lucide-react';
+import {
+  INITIAL_SESSIONS,
+  INITIAL_SYSTEM_LOGS,
+  generateInitialSeats,
+  ENCYCLOPEDIA_NOTES,
+} from './data';
+import { SessionLog, Seat, SystemLogEntry } from './types';
+import HeaderBanner from './HeaderBanner';
+import LedgerTable from './LedgerTable';
+import CommandPanel from './CommandPanel';
+import SystemLogs from './SystemLogs';
+import SchemaDatabase from './SchemaDatabase';
+import TheaterMap from './TheaterMap';
+import OperationalLandscape from './OperationalLandscape';
+
+interface SchemaState {
+  systemName: string;
+  operator: string;
+  encryption: 'LEGACY-A' | 'SECURE-X' | 'UNENCRYPTED';
+  capacityTarget: number;
+  landscapeTitle?: string;
+  landscapeImgRef?: string;
+  visibleComponents: {
+    headerBanner: boolean;
+    landscapeImage: boolean;
+    theaterMapping: boolean;
+    systemDiagnostics: boolean;
+    sessionRegistry: boolean;
+    operationalLedger: boolean;
+    inputOverride: boolean;
+    systemLogs: boolean;
+    appendixManual: boolean;
+  };
+  sessions: SessionLog[];
+  seats: Seat[];
+  systemLogs: SystemLogEntry[];
+}
+
+const getInitialSchemaState = (): SchemaState => ({
+  systemName: 'THE TOME: 1970 Edition',
+  operator: 'ADMIN_74',
+  encryption: 'LEGACY-A',
+  capacityTarget: 67,
+  landscapeTitle: 'Operational Landscape',
+  landscapeImgRef: 'IMG_REF_69.SYS',
+  visibleComponents: {
+    headerBanner: false,
+    landscapeImage: true,
+    theaterMapping: true,
+    systemDiagnostics: false,
+    sessionRegistry: false,
+    operationalLedger: false,
+    inputOverride: false,
+    systemLogs: true,
+    appendixManual: false,
+  },
+  sessions: INITIAL_SESSIONS,
+  seats: generateInitialSeats(),
+  systemLogs: INITIAL_SYSTEM_LOGS,
+});
 
 export default function LobbyIndex() {
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  // Main Unified Schema State
+  const [schema, setSchema] = useState<SchemaState>(getInitialSchemaState());
+  const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
+    'T-740921-A',
+  );
+  const [activeManualTopic, setActiveManualTopic] = useState<number | null>(
+    null,
+  );
 
-  const allLinks = [
-    { title: '/script/000', url: '/script/000', section: 'SCRIPT' },
-    { title: '/script/001', url: '/script/001', section: 'SCRIPT' },
-    { title: '/actor/000', url: '/actor/000', section: 'ACTOR' },
-    { title: '/actor/001', url: '/actor/001', section: 'ACTOR' },
-    { title: '/actor/002', url: '/actor/002', section: 'ACTOR' },
-    { title: '/actor/005', url: '/actor/005', section: 'ACTOR' },
-    { title: '/action/000', url: '/action/000', section: 'ACTION' },
-    { title: '/action/001', url: '/action/001', section: 'ACTION' },
-    { title: '/action/002', url: '/action/002', section: 'ACTION' },
-    { title: '/know/000', url: '/know/000', section: 'KNOW' },
-    { title: '/know/001', url: '/know/001', section: 'KNOW' },
-    { title: '/know/002', url: '/know/002', section: 'KNOW' },
-    { title: '/know/003', url: '/know/003', section: 'KNOW' },
-    { title: '/rule/000', url: '/rule/000', section: 'RULE' },
-    { title: '/rule/001', url: '/rule/001', section: 'RULE' },
-  ];
+  // Schema DB Viewer visibility state driven by URL variable (?schema=true, ?db=true, ?editor=true, ?database=true)
+  const [showDbEditor, setShowDbEditor] = useState(false);
 
-  const filteredItems = searchQuery
-    ? allLinks.filter((item) =>
-        item.title.toLowerCase().includes(searchQuery.toLowerCase()),
-      )
-    : [];
+  // Raw text value for the editable JSON database representation
+  const [jsonText, setJsonText] = useState<string>(
+    JSON.stringify(getInitialSchemaState(), null, 2),
+  );
+
+  // Sound/Vibe indicator
+  const [, setActionPulse] = useState(false);
+
+  // To prevent circular re-stringification on user typing edits
+  const isInternalUpdatingRef = useRef(false);
+
+  // Detect URL parameter on mount
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const hasParam =
+      params.get('schema') === 'true' ||
+      params.get('editor') === 'true' ||
+      params.get('database') === 'true' ||
+      params.get('db') === 'true';
+    setShowDbEditor(hasParam);
+  }, []);
+
+  const toggleDbEditor = () => {
+    const nextVal = !showDbEditor;
+    setShowDbEditor(nextVal);
+
+    // Update URL query parameters seamlessly without page reload
+    const params = new URLSearchParams(window.location.search);
+    if (nextVal) {
+      params.set('schema', 'true');
+    } else {
+      params.delete('schema');
+      params.delete('editor');
+      params.delete('database');
+      params.delete('db');
+    }
+    const newRelativePathQuery =
+      window.location.pathname +
+      (params.toString() ? '?' + params.toString() : '');
+    window.history.pushState(null, '', newRelativePathQuery);
+
+    handleAddLog(
+      `SCHEMA DATABASE VIEWPORT ${nextVal ? 'ACTIVATED' : 'DEACTIVATED'} via URL STATE`,
+      'INFO',
+    );
+  };
+
+  // Sync state changes from components back to JSON text
+  const syncSchemaToText = (updatedSchema: SchemaState) => {
+    isInternalUpdatingRef.current = true;
+    setJsonText(JSON.stringify(updatedSchema, null, 2));
+    isInternalUpdatingRef.current = false;
+  };
+
+  // Dynamic timing generator for logging
+  const getSimulatedTime = () => {
+    const d = new Date();
+    const hrs = d.getHours().toString().padStart(2, '0');
+    const mins = d.getMinutes().toString().padStart(2, '0');
+    const secs = d.getSeconds().toString().padStart(2, '0');
+    return `${hrs}:${mins}:${secs}`;
+  };
+
+  const handleAddLog = (
+    text: string,
+    type: 'INFO' | 'SUCCESS' | 'WARNING' | 'ALERT' = 'INFO',
+  ) => {
+    const timestamp = getSimulatedTime();
+    const nextLog: SystemLogEntry = {
+      timestamp,
+      text: text.toUpperCase(),
+      type,
+    };
+
+    setSchema((prev) => {
+      const updated = {
+        ...prev,
+        systemLogs: [...prev.systemLogs, nextLog],
+      };
+      syncSchemaToText(updated);
+      return updated;
+    });
+  };
+
+  // Toggle seat occupancy
+  const handleToggleSeat = (seatId: string) => {
+    setSchema((prev) => {
+      const prevSeats = prev.seats;
+      const idx = prevSeats.findIndex((s) => s.id === seatId);
+      if (idx === -1) return prev;
+
+      const updatedSeats = [...prevSeats];
+      const target = updatedSeats[idx];
+      const nextStatus = target.status === 'OCCUPIED' ? 'VACANT' : 'OCCUPIED';
+
+      updatedSeats[idx] = {
+        ...target,
+        status: nextStatus,
+        sessionId:
+          nextStatus === 'OCCUPIED'
+            ? `T-74092${Math.floor(Math.random() * 5 + 1)}-A`
+            : undefined,
+      };
+
+      const nextLogText = `SEAT COORDINATE ${seatId} MODIFIED: STATUS SET TO [${nextStatus}]`;
+      const nextLog: SystemLogEntry = {
+        timestamp: getSimulatedTime(),
+        text: nextLogText.toUpperCase(),
+        type: nextStatus === 'OCCUPIED' ? 'SUCCESS' : 'WARNING',
+      };
+
+      const updated = {
+        ...prev,
+        seats: updatedSeats,
+        systemLogs: [...prev.systemLogs, nextLog],
+      };
+
+      syncSchemaToText(updated);
+      return updated;
+    });
+
+    // Make UI pulse visually briefly on seat toggle
+    setActionPulse(true);
+    setTimeout(() => setActionPulse(false), 200);
+  };
+
+  // Click seat logs coordinates
+  const handleSelectSeatCoordinate = (id: string) => {
+    handleAddLog(`TARGET VECTOR SECTOR REGISTERED ON SEGMENT: [${id}]`, 'INFO');
+
+    const match = schema.seats.find((s) => s.id === id);
+    if (match && match.sessionId) {
+      const matchingSession = schema.sessions.find(
+        (s) => s.id === match.sessionId,
+      );
+      if (matchingSession) {
+        setSelectedSessionId(matchingSession.id);
+        handleAddLog(
+          `VECTOR MATCH KEY LOCATED: ASSOCIATED TO SESSION [${match.sessionId}]`,
+          'SUCCESS',
+        );
+      }
+    }
+  };
+
+  // Execute manual query override form
+  const handleExecuteQuery = (query: string) => {
+    handleAddLog(
+      `COMMAND INJECTOR: EXECUTING VECTOR OVERRIDE ON SEQUENCE [${query}]`,
+      'INFO',
+    );
+
+    const isSeatId = /^G-\d{2}$/i.test(query) || /^\d{2}$/.test(query);
+    if (isSeatId) {
+      const formattedSeat = query.startsWith('G-')
+        ? query.toUpperCase()
+        : `G-${query.padStart(2, '0')}`;
+      const seatExists = schema.seats.find((s) => s.id === formattedSeat);
+      if (seatExists) {
+        handleToggleSeat(formattedSeat);
+        handleAddLog(
+          `QUERY HIT: CHANGER APPLIED TO SECTOR MAPPING COORDINATE [${formattedSeat}]`,
+          'SUCCESS',
+        );
+        return;
+      }
+    }
+
+    const matchingSession = schema.sessions.find(
+      (s) => s.id.toUpperCase() === query,
+    );
+    if (matchingSession) {
+      setSelectedSessionId(matchingSession.id);
+      handleAddLog(
+        `QUERY HIT: SESSION SEQUENCE KEY PINNED ON LEDGER ROW [${query}]`,
+        'SUCCESS',
+      );
+    } else {
+      handleAddLog(
+        `QUERY FAULT: TARGET METRIC [${query}] IS NOT ALLOCATED IN REGISTER`,
+        'ALERT',
+      );
+    }
+  };
+
+  // Inject user-authored override log
+  const handleInsertSession = (newLog: SessionLog) => {
+    setSchema((prev) => {
+      const nextSessions = [newLog, ...prev.sessions];
+
+      const targetSeat = newLog.seat.toUpperCase();
+      const updatedSeats = [...prev.seats];
+      const seatIdx = updatedSeats.findIndex((s) => s.id === targetSeat);
+      if (seatIdx !== -1) {
+        updatedSeats[seatIdx] = {
+          ...updatedSeats[seatIdx],
+          status: 'OCCUPIED',
+          sessionId: newLog.id,
+        };
+      }
+
+      const nextLog: SystemLogEntry = {
+        timestamp: getSimulatedTime(),
+        text: `SESSION ${newLog.id} SUCCESSFULLY REGISTERED INTO HISTORIC DATA STACK`,
+        type: 'SUCCESS',
+      };
+
+      const updated = {
+        ...prev,
+        sessions: nextSessions,
+        seats: updatedSeats,
+        systemLogs: [...prev.systemLogs, nextLog],
+      };
+
+      syncSchemaToText(updated);
+      setSelectedSessionId(newLog.id);
+      return updated;
+    });
+  };
+
+  const handleClearLogs = () => {
+    setSchema((prev) => {
+      const updated = {
+        ...prev,
+        systemLogs: [
+          {
+            timestamp: getSimulatedTime(),
+            text: 'SYSTEM TERMINAL BUFFER RESOLVED & PURGED.',
+            type: 'INFO' as const,
+          },
+        ],
+      };
+      syncSchemaToText(updated);
+      return updated;
+    });
+  };
+
+  // Called when user edits the raw JSON text editor manually
+  const handleJsonTextChange = (newText: string) => {
+    setJsonText(newText);
+
+    if (isInternalUpdatingRef.current) return;
+
+    try {
+      const parsed = JSON.parse(newText);
+      if (parsed && typeof parsed === 'object') {
+        const safeParsed: SchemaState = {
+          systemName: parsed.systemName || 'THE TOME: 1970 Edition',
+          operator: parsed.operator || 'ADMIN_74',
+          encryption: parsed.encryption || 'LEGACY-A',
+          capacityTarget:
+            typeof parsed.capacityTarget === 'number'
+              ? parsed.capacityTarget
+              : 67,
+          landscapeTitle: parsed.landscapeTitle || 'Operational Landscape',
+          landscapeImgRef: parsed.landscapeImgRef || 'IMG_REF_69.SYS',
+          visibleComponents: {
+            headerBanner: false,
+            landscapeImage: true,
+            theaterMapping: true,
+            systemDiagnostics: false,
+            sessionRegistry: false,
+            operationalLedger: false,
+            inputOverride: false,
+            systemLogs: true,
+            appendixManual: false,
+            ...(parsed.visibleComponents || {}),
+          },
+          sessions: Array.isArray(parsed.sessions) ? parsed.sessions : [],
+          seats: Array.isArray(parsed.seats) ? parsed.seats : [],
+          systemLogs: Array.isArray(parsed.systemLogs) ? parsed.systemLogs : [],
+        };
+
+        setSchema(safeParsed);
+      }
+    } catch (err) {
+      // Handled inside SchemaDatabase validation component dynamically
+    }
+  };
+
+  // Reset database back to default initial values
+  const handleResetDatabase = () => {
+    const fresh = getInitialSchemaState();
+    setSchema(fresh);
+    setJsonText(JSON.stringify(fresh, null, 2));
+    setSelectedSessionId('T-740921-A');
+    setActiveManualTopic(null);
+  };
+
+  // Sync callbacks from inner widgets up to main Schema
+  const handleOperatorChange = (newVal: string) => {
+    setSchema((prev) => {
+      const updated = { ...prev, operator: newVal };
+      syncSchemaToText(updated);
+      return updated;
+    });
+  };
+
+  const handleEncryptionChange = (
+    newVal: 'LEGACY-A' | 'SECURE-X' | 'UNENCRYPTED',
+  ) => {
+    setSchema((prev) => {
+      const updated = { ...prev, encryption: newVal };
+      syncSchemaToText(updated);
+      return updated;
+    });
+  };
+
+  // Derived visible variables from schema visibleComponents block
+  const isHeaderVisible = schema.visibleComponents.headerBanner !== false;
+  const isLandscapeVisible = schema.visibleComponents.landscapeImage !== false;
+  const isTheaterMappingVisible =
+    schema.visibleComponents.theaterMapping !== false;
+  const isDiagnosticsVisible =
+    schema.visibleComponents.systemDiagnostics !== false;
+  const isRegistryVisible = schema.visibleComponents.sessionRegistry !== false;
+  const isLedgerVisible = schema.visibleComponents.operationalLedger !== false;
+  const isInputVisible = schema.visibleComponents.inputOverride !== false;
+  const isLogsVisible = schema.visibleComponents.systemLogs !== false;
+  const isManualVisible = schema.visibleComponents.appendixManual !== false;
 
   return (
-    <div className="min-h-screen bg-[#f9f9f9] text-[#1b1b1b] flex flex-col justify-between selection:bg-blood-red selection:text-white">
-      <div className="h-2 bg-[#1b1b1b]" />
+    <div
+      id="application-container"
+      className="min-h-screen relative flex flex-col p-4 md:p-8 bg-parchment-deep selection:bg-black selection:text-parchment-deep"
+    >
+      {/* Background scanline/dots authenticity overlay */}
+      <div className="dot-matrix-overlay absolute inset-0 z-0 pointer-events-none"></div>
 
-      <main className="flex-grow w-full max-w-7xl mx-auto py-6">
-        <div className="mx-auto max-w-7xl px-4 py-8 md:px-8 select-none">
-          {/* Main Title Banner */}
-          <section className="my-8">
-            <h2 className="font-accent text-6xl uppercase tracking-tighter text-black md:text-[110px] md:leading-[105px]">
-              LOBBY INDEX
-            </h2>
-            <div className="mt-2 flex flex-col justify-between font-mono text-xs font-semibold uppercase tracking-widest text-neutral-500 sm:flex-row">
-              <span>DATA STACK // REFERENCE LOBBY V.70 // ACCESS: GRANTED</span>
+      <div className="max-w-7xl mx-auto w-full flex-grow flex flex-col relative z-10">
+        {/* Simple Utility Navigation Rail */}
+        {isHeaderVisible && (
+          <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-black pb-3">
+            <div className="flex items-center gap-2">
+              <span className="text-xl font-bold font-anton tracking-widest text-[#000000] flex items-center gap-1.5">
+                ⊞ {schema.systemName}
+              </span>
+              <span className="text-[10px] bg-black text-[#E6E2D8] px-1.5 py-0.5 font-mono tracking-tighter">
+                TACTICAL PERFORMANCE CONSOLE
+              </span>
             </div>
-            <div className="mt-4 h-1.5 bg-black" />
-          </section>
+            <div className="flex items-center gap-4 text-xs font-mono font-bold mt-2 sm:mt-0 opacity-75">
+              <span className="flex items-center gap-1 text-emerald-800">
+                <ShieldCheck className="w-4 h-4 text-emerald-700" />{' '}
+                SECURE_NODE_ONLINE
+              </span>
+              <span>COOR_GRID: G-01 // Z-99</span>
+            </div>
+          </header>
+        )}
 
-          {/* Interactive Search Tool */}
-          <div className="relative mb-8 w-full">
-            <div className="flex border-2 border-[#1b1b1b] bg-white shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-              <input
-                id="index-search-input"
-                type="text"
-                placeholder="TERM QUERY (e.g. Script, Actor)..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full font-mono text-xs px-3 py-2 outline-none uppercase placeholder:text-neutral-400"
-              />
-              <div className="flex items-center gap-1.5 border-l-2 border-[#1b1b1b] bg-neutral-100 px-3 font-mono text-[10px] font-bold text-neutral-500">
-                <Search className="h-3.5 w-3.5 text-neutral-400" /> QUERY
+        {/* 1. SCHEMA DATABASE EDITOR AT THE TOP */}
+        {showDbEditor && (
+          <SchemaDatabase
+            jsonValue={jsonText}
+            onJsonChange={handleJsonTextChange}
+            onReset={handleResetDatabase}
+          />
+        )}
+
+        {/* 2. UPPER REGISTRY & IMAGING PANEL */}
+        {(isLandscapeVisible ||
+          isTheaterMappingVisible ||
+          isDiagnosticsVisible ||
+          isRegistryVisible) && (
+          <section
+            id="upper-grid-deck"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8"
+          >
+            {/* Left side: Operational Landscape Image */}
+            {isLandscapeVisible && (
+              <div
+                className={`${isTheaterMappingVisible || isDiagnosticsVisible || isRegistryVisible ? 'lg:col-span-8' : 'lg:col-span-12'}`}
+              >
+                <OperationalLandscape
+                  title={schema.landscapeTitle}
+                  imgRef={schema.landscapeImgRef}
+                />
               </div>
-            </div>
+            )}
 
-            {/* Search Results Dropdown Overlay */}
-            {searchQuery && (
-              <div className="absolute z-10 mt-2 w-full border-2 border-[#1b1b1b] bg-white p-2 font-mono shadow-[4px_4px_0px_0px_rgba(27,27,27,1)]">
-                <p className="border-b border-[#1b1b1b]/10 pb-1 text-[10px] font-bold text-neutral-400 uppercase">
-                  QUERY REGISTER OUTCOME ({filteredItems.length} FOUND)
-                </p>
-                {filteredItems.length > 0 ? (
-                  <div className="max-h-60 overflow-y-auto divide-y divide-neutral-100">
-                    {filteredItems.map((item) => (
-                      <a
-                        key={item.url}
-                        href={item.url}
-                        className="flex w-full cursor-pointer justify-between py-2.5 px-1.5 text-left text-xs uppercase hover:bg-neutral-100 font-semibold text-[#1b1b1b]"
-                      >
-                        <span>{item.title}</span>
-                        <span className="text-blood-red font-bold">
-                          {item.section}
-                        </span>
-                      </a>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="p-3 text-center text-xs italic text-neutral-500">
-                    No archives match the query.
-                  </p>
+            {/* Right side: Theater Map & Diagnostics & Registry */}
+            {(isTheaterMappingVisible ||
+              isDiagnosticsVisible ||
+              isRegistryVisible) && (
+              <div
+                className={`${isLandscapeVisible ? 'lg:col-span-4' : 'lg:col-span-12'} flex flex-col gap-4`}
+              >
+                {isTheaterMappingVisible && (
+                  <TheaterMap
+                    seats={schema.seats}
+                    onToggleSeat={handleToggleSeat}
+                    onSelectSeatCoordinate={handleSelectSeatCoordinate}
+                  />
+                )}
+
+                {(isDiagnosticsVisible || isRegistryVisible) && (
+                  <HeaderBanner
+                    seats={schema.seats}
+                    onAddLog={handleAddLog}
+                    operator={schema.operator}
+                    onOperatorChange={handleOperatorChange}
+                    encryption={schema.encryption}
+                    onEncryptionChange={handleEncryptionChange}
+                    showDiagnostics={isDiagnosticsVisible}
+                    showRegistry={isRegistryVisible}
+                  />
                 )}
               </div>
             )}
-          </div>
-
-          {/* SCRIPT Section Header */}
-          <div className="mt-8 mb-4">
-            <h3 className="font-accent text-[84px] leading-none uppercase tracking-widest text-[#1b1b1b]">
-              SCRIPT
-            </h3>
-          </div>
-
-          <section className="mb-8 grid grid-cols-1 gap-6 md:grid-cols-2">
-            {/* Script 000 */}
-            <div className="flex items-start gap-4 border-2 border-[#1b1b1b] bg-[#e6e2d8]/20 p-5 shadow-[4px_4px_0px_0px_rgba(27,27,27,1)]">
-              <div className="border-2 border-[#1b1b1b] bg-white p-2 text-neutral-800 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)] select-none">
-                <div className="font-accent text-xl">00</div>
-              </div>
-              <div>
-                <h4 className="font-accent text-lg uppercase tracking-wide text-[#1b1b1b]">
-                  <a
-                    href="/script/000"
-                    className="hover:text-blood-red hover:underline underline-offset-2"
-                  >
-                    /script/000
-                  </a>
-                </h4>
-                <p className="font-serif text-sm text-neutral-600 mt-1">
-                  Access the primary script archive.
-                </p>
-              </div>
-            </div>
-
-            {/* Script 001 */}
-            <div className="flex items-start gap-4 border-2 border-[#1b1b1b] bg-[#e6e2d8]/20 p-5 shadow-[4px_4px_0px_0px_rgba(27,27,27,1)]">
-              <div className="border-2 border-[#1b1b1b] bg-white p-2 text-neutral-800 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)] select-none">
-                <div className="font-accent text-xl">01</div>
-              </div>
-              <div>
-                <h4 className="font-accent text-lg uppercase tracking-wide text-[#1b1b1b]">
-                  <a
-                    href="/script/001"
-                    className="hover:text-blood-red hover:underline underline-offset-2"
-                  >
-                    /script/001
-                  </a>
-                </h4>
-                <p className="font-serif text-sm text-neutral-600 mt-1">
-                  Access the secondary script archive.
-                </p>
-              </div>
-            </div>
           </section>
+        )}
 
-          {/* Persistent Page Divider Bar */}
-          <div className="mt-12 mb-8 h-0.5 bg-[#1b1b1b]" />
+        {/* 3. LEDGER ARCHIVES TABLE */}
+        {isLedgerVisible && (
+          <section id="ledger-history-section" className="mb-8">
+            <LedgerTable
+              sessions={schema.sessions}
+              selectedSessionId={selectedSessionId}
+              onSelectSession={(session) => setSelectedSessionId(session.id)}
+              onAddLog={handleAddLog}
+            />
+          </section>
+        )}
 
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-2">
-            {/* ================= COLUMN 2 ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_01 // ACTOR
+        {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
+        {(isInputVisible || isLogsVisible) && (
+          <section
+            id="coordinate-diagnostics-deck"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8"
+          >
+            {/* INPUT FORMS OVERRIDE */}
+            {isInputVisible && (
+              <div
+                className={`${isLogsVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
+              >
+                <CommandPanel
+                  onExecuteQuery={handleExecuteQuery}
+                  onInsertSession={handleInsertSession}
+                  onAddLog={handleAddLog}
+                />
               </div>
+            )}
 
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Actor
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/actor/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/actor/000</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/actor/001"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/actor/001</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/actor/002"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/actor/002</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/actor/005"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/actor/005</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
+            {/* SYSTEM EVENT LOGS */}
+            {isLogsVisible && (
+              <div
+                className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
+              >
+                <SystemLogs
+                  logs={schema.systemLogs}
+                  onClearLogs={handleClearLogs}
+                />
               </div>
+            )}
+          </section>
+        )}
+
+        {/* 5. MANUAL RETRO ENCYCLOPEDIA */}
+        {isManualVisible && (
+          <footer
+            id="procedural-encyclopedia-block"
+            className="border-2 border-black bg-[#E6E2D8]/40 p-4 font-mono text-xs hard-shadow-sm"
+          >
+            <div className="flex items-center gap-2 mb-3 pb-2 border-b border-black/15">
+              <BookOpen className="w-4 h-4 text-amber-700" />
+              <h4 className="font-bold uppercase tracking-wider text-black">
+                Procedural Manual & Operational Appendix
+              </h4>
             </div>
-            {/* ================= COLUMN 3 ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_02 // ACTION
-              </div>
-
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Action
-                  </h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {ENCYCLOPEDIA_NOTES.map((manual, keyIdx) => (
+                <div key={keyIdx} className="space-y-1">
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setActiveManualTopic(
+                        activeManualTopic === keyIdx ? null : keyIdx,
+                      );
+                      handleAddLog(
+                        `Appendix category read: ${manual.topic}`,
+                        'INFO',
+                      );
+                    }}
+                    className="font-bold underline text-black cursor-pointer hover:text-amber-800 text-left block w-full"
+                  >
+                    § {manual.topic}{' '}
+                    {activeManualTopic === keyIdx ? '[-]' : '[+]'}
+                  </button>
+                  <div
+                    className={`text-zinc-700 font-serif leading-relaxed text-xs ${activeManualTopic === keyIdx ? 'block' : 'hidden md:block opacity-85'}`}
+                  >
+                    {manual.notes}
+                  </div>
                 </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/action/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/action/000</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/action/001"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/action/001</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/action/002"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/action/002</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/action/005"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/action/005</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
-              </div>
+              ))}
             </div>
-            {/* ================= COLUMN 4 ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_03 // KNOW
-              </div>
-
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Know
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/know/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/know/000</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/know/001"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/know/001</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/know/002"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/know/002</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/know/003"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/know/003</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* ================= COLUMN 5 ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_04 // PROFILE
-              </div>
-
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Profile
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/profile/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">
-                      /profile/000
-                    </span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
-              </div>
-            </div>
-            {/* ================= COLUMN RULE ================= */}
-            <div className="flex flex-col">
-              <div className="bg-black py-1 px-3 text-center text-xs font-mono font-bold tracking-widest text-[#fdfbf7]">
-                DECK_05 // RULE
-              </div>
-
-              <div className="mt-2 flex-grow border-2 border-[#1b1b1b] bg-[#fdfbf7] p-5 shadow-[2px_2px_0px_0px_rgba(27,27,27,1)]">
-                <div className="border-b border-neutral-300 pb-3 mb-4">
-                  <h3 className="font-accent text-[42px] leading-[40px] uppercase text-[#1b1b1b] tracking-wider">
-                    Rule
-                  </h3>
-                </div>
-
-                <div className="space-y-4">
-                  <a
-                    href="/rule/000"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/rule/000</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                  <a
-                    href="/rule/001"
-                    className="group flex w-full items-end justify-between font-serif text-[17px] text-[#1b1b1b] hover:text-blood-red transition-colors"
-                  >
-                    <span className="font-semibold text-left">/rule/001</span>
-                    <span className="mx-2 mb-1 flex-grow border-b border-dotted border-[#1b1b1b]/30" />
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </main>
+          </footer>
+        )}
+      </div>
     </div>
   );
 }
