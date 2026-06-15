@@ -532,3 +532,63 @@ html {
     line-height: 1.6;
   }
 }
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  --font-anton: 'Anton', sans-serif;
+  --font-tinos: 'Tinos', serif;
+
+  --color-parchment-deep: #e6e2d8;
+  --color-ink-wash: #333333;
+  --color-blood-red: #d10919;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-parchment-deep);
+    color: #000000;
+    font-family: var(--font-tinos), serif;
+  }
+}
+
+.dot-matrix-overlay {
+  background-image: radial-gradient(circle, #000 1px, transparent 1px);
+  background-size: 4px 4px;
+  opacity: 0.03;
+  pointer-events: none;
+}
+
+.hard-shadow {
+  box-shadow: 4px 4px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.hard-shadow-sm {
+  box-shadow: 2px 2px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.press-interaction {
+  transition:
+    transform 0.05s ease,
+    box-shadow 0.05s ease;
+}
+
+.press-interaction:active {
+  transform: translate(2px, 2px);
+  box-shadow: 0px 0px 0px 0px rgba(0, 0, 0, 1);
+}
+
+.ink-bleed {
+  filter: contrast(110%) brightness(95%);
+}
+
+/* Custom scrollbar styling for parchment style */
+::-webkit-scrollbar {
+  width: 12px;
+  background: #e6e2d8;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #000000;
+  border: 3px solid #e6e2d8;
+}
