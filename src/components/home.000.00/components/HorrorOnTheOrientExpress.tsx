@@ -14,7 +14,9 @@ export function HorrorOnTheOrientExpress({
   // Soundscape Generator State
   const [isTrainPlaying, setIsTrainPlaying] = useState(false);
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
-  const [trainIntervalId, setTrainIntervalId] = useState<any | null>(null);
+  const [trainIntervalId, setTrainIntervalId] = useState<
+    number | NodeJS.Timeout | null
+  >(null);
 
   // Passenger Manifests / Dossiers
   const passengerDossiers = [
@@ -79,7 +81,9 @@ export function HorrorOnTheOrientExpress({
       setIsTrainPlaying(true);
       try {
         const AudioCtx =
-          window.AudioContext || (window as any).webkitAudioContext;
+          window.AudioContext ||
+          (window as unknown as { webkitAudioContext: typeof AudioContext })
+            .webkitAudioContext;
         if (!AudioCtx) return;
         const ctx = new AudioCtx();
         setAudioCtx(ctx);
@@ -150,7 +154,9 @@ export function HorrorOnTheOrientExpress({
       osc2.start();
       osc1.stop(ctx.currentTime + 1.2);
       osc2.stop(ctx.currentTime + 1.2);
-    } catch (err) {}
+    } catch (err) {
+      /* empty */
+    }
   };
 
   const interrogatePerson = (name: string) => {

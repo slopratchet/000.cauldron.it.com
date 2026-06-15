@@ -3,8 +3,8 @@ import { Database, AlertTriangle, Check, RefreshCw } from 'lucide-react';
 
 interface FullSchemaDatabaseProps {
   playClack: () => void;
-  jsonData: any;
-  onUpdateJsonData: (newData: any) => void;
+  jsonData: unknown;
+  onUpdateJsonData: (newData: unknown) => void;
   onResetToDefault: () => void;
   schemaSource?: 'loading' | 'api' | 'fallback_local' | 'fallback_embedded';
 }
@@ -34,8 +34,8 @@ export function FullSchemaDatabase({
       setJsonError(null);
       // Valid JSON parsed, update the parent state in real time!
       onUpdateJsonData(parsed);
-    } catch (err: any) {
-      setJsonError(err.message);
+    } catch (err: unknown) {
+      setJsonError(err instanceof Error ? err.message : String(err));
     }
   };
 
