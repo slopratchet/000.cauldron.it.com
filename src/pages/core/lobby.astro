@@ -1,0 +1,118 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LobbyIndex from '../components/lobby-index/LobbyIndex.tsx';
+
+let status = 'OFFLINE';
+try {
+  const response = await fetch(new URL('/api/moon', Astro.url));
+  if (response.ok) {
+    status = 'WAITING';
+  }
+} catch (e) {
+  console.error('Failed to fetch system status:', e);
+}
+---
+
+<Layout bodyClass="cimmerian-theme">
+  <!-- We add the fonts needed for the Cimmerian Sheet -->
+
+  <div class="flex justify-between items-center mb-4">
+    <span class="text-2xl font-bold">LOBBY</span>
+    <a href="/project-status" class="text-primary hover:underline"
+      >Project Status</a
+    >
+  </div>
+
+  <div class="font-label text-[10px] tracking-widest uppercase">
+    CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+      id="status-indicator"
+      class={status === 'ONLINE'
+        ? 'text-green-400'
+        : status === 'WAITING'
+          ? 'text-yellow-400'
+          : 'text-red-400'}>{status}</span
+    >
+  </div>
+
+  <LobbyIndex client:load />
+
+  <!-- WebSocket Logs -->
+  <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
+    <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
+      LIVE TRANSMISSION
+    </h3>
+    <div
+      id="ws-logs"
+      class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
+    >
+      [SYSTEM] Waiting for connection to worker...
+    </div>
+  </section>
+
+  <script>
+    // WebSocket Connection
+    const wsLogs = document.getElementById('ws-logs');
+    if (wsLogs) {
+      let ws;
+      let usingFallback = false;
+
+      const appendLog = (htmlContent) => {
+        wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
+      };
+
+      const connect = (url, isFallback = false) => {
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          appendLog(
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
+          );
+        };
+
+        let hasReceivedTick = false;
+        ws.onmessage = (event) => {
+          if (!hasReceivedTick) {
+            hasReceivedTick = true;
+            document.getElementById('status-indicator').innerText = 'ONLINE';
+            document.getElementById('status-indicator').className =
+              'text-green-400';
+          }
+          let data = event.data;
+          try {
+            const parsed = JSON.parse(data);
+            data = JSON.stringify(parsed);
+          } catch (e) {}
+          appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+        };
+
+        ws.onerror = (error) => {
+          if (!isFallback && !usingFallback) {
+            usingFallback = true;
+            appendLog(
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+            );
+            connect('wss://worker-sower.berad4000.workers.dev/ws', true);
+          } else {
+            document.getElementById('status-indicator').innerText = 'OFFLINE';
+            document.getElementById('status-indicator').className =
+              'text-red-400';
+            appendLog(
+              '<span class="text-red-500">[ERROR] Connection failed.</span>',
+            );
+          }
+        };
+
+        ws.onclose = () => {
+          document.getElementById('status-indicator').innerText = 'OFFLINE';
+          document.getElementById('status-indicator').className =
+            'text-red-400';
+          appendLog('[SYSTEM] Connection closed.');
+        };
+      };
+
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${protocol}//${window.location.host}/api/sun`;
+      connect(wsUrl);
+    }
+  </script>
+</Layout>
