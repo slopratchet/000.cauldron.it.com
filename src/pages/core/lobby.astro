@@ -11,6 +11,11 @@ try {
 } catch (e) {
   console.error('Failed to fetch system status:', e);
 }
+
+const auth =
+  typeof Astro.locals.auth === 'function'
+    ? Astro.locals.auth()
+    : Astro.locals.auth;
 ---
 
 <Layout bodyClass="cimmerian-theme">
@@ -32,6 +37,19 @@ try {
           ? 'text-yellow-400'
           : 'text-red-400'}>{status}</span
     >
+    <div class="mt-2 normal-case tracking-normal">
+      {
+        auth ? (
+          <div class="text-[10px] font-mono bg-[#1a1a1a] text-green-400 p-2 border border-primary overflow-x-auto">
+            <pre>{JSON.stringify(auth, null, 2)}</pre>
+          </div>
+        ) : (
+          <div class="text-[10px] font-mono bg-[#1a1a1a] text-red-400 p-2 border border-primary">
+            No auth data found
+          </div>
+        )
+      }
+    </div>
   </div>
 
   <LobbyIndex client:load />
