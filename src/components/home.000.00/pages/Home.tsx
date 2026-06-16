@@ -37,7 +37,7 @@ import { About } from '../components/About';
 import { BladeRunnerSciFiCorridors } from '../components/BladeRunnerSciFiCorridors';
 import { GothicCryptsHorror } from '../components/GothicCryptsHorror';
 import { PrimalMamaCoreSystem } from '../components/PrimalMamaCoreSystem';
-import { HorrorOnTheOrientExpress } from '../components/HorrorOnTheOrientExpress';
+import { HorrorOnTheHourOfTheAlligator } from '../components/HorrorOnTheHourOfTheAlligator';
 import { FullSchemaDatabase } from '../components/FullSchemaDatabase';
 
 export interface HomeProps {
@@ -441,9 +441,9 @@ export function Home({
                       )
                         return false;
                       if (
-                        world.id === 'orientexpress' &&
+                        world.id === 'hourofthealligator' &&
                         schemaData.sectionsVisibility
-                          ?.showOrientExpressWorldCard === false
+                          ?.showHourOfTheAlligatorWorldCard === false
                       )
                         return false;
                       return true;
@@ -457,7 +457,7 @@ export function Home({
                           ? 'shadow-[0_0_25px_rgba(211,47,47,0.15)] group-hover:shadow-[0_0_30px_rgba(211,47,47,0.3)]'
                           : world.id === 'fantasy'
                             ? 'shadow-[0_0_25px_rgba(5,58,36,0.15)] group-hover:shadow-[0_0_30px_rgba(5,58,36,0.3)]'
-                            : world.id === 'orientexpress'
+                            : world.id === 'hourofthealligator'
                               ? 'shadow-[0_0_25px_rgba(138,28,20,0.15)] group-hover:shadow-[0_0_30px_rgba(138,28,20,0.3)]'
                               : 'shadow-[0_0_25px_rgba(60,29,66,0.15)] group-hover:shadow-[0_0_30px_rgba(60,29,66,0.3)]';
 
@@ -466,7 +466,7 @@ export function Home({
                           ? 'bg-[#D32F2F] text-white'
                           : world.id === 'fantasy'
                             ? 'bg-[#053a24] text-white'
-                            : world.id === 'orientexpress'
+                            : world.id === 'hourofthealligator'
                               ? 'bg-[#8a1c14] text-white'
                               : 'bg-[#3c1d42] text-white';
 
@@ -506,9 +506,9 @@ export function Home({
                                   behavior: 'smooth',
                                   block: 'start',
                                 });
-                            } else if (world.id === 'orientexpress') {
+                            } else if (world.id === 'hourofthealligator') {
                               const el = document.getElementById(
-                                'horror-on-the-orient-express',
+                                'horror-on-the-hour-of-the-alligator',
                               );
                               if (el)
                                 el.scrollIntoView({
@@ -530,7 +530,7 @@ export function Home({
                             />
                             {/* Dramatic color overlay matching genre vibes */}
                             <div
-                              className={`absolute inset-0 bg-gradient-to-t ${world.id === 'scifi' ? 'from-[#8B0000]/95 via-[#8B0000]/45' : world.id === 'fantasy' ? 'from-[#053a24]/95 via-[#053a24]/45' : world.id === 'orientexpress' ? 'from-[#4a100a]/95 via-[#4a100a]/45' : 'from-[#1a0a24]/95 via-[#1a0a24]/45'} to-transparent opacity-90 group-hover:opacity-95 transition-opacity`}
+                              className={`absolute inset-0 bg-gradient-to-t ${world.id === 'scifi' ? 'from-[#8B0000]/95 via-[#8B0000]/45' : world.id === 'fantasy' ? 'from-[#053a24]/95 via-[#053a24]/45' : world.id === 'hourofthealligator' ? 'from-[#4a100a]/95 via-[#4a100a]/45' : 'from-[#1a0a24]/95 via-[#1a0a24]/45'} to-transparent opacity-90 group-hover:opacity-95 transition-opacity`}
                             />
 
                             {/* HUD Badge top left */}
@@ -1329,9 +1329,9 @@ export function Home({
               />
             )}
 
-            {/* Interactive Campaign Boxed Adventure Set: Horror on the Orient Express */}
-            {schemaData.sectionsVisibility?.showOrientExpressDetail && (
-              <HorrorOnTheOrientExpress
+            {/* Interactive Campaign Boxed Adventure Set: Horror on the Hour of the Alligator */}
+            {schemaData.sectionsVisibility?.showHourOfTheAlligatorDetail && (
+              <HorrorOnTheHourOfTheAlligator
                 playClack={playClack}
                 onAddToCart={onAddToCart}
               />
