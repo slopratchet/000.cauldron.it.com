@@ -55,19 +55,19 @@ export const DEFAULT_SCHEMA = {
       subtitle: 'Horror on the Hour of the Alligator Campaign Boxed Set',
       category: 'horror',
       description:
-        'Scale the tracks of Europe in 1923. Track down the shattered fragments of the cursed Sedefkar Simulacrum on a luxury locomotive.',
+        'Scale the sunken tracks of Lickskillet in the post-calamity era. Track down the shattered fragments of illegal beef artifacts on a rusted 1970s swamp locomotive.',
       expandedLore:
-        'The legendary Horror on the Hour of the Alligator campaign is adapted into a massive tabletop boxed set expansion. Traverse from London to Constantinople, managing investigator Sanity while matching wits against the skinless followers of the Red Fez.',
+        "The legendary Horror on the Hour of the Alligator campaign is adapted into a massive tabletop boxed set expansion. Traverse from Beetriot to the deep bayou, managing your character's spiritual sanity while matching wits against the oligarchy's loyal enforcers, all under the watchful gaze of the deified Burt Reynolds.",
       coverUrl: '/img/003.png',
       price: 59.0,
       highlightColor: 'from-[#1e130f] to-[#E4DFD3]',
       accentColor: '#8a1c14',
       badge: 'CAMPAIGN BOXED SET',
       features: [
-        'Interactive 19-part railroad map',
-        'Sedefkar Simulacrum handouts',
-        'Sinister passenger manifests',
-        'Custom sanity preservation mechanics',
+        'Interactive 19-part swamp railroad map',
+        'Illegal beef artifact handouts',
+        'Sinister processing plant manifests',
+        'Custom Burt Reynolds sanity preservation mechanics',
       ],
     },
     {
