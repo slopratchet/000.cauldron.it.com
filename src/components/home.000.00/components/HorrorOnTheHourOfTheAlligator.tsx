@@ -177,7 +177,7 @@ export function HorrorOnTheHourOfTheAlligator({
         <div
           className="absolute inset-0 bg-cover bg-center brightness-[0.25] saturate-[0.7] transform scale-102"
           style={{
-            backgroundImage: `url('/img/011.png')`,
+            backgroundImage: `url('/img/010.png')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[#1e130f]/60 via-transparent to-[#1e130f] z-1" />
