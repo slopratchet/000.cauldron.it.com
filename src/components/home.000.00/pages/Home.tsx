@@ -739,7 +739,7 @@ export function Home({
                 <div
                   className="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-overlay"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1542838132-92c53300491e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
+                    backgroundImage: `url('/img/011.png')`,
                   }}
                 />
 
@@ -1089,7 +1089,7 @@ export function Home({
                     <div className="aspect-[4/3] w-full border-b-2 border-obsidian relative bg-stone-300">
                       <img
                         referrerPolicy="no-referrer"
-                        src="https://images.unsplash.com/photo-1510519138021-5992fe401dd7?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        src="/img/005.png"
                         alt="Simon Stalenhag Mech Style scenery"
                         className="w-full h-full object-cover"
                       />
@@ -1125,7 +1125,7 @@ export function Home({
                     <div className="aspect-[4/3] w-full border-b-2 border-obsidian relative bg-stone-300">
                       <img
                         referrerPolicy="no-referrer"
-                        src="https://images.unsplash.com/photo-1505373877841-8d25f7d46678?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        src="/img/010.png"
                         alt="Notebook dice, pencil"
                         className="w-full h-full object-cover"
                       />
@@ -1160,7 +1160,7 @@ export function Home({
                     <div className="aspect-[4/3] w-full border-b-2 border-obsidian relative bg-stone-300">
                       <img
                         referrerPolicy="no-referrer"
-                        src="https://images.unsplash.com/photo-1472586662442-3eec04b9dbda?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                        src="/img/002.png"
                         alt="Tabletop gaming convention group play"
                         className="w-full h-full object-cover"
                       />
@@ -1379,14 +1379,14 @@ export function Home({
                       {activeStream === 'lotr' ? (
                         <img
                           referrerPolicy="no-referrer"
-                          src="https://images.unsplash.com/photo-1534447677768-be436bb09401?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                          src="/img/010.png"
                           alt="Elijah Wood Lord of the Rings 5e liveplay context"
                           className={`absolute inset-0 w-full h-full object-cover transition-opacity ${isStreamPlaying ? 'opacity-80 saturate-[0.8]' : 'opacity-40 blur-sm'}`}
                         />
                       ) : (
                         <img
                           referrerPolicy="no-referrer"
-                          src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+                          src="/img/011.png"
                           alt="Blade Runner Me Myself Die Liveplay stream context"
                           className={`absolute inset-0 w-full h-full object-cover transition-opacity ${isStreamPlaying ? 'opacity-80 saturate-[0.8]' : 'opacity-40 blur-sm'}`}
                         />

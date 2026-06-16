@@ -43,22 +43,22 @@ export function BladeRunnerSciFiCorridors({
   const [galleryIndex, setGalleryIndex] = useState(0);
   const galleryItems = [
     {
-      url: 'https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=80',
+      url: '/img/006.png',
       caption:
         'The dark, rain-soaked concrete canyons of LAPD LAPD LAPD Sector 4.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=800&q=80',
+      url: '/img/005.png',
       caption:
         'Neon advertisements flickering above overcrowded noodle stands.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?auto=format&fit=crop&w=800&q=80',
+      url: '/img/006.png',
       caption:
         'Chasing spinner silhouettes in the smog-laden futuristic atmosphere.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80',
+      url: '/img/011.png',
       caption:
         'A silent detective contemplating artificial memories in his damp corridor.',
     },
@@ -72,24 +72,21 @@ export function BladeRunnerSciFiCorridors({
       id: 'tablestory',
       title: 'Blade Runner 2023 | Electric Dreams | Ep. 1',
       author: 'Tablestory',
-      thumbnail:
-        'https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/000.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
     {
       id: 'memy',
       title: 'Blade Runner: Electric Dreams Part 1',
       author: 'Me, Myself and Die!',
-      thumbnail:
-        'https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/006.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
     {
       id: 'oxv',
       title: "Blade Runner: The Roleplaying Game | Let's Play",
       author: 'Oxventure',
-      thumbnail:
-        'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/007.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
   ];
@@ -141,7 +138,7 @@ export function BladeRunnerSciFiCorridors({
         <div
           className="absolute inset-0 bg-cover bg-center brightness-[0.4] saturate-[1.25] transition-transform duration-1000 transform scale-102"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1515621061946-eff1c2a352bd?auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/003.png')`,
           }}
         />
         {/* Animated Rain & Overlay Shimmer Grid */}
@@ -376,7 +373,7 @@ export function BladeRunnerSciFiCorridors({
         <div className="relative min-h-[350px] sm:min-h-[420px] lg:min-h-full overflow-hidden flex items-center justify-center select-none">
           <img
             referrerPolicy="no-referrer"
-            src="https://images.unsplash.com/photo-1547394765-185e1e68f34e?auto=format&fit=crop&w=800&q=80"
+            src="/img/006.png"
             alt="Two tactical investigators with high contrast background bokeh lights"
             className="absolute inset-0 w-full h-full object-cover saturate-[1.3] brightness-[0.7]"
           />
@@ -591,7 +588,7 @@ export function BladeRunnerSciFiCorridors({
                 <div className="aspect-[4/3] w-full bg-[#111] overflow-hidden rounded border border-bone/5 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
+                    src="/img/006.png"
                     alt="Blade Runner Starter Set Premium Box Cover Illustration"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300"
                   />
@@ -641,7 +638,7 @@ export function BladeRunnerSciFiCorridors({
                 <div className="aspect-[4/3] w-full bg-[#111] overflow-hidden rounded border border-bone/5 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+                    src="/img/008.png"
                     alt="Blade Runner Core Rules Technical Book Cover"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300"
                   />

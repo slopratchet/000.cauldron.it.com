@@ -37,8 +37,7 @@ export const DEFAULT_SCHEMA = {
         'Explore futuristic conspiracies, high-tech rebellions, and rust-colored neon ruins.',
       expandedLore:
         'The Blade Runner roleplaying game sweeps you into the neon noir rain of Los Angeles 2037. As a Blade Runner of the LAPD Rep-Detect Unit, you walk the razor edge of morality, sorting flesh from circuitry. Step into massive sci-fi mech landscapes and mutant infested wasteland sandboxes where survival is negotiated by the click of heavy ammunition.',
-      coverUrl:
-        'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      coverUrl: '/img/002.png',
       price: 49.0,
       highlightColor: 'from-[#8B0000] to-[#E4DFD3]',
       accentColor: '#D32F2F',
@@ -59,8 +58,7 @@ export const DEFAULT_SCHEMA = {
         'Scale the tracks of Europe in 1923. Track down the shattered fragments of the cursed Sedefkar Simulacrum on a luxury locomotive.',
       expandedLore:
         'The legendary Horror on the Hour of the Alligator campaign is adapted into a massive tabletop boxed set expansion. Traverse from London to Constantinople, managing investigator Sanity while matching wits against the skinless followers of the Red Fez.',
-      coverUrl:
-        'https://images.unsplash.com/photo-1543269664-76bc3997d9ea?auto=format&fit=crop&w=800&q=80',
+      coverUrl: '/img/003.png',
       price: 59.0,
       highlightColor: 'from-[#1e130f] to-[#E4DFD3]',
       accentColor: '#8a1c14',
@@ -81,8 +79,7 @@ export const DEFAULT_SCHEMA = {
         'One streamlined ruleset, infinite distinct worlds. Power and customize high-octane campaigns across any genre.',
       expandedLore:
         'Primal Mama is a versatile core tabletop rules engine engineered for fast, tactical play with maximum narrative flair. Features modular traits, card-based combat pacing, scaling action dice, and Wild Card mechanics. Perfect for sandbox customization — whether you are running hard sci-fi heists, high fantasy exploration, or gritty horror stories. One core book is all you will ever need.',
-      coverUrl:
-        'https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      coverUrl: '/img/010.png',
       price: 35.0,
       highlightColor: 'from-[#053a24] to-[#E4DFD3]',
       accentColor: '#053a24',
@@ -103,8 +100,7 @@ export const DEFAULT_SCHEMA = {
         'Confront psychological aberrations, eldritch deities, and standard skeletal dread.',
       expandedLore:
         'Experience gothic horrors, eldritch entities and existential panic games. These products feature dark illustrations, bleak sanity parameters, and heavy consequence grids. From the decaying stone crypts of the Gilded Atrium to eldritch curses floating on edge-server frequencies.',
-      coverUrl:
-        'https://images.unsplash.com/photo-1509248961158-e54f6934749c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80',
+      coverUrl: '/img/009.png',
       price: 45.0,
       highlightColor: 'from-[#3c1d42] to-[#E4DFD3]',
       accentColor: '#3c1d42',
@@ -135,8 +131,7 @@ export const DEFAULT_SCHEMA = {
           'Our massive fantasy sandbox campaign book is officially shipping. Embark on dark adventures through the shifting valleys.',
         content:
           'We are thrilled to announce that the physical editions of The Tome of Souls have arrived at our fulfillment centers and are heading out to backers and retailers world-wide. Crafted with cloth-wrapped covers, foil stamps, and heavyweight satin paper, this 320-page compendium provides complete sandbox rules, custom monster tables, and cohesive adventure modules. Order your copy in our shop today to receive immediate PDF files.',
-        imageUrl:
-          'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80',
+        imageUrl: '/img/000.png',
       },
       {
         id: 'news-2',
@@ -148,8 +143,7 @@ export const DEFAULT_SCHEMA = {
           'Visit Booth #441 for live-run demonstration scenarios, original canvas art previews, and limited custom dice sets.',
         content:
           'This August, Camp Candor is heading to Gen Con in Indianapolis! We will be hosting 24 active tabletop convention sessions led by our verified Free Agents. Stop by Booth #441 to meet our design crew, play mini-scenarios, and pick up convention-exclusive printable Character Passports and leather-debossed dice vaults.',
-        imageUrl:
-          'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80',
+        imageUrl: '/img/004.png',
       },
       {
         id: 'news-3',
@@ -160,8 +154,7 @@ export const DEFAULT_SCHEMA = {
           'Empower your house rules using our updated publisher layout assets, character sheet PDFs, and print matrices.',
         content:
           'We have updated our Community Content guidelines and uploaded professional Adobe InDesign and Scribus formatting templates to our public folder. Backers can now design, format, and share custom scenarios using official Camp Candor fonts and stylistic borders. All layout templates comply with our Open Gaming Covenant.',
-        imageUrl:
-          'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
+        imageUrl: '/img/005.png',
       },
     ],
   },
@@ -367,7 +360,7 @@ export const DEFAULT_SCHEMA = {
         price: 59.5,
         desc: 'Engage in premium historical cosmic investigation. Includes 6 full-length campaign booklets, a 1923 vintage map layout poster, complete suspect profile registry cards, and replica passport folders.',
         badge: 'CAMPAIGN BOX',
-        img: 'https://images.unsplash.com/photo-1543269664-76bc3997d9ea?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/010.png',
       },
       {
         id: 'prod-symbaroum',
@@ -376,7 +369,7 @@ export const DEFAULT_SCHEMA = {
         price: 29.0,
         desc: 'Includes everything you need to play: Wild Card dice matrices, rules for fast character setup, and modular multi-genre tools.',
         badge: 'BEST SELLER',
-        img: 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/004.png',
       },
       {
         id: 'prod-onering',
@@ -385,7 +378,7 @@ export const DEFAULT_SCHEMA = {
         price: 39.0,
         desc: 'Take your core rules back to magic-laden realms of sword & sorcery. Intricate ruins exploration and ancient spellcasting options.',
         badge: 'FANTASY EXPANSION',
-        img: 'https://images.unsplash.com/photo-1610116306796-6ebd3051c330?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/011.png',
       },
       {
         id: 'prod-bladerunner',
@@ -394,7 +387,7 @@ export const DEFAULT_SCHEMA = {
         price: 49.0,
         desc: 'Investigate replicant cases in LA 2037. Heavy themes, neon-lit investigation boards, and intense investigative systems.',
         badge: 'CORE EDITION',
-        img: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/005.png',
       },
       {
         id: 'prod-astromancer',
@@ -403,7 +396,7 @@ export const DEFAULT_SCHEMA = {
         price: 35.0,
         desc: 'Anniversary Editions of core tables. Includes Core Rulebook, Fantasy companion, and digital printable rules tracking sheets.',
         badge: 'BUNDLE DEALS',
-        img: 'https://images.unsplash.com/photo-1532012197267-da84d127e765?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/006.png',
       },
       {
         id: 'prod-frontierscum',
@@ -412,7 +405,7 @@ export const DEFAULT_SCHEMA = {
         price: 25.0,
         desc: 'A game about wanted outlaws making their mark on a lost frontier. Gritty, rules-light, high-lethal wilderness shootouts.',
         badge: 'INDIE AWARD',
-        img: 'https://images.unsplash.com/photo-1618666012114-a09015783686?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/010.png',
       },
       {
         id: 'prod-stormbringer',
@@ -421,7 +414,7 @@ export const DEFAULT_SCHEMA = {
         price: 45.0,
         desc: 'Roleplaying in the magical, chaotic fantasy world of Elric of Melniboné. Features custom magic systems and demonic bargains.',
         badge: 'NEW RELEASE',
-        img: 'https://images.unsplash.com/photo-1512820790803-83ca734da794?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+        img: '/img/011.png',
       },
     ],
   },

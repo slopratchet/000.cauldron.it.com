@@ -45,21 +45,21 @@ export function GothicCryptsHorror({
   const [galleryIndex, setGalleryIndex] = useState(0);
   const galleryItems = [
     {
-      url: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80',
+      url: '/img/003.png',
       caption:
         'The decaying stone tombs of the Gilded Atrium shrouded in freezing evening fog.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=800&q=80',
+      url: '/img/002.png',
       caption: 'Misty sentinel gargoyles guarding ancient forbidden vaults.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1475924156734-496f6cac6ec1?auto=format&fit=crop&w=800&q=80',
+      url: '/img/000.png',
       caption:
         'Chasing wisps deep into the mythical, moss-choked woods of Norrland.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80',
+      url: '/img/010.png',
       caption:
         'A single silver candelabra illuminating centuries of dust and skeletal secrets.',
     },
@@ -73,24 +73,21 @@ export function GothicCryptsHorror({
       id: 'dark_candle',
       title: 'Vaesen RPG | A Wick In The Darkness | Episode 1',
       author: 'Tablestory',
-      thumbnail:
-        'https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/003.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
     {
       id: 'vault_solo',
       title: 'Gothic Dead: Vault of Bone Solitary Chronicle',
       author: 'SoloInvestigator',
-      thumbnail:
-        'https://images.unsplash.com/photo-1548263591-19059728cb1c?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/000.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
     {
       id: 'vaesen_oxv',
       title: 'Vaesen: Mythic North | Actual Play Horror Special',
       author: 'Oxventure',
-      thumbnail:
-        'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/010.png',
       url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',
     },
   ];
@@ -142,7 +139,7 @@ export function GothicCryptsHorror({
         <div
           className="absolute inset-0 bg-cover bg-center brightness-[0.3] saturate-[0.85] transition-transform duration-1000 transform scale-102"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/006.png')`,
           }}
         />
         {/* Animated Mist & Deep Violet Overlay */}
@@ -381,7 +378,7 @@ export function GothicCryptsHorror({
         <div className="relative min-h-[350px] sm:min-h-[420px] lg:min-h-full overflow-hidden flex items-center justify-center select-none">
           <img
             referrerPolicy="no-referrer"
-            src="https://images.unsplash.com/photo-1548263591-19059728cb1c?auto=format&fit=crop&w=800&q=80"
+            src="/img/000.png"
             alt="Old stone Gothic crypt illuminated by a single spotlight"
             className="absolute inset-0 w-full h-full object-cover saturate-[1.1] brightness-[0.6]"
           />
@@ -596,7 +593,7 @@ export function GothicCryptsHorror({
                 <div className="aspect-[4/3] w-full bg-[#0a080c] overflow-hidden rounded border border-[#2b1736]/30 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
+                    src="/img/003.png"
                     alt="Vaesen Gothic Starter Set Premium Dark Cover"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />
@@ -644,7 +641,7 @@ export function GothicCryptsHorror({
                 <div className="aspect-[4/3] w-full bg-[#0a080c] overflow-hidden rounded border border-[#2b1736]/30 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+                    src="/img/006.png"
                     alt="Vaults of the Gothic Dead Hardbound Core Rulebook"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.9)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />
