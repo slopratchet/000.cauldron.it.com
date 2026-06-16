@@ -54,7 +54,7 @@ export function AtTheTable({ playClack, data }: AtTheTableProps) {
         <div
           className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-60 grayscale filter contrast-125 transition-transform duration-700 hover:scale-[1.03]"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1610890716171-6b1bb98ffd09?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/011.png')`,
           }}
         ></div>
 
@@ -121,7 +121,7 @@ export function AtTheTable({ playClack, data }: AtTheTableProps) {
               <div
                 className="absolute inset-0 bg-cover bg-center opacity-70 mix-blend-luminosity brightness-95"
                 style={{
-                  backgroundImage: `url('https://images.unsplash.com/photo-1511512578047-dfb367046420?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80')`,
+                  backgroundImage: `url('/img/000.png')`,
                 }}
               ></div>
 

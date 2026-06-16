@@ -142,7 +142,7 @@ export function Reliquary({ playClack }: ReliquaryProps) {
             </div>
             <img
               referrerPolicy="no-referrer"
-              src="https://images.unsplash.com/photo-1540324155974-7523202daa3f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80"
+              src="/img/009.png"
               alt="Immersive Operations Theater"
               className="w-full h-[320px] object-cover mix-blend-luminosity opacity-75 scale-102 hover:scale-105 duration-700 transition-transform"
             />
@@ -361,7 +361,7 @@ export function Reliquary({ playClack }: ReliquaryProps) {
             <div className="w-full aspect-square border-2 border-obsidian overflow-hidden bg-stone-300 relative">
               <img
                 referrerPolicy="no-referrer"
-                src="https://images.unsplash.com/photo-1551817958-c5b51e52bef5?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="/img/009.png"
                 alt="Atrium schematic"
                 className="w-full h-full object-cover mix-blend-luminosity opacity-70"
               />
@@ -402,7 +402,7 @@ export function Reliquary({ playClack }: ReliquaryProps) {
             <div className="w-full aspect-square border-2 border-obsidian overflow-hidden bg-stone-300 relative">
               <img
                 referrerPolicy="no-referrer"
-                src="https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80"
+                src="/img/011.png"
                 alt="Chamber schematic"
                 className="w-full h-full object-cover mix-blend-luminosity opacity-70"
               />

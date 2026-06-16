@@ -40,8 +40,7 @@ export function News({ playClack, data }: NewsProps) {
         'Our massive fantasy sandbox campaign book is officially shipping. Embark on dark adventures through the shifting valleys.',
       content:
         'We are thrilled to announce that the physical editions of The Tome of Souls have arrived at our fulfillment centers and are heading out to backers and retailers world-wide. Crafted with cloth-wrapped covers, foil stamps, and heavyweight satin paper, this 320-page compendium provides complete sandbox rules, custom monster tables, and cohesive adventure modules. Order your copy in our shop today to receive immediate PDF files.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80',
+      imageUrl: '/img/003.png',
     },
     {
       id: 'news-2',
@@ -52,8 +51,7 @@ export function News({ playClack, data }: NewsProps) {
         'Visit Booth #441 for live-run demonstration scenarios, original canvas art previews, and limited custom dice sets.',
       content:
         'This August, Camp Candor is heading to Gen Con in Indianapolis! We will be hosting 24 active tabletop convention sessions led by our verified Free Agents. Stop by Booth #441 to meet our design crew, play mini-scenarios, and pick up convention-exclusive printable Character Passports and leather-debossed dice vaults.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=600&q=80',
+      imageUrl: '/img/004.png',
     },
     {
       id: 'news-3',
@@ -64,8 +62,7 @@ export function News({ playClack, data }: NewsProps) {
         'Empower your house rules using our updated publisher layout assets, character sheet PDFs, and print matrices.',
       content:
         'We have updated our Community Content guidelines and uploaded professional Adobe InDesign and Scribus formatting templates to our public folder. Backers can now design, format, and share custom scenarios using official Camp Candor fonts and stylistic borders. All layout templates comply with our Open Gaming Covenant.',
-      imageUrl:
-        'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
+      imageUrl: '/img/010.png',
     },
   ];
 

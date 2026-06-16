@@ -48,7 +48,7 @@ export function PlaySolo({ playClack, data }: PlaySoloProps) {
         <div
           className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-60 grayscale filter contrast-110 transition-transform duration-700 hover:scale-[1.03]"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1551028719-00167b16eac5?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/010.png')`,
           }}
         ></div>
 
@@ -116,7 +116,7 @@ export function PlaySolo({ playClack, data }: PlaySoloProps) {
                 <div
                   className="absolute inset-0 bg-cover bg-center opacity-70 grayscale filter brightness-75 contrast-115"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1548345680-f5475ea5df84?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80')`,
+                    backgroundImage: `url('/img/007.png')`,
                   }}
                 ></div>
 

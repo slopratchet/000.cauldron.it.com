@@ -429,7 +429,7 @@ export function Header({
       <div className="h-[30px] w-full relative overflow-hidden shrink-0 border-t border-[#E4DFD3]/20">
         <img
           referrerPolicy="no-referrer"
-          src="https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80"
+          src="/img/010.png"
           className="w-full h-full object-cover select-none scale-y-110 saturate-[1.1] brightness-[0.85]"
           alt="Camp Candor Under-Navbar Banner"
         />

@@ -48,17 +48,17 @@ export function PrimalMamaCoreSystem({
   const [galleryIndex, setGalleryIndex] = useState(0);
   const galleryItems = [
     {
-      url: 'https://images.unsplash.com/photo-1511597584788-876760111969?auto=format&fit=crop&w=800&q=80',
+      url: '/img/000.png',
       caption:
         'Medieval Fantasy: Primeval dark forests and ancient stone vaults styled perfectly with Primal limits.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80',
+      url: '/img/011.png',
       caption:
         'Cyberpunk Noir: High-frequency data conduits and rain-swept alleys using core tactical grids.',
     },
     {
-      url: 'https://images.unsplash.com/photo-1509248961158-e54f6934749c?auto=format&fit=crop&w=800&q=80',
+      url: '/img/007.png',
       caption:
         'Gothic Horror: Crumbling stone tombs loaded with custom psychological trait degradation.',
     },
@@ -72,22 +72,19 @@ export function PrimalMamaCoreSystem({
       id: 'primal_showcase',
       title: 'Primal Mama RPG | How To Play Core Rules & Wild Cards',
       author: 'HowToRPG',
-      thumbnail:
-        'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/008.png',
     },
     {
       id: 'primal_live_west',
       title: 'Primal Mama: Weird West | Actual Play Showcase - Quickdraw Ep. 1',
       author: 'Tablestory',
-      thumbnail:
-        'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/000.png',
     },
     {
       id: 'primal_sci_fi',
       title: 'Primal Mama SciFi Campaign | Space Raiders Co-op Session',
       author: 'Oxventure',
-      thumbnail:
-        'https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&w=800&q=80',
+      thumbnail: '/img/010.png',
     },
   ];
 
@@ -138,7 +135,7 @@ export function PrimalMamaCoreSystem({
         <div
           className="absolute inset-0 opacity-20 bg-cover bg-center mix-blend-multiply"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/004.png')`,
           }}
         />
 
@@ -378,7 +375,7 @@ export function PrimalMamaCoreSystem({
         <div className="relative min-h-[350px] sm:min-h-[420px] lg:min-h-full overflow-hidden flex items-center justify-center select-none">
           <img
             referrerPolicy="no-referrer"
-            src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=800&q=80"
+            src="/img/011.png"
             alt="RPG dynamic books stack"
             className="absolute inset-0 w-full h-full object-cover saturate-[1.1] brightness-[0.6]"
           />
@@ -561,7 +558,7 @@ export function PrimalMamaCoreSystem({
                 <div className="aspect-[4/3] w-full bg-white overflow-hidden rounded border border-obsidian/10 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?auto=format&fit=crop&w=600&q=80"
+                    src="/img/006.png"
                     alt="Horror on the Hour of the Alligator Set"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />
@@ -613,7 +610,7 @@ export function PrimalMamaCoreSystem({
                 <div className="aspect-[4/3] w-full bg-white overflow-hidden rounded border border-obsidian/10 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1544947950-fa07a98d237f?auto=format&fit=crop&w=600&q=80"
+                    src="/img/007.png"
                     alt="Primal Mama Core Rulebook"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />
@@ -661,7 +658,7 @@ export function PrimalMamaCoreSystem({
                 <div className="aspect-[4/3] w-full bg-white overflow-hidden rounded border border-obsidian/10 flex items-center justify-center p-4">
                   <img
                     referrerPolicy="no-referrer"
-                    src="https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=600&q=80"
+                    src="/img/005.png"
                     alt="Primal Mama Companions Pack"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />

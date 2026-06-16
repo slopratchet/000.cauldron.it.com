@@ -55,8 +55,7 @@ export function SocialFollow({ playClack }: SocialFollowProps) {
     {
       id: 2,
       isCarousel: true,
-      imgUrl:
-        'https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=400&q=80',
+      imgUrl: '/img/011.png',
       title: 'THE ONE RING',
       alt: 'Atmospheric dark gothic stone archway',
       caption:
@@ -80,8 +79,7 @@ export function SocialFollow({ playClack }: SocialFollowProps) {
     {
       id: 3,
       isCarousel: true,
-      imgUrl:
-        'https://images.unsplash.com/photo-1509198397868-475647b2a1e5?auto=format&fit=crop&w=400&q=80',
+      imgUrl: '/img/006.png',
       title: 'BLADE RUNNER',
       alt: 'Neon glowing cyber city alley',
       caption: 'A neon-noir wonderland of detective story missions.',
@@ -105,8 +103,7 @@ export function SocialFollow({ playClack }: SocialFollowProps) {
       id: 4,
       hasBadge: true,
       badgeText: 'KICKSTARTER',
-      imgUrl:
-        'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=400&q=80',
+      imgUrl: '/img/001.png',
       title: 'Symbaroum',
       alt: 'Mystic foggy dense pine forest',
       caption: 'Journey into the depths of Davokar.',
@@ -132,8 +129,7 @@ export function SocialFollow({ playClack }: SocialFollowProps) {
     },
     {
       id: 5,
-      imgUrl:
-        'https://images.unsplash.com/photo-1533134242443-d4fd215305ad?auto=format&fit=crop&w=400&q=80',
+      imgUrl: '/img/004.png',
       title: 'FRONTIER SCUM',
       alt: 'Sepia ink textured parchment',
       caption: 'The acid western masterpiece of bounty hunters and outlaws.',
@@ -155,8 +151,7 @@ export function SocialFollow({ playClack }: SocialFollowProps) {
     },
     {
       id: 6,
-      imgUrl:
-        'https://images.unsplash.com/photo-1579783900882-c0d3dad7b119?auto=format&fit=crop&w=400&q=80',
+      imgUrl: '/img/011.png',
       title: 'STORMBRINGER',
       alt: 'Heroic classic artwork illustration banner in green',
       caption: 'The Eternal Champion tabletop chronicle.',

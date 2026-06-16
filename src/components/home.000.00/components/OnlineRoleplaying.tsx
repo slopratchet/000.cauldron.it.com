@@ -37,7 +37,7 @@ export function OnlineRoleplaying({ playClack, data }: OnlineRoleplayingProps) {
         <div
           className="absolute inset-0 bg-cover bg-center mix-blend-overlay opacity-60 grayscale filter contrast-125 transition-transform duration-700 hover:scale-[1.03]"
           style={{
-            backgroundImage: `url('https://images.unsplash.com/photo-1614064641938-3bbee52942c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80')`,
+            backgroundImage: `url('/img/006.png')`,
           }}
         ></div>
 
@@ -186,7 +186,7 @@ export function OnlineRoleplaying({ playClack, data }: OnlineRoleplayingProps) {
             <div
               className="absolute right-0 bottom-0 top-0 w-1/3 bg-cover bg-center brightness-50 opacity-40 grayscale"
               style={{
-                backgroundImage: `url('https://images.unsplash.com/photo-1542751371-adc38448a05e?ixlib=rb-4.0.3&auto=format&fit=crop&w=300&q=80')`,
+                backgroundImage: `url('/img/011.png')`,
               }}
             ></div>
           </div>
@@ -199,7 +199,7 @@ export function OnlineRoleplaying({ playClack, data }: OnlineRoleplayingProps) {
                 <div
                   className="absolute inset-0 bg-cover bg-center opacity-70 grayscale filter brightness-75 contrasts-110"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')`,
+                    backgroundImage: `url('/img/001.png')`,
                   }}
                 ></div>
 
@@ -246,7 +246,7 @@ export function OnlineRoleplaying({ playClack, data }: OnlineRoleplayingProps) {
                 <div
                   className="absolute inset-0 bg-cover bg-center opacity-70 grayscale filter brightness-75 contrast-115"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1544256718-3bcf237f3974?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')`,
+                    backgroundImage: `url('/img/009.png')`,
                   }}
                 ></div>
 
@@ -293,7 +293,7 @@ export function OnlineRoleplaying({ playClack, data }: OnlineRoleplayingProps) {
                 <div
                   className="absolute inset-0 bg-cover bg-center opacity-70 grayscale filter brightness-75 contrast-110"
                   style={{
-                    backgroundImage: `url('https://images.unsplash.com/photo-1540575467063-178a50c2df87?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80')`,
+                    backgroundImage: `url('/img/000.png')`,
                   }}
                 ></div>
 
