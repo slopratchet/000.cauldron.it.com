@@ -76,7 +76,7 @@ export function Header({
               }}
               className={`px-2.5 py-1.5 rounded transition-all duration-150 ${currentHash === '#horror-on-the-orient-express' ? 'bg-[#8a1c14] text-[#E4DFD3]' : 'hover:bg-black/10 text-obsidian'}`}
             >
-              ORIENT EXPRESS
+              HOUR OF THE ALLIGATOR
             </a>
           )}
           {sectionsVisibility?.showExploreWorlds !== false &&
@@ -300,7 +300,7 @@ export function Header({
               }}
               className="py-3 border-b-2 border-obsidian/10 hover:text-[#8a1c14] hover:pl-2 transition-all duration-150 flex items-center justify-between"
             >
-              <span>ORIENT EXPRESS</span>
+              <span>HOUR OF THE ALLIGATOR</span>
               <span className="text-xs opacity-50 text-[#8a1c14]">➔</span>
             </a>
           )}

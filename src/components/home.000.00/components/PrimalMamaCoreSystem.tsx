@@ -554,7 +554,7 @@ export function PrimalMamaCoreSystem({
 
           {/* THREE PRODUCTS BOXED COVERS SIDE BY SIDE */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Product 1: Horror on the Orient Express Campaign Boxed Set */}
+            {/* Product 1: Horror on the Hour of the Alligator Campaign Boxed Set */}
             <div className="bg-[#FFF9EA] border-2 border-obsidian hover:border-emerald-700/60 p-4 transition-all duration-300 rounded shadow-md flex flex-col justify-between space-y-4 group">
               <div className="space-y-4">
                 {/* Book cover area */}
@@ -562,7 +562,7 @@ export function PrimalMamaCoreSystem({
                   <img
                     referrerPolicy="no-referrer"
                     src="https://images.unsplash.com/photo-1543269664-76bc3997d9ea?auto=format&fit=crop&w=600&q=80"
-                    alt="Horror on the Orient Express Set"
+                    alt="Horror on the Hour of the Alligator Set"
                     className="h-full object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] group-hover:scale-104 transition-transform duration-300 pointer-events-none"
                   />
                 </div>
@@ -572,7 +572,7 @@ export function PrimalMamaCoreSystem({
                     Campaign Boxed Adventure Set
                   </span>
                   <h5 className="font-archive text-md text-obsidian tracking-widest uppercase font-black">
-                    HORROR ON THE ORIENT EXPRESS
+                    HORROR ON THE HOUR OF THE ALLIGATOR
                   </h5>
                   <p className="font-mono text-xs text-stone-700 font-bold mt-1">
                     598.00 kr
@@ -583,7 +583,9 @@ export function PrimalMamaCoreSystem({
               <div className="grid grid-cols-2 gap-2.5 pt-2">
                 <button
                   onClick={() =>
-                    handleAddToCart('HORROR ON THE ORIENT EXPRESS BOXED SET')
+                    handleAddToCart(
+                      'HORROR ON THE HOUR OF THE ALLIGATOR BOXED SET',
+                    )
                   }
                   className="bg-[#113826] hover:bg-black hover:text-white text-white font-archive text-[10px] tracking-wider font-extrabold uppercase py-2.5 px-2 transition-colors flex items-center justify-center gap-1.5 rounded-sm border-2 border-obsidian"
                 >
@@ -594,7 +596,7 @@ export function PrimalMamaCoreSystem({
                   onClick={() => {
                     playClack();
                     alert(
-                      'Horror on the Orient Express is a legendary 19-part campaign boxed set tracking down the cursed Sedefkar Simulacrum aboard the luxurious Orient Express across Europe.',
+                      'Horror on the Hour of the Alligator is a legendary 19-part campaign boxed set tracking down the cursed Sedefkar Simulacrum aboard the luxurious Hour of the Alligator across Europe.',
                     );
                   }}
                   className="border-2 border-obsidian bg-white text-obsidian hover:bg-amber-100 font-archive text-[10px] tracking-wider font-bold uppercase py-2.5 px-2 transition-all text-center rounded-sm"
