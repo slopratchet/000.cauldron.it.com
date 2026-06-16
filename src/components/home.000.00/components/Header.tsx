@@ -69,14 +69,14 @@ export function Header({
         <nav className="hidden lg:flex items-center gap-1.5 xl:gap-3 font-mono-ui text-[11px] xl:text-[12px] uppercase tracking-wider font-bold">
           {sectionsVisibility?.showOrientExpressDetail !== false && (
             <a
-              href="#horror-on-the-orient-express"
+              href="#horror-on-the-hour-of-the-alligator"
               onClick={() => {
                 playClack();
                 setShowMobileMenu(false);
               }}
-              className={`px-2.5 py-1.5 rounded transition-all duration-150 ${currentHash === '#horror-on-the-orient-express' ? 'bg-[#8a1c14] text-[#E4DFD3]' : 'hover:bg-black/10 text-obsidian'}`}
+              className={`px-2.5 py-1.5 rounded transition-all duration-150 ${currentHash === '#horror-on-the-hour-of-the-alligator' ? 'bg-[#8a1c14] text-[#E4DFD3]' : 'hover:bg-black/10 text-obsidian'}`}
             >
-              ORIENT EXPRESS
+              HOUR OF THE ALLIGATOR
             </a>
           )}
           {sectionsVisibility?.showExploreWorlds !== false &&
@@ -293,14 +293,14 @@ export function Header({
         <div className="lg:hidden bg-[#E4DFD3] border-t-2 border-obsidian text-obsidian py-6 px-8 flex flex-col gap-1.5 font-archive font-bold text-lg tracking-wider uppercase shadow-2xl animate-in fade-in slide-in-from-top-4 duration-200">
           {sectionsVisibility?.showOrientExpressDetail !== false && (
             <a
-              href="#horror-on-the-orient-express"
+              href="#horror-on-the-hour-of-the-alligator"
               onClick={() => {
                 playClack();
                 setShowMobileMenu(false);
               }}
               className="py-3 border-b-2 border-obsidian/10 hover:text-[#8a1c14] hover:pl-2 transition-all duration-150 flex items-center justify-between"
             >
-              <span>ORIENT EXPRESS</span>
+              <span>HOUR OF THE ALLIGATOR</span>
               <span className="text-xs opacity-50 text-[#8a1c14]">➔</span>
             </a>
           )}

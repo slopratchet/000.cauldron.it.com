@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Train, Volume2, VolumeX, ShoppingBag, Download } from 'lucide-react';
 
-interface HorrorOnTheOrientExpressProps {
+interface HorrorOnTheHourOfTheAlligatorProps {
   playClack: () => void;
   onAddToCart?: () => void;
 }
 
-export function HorrorOnTheOrientExpress({
+export function HorrorOnTheHourOfTheAlligator({
   playClack,
   onAddToCart,
-}: HorrorOnTheOrientExpressProps) {
+}: HorrorOnTheHourOfTheAlligatorProps) {
   // Soundscape Generator State
   const [isTrainPlaying, setIsTrainPlaying] = useState(false);
   const [audioCtx, setAudioCtx] = useState<AudioContext | null>(null);
@@ -168,7 +168,7 @@ export function HorrorOnTheOrientExpress({
 
   return (
     <section
-      id="horror-on-the-orient-express"
+      id="horror-on-the-hour-of-the-alligator"
       className="scroll-mt-32 w-full bg-[#1e130f] border-4 border-[#8a1c14] text-bone p-0 overflow-hidden shadow-[8px_8px_0px_rgba(0,0,0,1)] my-12"
     >
       {/* HERO SECTION */}
@@ -199,7 +199,7 @@ export function HorrorOnTheOrientExpress({
             transition={{ delay: 0.1, duration: 0.4 }}
             className="font-archive text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#faf6ee] hover:text-[#f34f45] transition-colors tracking-widest leading-none drop-shadow-[0_8px_16px_rgba(138,28,20,0.6)]"
           >
-            ORIENT EXPRESS
+            HOUR OF THE ALLIGATOR
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -221,7 +221,8 @@ export function HorrorOnTheOrientExpress({
       {/* METRIC DATA BAR */}
       <div className="bg-[#150a06] border-t border-b border-[#8a1c14]/30 px-4 md:px-8 py-2 select-none text-left">
         <span className="font-mono text-[9px] text-[#f34f45] font-bold uppercase tracking-widest block text-center sm:text-left">
-          START / EXPEDITIONS / HORROR ON THE ORIENT EXPRESS CAMPAIGN BOXED SET
+          START / EXPEDITIONS / HORROR ON THE HOUR OF THE ALLIGATOR CAMPAIGN
+          BOXED SET
         </span>
       </div>
 
@@ -233,14 +234,14 @@ export function HorrorOnTheOrientExpress({
             <h2 className="font-serif-display text-3xl sm:text-4xl text-[#faf6ee] leading-none font-black tracking-tight uppercase">
               Horror on
               <br />
-              The Orient
+              The Hour of the
               <br />
-              Express Set
+              Alligator Set
             </h2>
           </div>
 
           <p className="font-serif-body text-[#faf6ee]/80 text-[14px] leading-relaxed">
-            Traverse 1920s Europe on the Simplon Orient Express. This box
+            Traverse 1920s Europe on the Simplon Hour of the Alligator. This box
             contains a towering, world-shaping campaign where investigators must
             assemble the split parts of the sentient, cursed{' '}
             <strong>Sedefkar Simulacrum</strong> before it reclaims its skin
@@ -272,7 +273,9 @@ export function HorrorOnTheOrientExpress({
             <button
               onClick={() => {
                 if (onAddToCart) onAddToCart();
-                alert('ORIENT EXPRESS CAMPAIGN BOXED SET added to your cart!');
+                alert(
+                  'HOUR OF THE ALLIGATOR CAMPAIGN BOXED SET added to your cart!',
+                );
               }}
               className="w-full bg-[#8a1c14] hover:bg-[#a6251b] text-white font-archive text-[11px] tracking-wider font-extrabold uppercase py-3 px-5 transition-colors text-center block shadow border-2 border-black"
             >

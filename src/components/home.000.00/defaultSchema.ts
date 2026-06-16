@@ -52,13 +52,13 @@ export const DEFAULT_SCHEMA = {
     },
     {
       id: 'orientexpress',
-      title: 'ORIENT EXPRESS',
-      subtitle: 'Horror on the Orient Express Campaign Boxed Set',
+      title: 'HOUR OF THE ALLIGATOR',
+      subtitle: 'Horror on the Hour of the Alligator Campaign Boxed Set',
       category: 'horror',
       description:
         'Scale the tracks of Europe in 1923. Track down the shattered fragments of the cursed Sedefkar Simulacrum on a luxury locomotive.',
       expandedLore:
-        'The legendary Horror on the Orient Express campaign is adapted into a massive tabletop boxed set expansion. Traverse from London to Constantinople, managing investigator Sanity while matching wits against the skinless followers of the Red Fez.',
+        'The legendary Horror on the Hour of the Alligator campaign is adapted into a massive tabletop boxed set expansion. Traverse from London to Constantinople, managing investigator Sanity while matching wits against the skinless followers of the Red Fez.',
       coverUrl:
         'https://images.unsplash.com/photo-1543269664-76bc3997d9ea?auto=format&fit=crop&w=800&q=80',
       price: 59.0,
@@ -362,7 +362,7 @@ export const DEFAULT_SCHEMA = {
     products: [
       {
         id: 'prod-orientexpress',
-        title: 'HORROR ON THE ORIENT EXPRESS',
+        title: 'HORROR ON THE HOUR OF THE ALLIGATOR',
         subtitle: 'The 19-part campaign boxed volume set',
         price: 59.5,
         desc: 'Engage in premium historical cosmic investigation. Includes 6 full-length campaign booklets, a 1923 vintage map layout poster, complete suspect profile registry cards, and replica passport folders.',

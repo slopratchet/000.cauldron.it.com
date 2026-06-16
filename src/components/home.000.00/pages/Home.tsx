@@ -37,7 +37,7 @@ import { About } from '../components/About';
 import { BladeRunnerSciFiCorridors } from '../components/BladeRunnerSciFiCorridors';
 import { GothicCryptsHorror } from '../components/GothicCryptsHorror';
 import { PrimalMamaCoreSystem } from '../components/PrimalMamaCoreSystem';
-import { HorrorOnTheOrientExpress } from '../components/HorrorOnTheOrientExpress';
+import { HorrorOnTheHourOfTheAlligator } from '../components/HorrorOnTheHourOfTheAlligator';
 import { FullSchemaDatabase } from '../components/FullSchemaDatabase';
 
 export interface HomeProps {
@@ -508,7 +508,7 @@ export function Home({
                                 });
                             } else if (world.id === 'orientexpress') {
                               const el = document.getElementById(
-                                'horror-on-the-orient-express',
+                                'horror-on-the-hour-of-the-alligator',
                               );
                               if (el)
                                 el.scrollIntoView({
@@ -1329,9 +1329,9 @@ export function Home({
               />
             )}
 
-            {/* Interactive Campaign Boxed Adventure Set: Horror on the Orient Express */}
+            {/* Interactive Campaign Boxed Adventure Set: Horror on the Hour of the Alligator */}
             {schemaData.sectionsVisibility?.showOrientExpressDetail && (
-              <HorrorOnTheOrientExpress
+              <HorrorOnTheHourOfTheAlligator
                 playClack={playClack}
                 onAddToCart={onAddToCart}
               />
