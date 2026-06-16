@@ -29,7 +29,6 @@
   "dependencies": {
     "@astrojs/cloudflare": "^13.5.1",
     "@astrojs/react": "^5.0.5",
-    "@camp_candor/995.library": "file:../../work/995.library",
     "@clerk/astro": "^3.0.15",
     "@tailwindcss/vite": "^4.2.2",
     "@types/react": "^19.2.15",
