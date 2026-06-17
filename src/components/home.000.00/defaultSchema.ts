@@ -3,6 +3,7 @@ export const DEFAULT_SCHEMA = {
     showExploreWorlds: true,
     showSciFiWorldCard: false,
     showPrimalMamaWorldCard: false,
+    showSocialFollow: true,
     showHorrorWorldCard: false,
     showLetsPlayCharacterCreator: false,
     showNewsDispatches: false,

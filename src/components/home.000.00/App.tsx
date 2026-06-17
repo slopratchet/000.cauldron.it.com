@@ -259,7 +259,9 @@ export default function Home000App() {
 
       <div className="flex-grow">{renderContent()}</div>
 
-      <SocialFollow playClack={playClack} />
+      {schemaData.sectionsVisibility.showSocialFollow && (
+        <SocialFollow playClack={playClack} />
+      )}
 
       <NewsletterDispatch playClack={playClack} />
 
