@@ -123,14 +123,7 @@ export const onRequest = sequence(
 
     // --- GATE 1: REDIRECT AUTHENTICATED USERS AWAY FROM PUBLIC AUTH PATHS ---
     if (auth.userId && isAuthGateway(pathname)) {
-      const role =
-        auth.sessionClaims?.metadata?.role || auth.sessionClaims?.role;
-
-      if (role === 'artist') {
-        return redirect('/project-status');
-      } else {
-        return redirect('/lobby');
-      }
+      return redirect('/lobby');
     }
 
     // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---
