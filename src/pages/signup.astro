@@ -11,7 +11,7 @@ import Layout from '../layouts/Layout.astro';
 // SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
 const auth = Astro.locals.auth();
 if (auth.userId) {
-  const target = '/play';
+  const target = '/';
   return Astro.redirect(target);
 }
 ---
@@ -355,7 +355,7 @@ if (auth.userId) {
 
             // STAGE 3: THE INTEGRATION (Wait for Metadata Sync)
             let syncRetries = 0;
-            const target = '/play';
+            const target = '/';
 
             // Artificial delay for immersion and to ensure Clerk backend pulses
             await new Promise((r) => setTimeout(r, 2000));
