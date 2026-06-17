@@ -1,5 +1,6 @@
 export const DEFAULT_SCHEMA = {
   sectionsVisibility: {
+    showSocialFollow: true,
     showExploreWorlds: true,
     showSciFiWorldCard: false,
     showPrimalMamaWorldCard: false,
