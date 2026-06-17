@@ -12,15 +12,15 @@ import { env as cfEnv } from 'cloudflare:workers';
  */
 const ACCESS_CONFIG = {
   publicPrefixes: [
-    '/know',
+    // '/know',
     '/log-in',
     '/signup',
     '/api/moon',
     '/api/gitAgent',
-    '/market',
+    // '/market',
     '/location',
-    '/script',
-    '/sheet',
+    // '/script',
+    // '/sheet',
     '/lobby',
   ],
   publicExact: ['/'],

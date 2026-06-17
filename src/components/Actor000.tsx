@@ -4687,7 +4687,7 @@ export default function Actor000() {
 
           {/* Link to Sheet 000 */}
           <a
-            href="/sheet/000"
+            href="/"
             className="block w-full border-[2px] border-black bg-[#FAF8F5] hover:bg-black hover:text-[#E6E2D8] text-black text-center font-jetbrains text-[11px] md:text-[12px] font-bold uppercase tracking-[0.1em] py-2 transition-all cursor-pointer brutalist-shadow-sm"
           >
             [ LINK: /sheet/000 ]
