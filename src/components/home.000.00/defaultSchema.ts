@@ -21,6 +21,7 @@ export const DEFAULT_SCHEMA = {
     showUpcomingEvents: false,
     showFeaturedShop: false,
     showAboutCampCandor: true,
+    showSocialMedia: true,
   },
   introBlock: {
     title: 'Words have\nPower',
