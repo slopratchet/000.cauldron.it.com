@@ -15,81 +15,6 @@ export default function Home000App() {
   const [cartCount, setCartCount] = useState(0);
   const [bookedSeats, setBookedSeats] = useState<string[]>([]);
 
-  // Lifted Schema Data state to align navigation with toggled sections
-  const [schemaSource, setSchemaSource] = useState<
-    'loading' | 'api' | 'fallback_local' | 'fallback_embedded'
-  >('loading');
-  const [schemaData, setSchemaData] = useState(() => {
-    const stored = localStorage.getItem('schema_data_v9');
-    if (stored) {
-      try {
-        const parsed = JSON.parse(stored);
-        if (parsed && typeof parsed === 'object' && parsed.sectionsVisibility) {
-          return parsed;
-        }
-      } catch (e) {
-        // Fallback
-      }
-    }
-    return DEFAULT_SCHEMA;
-  });
-
-  const handleSchemaChange = (newData: typeof DEFAULT_SCHEMA) => {
-    setSchemaData(newData);
-    localStorage.setItem('schema_data_v9', JSON.stringify(newData));
-  };
-
-  useEffect(() => {
-    let active = true;
-    async function fetchSchema() {
-      try {
-        const response = await fetch('/api/schema');
-        if (!response.ok) {
-          throw new Error(`Server returned ${response.status}`);
-        }
-        const data = await response.json();
-        if (data && typeof data === 'object' && data.sectionsVisibility) {
-          if (active) {
-            setSchemaData(data);
-            setSchemaSource('api');
-          }
-          return;
-        }
-        throw new Error('Invalid schema structure from API');
-      } catch (err) {
-        console.warn(
-          'REST API schema fetch failed. Using embedded/stored fallback:',
-          err,
-        );
-        if (active) {
-          const stored = localStorage.getItem('schema_data_v9');
-          if (stored) {
-            try {
-              const parsed = JSON.parse(stored);
-              if (
-                parsed &&
-                typeof parsed === 'object' &&
-                parsed.sectionsVisibility
-              ) {
-                setSchemaData(parsed);
-                setSchemaSource('fallback_local');
-                return;
-              }
-            } catch (e) {
-              // Ignore
-            }
-          }
-          setSchemaData(DEFAULT_SCHEMA);
-          setSchemaSource('fallback_embedded');
-        }
-      }
-    }
-    fetchSchema();
-    return () => {
-      active = false;
-    };
-  }, []);
-
   useEffect(() => {
     const handleHashChange = () => {
       const hash = window.location.hash || '#home';
@@ -240,9 +165,6 @@ export default function Home000App() {
         bookedSeats={bookedSeats}
         onBookSeat={handleBookSeat}
         currentHash={currentHash}
-        schemaData={schemaData}
-        onSchemaChange={handleSchemaChange}
-        schemaSource={schemaSource}
       />
     );
   };
@@ -254,12 +176,12 @@ export default function Home000App() {
         cartCount={cartCount}
         currentHash={currentHash}
         onClearCart={handleClearCart}
-        sectionsVisibility={schemaData.sectionsVisibility}
+        sectionsVisibility={DEFAULT_SCHEMA.sectionsVisibility}
       />
 
       <div className="flex-grow">{renderContent()}</div>
 
-      {schemaData.sectionsVisibility?.showSocialFollow !== false && (
+      {DEFAULT_SCHEMA.sectionsVisibility?.showSocialFollow !== false && (
         <SocialFollow playClack={playClack} />
       )}
 

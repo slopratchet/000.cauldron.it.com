@@ -38,7 +38,6 @@ import { BladeRunnerSciFiCorridors } from '../components/BladeRunnerSciFiCorrido
 import { GothicCryptsHorror } from '../components/GothicCryptsHorror';
 import { PrimalMamaCoreSystem } from '../components/PrimalMamaCoreSystem';
 import { HorrorOnTheHourOfTheAlligator } from '../components/HorrorOnTheHourOfTheAlligator';
-import { FullSchemaDatabase } from '../components/FullSchemaDatabase';
 
 export interface HomeProps {
   playClack: () => void;
@@ -47,9 +46,6 @@ export interface HomeProps {
   bookedSeats: string[];
   onBookSeat: (role: string) => void;
   currentHash: string;
-  schemaData: unknown;
-  onSchemaChange: (newData: unknown) => void;
-  schemaSource?: 'loading' | 'api' | 'fallback_local' | 'fallback_embedded';
 }
 
 import { DEFAULT_SCHEMA } from '../defaultSchema';
@@ -62,49 +58,11 @@ export function Home({
   bookedSeats,
   onBookSeat,
   currentHash,
-  schemaData,
-  onSchemaChange,
-  schemaSource = 'loading',
 }: HomeProps) {
-  // Central Schema Database states
-  const handleSchemaChange = onSchemaChange;
-
-  // Read URL variable to control whether the schema database viewer is turned on
-  const showSchemaDatabase = (() => {
-    try {
-      // Check standard window.location.search
-      const searchParams = new URLSearchParams(window.location.search);
-      const searchMatch =
-        searchParams.get('schema') === 'true' ||
-        searchParams.get('db') === 'true' ||
-        searchParams.get('editor') === 'true' ||
-        searchParams.get('admin') === 'true';
-      if (searchMatch) return true;
-
-      // Check within window.location.hash in case query params are embedded in/after the hash
-      const hash = window.location.hash;
-      if (hash.includes('?')) {
-        const hashQuery = hash.split('?')[1];
-        const hashParams = new URLSearchParams(hashQuery);
-        const hashMatch =
-          hashParams.get('schema') === 'true' ||
-          hashParams.get('db') === 'true' ||
-          hashParams.get('editor') === 'true' ||
-          hashParams.get('admin') === 'true';
-        if (hashMatch) return true;
-      }
-    } catch (e) {
-      // Safe fallback
-    }
-    return false;
-  })();
-
   // Map dynamic bindings cleanly to preserve down-stream compatibility beautifully
-  const gameWorlds = schemaData.gameWorlds || DEFAULT_SCHEMA.gameWorlds;
-  const products =
-    schemaData.shopBlock?.products || DEFAULT_SCHEMA.shopBlock.products;
-  const originalSeats =
-    schemaData.repertoireSeats || DEFAULT_SCHEMA.repertoireSeats;
+  const gameWorlds = DEFAULT_SCHEMA.gameWorlds;
+  const products = DEFAULT_SCHEMA.shopBlock.products;
+  const originalSeats = DEFAULT_SCHEMA.repertoireSeats;
 
   // Navigation & filtering state
   const [activeTab, setActiveTab] = useState<'worlds' | 'terminal'>('worlds');
@@ -180,7 +138,8 @@ export function Home({
   // Forums Sandbox state
   const [forumPosts, setForumPosts] = useState<CommunityForumPost[]>(
     () =>
-      schemaData.communityBlock?.posts || DEFAULT_SCHEMA.communityBlock.posts,
+      DEFAULT_SCHEMA.communityBlock?.posts ||
+      DEFAULT_SCHEMA.communityBlock.posts,
   );
   const [newPostTitle, setNewPostTitle] = useState('');
   const [newPostCategory, setNewPostCategory] = useState('PRIMAL MAMA');
@@ -382,24 +341,11 @@ export function Home({
       </div>
 
       <div className="max-w-7xl mx-auto px-4 md:px-8">
-        {/* Real-time Central JSON Database Control Panel */}
-        {showSchemaDatabase && (
-          <div className="pt-8 mb-8 animate-fade-in">
-            <FullSchemaDatabase
-              playClack={playClack}
-              jsonData={schemaData}
-              onUpdateJsonData={handleSchemaChange}
-              onResetToDefault={() => handleSchemaChange(DEFAULT_SCHEMA)}
-              schemaSource={schemaSource}
-            />
-          </div>
-        )}
-
         {/* VIEW A: MAINSTREAM CAMP CANDOR SYSTEM (OUR WORLDS, SHOP, NEWS, ETC) */}
         {activeTab === 'worlds' && (
           <div className="space-y-16">
             {/* 1. Explore Our Worlds Section with Integrated Platform Choices (Combined and Full-Width) */}
-            {schemaData.sectionsVisibility?.showExploreWorlds ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showExploreWorlds ? (
               <section
                 id="our-games"
                 className="scroll-mt-36 space-y-12 pt-[40px] relative"
@@ -408,12 +354,12 @@ export function Home({
                 <div className="border-b-4 border-obsidian pb-6">
                   <h2 className="font-serif-display text-5xl md:text-6xl text-obsidian leading-[0.95] tracking-tight font-black whitespace-pre-line">
                     {(
-                      schemaData.introBlock?.title ||
+                      DEFAULT_SCHEMA.introBlock?.title ||
                       DEFAULT_SCHEMA.introBlock.title
                     ).replace('<br/>', '\n')}
                   </h2>
                   <p className="font-serif-body text-[17px] md:text-lg leading-relaxed text-obsidian/90 max-w-2xl mt-4 font-medium">
-                    {schemaData.introBlock?.description ||
+                    {DEFAULT_SCHEMA.introBlock?.description ||
                       DEFAULT_SCHEMA.introBlock.description}
                   </p>
                 </div>
@@ -424,25 +370,25 @@ export function Home({
                     .filter((world) => {
                       if (
                         world.id === 'scifi' &&
-                        schemaData.sectionsVisibility?.showSciFiWorldCard ===
-                          false
+                        DEFAULT_SCHEMA.sectionsVisibility
+                          ?.showSciFiWorldCard === false
                       )
                         return false;
                       if (
                         world.id === 'fantasy' &&
-                        schemaData.sectionsVisibility
+                        DEFAULT_SCHEMA.sectionsVisibility
                           ?.showPrimalMamaWorldCard === false
                       )
                         return false;
                       if (
                         world.id === 'horror' &&
-                        schemaData.sectionsVisibility?.showHorrorWorldCard ===
-                          false
+                        DEFAULT_SCHEMA.sectionsVisibility
+                          ?.showHorrorWorldCard === false
                       )
                         return false;
                       if (
                         world.id === 'hourofthealligator' &&
-                        schemaData.sectionsVisibility
+                        DEFAULT_SCHEMA.sectionsVisibility
                           ?.showHourOfTheAlligatorWorldCard === false
                       )
                         return false;
@@ -594,7 +540,7 @@ export function Home({
                                 {/* Platform 1: Play Solo */}
                                 {(() => {
                                   const isSoloActive =
-                                    schemaData.sectionsVisibility
+                                    DEFAULT_SCHEMA.sectionsVisibility
                                       ?.showPlaySolo !== false;
                                   return (
                                     <button
@@ -635,7 +581,7 @@ export function Home({
                                 {/* Platform 2: At The Table */}
                                 {(() => {
                                   const isAtTheTableActive =
-                                    schemaData.sectionsVisibility
+                                    DEFAULT_SCHEMA.sectionsVisibility
                                       ?.showAtTheTable !== false;
                                   return (
                                     <button
@@ -678,7 +624,7 @@ export function Home({
                                 {/* Platform 3: Online Roleplaying */}
                                 {(() => {
                                   const isOnlinePlayActive =
-                                    schemaData.sectionsVisibility
+                                    DEFAULT_SCHEMA.sectionsVisibility
                                       ?.showOnlinePlay !== false;
                                   return (
                                     <button
@@ -733,7 +679,7 @@ export function Home({
             ) : null}
 
             {/* 3. "Let's Play" Immersive Banner with Interactive RPG Character Creator (Image 1) */}
-            {schemaData.sectionsVisibility?.showLetsPlayCharacterCreator ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showLetsPlayCharacterCreator ? (
               <section className="relative border-4 border-obsidian p-8 md:p-12 text-center overflow-hidden bg-obsidian text-bone shadow-[8px_8px_0px_rgba(0,0,0,0.85)]">
                 {/* Dark forest wallpaper background */}
                 <div
@@ -755,11 +701,11 @@ export function Home({
                     </svg>
                   </div>
                   <h2 className="font-serif-display text-5xl md:text-6xl text-bone leading-none tracking-tight">
-                    {schemaData.letsPlayBlock?.title ||
+                    {DEFAULT_SCHEMA.letsPlayBlock?.title ||
                       DEFAULT_SCHEMA.letsPlayBlock.title}
                   </h2>
                   <p className="font-serif-body text-base md:text-lg text-[#E4DFD3]/90 leading-relaxed font-medium">
-                    {schemaData.letsPlayBlock?.description ||
+                    {DEFAULT_SCHEMA.letsPlayBlock?.description ||
                       DEFAULT_SCHEMA.letsPlayBlock.description}
                   </p>
 
@@ -1048,33 +994,36 @@ export function Home({
             ) : null}
 
             {/* 3. News Dispatch Section */}
-            {schemaData.sectionsVisibility?.showNewsDispatches ? (
-              <News playClack={playClack} data={schemaData.newsBlock} />
+            {DEFAULT_SCHEMA.sectionsVisibility?.showNewsDispatches ? (
+              <News playClack={playClack} data={DEFAULT_SCHEMA.newsBlock} />
             ) : null}
 
             {/* 3b. At the Table (Gathering Friends) Section */}
-            {schemaData.sectionsVisibility?.showAtTheTable ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showAtTheTable ? (
               <AtTheTable
                 playClack={playClack}
-                data={schemaData.atTheTableBlock}
+                data={DEFAULT_SCHEMA.atTheTableBlock}
               />
             ) : null}
 
             {/* 3d. Play Solo Section */}
-            {schemaData.sectionsVisibility?.showPlaySolo ? (
-              <PlaySolo playClack={playClack} data={schemaData.playSoloBlock} />
+            {DEFAULT_SCHEMA.sectionsVisibility?.showPlaySolo ? (
+              <PlaySolo
+                playClack={playClack}
+                data={DEFAULT_SCHEMA.playSoloBlock}
+              />
             ) : null}
 
             {/* 3c. Online Roleplaying Section */}
-            {schemaData.sectionsVisibility?.showOnlinePlaySection ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showOnlinePlaySection ? (
               <OnlineRoleplaying
                 playClack={playClack}
-                data={schemaData.onlinePlayBlock}
+                data={DEFAULT_SCHEMA.onlinePlayBlock}
               />
             ) : null}
 
             {/* 4. Our Community Section (Image 2) */}
-            {schemaData.sectionsVisibility?.showCommunityCards ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showCommunityCards ? (
               <section id="community" className="scroll-mt-36 space-y-8">
                 <div className="flex justify-between items-end border-b-2 border-obsidian pb-3">
                   <h3 className="font-serif-display text-4xl text-obsidian tracking-tight">
@@ -1322,7 +1271,7 @@ export function Home({
             ) : null}
 
             {/* Interactive Blade Runner Sci-Fi Corridors Deep Detail Component */}
-            {schemaData.sectionsVisibility?.showSciFiCorridorsDetail && (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showSciFiCorridorsDetail && (
               <BladeRunnerSciFiCorridors
                 playClack={playClack}
                 onAddToCart={onAddToCart}
@@ -1330,7 +1279,8 @@ export function Home({
             )}
 
             {/* Interactive Campaign Boxed Adventure Set: Horror on the Hour of the Alligator */}
-            {schemaData.sectionsVisibility?.showHourOfTheAlligatorDetail && (
+            {DEFAULT_SCHEMA.sectionsVisibility
+              ?.showHourOfTheAlligatorDetail && (
               <HorrorOnTheHourOfTheAlligator
                 playClack={playClack}
                 onAddToCart={onAddToCart}
@@ -1338,18 +1288,18 @@ export function Home({
             )}
 
             {/* Interactive Primal Mama Core Generic Rule System Detail Component */}
-            {schemaData.sectionsVisibility?.showPrimalCoreSystemDetail && (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showPrimalCoreSystemDetail && (
               <PrimalMamaCoreSystem
                 playClack={playClack}
                 onAddToCart={onAddToCart}
                 showCommunityDemoChannels={
-                  schemaData.sectionsVisibility?.showCommunityDemoChannels
+                  DEFAULT_SCHEMA.sectionsVisibility?.showCommunityDemoChannels
                 }
               />
             )}
 
             {/* Interactive Vaults & Gothic Crypts Horror Deep Detail Component */}
-            {schemaData.sectionsVisibility?.showGothicHorrorDetail && (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showGothicHorrorDetail && (
               <GothicCryptsHorror
                 playClack={playClack}
                 onAddToCart={onAddToCart}
@@ -1357,15 +1307,15 @@ export function Home({
             )}
 
             {/* 5. LIVEPLAY & STREAMING SECTION (Image 2) */}
-            {schemaData.sectionsVisibility?.showStreamingSimulator ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showStreamingSimulator ? (
               <section className="scroll-mt-36 space-y-6 relative border-4 border-dashed border-transparent hover:border-obsidian/10 p-4 transition-all duration-300 font-sans">
                 <div className="border-b border-obsidian/20 pb-2">
                   <span className="font-mono-ui text-[10px] tracking-widest text-obsidian/60 block uppercase font-bold">
-                    {schemaData.streamingBlock?.caption ||
+                    {DEFAULT_SCHEMA.streamingBlock?.caption ||
                       DEFAULT_SCHEMA.streamingBlock.caption}
                   </span>
                   <h3 className="font-serif-display text-4xl text-obsidian capitalize mt-1">
-                    {schemaData.streamingBlock?.sectionTitle ||
+                    {DEFAULT_SCHEMA.streamingBlock?.sectionTitle ||
                       DEFAULT_SCHEMA.streamingBlock.sectionTitle}
                   </h3>
                 </div>
@@ -1400,7 +1350,7 @@ export function Home({
                           </div>
                           <div className="bg-black/75 text-bone font-mono-ui text-[9px] px-2 py-1 flex items-center gap-1">
                             <span className="w-1.5 h-1.5 bg-[#D4AF37] rounded-full animate-ping"></span>
-                            {schemaData.streamingBlock?.spectatorsCount ||
+                            {DEFAULT_SCHEMA.streamingBlock?.spectatorsCount ||
                               DEFAULT_SCHEMA.streamingBlock.spectatorsCount}
                           </div>
                         </div>
@@ -1424,16 +1374,20 @@ export function Home({
                           <div>
                             <p className="font-archive uppercase text-base sm:text-xl text-bone tracking-wider">
                               {activeStream === 'lotr'
-                                ? schemaData.streamingBlock?.channel1?.title ||
+                                ? DEFAULT_SCHEMA.streamingBlock?.channel1
+                                    ?.title ||
                                   DEFAULT_SCHEMA.streamingBlock.channel1.title
-                                : schemaData.streamingBlock?.channel2?.title ||
+                                : DEFAULT_SCHEMA.streamingBlock?.channel2
+                                    ?.title ||
                                   DEFAULT_SCHEMA.streamingBlock.channel2.title}
                             </p>
                             <p className="text-[10px] sm:text-xs font-mono-ui text-bone/70 uppercase">
                               {activeStream === 'lotr'
-                                ? schemaData.streamingBlock?.channel1?.desc ||
+                                ? DEFAULT_SCHEMA.streamingBlock?.channel1
+                                    ?.desc ||
                                   DEFAULT_SCHEMA.streamingBlock.channel1.desc
-                                : schemaData.streamingBlock?.channel2?.desc ||
+                                : DEFAULT_SCHEMA.streamingBlock?.channel2
+                                    ?.desc ||
                                   DEFAULT_SCHEMA.streamingBlock.channel2.desc}
                             </p>
                           </div>
@@ -1466,11 +1420,11 @@ export function Home({
                         className={`border-2 p-3 text-left transition-all ${activeStream === 'lotr' ? 'border-[#D32F2F] bg-white shadow-sm' : 'border-obsidian/20 hover:border-obsidian bg-white/50'}`}
                       >
                         <h5 className="font-archive text-sm uppercase text-obsidian">
-                          {schemaData.streamingBlock?.channel1?.title ||
+                          {DEFAULT_SCHEMA.streamingBlock?.channel1?.title ||
                             DEFAULT_SCHEMA.streamingBlock.channel1.title}
                         </h5>
                         <span className="font-serif-body text-[11px] text-gray-500 italic">
-                          {schemaData.streamingBlock?.channel1?.desc ||
+                          {DEFAULT_SCHEMA.streamingBlock?.channel1?.desc ||
                             DEFAULT_SCHEMA.streamingBlock.channel1.desc}
                         </span>
                       </button>
@@ -1482,11 +1436,11 @@ export function Home({
                         className={`border-2 p-3 text-left transition-all ${activeStream === 'bladerunner' ? 'border-[#D32F2F] bg-white shadow-sm' : 'border-obsidian/20 hover:border-obsidian bg-white/50'}`}
                       >
                         <h5 className="font-archive text-sm uppercase text-obsidian">
-                          {schemaData.streamingBlock?.channel2?.title ||
+                          {DEFAULT_SCHEMA.streamingBlock?.channel2?.title ||
                             DEFAULT_SCHEMA.streamingBlock.channel2.title}
                         </h5>
                         <span className="font-serif-body text-[11px] text-gray-500 italic">
-                          {schemaData.streamingBlock?.channel2?.desc ||
+                          {DEFAULT_SCHEMA.streamingBlock?.channel2?.desc ||
                             DEFAULT_SCHEMA.streamingBlock.channel2.desc}
                         </span>
                       </button>
@@ -1553,28 +1507,28 @@ export function Home({
             ) : null}
 
             {/* 3e. Upcoming Events Section */}
-            {schemaData.sectionsVisibility?.showUpcomingEvents ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showUpcomingEvents ? (
               <Events
                 playClack={playClack}
-                data={schemaData.upcomingEventsBlock}
+                data={DEFAULT_SCHEMA.upcomingEventsBlock}
               />
             ) : null}
 
             {/* Retailer network banner removed */}
 
             {/* 7. Shop & Featured Books Catalogue (Image 3 FOLLOW US grid) */}
-            {schemaData.sectionsVisibility?.showFeaturedShop ? (
+            {DEFAULT_SCHEMA.sectionsVisibility?.showFeaturedShop ? (
               <section
                 id="shop"
                 className="scroll-mt-36 space-y-8 border-4 border-dashed border-transparent hover:border-obsidian/10 p-4 transition-all duration-300"
               >
                 <div className="border-b-2 border-obsidian pb-3">
                   <span className="font-mono-ui text-[10px] text-obsidian/60 tracking-widest block uppercase font-bold">
-                    {schemaData.shopBlock?.subtitle ||
+                    {DEFAULT_SCHEMA.shopBlock?.subtitle ||
                       DEFAULT_SCHEMA.shopBlock.subtitle}
                   </span>
                   <h3 className="font-serif-display text-4xl text-obsidian capitalize mt-1">
-                    {schemaData.shopBlock?.title ||
+                    {DEFAULT_SCHEMA.shopBlock?.title ||
                       DEFAULT_SCHEMA.shopBlock.title}
                   </h3>
                 </div>
@@ -1647,8 +1601,8 @@ export function Home({
             ) : null}
 
             {/* 6. About Camp Candor Section */}
-            {schemaData.sectionsVisibility?.showAboutCampCandor ? (
-              <About playClack={playClack} data={schemaData.aboutBlock} />
+            {DEFAULT_SCHEMA.sectionsVisibility?.showAboutCampCandor ? (
+              <About playClack={playClack} data={DEFAULT_SCHEMA.aboutBlock} />
             ) : null}
           </div>
         )}
