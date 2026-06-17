@@ -452,15 +452,6 @@ export function Home({
                                   behavior: 'smooth',
                                   block: 'start',
                                 });
-                            } else if (world.id === 'hourofthealligator') {
-                              const el = document.getElementById(
-                                'horror-on-the-hour-of-the-alligator',
-                              );
-                              if (el)
-                                el.scrollIntoView({
-                                  behavior: 'smooth',
-                                  block: 'start',
-                                });
                             }
                           }}
                           className="grid grid-cols-1 md:grid-cols-12 border-4 border-obsidian bg-charcoal text-bone overflow-hidden shadow-[8px_8px_0px_rgba(0,0,0,0.85)] hover:shadow-[12px_12px_0px_rgba(0,0,0,0.85)] hover:-translate-y-1 transition-all duration-300 w-full cursor-pointer"
