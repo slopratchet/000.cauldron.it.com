@@ -14,7 +14,7 @@ const ACCESS_CONFIG = {
   publicPrefixes: [
     // '/know',
     '/log-in',
-    '/signup',
+    '/sign-up',
     '/api/moon',
     '/api/gitAgent',
     // '/market',
@@ -25,7 +25,7 @@ const ACCESS_CONFIG = {
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
-  authGateways: ['/', '/log-in', '/login', '/signup'],
+  authGateways: ['/', '/log-in', '/login'],
 };
 
 /**

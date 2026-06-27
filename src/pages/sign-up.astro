@@ -7,13 +7,6 @@ import Layout from '../layouts/Layout.astro';
  * Stage 2: The Transmission (OTP Pivot)
  * Stage 3: The Integration (Session Extraction)
  */
-
-// SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
-const auth = Astro.locals.auth();
-if (auth.userId) {
-  const target = '/';
-  return Astro.redirect(target);
-}
 ---
 
 <Layout title="Registration | Protocol Initialization">
