@@ -1,0 +1,214 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import LobbyIndex from '../../components/lobby-index/LobbyIndex.tsx';
+
+let status = 'OFFLINE';
+try {
+  const response = await fetch(new URL('/api/moon', Astro.url));
+  if (response.ok) {
+    status = 'WAITING';
+  }
+} catch (e) {
+  console.error('Failed to fetch system status:', e);
+}
+
+const auth =
+  typeof Astro.locals.auth === 'function'
+    ? Astro.locals.auth()
+    : Astro.locals.auth;
+---
+
+<Layout bodyClass="cimmerian-theme">
+  <!-- We add the fonts needed for the Cimmerian Sheet -->
+
+  <div class="flex justify-between items-center mb-4">
+    <span class="text-2xl font-bold">LOBBY</span>
+    <a href="/project-status" class="text-primary hover:underline"
+      >Project Status</a
+    >
+  </div>
+
+  <div class="font-label text-[10px] tracking-widest uppercase">
+    CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+      id="status-indicator"
+      class={status === 'ONLINE'
+        ? 'text-green-400'
+        : status === 'WAITING'
+          ? 'text-yellow-400'
+          : 'text-red-400'}>{status}</span
+    >
+    <div class="mt-2 normal-case tracking-normal">
+      {
+        auth ? (
+          <div class="text-[10px] font-mono bg-[#1a1a1a] text-green-400 p-2 border border-primary overflow-x-auto">
+            <pre>{JSON.stringify(auth, null, 2)}</pre>
+          </div>
+        ) : (
+          <div class="text-[10px] font-mono bg-[#1a1a1a] text-red-400 p-2 border border-primary">
+            No auth data found
+          </div>
+        )
+      }
+    </div>
+  </div>
+
+  <LobbyIndex client:load />
+
+  <!-- WebSocket Logs -->
+  <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
+    <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
+      LIVE TRANSMISSION
+    </h3>
+    <div
+      id="ws-logs"
+      class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
+    >
+      [SYSTEM] Waiting for connection to worker...
+    </div>
+  </section>
+
+  <!-- Database Visualization Component -->
+  <section
+    class="p-margin-page border-2 border-dashed border-neutral-600 mt-8 p-6 bg-[#121212] rounded"
+  >
+    <div class="flex items-start mb-2">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="28"
+        height="28"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="text-primary mr-3 mt-1 flex-shrink-0"
+      >
+        <ellipse cx="12" cy="5" rx="9" ry="3"></ellipse>
+        <path d="M3 5V19A9 3 0 0 0 21 19V5"></path>
+        <path d="M3 12A9 3 0 0 0 21 12"></path>
+      </svg>
+      <div>
+        <h3
+          class="text-xl font-bold tracking-wide uppercase text-white leading-tight"
+        >
+          FULL SCHEMA DATABASE
+        </h3>
+        <p
+          class="text-[9px] tracking-widest uppercase text-neutral-400 font-mono mt-1"
+        >
+          ALL PARAMETERS, STRUCTURAL COORDINATES AND NESTED OBJECTS DISCLOSED
+          BELOW
+        </p>
+      </div>
+    </div>
+    <div class="mb-4">
+      <div
+        class="inline-block bg-[#1a1a1a] text-[#aaa] border border-[#333] text-[9px] font-mono py-1 px-2.5 rounded tracking-widest uppercase"
+      >
+        SYSTEM ROOT DECK // SCROLL TO EXPLAIN
+      </div>
+    </div>
+    <hr class="border-neutral-800 my-4" />
+    <div
+      class="relative bg-white text-black font-mono p-4 h-64 border-2 border-black brutalist-shadow flex flex-col"
+    >
+      <div
+        class="absolute top-2 right-2 bg-[#efefef] text-[#333] border border-[#ccc] text-[9px] font-mono py-1 px-2 rounded tracking-widest uppercase select-none"
+      >
+        UTF-8 // JSON FORMAT
+      </div>
+      <pre
+        id="db-json-display"
+        class="flex-1 overflow-y-auto text-xs whitespace-pre-wrap mt-6 select-text text-black bg-white font-mono leading-relaxed">{`{
+  "tableOfContents": {
+    "systemName": "Primal Mama",
+    "edition": "Core Rulebook",
+    "tabs": [
+      "OVERVIEW",
+      "TACTICAL RULES",
+      "CHARACTER CREATION",
+      "RACES",
+      "CLASSES",
+      "SKILLS",
+      "FEATS",
+      "EQUIPMENT",
+      "STARSHIPS"
+    ]
+  }
+}`}</pre>
+    </div>
+  </section>
+
+  <script>
+    // WebSocket Connection
+    const wsLogs = document.getElementById('ws-logs');
+    if (wsLogs) {
+      let ws;
+      let usingFallback = false;
+
+      const appendLog = (htmlContent) => {
+        wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
+      };
+
+      const connect = (url, isFallback = false) => {
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          appendLog(
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/moon'}. Waiting for ticks...`,
+          );
+        };
+
+        let hasReceivedTick = false;
+        ws.onmessage = (event) => {
+          if (!hasReceivedTick) {
+            hasReceivedTick = true;
+            document.getElementById('status-indicator').innerText = 'ONLINE';
+            document.getElementById('status-indicator').className =
+              'text-green-400';
+          }
+          let data = event.data;
+          try {
+            const parsed = JSON.parse(data);
+            data = JSON.stringify(parsed);
+
+            const dbDisplay = document.getElementById('db-json-display');
+            if (dbDisplay) {
+              dbDisplay.textContent = JSON.stringify(parsed, null, 2);
+            }
+          } catch (e) {}
+          appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+        };
+
+        ws.onerror = (error) => {
+          if (!isFallback && !usingFallback) {
+            usingFallback = true;
+            appendLog(
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/moon failed. Retrying with direct worker fallback...</span>',
+            );
+            connect('wss://worker-sower.berad4000.workers.dev/ws', true);
+          } else {
+            document.getElementById('status-indicator').innerText = 'OFFLINE';
+            document.getElementById('status-indicator').className =
+              'text-red-400';
+            appendLog(
+              '<span class="text-red-500">[ERROR] Connection failed.</span>',
+            );
+          }
+        };
+
+        ws.onclose = () => {
+          document.getElementById('status-indicator').innerText = 'OFFLINE';
+          document.getElementById('status-indicator').className =
+            'text-red-400';
+          appendLog('[SYSTEM] Connection closed.');
+        };
+      };
+
+      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+      const wsUrl = `${protocol}//${window.location.host}/api/moon`;
+      connect(wsUrl);
+    }
+  </script>
+</Layout>
