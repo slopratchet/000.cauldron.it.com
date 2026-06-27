@@ -32,6 +32,8 @@ import Layout from '../layouts/Layout.astro';
         </div>
 
         <form id="signup-form" class="space-y-6">
+          <div id="clerk-captcha"></div>
+
           <div id="covenant-sector" class="space-y-6">
             <!-- Phase 1: Identity -->
             <div class="grid grid-cols-1 gap-4">
@@ -117,6 +119,33 @@ import Layout from '../layouts/Layout.astro';
                   </select>
                 </div>
               </div>
+            </div>
+          </div>
+
+          <!-- Phase 3: Verification (MFA/Pulse) -->
+          <div
+            id="verification-sector"
+            class="hidden space-y-4 animate-in fade-in slide-in-from-bottom-4 duration-500"
+          >
+            <div class="space-y-1">
+              <label
+                class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+              >
+                VERIFICATION_CODE (SENT TO EMAIL)
+              </label>
+              <input
+                id="verification_code"
+                name="verification_code"
+                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-lg font-black tracking-[0.5em] text-center focus:ring-0 focus:bg-white outline-none text-primary transition-colors"
+                placeholder="000000"
+                type="text"
+                maxlength="6"
+              />
+              <p
+                class="text-[8px] font-bold uppercase opacity-40 text-center tracking-tighter"
+              >
+                SECURE CHANNEL: CHECK INBOX FOR 6-DIGIT PULSE
+              </p>
             </div>
           </div>
 
@@ -225,8 +254,20 @@ import Layout from '../layouts/Layout.astro';
 
     // Sectors
     const covenantSector = document.getElementById('covenant-sector');
+    const verificationSector = document.getElementById('verification-sector');
     const integrationSector = document.getElementById('integration-sector');
     const actionsSector = document.getElementById('actions-sector');
+
+    // Inputs
+    const emailInput = document.getElementById(
+      'emailAddress',
+    ) as HTMLInputElement;
+    const passwordInput = document.getElementById(
+      'password',
+    ) as HTMLInputElement;
+    const covenantCheck = document.getElementById(
+      'covenant-check',
+    ) as HTMLInputElement;
 
     let currentSignUp: any = null;
 
@@ -237,6 +278,7 @@ import Layout from '../layouts/Layout.astro';
       const formData = new FormData(signupForm);
       const emailAddress = formData.get('emailAddress') as string;
       const password = formData.get('password') as string;
+      const code = formData.get('verification_code') as string;
 
       const clerk = $clerkStore.get();
       if (!clerk || !clerk.client) {
@@ -247,12 +289,26 @@ import Layout from '../layouts/Layout.astro';
       try {
         setLoading(true);
 
+        // STAGE 2: THE PULSE (Verification)
+        if (currentSignUp && code) {
+          currentSignUp = await currentSignUp.attemptEmailAddressVerification({
+            code,
+          });
+
+          if (currentSignUp.status === 'complete') {
+            await clerk.setActive({ session: currentSignUp.createdSessionId });
+            pivotToIntegration();
+            window.location.href = '/';
+          } else {
+            console.error('VERIFICATION_INCOMPLETE:', currentSignUp);
+            throw new Error('VERIFICATION_FAILED: SEQUENCE_MISMATCH.');
+          }
+          return;
+        }
+
         // STAGE 1: THE COVENANT (Registration)
         if (!currentSignUp) {
           // Covenant Agreement Check
-          const covenantCheck = document.getElementById(
-            'covenant-check',
-          ) as HTMLInputElement;
           if (covenantCheck && !covenantCheck.checked) {
             throw new Error('THE COVENANT REMAINS UNSIGNED. ACCESS DENIED.');
           }
@@ -297,9 +353,16 @@ import Layout from '../layouts/Layout.astro';
             pivotToIntegration();
             window.location.href = '/';
           } else if (currentSignUp.status === 'missing_requirements') {
-            throw new Error(
-              'REGISTRATION_INCOMPLETE: ADDITIONAL_VERIFICATION_REQUIRED_BY_SERVER.',
-            );
+            // Check if email verification is required
+            if (currentSignUp.unverifiedFields.includes('email_address')) {
+              await currentSignUp.prepareEmailAddressVerification();
+              pivotToVerification();
+              handleNotice('VERIFICATION_PULSE_SENT_TO_SIGNAL_BUFFER');
+            } else {
+              throw new Error(
+                'REGISTRATION_INCOMPLETE: ADDITIONAL_VERIFICATION_REQUIRED_BY_SERVER.',
+              );
+            }
           }
         }
       } catch (err: any) {
@@ -324,8 +387,30 @@ import Layout from '../layouts/Layout.astro';
       }
     });
 
+    function pivotToVerification() {
+      covenantSector?.classList.add('hidden');
+      verificationSector?.classList.remove('hidden');
+
+      if (emailInput) emailInput.required = false;
+      if (passwordInput) passwordInput.required = false;
+      if (covenantCheck) covenantCheck.required = false;
+
+      const codeInput = document.getElementById(
+        'verification_code',
+      ) as HTMLInputElement;
+      if (codeInput) {
+        codeInput.required = true;
+        codeInput.focus();
+      }
+
+      if (submitBtn) {
+        submitBtn.innerText = 'VERIFY_PULSE';
+      }
+    }
+
     function pivotToIntegration() {
       covenantSector?.classList.add('hidden');
+      verificationSector?.classList.add('hidden');
       actionsSector?.classList.add('hidden');
       integrationSector?.classList.remove('hidden');
     }
@@ -337,7 +422,10 @@ import Layout from '../layouts/Layout.astro';
         submitBtn.dataset.oldText = submitBtn.innerText;
         submitBtn.innerText = 'PROCESSING_TX...';
       } else if (submitBtn.dataset.oldText) {
-        submitBtn.innerText = submitBtn.dataset.oldText;
+        const isVerifying = !verificationSector?.classList.contains('hidden');
+        submitBtn.innerText = isVerifying
+          ? 'VERIFY_PULSE'
+          : submitBtn.dataset.oldText;
       }
     }
 
