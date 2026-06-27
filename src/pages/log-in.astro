@@ -3,9 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 // SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
 const auth = Astro.locals.auth();
-const isLocal =
-  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
-if (auth.userId || isLocal) {
+if (auth.userId) {
   const target = '/lobby';
   return Astro.redirect(target);
 }
@@ -38,15 +36,15 @@ if (auth.userId || isLocal) {
               <label
                 class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
               >
-                USER_IDENTIFIER
+                GENETIC_ID (EMAIL)
               </label>
               <input
                 id="identifier"
                 name="identifier"
                 required
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase placeholder:opacity-30 text-primary transition-colors"
-                placeholder="ENTER ID..."
-                type="text"
+                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none lowercase placeholder:opacity-30 text-primary transition-colors"
+                placeholder="EMAIL..."
+                type="email"
               />
             </div>
 
