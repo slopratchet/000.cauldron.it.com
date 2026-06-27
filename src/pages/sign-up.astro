@@ -44,6 +44,8 @@ import Layout from '../layouts/Layout.astro';
                   id="username"
                   name="username"
                   required
+                  minlength="4"
+                  maxlength="64"
                   class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase text-primary transition-colors"
                   placeholder="USERNAME..."
                   type="text"
@@ -194,7 +196,7 @@ import Layout from '../layouts/Layout.astro';
             </button>
             <p class="text-xs font-bold uppercase opacity-40 text-center mt-4">
               ALREADY REGISTERED? <a
-                href="/login"
+                href="/log-in"
                 class="underline hover:text-primary">EXECUTE_LOGIN</a
               >
             </p>
@@ -264,8 +266,28 @@ import Layout from '../layouts/Layout.astro';
       const emailAddress = formData.get('emailAddress') as string;
       const password = formData.get('password') as string;
 
+      // STAGE 0: PRE-FLIGHT VALIDATION (Clerk Parameters Sync)
+      const usernameRegex = /^[a-zA-Z0-9_.]+$/;
+      if (!usernameRegex.test(username)) {
+        handleError('INVALID_IDENTIFIER: EXTENDED_CHARACTERS_PROHIBITED.');
+        return;
+      }
+
+      if (/^\d+$/.test(username)) {
+        handleError('INVALID_IDENTIFIER: PURELY_NUMERIC_ID_PROHIBITED.');
+        return;
+      }
+
+      if (username.length < 4 || username.length > 64) {
+        handleError('INVALID_IDENTIFIER: SEQUENCE_LENGTH_OUT_OF_BOUNDS.');
+        return;
+      }
+
       const clerk = $clerkStore.get();
-      if (!clerk || !clerk.client) return;
+      if (!clerk || !clerk.client) {
+        handleError('PROTOCOL_ERROR: BIOMETRIC_BUFFER_NOT_READY.');
+        return;
+      }
 
       try {
         setLoading(true);
