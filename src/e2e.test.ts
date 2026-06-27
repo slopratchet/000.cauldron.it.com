@@ -68,7 +68,7 @@ describe('E2E Sanity Check', () => {
   it.skipIf(!hasClerkKeys)(
     'should handle the multi-stage Registration handshake',
     async () => {
-      await page.goto('http://localhost:4321/signup', {
+      await page.goto('http://localhost:4321/sign-up', {
         waitUntil: 'networkidle0',
       });
 
@@ -95,7 +95,7 @@ describe('E2E Sanity Check', () => {
   );
 
   it('should load the /signup page and render all Stage I form fields', async () => {
-    await page.goto('http://localhost:4321/signup', {
+    await page.goto('http://localhost:4321/sign-up', {
       waitUntil: 'networkidle0',
       timeout: 30000,
     });
@@ -129,7 +129,7 @@ describe('E2E Sanity Check', () => {
   it('should measure page render latency under 3000ms', async () => {
     const start = Date.now();
 
-    await page.goto('http://localhost:4321/signup', {
+    await page.goto('http://localhost:4321/sign-up', {
       waitUntil: 'domcontentloaded',
       timeout: 30000,
     });
