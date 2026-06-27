@@ -259,8 +259,12 @@ import Layout from '../layouts/Layout.astro';
     const actionsSector = document.getElementById('actions-sector');
 
     // Inputs
-    const emailInput = document.getElementById('emailAddress') as HTMLInputElement;
-    const passwordInput = document.getElementById('password') as HTMLInputElement;
+    const emailInput = document.getElementById(
+      'emailAddress',
+    ) as HTMLInputElement;
+    const passwordInput = document.getElementById(
+      'password',
+    ) as HTMLInputElement;
     const covenantCheck = document.getElementById(
       'covenant-check',
     ) as HTMLInputElement;
@@ -419,7 +423,9 @@ import Layout from '../layouts/Layout.astro';
         submitBtn.innerText = 'PROCESSING_TX...';
       } else if (submitBtn.dataset.oldText) {
         const isVerifying = !verificationSector?.classList.contains('hidden');
-        submitBtn.innerText = isVerifying ? 'VERIFY_PULSE' : submitBtn.dataset.oldText;
+        submitBtn.innerText = isVerifying
+          ? 'VERIFY_PULSE'
+          : submitBtn.dataset.oldText;
       }
     }
 
