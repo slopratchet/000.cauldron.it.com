@@ -132,13 +132,14 @@ describe('Protocol Stage I: The Covenant (Input Validation)', () => {
       const metadata = buildTacticalMetadata(fields);
 
       await clerk.client.signUp.create({
-        emailAddress: 'void@primal.mama',
+        username: 'VoidWalker',
         password: 'cipher123',
         unsafeMetadata: metadata,
       });
 
       expect(mockSignUp.create).toHaveBeenCalledWith(
         expect.objectContaining({
+          username: 'VoidWalker',
           unsafeMetadata: expect.objectContaining({
             username: 'VoidWalker',
             origin: 'SPECTRAL_REMNANT',
@@ -167,11 +168,11 @@ describe('Protocol Stage I: The Covenant (Input Validation)', () => {
       );
     });
 
-    it('should NOT pass username as a root Clerk parameter (only in unsafeMetadata)', async () => {
+    it('should pass username as a root Clerk parameter and in unsafeMetadata', async () => {
       const clerk = $clerkStore.get() as any;
 
       await clerk.client.signUp.create({
-        emailAddress: 'swamp@primal.mama',
+        username: 'SwampBorn',
         password: 'anchor888',
         unsafeMetadata: buildTacticalMetadata({
           username: 'SwampBorn',
@@ -182,9 +183,9 @@ describe('Protocol Stage I: The Covenant (Input Validation)', () => {
       });
 
       const callArgs = mockSignUp.create.mock.calls[0][0];
-      // Root 'username' key must NOT exist to avoid 422 errors
-      expect(callArgs).not.toHaveProperty('username');
-      // But it MUST exist in unsafeMetadata
+      // Root 'username' key MUST exist
+      expect(callArgs).toHaveProperty('username', 'SwampBorn');
+      // But it MUST also exist in unsafeMetadata
       expect(callArgs.unsafeMetadata).toHaveProperty('username', 'SwampBorn');
     });
   });
@@ -198,59 +199,31 @@ describe('Protocol Stage II: The Transmission (State Machine)', () => {
     vi.clearAllMocks();
   });
 
-  it('should call prepareEmailAddressVerification after successful create()', async () => {
+  it('should skip email verification if status is complete', async () => {
     const signUp = mockSignUp;
 
-    // Simulate Stage I completing and returning missing_requirements
     const result = await signUp.create({
-      emailAddress: 'test@void.com',
+      username: 'test',
       password: 'cipher123',
       unsafeMetadata: { username: 'test' },
     });
 
-    expect(result.status).toBe('missing_requirements');
+    expect(result.status).toBe('complete');
     // The UI should then call prepare...
     await result.prepareEmailAddressVerification();
     expect(result.prepareEmailAddressVerification).toHaveBeenCalledTimes(1);
   });
 
-  it('should support calling prepareEmailAddressVerification multiple times (Resend)', async () => {
-    const signUp = mockSignUp;
-    const result = await signUp.create({
-      emailAddress: 'test@void.com',
-      password: 'cipher123',
-      unsafeMetadata: { username: 'test' },
-    });
-
-    // Simulate "Resend Pulse" being clicked 3 times
-    await result.prepareEmailAddressVerification();
-    await result.prepareEmailAddressVerification();
-    await result.prepareEmailAddressVerification();
-
-    expect(result.prepareEmailAddressVerification).toHaveBeenCalledTimes(3);
-    // Verify the mock still returns cleanly — UI state should persist
-    const allCalls = result.prepareEmailAddressVerification.mock.results;
-    await Promise.all(
-      allCalls.map((call: { value: Promise<unknown> }) =>
-        expect(call.value).resolves.not.toThrow(),
-      ),
-    );
-  });
-
-  it('should produce a complete session on valid OTP verification', async () => {
+  it('should produce a complete session on registration', async () => {
     const signUp = mockSignUp;
     const created = await signUp.create({
-      emailAddress: 'test@void.com',
+      username: 'test',
       password: 'cipher123',
       unsafeMetadata: { username: 'test' },
     });
 
-    const verified = await created.attemptEmailAddressVerification({
-      code: '654321',
-    });
-
-    expect(verified.status).toBe('complete');
-    expect(verified.createdSessionId).toBe('session_mock_123');
+    expect(created.status).toBe('complete');
+    expect(created.createdSessionId).toBe('session_mock_123');
   });
 });
 

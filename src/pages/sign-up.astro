@@ -318,6 +318,7 @@ import Layout from '../layouts/Layout.astro';
 
           const tacticalMetadata = {
             username, // Preserving chosen identity in metadata
+            email: emailAddress,
             origin: formData.get('origin'),
             archetype: formData.get('archetype'),
             alignment: formData.get('alignment'),
@@ -325,7 +326,7 @@ import Layout from '../layouts/Layout.astro';
           };
 
           currentSignUp = await clerk.client.signUp.create({
-            emailAddress,
+            username,
             password,
             unsafeMetadata: tacticalMetadata,
           });
@@ -334,6 +335,10 @@ import Layout from '../layouts/Layout.astro';
             await currentSignUp.prepareEmailAddressVerification();
             pivotToTransmission();
             handleNotice('PULSE_SENT: VERIFY SIGNAL IN BUFFER');
+          } else if (currentSignUp.status === 'complete') {
+            await clerk.setActive({ session: currentSignUp.createdSessionId });
+            pivotToIntegration();
+            window.location.href = '/';
           }
         }
         // STAGE 2: THE TRANSMISSION (OTP)

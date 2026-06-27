@@ -23,10 +23,11 @@ export const mockSignIn = {
 };
 
 export const mockSignUp = {
-  status: 'missing_requirements',
+  status: 'complete',
   createdSessionId: 'session_mock_123',
   create: vi.fn().mockResolvedValue({
-    status: 'missing_requirements',
+    status: 'complete',
+    createdSessionId: 'session_mock_123',
     prepareEmailAddressVerification: vi.fn().mockResolvedValue({}),
     attemptEmailAddressVerification: vi.fn().mockResolvedValue({
       status: 'complete',
