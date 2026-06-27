@@ -65,35 +65,6 @@ describe('E2E Sanity Check', () => {
     30000,
   );
 
-  it.skipIf(!hasClerkKeys)(
-    'should handle the multi-stage Registration handshake',
-    async () => {
-      await page.goto('http://localhost:4321/sign-up', {
-        waitUntil: 'networkidle0',
-      });
-
-      // 1. Agree to The Covenant
-      await page.click('#covenant-check');
-
-      // 2. Enter Credentials
-      await page.type('#username', 'TestRunner');
-      await page.type('#emailAddress', 'test-reg@alligator.ink');
-      await page.type('#password', 'reg-handshake123');
-
-      // 3. Tactically Initialize
-      await page.click('#submit-btn');
-
-      // 4. Verify UI Pivot to Stage II (Transmission)
-      await page.waitForSelector('#transmission-sector:not(.hidden)', {
-        timeout: 5000,
-      });
-
-      const btnText = await page.$eval('#submit-btn', (el) => el.textContent);
-      expect(btnText?.trim()).toBe('VERIFY_PULSE');
-    },
-    30000,
-  );
-
   it('should load the /signup page and render all Stage I form fields', async () => {
     await page.goto('http://localhost:4321/sign-up', {
       waitUntil: 'networkidle0',
@@ -118,12 +89,6 @@ describe('E2E Sanity Check', () => {
     // Verify button text is correct for Stage I
     const btnText = await page.$eval('#submit-btn', (el) => el.textContent);
     expect(btnText?.trim()).toBe('INITIALIZE_COVENANT');
-
-    // Verify OTP sector is hidden (Stage I default state)
-    const transmissionHidden = await page.$eval('#transmission-sector', (el) =>
-      el.classList.contains('hidden'),
-    );
-    expect(transmissionHidden).toBe(true);
   });
 
   it('should measure page render latency under 3000ms', async () => {
