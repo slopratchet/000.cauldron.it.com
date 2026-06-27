@@ -323,14 +323,39 @@ import Layout from '../layouts/Layout.astro';
             registered_at: new Date().toISOString(),
           };
 
-          currentSignUp = await clerk.client.signUp.create({
-            username,
-            password,
-            unsafeMetadata: tacticalMetadata,
-          });
+          try {
+            currentSignUp = await clerk.client.signUp.create({
+              username,
+              password,
+              emailAddress,
+              unsafeMetadata: tacticalMetadata,
+            });
+          } catch (err: any) {
+            // Fallback: If Clerk dashboard has email disabled as a primary identifier,
+            // it will throw a form_param_value_invalid. We pivot to metadata-only.
+            const isInvalidEmailParam =
+              err.errors?.[0]?.code === 'form_param_value_invalid' &&
+              (err.errors?.[0]?.meta?.paramName === 'email_address' ||
+                err.errors?.[0]?.meta?.paramName === 'emailAddress');
+
+            if (isInvalidEmailParam) {
+              console.warn(
+                'CLERK_COMPAT: EMAIL_ADDRESS_PARAM_REJECTED. FALLING_BACK_TO_METADATA.',
+              );
+              currentSignUp = await clerk.client.signUp.create({
+                username,
+                password,
+                unsafeMetadata: tacticalMetadata,
+              });
+            } else {
+              throw err;
+            }
+          }
 
           if (currentSignUp.status === 'missing_requirements') {
-            await currentSignUp.prepareEmailAddressVerification();
+            await currentSignUp.prepareEmailAddressVerification({
+              strategy: 'email_code',
+            });
             pivotToTransmission();
             handleNotice('PULSE_SENT: VERIFY SIGNAL IN BUFFER');
           } else if (currentSignUp.status === 'complete') {
@@ -361,16 +386,20 @@ import Layout from '../layouts/Layout.astro';
       } catch (err: any) {
         console.error('PROTOCOL_ERR:', err);
         const code = err.errors?.[0]?.code;
-        let vernacularMsg = 'Protocol Error: Transmission Corrupted.';
+        let vernacularMsg = 'PROTOCOL_ERROR: TRANSMISSION_CORRUPTED.';
 
         if (code === 'form_identifier_exists')
-          vernacularMsg = 'This genetic sequence is already claimed.';
+          vernacularMsg =
+            'IDENTIFIER_CLAIMED: GENETIC_SEQUENCE_ALREADY_EXISTS.';
         else if (code === 'form_password_pwned')
-          vernacularMsg = 'Cipher compromised. Choose a stronger anchor.';
+          vernacularMsg = 'CIPHER_COMPROMISED: CHOOSE_STRONGER_ANCHOR.';
         else if (err.message)
           vernacularMsg = `ERR: ${err.message.toUpperCase()}`;
 
         handleError(vernacularMsg);
+
+        // If the attempt is corrupted (422), reset to allow a clean restart
+        if (err.status === 422) currentSignUp = null;
       } finally {
         setLoading(false);
       }
