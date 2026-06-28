@@ -62,13 +62,12 @@ import Layout from '../layouts/Layout.astro';
           console.log('LOG_OUT: SIGN_OUT_COMPLETE');
         } catch (err) {
           console.error('LOG_OUT: SIGN_OUT_ERROR', err);
+          window.location.href = '/';
         }
       } else {
         console.warn('LOG_OUT: CLERK_CLIENT_NOT_FOUND_PROCEEDING_TO_LOGIN');
+        window.location.href = '/';
       }
-
-      // Final redirect to entry point
-      window.location.href = '/';
     }
 
     // Execute when ready
