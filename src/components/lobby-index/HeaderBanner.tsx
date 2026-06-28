@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Shield, RefreshCw, Hourglass } from 'lucide-react';
-import { Seat } from './types';
+import type { Seat } from './types';
 
 interface HeaderBannerProps {
   seats: Seat[];

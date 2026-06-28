@@ -53,8 +53,20 @@ try {
       let ws;
       let usingFallback = false;
 
-      const appendLog = (htmlContent) => {
+      const appendLog = (htmlContent, type = 'INFO') => {
         wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
+
+        // Dispatch a custom event for the LobbyIndex component to catch
+        // Strip HTML tags for the text-only system log
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+
+        window.dispatchEvent(
+          new CustomEvent('lobby-system-log', {
+            detail: { text: plainText, type },
+          }),
+        );
       };
 
       const connect = (url, isFallback = false) => {
@@ -63,6 +75,7 @@ try {
         ws.onopen = () => {
           appendLog(
             `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
+            'SUCCESS',
           );
         };
 
@@ -79,7 +92,10 @@ try {
             const parsed = JSON.parse(data);
             data = JSON.stringify(parsed);
           } catch (e) {}
-          appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+          appendLog(
+            `<span class="text-white">[TICK]</span> ${data}`,
+            'SUCCESS',
+          );
         };
 
         ws.onerror = (error) => {
@@ -87,6 +103,7 @@ try {
             usingFallback = true;
             appendLog(
               '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+              'WARNING',
             );
             connect('wss://worker-sower.berad4000.workers.dev/ws', true);
           } else {
@@ -95,6 +112,7 @@ try {
               'text-red-400';
             appendLog(
               '<span class="text-red-500">[ERROR] Connection failed.</span>',
+              'ALERT',
             );
           }
         };
@@ -103,7 +121,7 @@ try {
           document.getElementById('status-indicator').innerText = 'OFFLINE';
           document.getElementById('status-indicator').className =
             'text-red-400';
-          appendLog('[SYSTEM] Connection closed.');
+          appendLog('[SYSTEM] Connection closed.', 'WARNING');
         };
       };
 
