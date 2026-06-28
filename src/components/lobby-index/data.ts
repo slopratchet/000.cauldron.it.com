@@ -1,4 +1,4 @@
-import { SessionLog, Seat, SystemLogEntry } from './types';
+import type { SessionLog, Seat, SystemLogEntry } from './types';
 
 export const INITIAL_SESSIONS: SessionLog[] = [
   {

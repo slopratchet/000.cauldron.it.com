@@ -1,5 +1,5 @@
 import { Grid } from 'lucide-react';
-import { Seat } from './types';
+import type { Seat } from './types';
 
 interface TheaterMapProps {
   seats: Seat[];

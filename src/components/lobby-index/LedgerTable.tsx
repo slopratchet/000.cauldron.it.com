@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Search, RotateCcw, AlertTriangle, Eye } from 'lucide-react';
-import { SessionLog, SessionStatus } from './types';
+import type { SessionLog, SessionStatus } from './types';
 
 interface LedgerTableProps {
   sessions: SessionLog[];

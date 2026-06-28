@@ -1,5 +1,5 @@
 import './styles/lobby-index.css';
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { BookOpen, ShieldCheck } from 'lucide-react';
 import {
   INITIAL_SESSIONS,
@@ -7,7 +7,7 @@ import {
   generateInitialSeats,
   ENCYCLOPEDIA_NOTES,
 } from './data';
-import { SessionLog, Seat, SystemLogEntry } from './types';
+import type { SessionLog, Seat, SystemLogEntry } from './types';
 import HeaderBanner from './HeaderBanner';
 import LedgerTable from './LedgerTable';
 import CommandPanel from './CommandPanel';
@@ -123,11 +123,11 @@ export default function LobbyIndex() {
   };
 
   // Sync state changes from components back to JSON text
-  const syncSchemaToText = (updatedSchema: SchemaState) => {
+  const syncSchemaToText = useCallback((updatedSchema: SchemaState) => {
     isInternalUpdatingRef.current = true;
     setJsonText(JSON.stringify(updatedSchema, null, 2));
     isInternalUpdatingRef.current = false;
-  };
+  }, []);
 
   // Dynamic timing generator for logging
   const getSimulatedTime = () => {
@@ -138,26 +138,47 @@ export default function LobbyIndex() {
     return `${hrs}:${mins}:${secs}`;
   };
 
-  const handleAddLog = (
-    text: string,
-    type: 'INFO' | 'SUCCESS' | 'WARNING' | 'ALERT' = 'INFO',
-  ) => {
-    const timestamp = getSimulatedTime();
-    const nextLog: SystemLogEntry = {
-      timestamp,
-      text: text.toUpperCase(),
-      type,
+  const handleAddLog = useCallback(
+    (text: string, type: 'INFO' | 'SUCCESS' | 'WARNING' | 'ALERT' = 'INFO') => {
+      const timestamp = getSimulatedTime();
+      const nextLog: SystemLogEntry = {
+        timestamp,
+        text: text.toUpperCase(),
+        type,
+      };
+
+      setSchema((prev) => {
+        const updated = {
+          ...prev,
+          systemLogs: [...prev.systemLogs, nextLog],
+        };
+        syncSchemaToText(updated);
+        return updated;
+      });
+    },
+    [syncSchemaToText],
+  );
+
+  // Listen for external logs from the main page (e.g. WebSocket messages)
+  useEffect(() => {
+    const handleExternalLog = (event: Event) => {
+      const customEvent = event as CustomEvent<{
+        text: string;
+        type: 'INFO' | 'SUCCESS' | 'WARNING' | 'ALERT';
+      }>;
+      if (customEvent.detail && customEvent.detail.text) {
+        handleAddLog(
+          customEvent.detail.text,
+          customEvent.detail.type || 'INFO',
+        );
+      }
     };
 
-    setSchema((prev) => {
-      const updated = {
-        ...prev,
-        systemLogs: [...prev.systemLogs, nextLog],
-      };
-      syncSchemaToText(updated);
-      return updated;
-    });
-  };
+    window.addEventListener('lobby-system-log', handleExternalLog);
+    return () => {
+      window.removeEventListener('lobby-system-log', handleExternalLog);
+    };
+  }, [handleAddLog]);
 
   // Toggle seat occupancy
   const handleToggleSeat = (seatId: string) => {

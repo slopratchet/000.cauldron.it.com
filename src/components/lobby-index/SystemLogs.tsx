@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { Trash2, Terminal } from 'lucide-react';
-import { SystemLogEntry } from './types';
+import type { SystemLogEntry } from './types';
 
 interface SystemLogsProps {
   logs: SystemLogEntry[];

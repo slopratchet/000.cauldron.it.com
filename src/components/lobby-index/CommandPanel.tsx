@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { PlaySquare, Save, Terminal } from 'lucide-react';
-import { SessionLog, SessionStatus } from './types';
+import type { SessionLog, SessionStatus } from './types';
 
 interface CommandPanelProps {
   onExecuteQuery: (query: string) => void;
