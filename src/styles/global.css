@@ -342,7 +342,7 @@
   .cimmerian-theme {
     background-color: #fcf9f8;
     color: #1b1c1c;
-    cursor: crosshair;
+    cursor: default;
 
     /* Custom scrollbar for retro table layout */
     ::-webkit-scrollbar {

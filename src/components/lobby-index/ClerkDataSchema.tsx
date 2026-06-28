@@ -145,7 +145,7 @@ export default function ClerkDataSchema() {
       </div>
 
       {user ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 overflow-auto max-h-96 scrollbar-hide select-text">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 select-text">
           {flattenedParamsList.map((item, idx) => (
             <div
               key={idx}
