@@ -1,13 +1,20 @@
 import { useEffect, useRef } from 'react';
-import { Trash2, Terminal } from 'lucide-react';
+import { Trash2, Terminal, Pause, Play } from 'lucide-react';
 import type { SystemLogEntry } from './types';
 
 interface SystemLogsProps {
   logs: SystemLogEntry[];
   onClearLogs: () => void;
+  isPaused: boolean;
+  onTogglePause: () => void;
 }
 
-export default function SystemLogs({ logs, onClearLogs }: SystemLogsProps) {
+export default function SystemLogs({
+  logs,
+  onClearLogs,
+  isPaused,
+  onTogglePause,
+}: SystemLogsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Auto-scroll logic as new live logs stream in
@@ -41,15 +48,43 @@ export default function SystemLogs({ logs, onClearLogs }: SystemLogsProps) {
           <Terminal className="w-4 h-4 text-amber-500" />
           <span>System Logs</span>
         </h3>
-        {/* Simple tactile Clear Buffer Button */}
-        <button
-          type="button"
-          onClick={onClearLogs}
-          title="Clear Buffer Logs"
-          className="hover:bg-[#E6E2D8]/10 p-1 text-[#E6E2D8]/50 hover:text-[#E6E2D8] transition-colors border border-transparent rounded-sm cursor-pointer"
-        >
-          <Trash2 className="w-3.5 h-3.5" />
-        </button>
+        {/* Simple tactile Controls */}
+        <div className="flex items-center gap-1">
+          <button
+            type="button"
+            onClick={onTogglePause}
+            disabled={!isPaused}
+            title="Resume Logging"
+            className={`p-1 transition-colors border border-transparent rounded-sm ${
+              !isPaused
+                ? 'text-amber-500 cursor-default'
+                : 'text-[#E6E2D8]/50 hover:text-[#E6E2D8] cursor-pointer hover:bg-[#E6E2D8]/10'
+            }`}
+          >
+            <Play className="w-3.5 h-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={onTogglePause}
+            disabled={isPaused}
+            title="Pause Logging"
+            className={`p-1 transition-colors border border-transparent rounded-sm ${
+              isPaused
+                ? 'text-amber-500 cursor-default'
+                : 'text-[#E6E2D8]/50 hover:text-[#E6E2D8] cursor-pointer hover:bg-[#E6E2D8]/10'
+            }`}
+          >
+            <Pause className="w-3.5 h-3.5" />
+          </button>
+          <button
+            type="button"
+            onClick={onClearLogs}
+            title="Clear Buffer Logs"
+            className="hover:bg-[#E6E2D8]/10 p-1 text-[#E6E2D8]/50 hover:text-[#E6E2D8] transition-colors border border-transparent rounded-sm cursor-pointer"
+          >
+            <Trash2 className="w-3.5 h-3.5" />
+          </button>
+        </div>
       </div>
 
       <div

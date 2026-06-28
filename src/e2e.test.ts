@@ -119,7 +119,9 @@ describe('E2E Sanity Check', () => {
     // It should redirect to /log-in
     // We wait for the URL to change to /log-in
     await page.waitForFunction(
-      () => window.location.pathname === '/log-in' || window.location.pathname === '/',
+      () =>
+        window.location.pathname === '/log-in' ||
+        window.location.pathname === '/',
       { timeout: 15000 },
     );
 
