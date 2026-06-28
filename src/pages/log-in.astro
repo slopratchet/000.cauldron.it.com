@@ -302,7 +302,7 @@ if (auth.userId) {
       console.log('BIO_PUNK_UI: WAITING_FOR_CLERK_HYDRATION...');
       let clerk = $clerkStore.get();
       let retryCount = 0;
-      while (!clerk && retryCount < 15) {
+      while (!clerk && retryCount < 50) {
         console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
         await new Promise((resolve) => setTimeout(resolve, 200));
         clerk = $clerkStore.get();
