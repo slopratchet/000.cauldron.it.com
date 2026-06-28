@@ -68,6 +68,10 @@ export default function LobbyIndex() {
   // Main Unified Schema State
   const [schema, setSchema] = useState<SchemaState>(getInitialSchemaState());
 
+  // Log pausing state
+  const [isPaused, setIsPaused] = useState<boolean>(false);
+  const logBufferRef = useRef<SystemLogEntry[]>([]);
+
   // Countdown timer state
   const [timeInSeconds, setTimeInSeconds] = useState<number>(
     3 * 24 * 3600 + 7 * 3600 + 59 * 60 + 57,
@@ -173,6 +177,11 @@ export default function LobbyIndex() {
         type,
       };
 
+      if (isPaused) {
+        logBufferRef.current.push(nextLog);
+        return;
+      }
+
       setSchema((prev) => {
         const updated = {
           ...prev,
@@ -182,7 +191,7 @@ export default function LobbyIndex() {
         return updated;
       });
     },
-    [syncSchemaToText],
+    [syncSchemaToText, isPaused],
   );
 
   // Listen for external logs from the main page (e.g. WebSocket messages)
@@ -232,6 +241,16 @@ export default function LobbyIndex() {
         text: nextLogText.toUpperCase(),
         type: nextStatus === 'OCCUPIED' ? 'SUCCESS' : 'WARNING',
       };
+
+      if (isPaused) {
+        logBufferRef.current.push(nextLog);
+        const updated = {
+          ...prev,
+          seats: updatedSeats,
+        };
+        syncSchemaToText(updated);
+        return updated;
+      }
 
       const updated = {
         ...prev,
@@ -329,6 +348,18 @@ export default function LobbyIndex() {
         type: 'SUCCESS',
       };
 
+      if (isPaused) {
+        logBufferRef.current.push(nextLog);
+        const updated = {
+          ...prev,
+          sessions: nextSessions,
+          seats: updatedSeats,
+        };
+        syncSchemaToText(updated);
+        setSelectedSessionId(newLog.id);
+        return updated;
+      }
+
       const updated = {
         ...prev,
         sessions: nextSessions,
@@ -343,6 +374,7 @@ export default function LobbyIndex() {
   };
 
   const handleClearLogs = () => {
+    logBufferRef.current = [];
     setSchema((prev) => {
       const updated = {
         ...prev,
@@ -357,6 +389,23 @@ export default function LobbyIndex() {
       syncSchemaToText(updated);
       return updated;
     });
+  };
+
+  const handleTogglePause = () => {
+    if (isPaused) {
+      // Resuming - flush buffer
+      const buffered = [...logBufferRef.current];
+      logBufferRef.current = [];
+      setSchema((prev) => {
+        const updated = {
+          ...prev,
+          systemLogs: [...prev.systemLogs, ...buffered],
+        };
+        syncSchemaToText(updated);
+        return updated;
+      });
+    }
+    setIsPaused(!isPaused);
   };
 
   // Called when user edits the raw JSON text editor manually
@@ -579,6 +628,8 @@ export default function LobbyIndex() {
                 <SystemLogs
                   logs={schema.systemLogs}
                   onClearLogs={handleClearLogs}
+                  isPaused={isPaused}
+                  onTogglePause={handleTogglePause}
                 />
                 <ClerkDataSchema />
               </div>
