@@ -116,12 +116,10 @@ describe('E2E Sanity Check', () => {
       timeout: 30000,
     });
 
-
     // It should redirect to /
     await page.waitForFunction(() => window.location.pathname === '/', {
       timeout: 15000,
     });
-
 
     const pathname = await page.evaluate(() => window.location.pathname);
     expect(pathname).toBe('/');
