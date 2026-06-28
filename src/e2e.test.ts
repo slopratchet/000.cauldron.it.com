@@ -129,3 +129,4 @@ describe('E2E Sanity Check', () => {
     expect(['/log-in', '/']).toContain(pathname);
   }, 30000);
 });
+// formatting fix

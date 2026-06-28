@@ -185,7 +185,7 @@ export default function LobbyIndex() {
       setSchema((prev) => {
         const updated = {
           ...prev,
-          systemLogs: [...prev.systemLogs, nextLog],
+          systemLogs: [nextLog, ...prev.systemLogs],
         };
         syncSchemaToText(updated);
         return updated;
@@ -255,7 +255,7 @@ export default function LobbyIndex() {
       const updated = {
         ...prev,
         seats: updatedSeats,
-        systemLogs: [...prev.systemLogs, nextLog],
+        systemLogs: [nextLog, ...prev.systemLogs],
       };
 
       syncSchemaToText(updated);
@@ -364,7 +364,7 @@ export default function LobbyIndex() {
         ...prev,
         sessions: nextSessions,
         seats: updatedSeats,
-        systemLogs: [...prev.systemLogs, nextLog],
+        systemLogs: [nextLog, ...prev.systemLogs],
       };
 
       syncSchemaToText(updated);
@@ -399,7 +399,7 @@ export default function LobbyIndex() {
       setSchema((prev) => {
         const updated = {
           ...prev,
-          systemLogs: [...prev.systemLogs, ...buffered],
+          systemLogs: [...[...buffered].reverse(), ...prev.systemLogs],
         };
         syncSchemaToText(updated);
         return updated;

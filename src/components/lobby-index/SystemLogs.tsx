@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { Trash2, Terminal, Pause, Play } from 'lucide-react';
 import type { SystemLogEntry } from './types';
 
@@ -16,13 +16,6 @@ export default function SystemLogs({
   onTogglePause,
 }: SystemLogsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
-
-  // Auto-scroll logic as new live logs stream in
-  useEffect(() => {
-    if (containerRef.current) {
-      containerRef.current.scrollTop = containerRef.current.scrollHeight;
-    }
-  }, [logs]);
 
   const getLogColorClass = (type: SystemLogEntry['type']) => {
     switch (type) {
