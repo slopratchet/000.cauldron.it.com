@@ -16,6 +16,7 @@ import ClerkDataSchema from './ClerkDataSchema';
 import SchemaDatabase from './SchemaDatabase';
 import TheaterMap from './TheaterMap';
 import OperationalLandscape from './OperationalLandscape';
+import MainCountdown from './MainCountdown';
 
 interface SchemaState {
   systemName: string;
@@ -66,6 +67,30 @@ const getInitialSchemaState = (): SchemaState => ({
 export default function LobbyIndex() {
   // Main Unified Schema State
   const [schema, setSchema] = useState<SchemaState>(getInitialSchemaState());
+
+  // Countdown timer state
+  const [timeInSeconds, setTimeInSeconds] = useState<number>(
+    3 * 24 * 3600 + 7 * 3600 + 59 * 60 + 57,
+  );
+  const [isTimerRunning] = useState<boolean>(true);
+
+  // Decrement Countdown Timer
+  useEffect(() => {
+    let interval: NodeJS.Timeout | null = null;
+    if (isTimerRunning) {
+      interval = setInterval(() => {
+        setTimeInSeconds((prev) => {
+          if (prev <= 1) {
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    }
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isTimerRunning]);
   const [selectedSessionId, setSelectedSessionId] = useState<string | null>(
     'T-740921-A',
   );
@@ -456,6 +481,11 @@ export default function LobbyIndex() {
             onReset={handleResetDatabase}
           />
         )}
+
+        {/* COUNTDOWN CLOCK */}
+        <div className="mb-8">
+          <MainCountdown timeInSeconds={timeInSeconds} />
+        </div>
 
         {/* 2. UPPER REGISTRY & IMAGING PANEL */}
         {(isLandscapeVisible ||
