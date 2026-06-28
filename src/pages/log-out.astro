@@ -2,4 +2,125 @@
 import Layout from '../layouts/Layout.astro';
 ---
 
-<Layout title="Login | Protocol Entry Point" />
+<Layout title="Logout | Protocol Exit Point">
+  <main
+    class="flex-1 flex items-center justify-center p-8 min-h-screen relative overflow-hidden"
+  >
+    <div class="w-full max-w-md">
+      <div class="border-4 border-primary bg-paper p-8 relative z-10">
+        <div
+          class="absolute -top-4 left-4 bg-primary text-paper px-4 py-1 font-display text-xs font-bold tracking-widest uppercase"
+        >
+          PROTOCOL EXIT POINT
+        </div>
+
+        <div class="mb-10 mt-4 text-center">
+          <h2
+            class="font-display font-black text-3xl uppercase leading-none tracking-tighter mb-2 text-primary"
+          >
+            TERMINATING_SESSION
+          </h2>
+          <div class="h-1 w-12 bg-primary mx-auto"></div>
+        </div>
+
+        <div class="space-y-6">
+          <div
+            class="text-center font-display text-xs font-bold uppercase tracking-[0.2em] text-primary opacity-60 animate-pulse"
+          >
+            DISCONNECTING_FROM_VOID...
+          </div>
+
+          <div
+            id="status-message"
+            class="hidden border-l-2 border-primary bg-primary/10 p-2 font-display text-[10px] font-bold uppercase text-primary tracking-tight"
+          >
+          </div>
+
+          <div class="flex justify-center pt-4">
+            <div
+              class="w-12 h-12 border-4 border-primary border-t-transparent animate-spin"
+            >
+            </div>
+          </div>
+        </div>
+
+        <div
+          class="mt-8 pt-6 border-t border-primary/10 flex justify-between items-center font-display text-[8px] font-bold opacity-40 uppercase tracking-widest text-primary"
+        >
+          <span>LOGOUT_SEQUENCE_A1</span>
+          <span>SIG_CLOSE: RSA-4096</span>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <style>
+    /* Biopunk-Noir Background Pattern */
+    main::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.06;
+      background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 20 L10 10 L30 10 L40 20 L30 30 L10 30 Z' fill='none' stroke='%23000' stroke-width='1'/%3E%3C/svg%3E");
+      background-size: 40px 40px;
+    }
+  </style>
+
+  <script>
+    import { $clerkStore } from '@clerk/astro/client';
+
+    async function executeLogout() {
+      const statusDiv = document.getElementById('status-message');
+
+      const setStatus = (msg: string) => {
+        if (statusDiv) {
+          statusDiv.innerText = msg;
+          statusDiv.classList.remove('hidden');
+        }
+      };
+
+      console.log('BIO_PUNK_UI: LOGOUT_SEQUENCE_INITIALIZED');
+
+      // 1. TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
+      let clerk = $clerkStore.get();
+      let retryCount = 0;
+      while (!clerk && retryCount < 50) {
+        console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        clerk = $clerkStore.get();
+        retryCount++;
+      }
+
+      if (!clerk) {
+        console.error('BIO_PUNK_UI: HYDRATION_FAILURE');
+        setStatus('PROTOCOL_ERROR: SDK_HYDRATION_FAILED');
+        setTimeout(() => {
+          window.location.href = '/log-in';
+        }, 2000);
+        return;
+      }
+
+      try {
+        console.log('BIO_PUNK_UI: EXECUTING_SIGNOUT');
+        setStatus('EXECUTING_SIGNOUT_HANDSHAKE...');
+        await clerk.signOut();
+        console.log('BIO_PUNK_UI: SIGNOUT_SUCCESSFUL');
+        window.location.href = '/log-in';
+      } catch (err: any) {
+        console.error('BIO_PUNK_UI: SIGNOUT_ERROR', err);
+        setStatus('SIGNOUT_FAULT: FALLING_BACK_TO_LOGIN');
+        setTimeout(() => {
+          window.location.href = '/log-in';
+        }, 2000);
+      }
+    }
+
+    // Initialize logout on load
+    executeLogout();
+  </script>
+</Layout>
