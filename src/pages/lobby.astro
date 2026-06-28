@@ -33,29 +33,13 @@ try {
 
   <LobbyIndex client:load />
 
-  <!-- WebSocket Logs -->
-  <section class="p-margin-page bg-surface border-t-4 border-primary mt-8">
-    <h3 class="font-headline-lg text-headline-lg uppercase mb-stack-md">
-      LIVE TRANSMISSION
-    </h3>
-    <div
-      id="ws-logs"
-      class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
-    >
-      [SYSTEM] Waiting for connection to worker...
-    </div>
-  </section>
-
   <script>
     // WebSocket Connection
-    const wsLogs = document.getElementById('ws-logs');
-    if (wsLogs) {
+    {
       let ws;
       let usingFallback = false;
 
       const appendLog = (htmlContent, type = 'INFO') => {
-        wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
-
         // Dispatch a custom event for the LobbyIndex component to catch
         // Strip HTML tags for the text-only system log
         const tempDiv = document.createElement('div');

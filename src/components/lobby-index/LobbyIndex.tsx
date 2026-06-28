@@ -12,6 +12,7 @@ import HeaderBanner from './HeaderBanner';
 import LedgerTable from './LedgerTable';
 import CommandPanel from './CommandPanel';
 import SystemLogs from './SystemLogs';
+import ClerkPlayerObject from './ClerkPlayerObject';
 import SchemaDatabase from './SchemaDatabase';
 import TheaterMap from './TheaterMap';
 import OperationalLandscape from './OperationalLandscape';
@@ -549,6 +550,7 @@ export default function LobbyIndex() {
                   logs={schema.systemLogs}
                   onClearLogs={handleClearLogs}
                 />
+                <ClerkPlayerObject />
               </div>
             )}
           </section>
