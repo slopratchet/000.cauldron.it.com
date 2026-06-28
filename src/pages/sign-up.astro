@@ -35,7 +35,25 @@ import Layout from '../layouts/Layout.astro';
           <div id="clerk-captcha"></div>
 
           <div id="covenant-sector" class="space-y-6">
-            <!-- Phase 0: Nomenclature -->
+            <!-- Phase 0: Identity -->
+            <div class="grid grid-cols-1 gap-4">
+              <div class="space-y-1">
+                <label
+                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                  >GENETIC_ID (EMAIL)</label
+                >
+                <input
+                  id="emailAddress"
+                  name="emailAddress"
+                  required
+                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none lowercase text-primary transition-colors"
+                  placeholder="EMAIL..."
+                  type="email"
+                />
+              </div>
+            </div>
+
+            <!-- Phase 1: Nomenclature -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div class="space-y-1">
                 <label
@@ -63,24 +81,6 @@ import Layout from '../layouts/Layout.astro';
                   class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase text-primary transition-colors"
                   placeholder="SECONDARY..."
                   type="text"
-                />
-              </div>
-            </div>
-
-            <!-- Phase 1: Identity -->
-            <div class="grid grid-cols-1 gap-4">
-              <div class="space-y-1">
-                <label
-                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
-                  >GENETIC_ID (EMAIL)</label
-                >
-                <input
-                  id="emailAddress"
-                  name="emailAddress"
-                  required
-                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none lowercase text-primary transition-colors"
-                  placeholder="EMAIL..."
-                  type="email"
                 />
               </div>
             </div>
