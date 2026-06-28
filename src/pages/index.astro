@@ -260,7 +260,14 @@ if (auth.userId) {
       try {
         let clerk = $clerkStore.get();
         if (!clerk || !clerk.client) {
-          handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
+          if (
+            window.location.protocol === 'http:' &&
+            window.location.hostname !== 'localhost'
+          ) {
+            handleError('SECURE_CHANNEL_REQUIRED: This site requires HTTPS.');
+          } else {
+            handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
+          }
           return;
         }
 
@@ -306,11 +313,11 @@ if (auth.userId) {
         submitBtn.innerText = 'PROCESSING_IMPULSE...';
       }
 
-      // 2. TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
+      // 2. TEMPORAL STABILIZATION (Wait for Clerk to fully hydrate)
       console.log('BIO_PUNK_UI: WAITING_FOR_CLERK_HYDRATION...');
       let clerk = $clerkStore.get();
       let retryCount = 0;
-      while (!clerk && retryCount < 50) {
+      while ((!clerk || !clerk.loaded || !clerk.client) && retryCount < 75) {
         console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
         await new Promise((resolve) => setTimeout(resolve, 200));
         clerk = $clerkStore.get();
@@ -320,9 +327,22 @@ if (auth.userId) {
       if (!clerk || !clerk.client) {
         console.error('BIO_PUNK_UI: HYDRATION_FAILURE', {
           clerk: !!clerk,
+          loaded: !!clerk?.loaded,
           hasClient: !!clerk?.client,
+          protocol: window.location.protocol,
         });
-        handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
+        if (
+          window.location.protocol === 'http:' &&
+          window.location.hostname !== 'localhost'
+        ) {
+          handleError(
+            'SECURE_CHANNEL_REQUIRED: This site requires HTTPS. Please use https:// to access this page.',
+          );
+        } else {
+          handleError(
+            'PROTOCOL_ERROR: Clerk Client Not Ready. Please refresh and try again.',
+          );
+        }
         return;
       }
 
