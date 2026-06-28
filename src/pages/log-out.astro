@@ -49,25 +49,25 @@ import Layout from '../layouts/Layout.astro';
       // TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
       let clerk = $clerkStore.get();
       let retryCount = 0;
-      while (!clerk && retryCount < 50) {
+      while ((!clerk || !clerk.loaded) && retryCount < 50) {
         await new Promise((resolve) => setTimeout(resolve, 200));
         clerk = $clerkStore.get();
         retryCount++;
       }
 
-      if (clerk) {
+      if (clerk && clerk.loaded) {
         try {
           console.log('LOG_OUT: EXECUTING_SIGN_OUT_COMMAND');
-          await clerk.signOut({ redirectUrl: '/' });
+          await clerk.signOut();
           console.log('LOG_OUT: SIGN_OUT_COMPLETE');
         } catch (err) {
           console.error('LOG_OUT: SIGN_OUT_ERROR', err);
-          window.location.href = '/';
         }
       } else {
         console.warn('LOG_OUT: CLERK_CLIENT_NOT_FOUND_PROCEEDING_TO_LOGIN');
-        window.location.href = '/';
       }
+
+      window.location.href = '/';
     }
 
     // Execute when ready

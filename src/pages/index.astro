@@ -195,7 +195,7 @@ if (auth.userId) {
 
     // Subscribe to store to handle the case where user is already signed in on client side
     const unsubscribe = $clerkStore.subscribe((clerk) => {
-      if (clerk && clerk.user) {
+      if (clerk && clerk.loaded && clerk.user) {
         console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
         window.location.href = '/lobby';
       }
