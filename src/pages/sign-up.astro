@@ -269,26 +269,51 @@ import Layout from '../layouts/Layout.astro';
       'covenant-check',
     ) as HTMLInputElement;
 
+    if (
+      import.meta.env.PUBLIC_CLERK_PUBLISHABLE_KEY?.startsWith('pk_test_') &&
+      window.location.hostname !== 'localhost'
+    ) {
+      console.warn(
+        'CRITICAL: Using a TEST Clerk key on a PRODUCTION domain. This will prevent hydration.',
+      );
+    }
+
     let currentSignUp: any = null;
 
     signupForm?.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorDiv?.classList.add('hidden');
 
+      // 1. INITIALIZE UI STATE
+      setLoading(true);
+
+      // 2. TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
+      console.log('BIO_PUNK_UI: WAITING_FOR_CLERK_HYDRATION...');
+      let clerk = $clerkStore.get();
+      let retryCount = 0;
+      while (!clerk && retryCount < 15) {
+        console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
+        await new Promise((resolve) => setTimeout(resolve, 200));
+        clerk = $clerkStore.get();
+        retryCount++;
+      }
+
+      if (!clerk || !clerk.client) {
+        console.error('BIO_PUNK_UI: HYDRATION_FAILURE', {
+          clerk: !!clerk,
+          hasClient: !!clerk?.client,
+        });
+        handleError('PROTOCOL_ERROR: BIOMETRIC_BUFFER_NOT_READY.');
+        setLoading(false);
+        return;
+      }
+
       const formData = new FormData(signupForm);
       const emailAddress = formData.get('emailAddress') as string;
       const password = formData.get('password') as string;
       const code = formData.get('verification_code') as string;
 
-      const clerk = $clerkStore.get();
-      if (!clerk || !clerk.client) {
-        handleError('PROTOCOL_ERROR: BIOMETRIC_BUFFER_NOT_READY.');
-        return;
-      }
-
       try {
-        setLoading(true);
-
         // STAGE 2: THE PULSE (Verification)
         if (currentSignUp && code) {
           currentSignUp = await currentSignUp.attemptEmailAddressVerification({
@@ -353,11 +378,23 @@ import Layout from '../layouts/Layout.astro';
             pivotToIntegration();
             window.location.href = '/';
           } else if (currentSignUp.status === 'missing_requirements') {
+            console.warn('MISSING_REQUIREMENTS:', {
+              missingFields: currentSignUp.missingFields,
+              unverifiedFields: currentSignUp.unverifiedFields,
+            });
+
             // Check if email verification is required
             if (currentSignUp.unverifiedFields.includes('email_address')) {
               await currentSignUp.prepareEmailAddressVerification();
               pivotToVerification();
               handleNotice('VERIFICATION_PULSE_SENT_TO_SIGNAL_BUFFER');
+            } else if (
+              currentSignUp.missingFields.includes('captcha_token') ||
+              currentSignUp.unverifiedFields.includes('captcha_token')
+            ) {
+              throw new Error(
+                'BOT_PROTECTION_REQUIRED: COMPLETE_CHALLENGE_TO_PROCEED.',
+              );
             } else {
               throw new Error(
                 'REGISTRATION_INCOMPLETE: ADDITIONAL_VERIFICATION_REQUIRED_BY_SERVER.',
@@ -375,6 +412,10 @@ import Layout from '../layouts/Layout.astro';
             'IDENTIFIER_CLAIMED: GENETIC_SEQUENCE_ALREADY_EXISTS.';
         else if (code === 'form_password_pwned')
           vernacularMsg = 'CIPHER_COMPROMISED: CHOOSE_STRONGER_ANCHOR.';
+        else if (code === 'captcha_invalid' || code === 'captcha_timeout')
+          vernacularMsg = 'BOT_CHALLENGE_FAILED: REINITIALIZE_AND_RETRY.';
+        else if (err.errors?.[0]?.longMessage)
+          vernacularMsg = `ERR: ${err.errors[0].longMessage.toUpperCase()}`;
         else if (err.message)
           vernacularMsg = `ERR: ${err.message.toUpperCase()}`;
 
