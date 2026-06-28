@@ -35,6 +35,38 @@ import Layout from '../layouts/Layout.astro';
           <div id="clerk-captcha"></div>
 
           <div id="covenant-sector" class="space-y-6">
+            <!-- Phase 0: Nomenclature -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-1">
+                <label
+                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                  >NOMEN_PRIMARY (FIRST_NAME)</label
+                >
+                <input
+                  id="firstName"
+                  name="firstName"
+                  required
+                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase text-primary transition-colors"
+                  placeholder="NOMEN..."
+                  type="text"
+                />
+              </div>
+              <div class="space-y-1">
+                <label
+                  class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
+                  >NOMEN_SECONDARY (LAST_NAME)</label
+                >
+                <input
+                  id="lastName"
+                  name="lastName"
+                  required
+                  class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase text-primary transition-colors"
+                  placeholder="SECONDARY..."
+                  type="text"
+                />
+              </div>
+            </div>
+
             <!-- Phase 1: Identity -->
             <div class="grid grid-cols-1 gap-4">
               <div class="space-y-1">
@@ -259,6 +291,10 @@ import Layout from '../layouts/Layout.astro';
     const actionsSector = document.getElementById('actions-sector');
 
     // Inputs
+    const firstNameInput = document.getElementById(
+      'firstName',
+    ) as HTMLInputElement;
+    const lastNameInput = document.getElementById('lastName') as HTMLInputElement;
     const emailInput = document.getElementById(
       'emailAddress',
     ) as HTMLInputElement;
@@ -309,6 +345,8 @@ import Layout from '../layouts/Layout.astro';
       }
 
       const formData = new FormData(signupForm);
+      const firstName = formData.get('firstName') as string;
+      const lastName = formData.get('lastName') as string;
       const emailAddress = formData.get('emailAddress') as string;
       const password = formData.get('password') as string;
       const code = formData.get('verification_code') as string;
@@ -348,6 +386,8 @@ import Layout from '../layouts/Layout.astro';
 
           try {
             currentSignUp = await clerk.client.signUp.create({
+              firstName,
+              lastName,
               password,
               emailAddress,
               unsafeMetadata: tacticalMetadata,
@@ -365,6 +405,8 @@ import Layout from '../layouts/Layout.astro';
                 'CLERK_COMPAT: EMAIL_ADDRESS_PARAM_REJECTED. FALLING_BACK_TO_METADATA.',
               );
               currentSignUp = await clerk.client.signUp.create({
+                firstName,
+                lastName,
                 password,
                 unsafeMetadata: tacticalMetadata,
               });
@@ -396,8 +438,12 @@ import Layout from '../layouts/Layout.astro';
                 'BOT_PROTECTION_REQUIRED: COMPLETE_CHALLENGE_TO_PROCEED.',
               );
             } else {
+              const missing = (currentSignUp.missingFields || []).join(', ');
+              const unverified = (currentSignUp.unverifiedFields || []).join(
+                ', ',
+              );
               throw new Error(
-                'REGISTRATION_INCOMPLETE: ADDITIONAL_VERIFICATION_REQUIRED_BY_SERVER.',
+                `REGISTRATION_INCOMPLETE: ADDITIONAL_VERIFICATION_REQUIRED_BY_SERVER. MISSING: [${missing}] UNVERIFIED: [${unverified}]`,
               );
             }
           }
@@ -432,6 +478,8 @@ import Layout from '../layouts/Layout.astro';
       covenantSector?.classList.add('hidden');
       verificationSector?.classList.remove('hidden');
 
+      if (firstNameInput) firstNameInput.required = false;
+      if (lastNameInput) lastNameInput.required = false;
       if (emailInput) emailInput.required = false;
       if (passwordInput) passwordInput.required = false;
       if (covenantCheck) covenantCheck.required = false;

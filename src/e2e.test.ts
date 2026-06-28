@@ -72,12 +72,16 @@ describe('E2E Sanity Check', () => {
     });
 
     // Verify all covenant stage elements are present
+    const firstName = await page.$('#firstName');
+    const lastName = await page.$('#lastName');
     const email = await page.$('#emailAddress');
     const password = await page.$('#password');
     const covenantCheck = await page.$('#covenant-check');
     const submitBtn = await page.$('#submit-btn');
     const errorMsg = await page.$('#error-message');
 
+    expect(firstName).not.toBeNull();
+    expect(lastName).not.toBeNull();
     expect(email).not.toBeNull();
     expect(password).not.toBeNull();
     expect(covenantCheck).not.toBeNull();
