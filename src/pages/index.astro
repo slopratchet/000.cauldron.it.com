@@ -3,9 +3,7 @@ import Layout from '../layouts/Layout.astro';
 
 // SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
 const auth = Astro.locals.auth();
-const isLocal =
-  Astro.url.hostname === 'localhost' || Astro.url.hostname === '127.0.0.1';
-if (auth.userId || isLocal) {
+if (auth.userId) {
   const target = '/lobby';
   return Astro.redirect(target);
 }

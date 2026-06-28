@@ -110,22 +110,20 @@ describe('E2E Sanity Check', () => {
     expect(elapsed).toBeLessThan(3000);
   });
 
-  it('should load the /log-out page and eventually redirect to /log-in', async () => {
+  it('should load the /log-out page and eventually redirect to /', async () => {
     await page.goto('http://localhost:4321/log-out', {
       waitUntil: 'networkidle0',
       timeout: 30000,
     });
 
-    // It should redirect to /log-in
-    // We wait for the URL to change to /log-in
-    await page.waitForFunction(
-      () =>
-        window.location.pathname === '/log-in' ||
-        window.location.pathname === '/',
-      { timeout: 15000 },
-    );
+
+    // It should redirect to /
+    await page.waitForFunction(() => window.location.pathname === '/', {
+      timeout: 15000,
+    });
+
 
     const pathname = await page.evaluate(() => window.location.pathname);
-    expect(['/log-in', '/']).toContain(pathname);
+    expect(pathname).toBe('/');
   }, 30000);
 });
