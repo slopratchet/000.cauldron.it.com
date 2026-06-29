@@ -9,27 +9,27 @@ const isOnline = status === 'ONLINE';
 <Layout bodyClass="dashboard-theme font-body text-on-surface relative">
   <!-- Top Navigation Shell -->
   <header
-    class="fixed top-0 left-0 w-full z-50 bg-[#fcf9f2] dark:bg-black border-b-2 border-black dark:border-[#fcf9f2] flex justify-between items-center px-6 py-4"
+    class="fixed top-0 left-0 w-full z-50 bg-[#fcf9f2] border-b-2 border-black flex justify-between items-center px-6 py-4"
   >
     <div class="flex items-center gap-8">
       <h1
-        class="font-headline font-black text-2xl uppercase tracking-tighter text-black dark:text-[#fcf9f2]"
+        class="font-headline font-black text-2xl uppercase tracking-tighter text-black"
       >
         DM COMMAND CENTER
       </h1>
       <nav class="hidden md:flex gap-6">
         <a
-          class="font-label uppercase text-xs font-bold text-black dark:text-white translate-y-0.5 transition-transform underline"
+          class="font-label uppercase text-xs font-bold text-black translate-y-0.5 transition-transform underline"
           href="#"
           >Terminal
         </a>
         <a
-          class="font-label uppercase text-xs font-bold text-black/60 dark:text-[#fcf9f2]/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
+          class="font-label uppercase text-xs font-bold text-black/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
           href="#"
           >Archive
         </a>
         <a
-          class="font-label uppercase text-xs font-bold text-black/60 dark:text-[#fcf9f2]/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
+          class="font-label uppercase text-xs font-bold text-black/60 hover:bg-black hover:text-[#fcf9f2] px-2 transition-all"
           href="#"
           >Systems
         </a>
@@ -57,7 +57,7 @@ const isOnline = status === 'ONLINE';
 
   <!-- Sidebar Navigation -->
   <aside
-    class="fixed left-0 top-0 h-full w-72 flex flex-col z-40 bg-[#fcf9f2] dark:bg-black border-r-2 border-black dark:border-[#fcf9f2] pt-24"
+    class="fixed left-0 top-0 h-full w-72 flex flex-col z-40 bg-[#fcf9f2] border-r-2 border-black pt-24"
   >
     <div
       class="bg-black text-[#fcf9f2] px-6 py-3 font-label font-bold uppercase tracking-widest text-sm"
@@ -66,7 +66,7 @@ const isOnline = status === 'ONLINE';
     </div>
     <div class="flex-1 flex flex-col w-full">
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
@@ -75,21 +75,21 @@ const isOnline = status === 'ONLINE';
         >
       </a>
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
         <span class="font-label font-bold uppercase text-xs">Flesh Weaver</span>
       </a>
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
         <span class="font-label font-bold uppercase text-xs">Void Acolyte</span>
       </a>
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
@@ -97,14 +97,14 @@ const isOnline = status === 'ONLINE';
         >
       </a>
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-black/5 dark:bg-white/5 text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-black/5 text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-green-500 block"></span>
         <span class="font-label font-bold uppercase text-xs">Iron Maiden</span>
       </a>
       <a
-        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black dark:text-[#fcf9f2] hover:bg-black/10 dark:hover:bg-white/10 transition-colors border-b border-black/10 dark:border-white/10"
+        class="flex items-center gap-4 px-6 py-4 bg-transparent text-black hover:bg-black/10 transition-colors border-b border-black/10"
         href="#"
       >
         <span class="w-5 h-5 rounded-full bg-red-500 block"></span>
@@ -497,7 +497,7 @@ const isOnline = status === 'ONLINE';
 
   <!-- Footer Shell -->
   <footer
-    class="fixed bottom-0 left-0 w-full z-50 bg-black dark:bg-[#fcf9f2] text-[#fcf9f2] dark:text-black flex justify-between items-center px-6 py-1"
+    class="fixed bottom-0 left-0 w-full z-50 bg-black text-[#fcf9f2] flex justify-between items-center px-6 py-1"
   >
     <div class="font-label text-[10px] tracking-widest uppercase">
       CHRONOS SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span

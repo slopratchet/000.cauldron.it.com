@@ -269,7 +269,7 @@ export default function DiceSimulator() {
                     <p className="font-bold text-sm tracking-wide">
                       {getSuccessLabel(currentRoll.successes).text}
                     </p>
-                    <p className="mt-1 font-mono text-[11px] text-neutral-800 dark:text-neutral-200">
+                    <p className="mt-1 font-mono text-[11px] text-neutral-800">
                       {currentRoll.successes === -1
                         ? 'A dramatic failure has corrupted the operation! Backfire penalty triggered.'
                         : currentRoll.successes === 0
