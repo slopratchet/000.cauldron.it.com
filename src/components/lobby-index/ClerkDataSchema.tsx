@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react';
 import { $clerkStore } from '@clerk/astro/client';
-import { Database } from 'lucide-react';
+import { Database, Info, X } from 'lucide-react';
+import { CLERK_PARAM_DESCRIPTIONS } from './clerk-descriptions';
+import { motion, AnimatePresence } from 'motion/react';
 
 export default function ClerkDataSchema() {
   const [clerk, setClerk] = useState($clerkStore.get());
+  const [selectedParam, setSelectedParam] = useState<string | null>(null);
 
   useEffect(() => {
     const unsubscribe = $clerkStore.subscribe((newClerk) => {
@@ -145,14 +148,19 @@ export default function ClerkDataSchema() {
       </div>
 
       {user ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 select-text">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 select-text relative">
           {flattenedParamsList.map((item, idx) => (
-            <div
+            <button
+              type="button"
               key={idx}
-              className="border border-[#E6E2D8]/10 p-2 bg-zinc-900/50 flex flex-col justify-between hover:bg-zinc-700 transition-colors"
+              onClick={() => setSelectedParam(item.key)}
+              className="border border-[#E6E2D8]/10 p-2 bg-zinc-900/50 flex flex-col justify-between hover:bg-zinc-700 transition-colors text-left w-full cursor-pointer group"
             >
-              <div className="text-[9px] text-amber-500/70 uppercase tracking-widest font-bold mb-1 truncate">
-                {item.key}
+              <div className="flex justify-between items-center mb-1">
+                <div className="text-[9px] text-amber-500/70 uppercase tracking-widest font-bold truncate">
+                  {item.key}
+                </div>
+                <Info className="w-2.5 h-2.5 text-amber-500/30 group-hover:text-amber-500 transition-colors" />
               </div>
               <div className="font-bold text-[#E6E2D8] font-mono break-all text-[11px] leading-tight">
                 {item.val === null ||
@@ -167,8 +175,58 @@ export default function ClerkDataSchema() {
                   String(item.val)
                 )}
               </div>
-            </div>
+            </button>
           ))}
+
+          {/* PARAMETER DESCRIPTION POPUP */}
+          <AnimatePresence>
+            {selectedParam && (
+              <motion.div className="absolute inset-0 z-50 flex items-center justify-center p-4">
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  onClick={() => setSelectedParam(null)}
+                  className="absolute inset-0 bg-black/60 backdrop-blur-[1px] cursor-pointer"
+                />
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                  className="relative w-full max-w-sm bg-zinc-800 border-2 border-black p-4 hard-shadow flex flex-col gap-3"
+                >
+                  <div className="flex justify-between items-center border-b border-[#E6E2D8]/20 pb-2">
+                    <div className="flex items-center gap-2">
+                      <Info className="w-4 h-4 text-amber-500" />
+                      <span className="text-[10px] font-bold text-amber-500 uppercase tracking-widest truncate max-w-[200px]">
+                        {selectedParam}
+                      </span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setSelectedParam(null)}
+                      className="text-[#E6E2D8]/50 hover:text-[#E6E2D8] transition-colors cursor-pointer"
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  </div>
+                  <p className="text-xs leading-relaxed text-[#E6E2D8]">
+                    {CLERK_PARAM_DESCRIPTIONS[selectedParam] ||
+                      'NO DESCRIPTION ALLOCATED FOR THIS PARAMETER UNIT.'}
+                  </p>
+                  <div className="pt-2 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={() => setSelectedParam(null)}
+                      className="bg-[#E6E2D8] text-black px-3 py-1 text-[10px] font-bold uppercase hover:bg-amber-500 transition-colors cursor-pointer border border-black"
+                    >
+                      Acknowledge
+                    </button>
+                  </div>
+                </motion.div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       ) : (
         <p className="text-amber-500 italic py-4 text-center text-xs">
