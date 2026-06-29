@@ -62,12 +62,7 @@ try {
       const connect = (url, isFallback = false) => {
         ws = new WebSocket(url);
 
-        ws.onopen = () => {
-          appendLog(
-            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
-            'SUCCESS',
-          );
-        };
+        ws.onopen = () => {};
 
         let hasReceivedTick = false;
         ws.onmessage = (event) => {
@@ -77,33 +72,17 @@ try {
             document.getElementById('status-indicator').className =
               'text-green-400';
           }
-          let data = event.data;
-          try {
-            const parsed = JSON.parse(data);
-            data = JSON.stringify(parsed);
-          } catch (e) {}
-          appendLog(
-            `<span class="text-white">[TICK]</span> ${data}`,
-            'SUCCESS',
-          );
+          appendLog('[ping success]', 'SUCCESS');
         };
 
         ws.onerror = (error) => {
           if (!isFallback && !usingFallback) {
             usingFallback = true;
-            appendLog(
-              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
-              'WARNING',
-            );
             connect('wss://worker-sower.berad4000.workers.dev/ws', true);
           } else {
             document.getElementById('status-indicator').innerText = 'OFFLINE';
             document.getElementById('status-indicator').className =
               'text-red-400';
-            appendLog(
-              '<span class="text-red-500">[ERROR] Connection failed.</span>',
-              'ALERT',
-            );
           }
         };
 
@@ -111,7 +90,6 @@ try {
           document.getElementById('status-indicator').innerText = 'OFFLINE';
           document.getElementById('status-indicator').className =
             'text-red-400';
-          appendLog('[SYSTEM] Connection closed.', 'WARNING');
         };
       };
 

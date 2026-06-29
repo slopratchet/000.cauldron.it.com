@@ -63,7 +63,6 @@ const auth =
       id="ws-logs"
       class="bg-[#1a1a1a] text-[#00ff00] font-mono p-4 h-64 overflow-y-auto border-2 border-primary brutalist-shadow text-sm"
     >
-      [SYSTEM] Waiting for connection to worker...
     </div>
   </section>
 
@@ -154,11 +153,7 @@ const auth =
       const connect = (url, isFallback = false) => {
         ws = new WebSocket(url);
 
-        ws.onopen = () => {
-          appendLog(
-            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/moon'}. Waiting for ticks...`,
-          );
-        };
+        ws.onopen = () => {};
 
         let hasReceivedTick = false;
         ws.onmessage = (event) => {
@@ -171,30 +166,23 @@ const auth =
           let data = event.data;
           try {
             const parsed = JSON.parse(data);
-            data = JSON.stringify(parsed);
 
             const dbDisplay = document.getElementById('db-json-display');
             if (dbDisplay) {
               dbDisplay.textContent = JSON.stringify(parsed, null, 2);
             }
           } catch (e) {}
-          appendLog(`<span class="text-white">[TICK]</span> ${data}`);
+          appendLog('[ping success]');
         };
 
         ws.onerror = (error) => {
           if (!isFallback && !usingFallback) {
             usingFallback = true;
-            appendLog(
-              '<span class="text-yellow-500">[SYSTEM] Connection via /api/moon failed. Retrying with direct worker fallback...</span>',
-            );
             connect('wss://worker-sower.berad4000.workers.dev/ws', true);
           } else {
             document.getElementById('status-indicator').innerText = 'OFFLINE';
             document.getElementById('status-indicator').className =
               'text-red-400';
-            appendLog(
-              '<span class="text-red-500">[ERROR] Connection failed.</span>',
-            );
           }
         };
 
@@ -202,7 +190,6 @@ const auth =
           document.getElementById('status-indicator').innerText = 'OFFLINE';
           document.getElementById('status-indicator').className =
             'text-red-400';
-          appendLog('[SYSTEM] Connection closed.');
         };
       };
 
