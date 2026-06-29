@@ -143,6 +143,21 @@ const auth =
     if (wsLogs) {
       let ws;
       let usingFallback = false;
+      let retryCount = 0;
+      const MAX_RETRIES = 10;
+
+      const EFFORT_MESSAGES = [
+        'RE-ESTABLISHING NEURAL LINK',
+        'CALIBRATING SIGNAL AMPLITUDE',
+        'BYPASSING ENCRYPTION BARRIER',
+        'SYNCHRONIZING TEMPORAL DATA',
+        'HARNESSING KINETIC ENERGY',
+        'REDIRECTING POWER TO TRANSMITTER',
+        'STABILIZING QUANTUM TUNNEL',
+        'PROBING VOID FOR SIGNAL',
+        'AMPLIFYING SUB-SPACE RESONANCE',
+        'OPTIMIZING DATA PACKET FLOW',
+      ];
 
       const appendLog = (htmlContent) => {
         wsLogs.innerHTML = htmlContent + '<br/>' + wsLogs.innerHTML;
@@ -152,6 +167,7 @@ const auth =
         ws = new WebSocket(url);
 
         ws.onopen = () => {
+          retryCount = 0;
           appendLog(
             `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/moon'}. Waiting for ticks...`,
           );
@@ -195,11 +211,37 @@ const auth =
           }
         };
 
-        ws.onclose = () => {
+        ws.onclose = (event) => {
           document.getElementById('status-indicator').innerText = 'OFFLINE';
           document.getElementById('status-indicator').className =
             'text-red-400';
-          appendLog('[SYSTEM] Connection closed.');
+
+          const reason = event.reason ? `: ${event.reason}` : '';
+          appendLog(
+            `[SYSTEM] CONNECTION CLOSED. (CODE: ${event.code}${reason})`,
+          );
+
+          if (retryCount < MAX_RETRIES) {
+            retryCount++;
+            const effort =
+              EFFORT_MESSAGES[
+                Math.floor(Math.random() * EFFORT_MESSAGES.length)
+              ];
+            const progress = Math.round((retryCount / MAX_RETRIES) * 10);
+            const bar = '█'.repeat(progress) + '░'.repeat(10 - progress);
+
+            appendLog(
+              `[SYSTEM] ${effort} [${bar}] (ATTEMPT ${retryCount}/${MAX_RETRIES})`,
+            );
+
+            setTimeout(() => {
+              connect(url, isFallback);
+            }, 3000);
+          } else {
+            appendLog(
+              '[SYSTEM] MAXIMUM RECONNECTION ATTEMPTS EXHAUSTED. TERMINAL OFFLINE.',
+            );
+          }
         };
       };
 
