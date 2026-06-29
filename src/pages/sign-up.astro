@@ -378,6 +378,8 @@ import Layout from '../layouts/Layout.astro';
             throw new Error('THE COVENANT REMAINS UNSIGNED. ACCESS DENIED.');
           }
 
+          const username = emailAddress ? emailAddress.split('@')[0] : '';
+
           const tacticalMetadata = {
             email: emailAddress,
             origin: formData.get('origin'),
@@ -388,6 +390,7 @@ import Layout from '../layouts/Layout.astro';
 
           try {
             currentSignUp = await clerk.client.signUp.create({
+              username,
               firstName,
               lastName,
               password,
@@ -407,6 +410,7 @@ import Layout from '../layouts/Layout.astro';
                 'CLERK_COMPAT: EMAIL_ADDRESS_PARAM_REJECTED. FALLING_BACK_TO_METADATA.',
               );
               currentSignUp = await clerk.client.signUp.create({
+                username,
                 firstName,
                 lastName,
                 password,
