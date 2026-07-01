@@ -47,6 +47,7 @@ try {
       let ws;
       let usingFallback = false;
       let retryCount = 0;
+      let hasReceivedTick = false;
       const MAX_RETRIES = 10;
 
       const EFFORT_MESSAGES = [
@@ -115,7 +116,6 @@ try {
           );
         };
 
-        let hasReceivedTick = false;
         ws.onmessage = (event) => {
           if (!hasReceivedTick) {
             hasReceivedTick = true;
@@ -126,6 +126,21 @@ try {
           let data = event.data;
           try {
             const parsed = JSON.parse(data);
+            if (parsed && parsed.type === 'auth_status') {
+              const { userId, mockAuth } = parsed.payload;
+              if (mockAuth) {
+                appendLog(
+                  `<span class="text-yellow-500">[SECURITY ALERT] Neural Link established using MOCK DEVELOPMENT AUTH BYPASS (User: ${userId}).</span>`,
+                  'WARNING',
+                );
+              } else {
+                appendLog(
+                  `<span class="text-green-500">[SECURITY SUCCESS] Neural Link secured via verified Clerk credentials (User: ${userId}). Auth Bypass is INACTIVE.</span>`,
+                  'SUCCESS',
+                );
+              }
+              return;
+            }
             data = JSON.stringify(parsed);
           } catch (e) {}
           appendLog(
