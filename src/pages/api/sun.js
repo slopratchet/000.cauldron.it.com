@@ -2,7 +2,7 @@ export const GET = async ({ request }) => {
   const upgradeHeader = request.headers.get('Upgrade');
   if (upgradeHeader && upgradeHeader.toLowerCase() === 'websocket') {
     try {
-      return await fetch('https://worker-sower.berad4000.workers.dev/ws', {
+      return await fetch('https://worker-warden.berad4000.workers.dev/ws', {
         headers: request.headers,
       });
     } catch (e) {
@@ -14,7 +14,7 @@ export const GET = async ({ request }) => {
 
   const queryFn = async () => {
     const response = await fetch(
-      'https://worker-sower.berad4000.workers.dev/ws',
+      'https://worker-warden.berad4000.workers.dev/ws',
     );
     if (!response.ok) {
       throw new Error('Network response was not ok');
