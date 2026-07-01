@@ -18,6 +18,8 @@ import TheaterMap from './TheaterMap';
 import OperationalLandscape from './OperationalLandscape';
 import MainCountdown from './MainCountdown';
 
+const MAX_LOG_ENTRIES = 100;
+
 interface SchemaState {
   systemName: string;
   operator: string;
@@ -179,13 +181,16 @@ export default function LobbyIndex() {
 
       if (isPaused) {
         logBufferRef.current.push(nextLog);
+        if (logBufferRef.current.length > MAX_LOG_ENTRIES) {
+          logBufferRef.current = logBufferRef.current.slice(-MAX_LOG_ENTRIES);
+        }
         return;
       }
 
       setSchema((prev) => {
         const updated = {
           ...prev,
-          systemLogs: [nextLog, ...prev.systemLogs],
+          systemLogs: [nextLog, ...prev.systemLogs].slice(0, MAX_LOG_ENTRIES),
         };
         syncSchemaToText(updated);
         return updated;
@@ -244,6 +249,9 @@ export default function LobbyIndex() {
 
       if (isPaused) {
         logBufferRef.current.push(nextLog);
+        if (logBufferRef.current.length > MAX_LOG_ENTRIES) {
+          logBufferRef.current = logBufferRef.current.slice(-MAX_LOG_ENTRIES);
+        }
         const updated = {
           ...prev,
           seats: updatedSeats,
@@ -255,7 +263,7 @@ export default function LobbyIndex() {
       const updated = {
         ...prev,
         seats: updatedSeats,
-        systemLogs: [nextLog, ...prev.systemLogs],
+        systemLogs: [nextLog, ...prev.systemLogs].slice(0, MAX_LOG_ENTRIES),
       };
 
       syncSchemaToText(updated);
@@ -350,6 +358,9 @@ export default function LobbyIndex() {
 
       if (isPaused) {
         logBufferRef.current.push(nextLog);
+        if (logBufferRef.current.length > MAX_LOG_ENTRIES) {
+          logBufferRef.current = logBufferRef.current.slice(-MAX_LOG_ENTRIES);
+        }
         const updated = {
           ...prev,
           sessions: nextSessions,
@@ -364,7 +375,7 @@ export default function LobbyIndex() {
         ...prev,
         sessions: nextSessions,
         seats: updatedSeats,
-        systemLogs: [nextLog, ...prev.systemLogs],
+        systemLogs: [nextLog, ...prev.systemLogs].slice(0, MAX_LOG_ENTRIES),
       };
 
       syncSchemaToText(updated);
@@ -399,7 +410,10 @@ export default function LobbyIndex() {
       setSchema((prev) => {
         const updated = {
           ...prev,
-          systemLogs: [...[...buffered].reverse(), ...prev.systemLogs],
+          systemLogs: [...[...buffered].reverse(), ...prev.systemLogs].slice(
+            0,
+            MAX_LOG_ENTRIES,
+          ),
         };
         syncSchemaToText(updated);
         return updated;
