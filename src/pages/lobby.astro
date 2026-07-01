@@ -133,11 +133,6 @@ try {
                   `<span class="text-yellow-500">[SECURITY ALERT] Neural Link established using MOCK DEVELOPMENT AUTH BYPASS (User: ${userId}).</span>`,
                   'WARNING',
                 );
-              } else {
-                appendLog(
-                  `<span class="text-green-500">[SECURITY SUCCESS] Neural Link secured via verified Clerk credentials (User: ${userId}). Auth Bypass is INACTIVE.</span>`,
-                  'SUCCESS',
-                );
               }
               return;
             }
