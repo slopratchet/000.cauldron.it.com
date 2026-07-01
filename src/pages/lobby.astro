@@ -40,6 +40,8 @@ try {
   <LobbyIndex client:load />
 
   <script>
+    import { $clerkStore } from '@clerk/astro/client';
+
     // WebSocket Connection
     {
       let ws;
@@ -74,7 +76,35 @@ try {
         );
       };
 
-      const connect = (url, isFallback = false) => {
+      const getToken = async () => {
+        let clerk = $clerkStore.get();
+        let retry = 0;
+        while ((!clerk || !clerk.loaded) && retry < 50) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          clerk = $clerkStore.get();
+          retry++;
+        }
+        if (clerk && clerk.session) {
+          try {
+            return (await clerk.session.getToken()) || '';
+          } catch (e) {
+            console.error('Error fetching session token:', e);
+          }
+        }
+        return '';
+      };
+
+      const connect = async (isFallback = false) => {
+        const token = await getToken();
+        let url;
+        if (isFallback) {
+          url = `wss://worker-warden.berad4000.workers.dev/ws${token ? `?jwt=${encodeURIComponent(token)}` : ''}`;
+        } else {
+          const protocol =
+            window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+          url = `${protocol}//${window.location.host}/api/sun${token ? `?jwt=${encodeURIComponent(token)}` : ''}`;
+        }
+
         ws = new WebSocket(url);
 
         ws.onopen = () => {
@@ -111,7 +141,7 @@ try {
               '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
               'WARNING',
             );
-            connect('wss://worker-sower.berad4000.workers.dev/ws', true);
+            connect(true);
           } else {
             document.getElementById('status-indicator').innerText = 'OFFLINE';
             document.getElementById('status-indicator').className =
@@ -149,7 +179,7 @@ try {
             );
 
             setTimeout(() => {
-              connect(url, isFallback);
+              connect(isFallback);
             }, 3000);
           } else {
             appendLog(
@@ -160,9 +190,7 @@ try {
         };
       };
 
-      const protocol = window.location.protocol === 'https:' ? 'wss:' : 'ws:';
-      const wsUrl = `${protocol}//${window.location.host}/api/sun`;
-      connect(wsUrl);
+      connect();
     }
   </script>
 </Layout>
