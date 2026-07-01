@@ -135,17 +135,13 @@ try {
         };
 
         ws.onerror = (error) => {
-          if (!isFallback && !usingFallback) {
+          if (!usingFallback) {
             usingFallback = true;
             appendLog(
-              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Retrying with direct worker fallback...</span>',
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Will retry with direct worker fallback...</span>',
               'WARNING',
             );
-            connect(true);
           } else {
-            document.getElementById('status-indicator').innerText = 'OFFLINE';
-            document.getElementById('status-indicator').className =
-              'text-red-400';
             appendLog(
               '<span class="text-red-500">[ERROR] Connection failed.</span>',
               'ALERT',
@@ -179,7 +175,7 @@ try {
             );
 
             setTimeout(() => {
-              connect(isFallback);
+              connect(usingFallback);
             }, 3000);
           } else {
             appendLog(
