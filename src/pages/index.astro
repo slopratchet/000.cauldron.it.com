@@ -36,15 +36,15 @@ if (auth.userId) {
               <label
                 class="font-display text-[10px] font-bold uppercase tracking-widest opacity-60 text-primary"
               >
-                USER_IDENTIFIER
+                GENETIC_ID (EMAIL)
               </label>
               <input
                 id="identifier"
                 name="identifier"
                 required
-                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none uppercase placeholder:opacity-30 text-primary transition-colors"
-                placeholder="ENTER ID..."
-                type="text"
+                class="w-full border-2 border-primary bg-paper px-4 py-3 font-display text-sm focus:ring-0 focus:bg-white outline-none lowercase placeholder:opacity-30 text-primary transition-colors"
+                placeholder="EMAIL..."
+                type="email"
               />
             </div>
 
@@ -150,14 +150,6 @@ if (auth.userId) {
             >
               INITIALIZE_SESSION
             </button>
-            <p
-              class="mt-4 text-center font-display text-xs font-bold uppercase opacity-40 tracking-widest text-primary"
-            >
-              NEW_ACQUISITION? <a
-                href="/sign-up"
-                class="underline hover:text-primary">INITIALIZE_COVENANT</a
-              >
-            </p>
           </div>
         </form>
 
@@ -195,7 +187,7 @@ if (auth.userId) {
 
     // Subscribe to store to handle the case where user is already signed in on client side
     const unsubscribe = $clerkStore.subscribe((clerk) => {
-      if (clerk && clerk.loaded && clerk.user) {
+      if (clerk && clerk.user) {
         console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
         window.location.href = '/lobby';
       }
@@ -260,14 +252,7 @@ if (auth.userId) {
       try {
         let clerk = $clerkStore.get();
         if (!clerk || !clerk.client) {
-          if (
-            window.location.protocol === 'http:' &&
-            window.location.hostname !== 'localhost'
-          ) {
-            handleError('SECURE_CHANNEL_REQUIRED: This site requires HTTPS.');
-          } else {
-            handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
-          }
+          handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
           return;
         }
 
@@ -313,11 +298,11 @@ if (auth.userId) {
         submitBtn.innerText = 'PROCESSING_IMPULSE...';
       }
 
-      // 2. TEMPORAL STABILIZATION (Wait for Clerk to fully hydrate)
+      // 2. TEMPORAL STABILIZATION (Wait for Clerk to hydrate)
       console.log('BIO_PUNK_UI: WAITING_FOR_CLERK_HYDRATION...');
       let clerk = $clerkStore.get();
       let retryCount = 0;
-      while ((!clerk || !clerk.loaded || !clerk.client) && retryCount < 75) {
+      while (!clerk && retryCount < 50) {
         console.log(`BIO_PUNK_UI: HYDRATION_RETRY_${retryCount}...`);
         await new Promise((resolve) => setTimeout(resolve, 200));
         clerk = $clerkStore.get();
@@ -327,22 +312,9 @@ if (auth.userId) {
       if (!clerk || !clerk.client) {
         console.error('BIO_PUNK_UI: HYDRATION_FAILURE', {
           clerk: !!clerk,
-          loaded: !!clerk?.loaded,
           hasClient: !!clerk?.client,
-          protocol: window.location.protocol,
         });
-        if (
-          window.location.protocol === 'http:' &&
-          window.location.hostname !== 'localhost'
-        ) {
-          handleError(
-            'SECURE_CHANNEL_REQUIRED: This site requires HTTPS. Please use https:// to access this page.',
-          );
-        } else {
-          handleError(
-            'PROTOCOL_ERROR: Clerk Client Not Ready. Please refresh and try again.',
-          );
-        }
+        handleError('PROTOCOL_ERROR: Clerk Client Not Ready');
         return;
       }
 
