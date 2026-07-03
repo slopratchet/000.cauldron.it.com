@@ -250,4 +250,36 @@ const auth =
       connect(wsUrl);
     }
   </script>
+
+  <script is:inline src="/jsx/100.shade.js"></script>
+  <script is:inline>
+    setTimeout(async () => {
+      window['SHADE'] = window['SHADE'].hunt;
+      const WRITE_SURFACE = '[Write action] Write Surface';
+      var bit = await window['SHADE'](WRITE_SURFACE, {
+        idx: 'surface00',
+        dat: { src: 'surface00' },
+        rsz: true,
+      });
+
+      var stage = bit.fceBit.dat.bit.stage;
+
+      const WRITE_GRAPHIC = '[Write action] Write Graphic';
+      var graphic = await window['SHADE'](WRITE_GRAPHIC, {
+        idx: 'graphic00',
+        dat: { w: 1500, h: 500, x: 100, y: 100 },
+      });
+      graphic = graphic.gphBit.dat.bit;
+
+      graphic
+        .rect(3, 600, 1457, 300) // x, y, width, height for the rectangle
+        .fill({ color: 0x00ff00 }) // Fill with red
+        .stroke({ width: 2, color: 0x000000 }); // Stroke with black
+
+      graphic.alpha = 0.8;
+      stage.addChild(graphic);
+
+      debugger;
+    }, 222);
+  </script>
 </Layout>
