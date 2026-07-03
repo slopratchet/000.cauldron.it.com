@@ -13,12 +13,13 @@ export default function OperationalLandscape({
 }: OperationalLandscapeProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>(
-    'https://002-primal-mama-mobile-control.pages.dev/canvas',
+    'https://002-primal-mama-mobile-control.pages.dev/?route=canvas',
   );
   const [token, setToken] = useState<string | null>(null);
 
   useEffect(() => {
-    const baseUrl = 'https://002-primal-mama-mobile-control.pages.dev/canvas';
+    const baseUrl =
+      'https://002-primal-mama-mobile-control.pages.dev/?route=canvas';
     let clerkRetries = 0;
 
     const initIframe = async () => {
