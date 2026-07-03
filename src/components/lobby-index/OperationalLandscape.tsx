@@ -13,7 +13,7 @@ export default function OperationalLandscape({
 }: OperationalLandscapeProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>(
-    'https://002-primal-mama-mobile-control.pages.dev/canvas',
+    'https://react.mmorpg.it.com//canvas',
   );
   const [token, setToken] = useState<string | null>(null);
 
@@ -82,7 +82,7 @@ export default function OperationalLandscape({
       <div className="relative h-64 w-full flex-grow min-h-[220px]">
         <iframe
           ref={iframeRef}
-          allow-scripts
+          sandbox="allow-scripts allow-same-origin"
           id="app-iframe"
           title="Operational Landscape View"
           className="w-full h-full border-none block"
