@@ -168,7 +168,7 @@ export default function OperationalLandscape({
         </div>
       </div>
 
-      <div className="relative w-full flex-grow min-h-[400px] h-[600px] bg-neutral-800">
+      <div className="relative w-full flex-grow aspect-video bg-neutral-800">
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
