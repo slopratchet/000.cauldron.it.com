@@ -75,9 +75,7 @@ export default function LobbyIndex() {
   const logBufferRef = useRef<SystemLogEntry[]>([]);
 
   // Countdown timer state
-  const [timeInSeconds, setTimeInSeconds] = useState<number>(
-    3 * 24 * 3600 + 7 * 3600 + 59 * 60 + 57,
-  );
+  const [timeInSeconds, setTimeInSeconds] = useState<number>(3 * 60 + 33);
   const [isTimerRunning] = useState<boolean>(true);
 
   // Decrement Countdown Timer
