@@ -112,10 +112,6 @@ export const INITIAL_SESSIONS: SessionLog[] = [
 ];
 
 export const INITIAL_SYSTEM_LOGS: SystemLogEntry[] = [
-  { timestamp: '14:05:00', text: 'SYNC COMPLETED', type: 'SUCCESS' },
-  { timestamp: '14:04:12', text: 'IDLE STATE ENGAGED', type: 'INFO' },
-  { timestamp: '14:03:45', text: 'BUFFER CLEARED', type: 'INFO' },
-  { timestamp: '14:03:01', text: 'REFRESHING LEDGER...', type: 'INFO' },
   { timestamp: '14:02:22', text: 'OVERRIDE DETECTED SECTOR H', type: 'ALERT' },
   { timestamp: '14:02:15', text: 'USER_ADMIN LOGGED IN', type: 'INFO' },
   { timestamp: '14:02:11', text: 'PING SUCCESS', type: 'SUCCESS' },
