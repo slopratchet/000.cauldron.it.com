@@ -82,6 +82,7 @@ export default function OperationalLandscape({
       <div className="relative h-64 w-full flex-grow min-h-[220px]">
         <iframe
           ref={iframeRef}
+          allow-scripts
           id="app-iframe"
           title="Operational Landscape View"
           className="w-full h-full border-none block"
