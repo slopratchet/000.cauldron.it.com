@@ -1,4 +1,6 @@
+import { useState, useEffect, useRef } from 'react';
 import { Cpu } from 'lucide-react';
+import { $clerkStore } from '@clerk/astro/client';
 
 interface OperationalLandscapeProps {
   title?: string;
@@ -9,6 +11,65 @@ export default function OperationalLandscape({
   title = 'Operational Landscape',
   imgRef = 'IMG_REF_69.SYS',
 }: OperationalLandscapeProps) {
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+  const [iframeUrl, setIframeUrl] = useState<string>(
+    'https://002-primal-mama-mobile-control.pages.dev/',
+  );
+  const [clerkToken, setClerkToken] = useState<string | null>(null);
+
+  useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+    let retries = 0;
+
+    const initIframe = async () => {
+      const clerk = $clerkStore.get();
+
+      if (!clerk || !clerk.loaded) {
+        retries++;
+        if (retries < 30) {
+          timeoutId = setTimeout(initIframe, 100);
+          return;
+        }
+        console.warn(
+          'Clerk failed to load within 3 seconds. Initializing iframe without token.',
+        );
+      }
+
+      let token = null;
+      try {
+        if (clerk && clerk.session) {
+          token = await clerk.session.getToken();
+          setClerkToken(token);
+        }
+      } catch (err) {
+        console.error('Error fetching Clerk token client-side:', err);
+      }
+
+      const baseUrl = 'https://002-primal-mama-mobile-control.pages.dev/';
+      let finalIframeUrl = baseUrl;
+      if (token) {
+        finalIframeUrl +=
+          (finalIframeUrl.includes('?') ? '&' : '?') +
+          'token=' +
+          encodeURIComponent(token);
+      }
+      setIframeUrl(finalIframeUrl);
+    };
+
+    initIframe();
+
+    return () => clearTimeout(timeoutId);
+  }, []);
+
+  const handleIframeLoad = () => {
+    if (clerkToken && iframeRef.current?.contentWindow) {
+      iframeRef.current.contentWindow.postMessage(
+        { type: 'CLERK_AUTH_TOKEN', payload: { token: clerkToken } },
+        'https://002-primal-mama-mobile-control.pages.dev',
+      );
+    }
+  };
+
   return (
     <div
       id="landscape-container"
@@ -21,14 +82,16 @@ export default function OperationalLandscape({
         <div id="surface00"> </div>
       </div>
       <div className="relative h-64 w-full flex-grow min-h-[220px]">
-        <img
+        <iframe
+          ref={iframeRef}
           id="historical-landscape-img"
-          alt="Historical context theater seating mapping"
-          className="w-full h-full object-cover grayscale contrast-125 brightness-95 opacity-90 inline-block"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBxQrHqJjZyBOR9k5TDnJEFIYh6COJ6PY4Tbq66fmf9yV1BSJd4mCAdTEFEF-ebH9GSZUIii52XyeJhlncFoCEUYcj6Q2AQ1IzrCE2K8TWj3cvtUw3W0BHRdinj2bETUYvPaVGEwhbMCplkxkvMPG355MXB2sm8swORA4DesKfXZzzxfPeISYWOlsiXqb6N8jjtRyI88m70ejppE_nTbUh-V8yxweDTTlZ5KE2rqrfTvXbjWWQ39F9ehl_M7lNkteR6J7btMcW0wLbB"
-          referrerPolicy="no-referrer"
+          title="Operational Landscape"
+          className="w-full h-full object-cover grayscale contrast-125 brightness-95 opacity-90 inline-block border-none"
+          src={iframeUrl}
+          onLoad={handleIframeLoad}
+          data-img-ref={imgRef}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent"></div>
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none"></div>
       </div>
     </div>
   );
