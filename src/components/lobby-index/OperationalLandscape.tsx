@@ -18,7 +18,7 @@ export default function OperationalLandscape({
         <span className="flex items-center gap-1">
           <Cpu className="w-3.5 h-3.5 inline text-amber-500" /> {title}
         </span>
-        <span>{imgRef}</span>
+        <div id="surface00"> </div>
       </div>
       <div className="relative h-64 w-full flex-grow min-h-[220px]">
         <img
