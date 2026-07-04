@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /**
  * @license
  * SPDX-License-Identifier: Apache-2.0
