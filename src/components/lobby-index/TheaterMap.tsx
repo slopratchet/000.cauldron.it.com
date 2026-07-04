@@ -40,7 +40,7 @@ export default function TheaterMap({
                 onSelectSeatCoordinate(seat.id);
               }}
               title={`Seat ${seat.id} (${isOccupied ? 'Occupied' : 'Vacant'}) - Click to open page`}
-              className={`w-full aspect-square border-2 border-black cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
+              className={`w-full aspect-[1/2] border-2 border-black cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
                 isOccupied
                   ? 'bg-black text-white hover:bg-neutral-800'
                   : 'bg-[#E6E2D8] text-black hover:bg-[#d0cbbe]'
