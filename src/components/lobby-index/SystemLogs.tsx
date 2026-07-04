@@ -7,6 +7,11 @@ interface SystemLogsProps {
   onClearLogs: () => void;
   isPaused: boolean;
   onTogglePause: () => void;
+  variant?: 'standalone' | 'embedded';
+  clerkStatus?: string;
+  iframeLoaded?: string;
+  handshakeStatus?: string;
+  childReport?: string;
 }
 
 export default function SystemLogs({
@@ -14,6 +19,11 @@ export default function SystemLogs({
   onClearLogs,
   isPaused,
   onTogglePause,
+  variant = 'standalone',
+  clerkStatus,
+  iframeLoaded,
+  handshakeStatus,
+  childReport,
 }: SystemLogsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,9 +44,11 @@ export default function SystemLogs({
   return (
     <div
       id="system-logs-card"
-      className="border-2 border-black p-4 bg-zinc-800 text-[#E6E2D8] hard-shadow-sm flex flex-col font-mono h-full"
+      className={`${variant === 'standalone' ? 'border-2 border-black p-4 bg-zinc-800 hard-shadow-sm h-full' : 'bg-slate-900 border-t-2 border-black p-2 h-64'} text-[#E6E2D8] flex flex-col font-mono`}
     >
-      <div className="flex items-center justify-between border-b border-[#E6E2D8]/20 pb-1.5 mb-3">
+      <div
+        className={`flex items-center justify-between border-b border-[#E6E2D8]/20 pb-1.5 ${variant === 'standalone' ? 'mb-3' : 'mb-2'}`}
+      >
         <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-1.5">
           <Terminal className="w-4 h-4 text-amber-500" />
           <span>System Logs</span>
@@ -80,9 +92,36 @@ export default function SystemLogs({
         </div>
       </div>
 
+      {variant === 'embedded' && (
+        <div className="bg-slate-900 border-b border-[#E6E2D8]/20 text-emerald-400 text-[10px] p-2 mb-2 space-y-1 font-mono z-20">
+          <div>
+            📡 <span className="text-white font-bold">1. CLERK STATUS:</span>{' '}
+            {clerkStatus || 'N/A'}
+          </div>
+          <div>
+            ⏱️ <span className="text-white font-bold">2. NATIVE ONLOAD:</span>{' '}
+            {iframeLoaded || 'N/A'}
+          </div>
+          <div>
+            🤝{' '}
+            <span className="text-white font-bold">3. HANDSHAKE PIPELINE:</span>{' '}
+            {handshakeStatus || 'N/A'}
+          </div>
+          <div>
+            📊{' '}
+            <span className="text-white font-bold">
+              4. CHILD REPORT MATRIX:
+            </span>{' '}
+            <span className="text-amber-300 break-all">
+              {childReport || 'N/A'}
+            </span>
+          </div>
+        </div>
+      )}
+
       <div
         ref={containerRef}
-        className="font-mono text-[11px] space-y-1.5 overflow-y-auto h-48 scrollbar-hide select-text pr-1.5"
+        className={`font-mono text-[11px] space-y-1.5 overflow-y-auto scrollbar-hide select-text pr-1.5 ${variant === 'standalone' ? 'h-48' : 'flex-grow'}`}
         style={{ scrollBehavior: 'smooth' }}
       >
         {logs.map((log, idx) => (
