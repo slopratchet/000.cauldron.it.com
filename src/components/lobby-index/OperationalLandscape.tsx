@@ -35,6 +35,17 @@ export default function OperationalLandscape({
   );
   const [childReport, setChildReport] = useState<string>('NO_DATA_YET');
 
+  const dispatchSystemLog = (
+    text: string,
+    type: 'INFO' | 'SUCCESS' | 'WARNING' | 'ALERT' = 'INFO',
+  ) => {
+    window.dispatchEvent(
+      new CustomEvent('lobby-system-log', {
+        detail: { text, type },
+      }),
+    );
+  };
+
   useEffect(() => {
     console.log(
       '🔍 [PARENT] Component mounted. Resolving Authentication Context...',
@@ -47,7 +58,9 @@ export default function OperationalLandscape({
 
       if (!clerk || !clerk.loaded) {
         clerkRetries++;
-        setClerkStatus(`LOADING_RETRY_${clerkRetries}/30`);
+        const statusMsg = `LOADING_RETRY_${clerkRetries}/30`;
+        setClerkStatus(statusMsg);
+        dispatchSystemLog(`📡 1. CLERK STATUS: ${statusMsg}`);
         if (clerkRetries < 30) {
           setTimeout(initIframe, 100);
           return;
@@ -56,8 +69,10 @@ export default function OperationalLandscape({
           '❌ [PARENT] Clerk store failed to load within 3 seconds.',
         );
         setClerkStatus('TIMEOUT_FAILED');
+        dispatchSystemLog('📡 1. CLERK STATUS: TIMEOUT_FAILED', 'WARNING');
       } else {
         setClerkStatus('STORE_LOADED');
+        dispatchSystemLog('📡 1. CLERK STATUS: STORE_LOADED', 'SUCCESS');
       }
 
       let fetchedToken = null;
@@ -67,15 +82,17 @@ export default function OperationalLandscape({
           console.log('✅ [PARENT] Token generated successfully.');
           setToken(fetchedToken);
           setClerkStatus('TOKEN_ACQUIRED');
+          dispatchSystemLog('📡 1. CLERK STATUS: TOKEN_ACQUIRED', 'SUCCESS');
         } else {
           console.warn('⚠️ [PARENT] No active session discovered.');
           setClerkStatus('NO_SESSION');
+          dispatchSystemLog('📡 1. CLERK STATUS: NO_SESSION', 'WARNING');
         }
       } catch (err) {
         console.error('💥 [PARENT] Exception reading token:', err);
-        setClerkStatus(
-          `ERROR: ${err instanceof Error ? err.message : 'UNKNOWN'}`,
-        );
+        const errorMsg = `ERROR: ${err instanceof Error ? err.message : 'UNKNOWN'}`;
+        setClerkStatus(errorMsg);
+        dispatchSystemLog(`📡 1. CLERK STATUS: ${errorMsg}`, 'ALERT');
       }
 
       let finalIframeUrl = baseUrl;
@@ -106,6 +123,10 @@ export default function OperationalLandscape({
           '⚡ [PARENT] Handshake Request captured! Child DOM is fully alive and ready for injection.',
         );
         setHandshakeStatus('RECEIVED_BOOT_SIGNAL');
+        dispatchSystemLog(
+          '🤝 3. HANDSHAKE PIPELINE: RECEIVED_BOOT_SIGNAL',
+          'SUCCESS',
+        );
 
         if (token && iframeRef.current && iframeRef.current.contentWindow) {
           console.log(
@@ -116,11 +137,19 @@ export default function OperationalLandscape({
             'https://react.mmorpg.it.com',
           );
           setHandshakeStatus('TOKEN_DISPATCHED_OK');
+          dispatchSystemLog(
+            '🤝 3. HANDSHAKE PIPELINE: TOKEN_DISPATCHED_OK',
+            'SUCCESS',
+          );
         } else {
           console.warn(
             '⚠️ [PARENT] Handshake skipped. Token state is null or missing target window context.',
           );
           setHandshakeStatus('FAILED_MISSING_TOKEN');
+          dispatchSystemLog(
+            '🤝 3. HANDSHAKE PIPELINE: FAILED_MISSING_TOKEN',
+            'WARNING',
+          );
         }
       }
 
@@ -129,7 +158,9 @@ export default function OperationalLandscape({
           '📊 [PARENT] Detailed Diagnostic Report submitted by Child Context:',
           e.data.payload,
         );
-        setChildReport(JSON.stringify(e.data.payload));
+        const reportString = JSON.stringify(e.data.payload);
+        setChildReport(reportString);
+        dispatchSystemLog(`📊 4. CHILD REPORT MATRIX: ${reportString}`);
       }
     };
 
@@ -142,6 +173,7 @@ export default function OperationalLandscape({
       '🏁 [PARENT] Native iframe element "onLoad" reached standard browser completion.',
     );
     setIframeLoaded('TRUE (HTML_PARSED)');
+    dispatchSystemLog('⏱️ 2. NATIVE ONLOAD: TRUE (HTML_PARSED)', 'SUCCESS');
   };
 
   return (
@@ -188,10 +220,6 @@ export default function OperationalLandscape({
             onClearLogs={onClearLogs}
             isPaused={isPaused}
             onTogglePause={onTogglePause}
-            clerkStatus={clerkStatus}
-            iframeLoaded={iframeLoaded}
-            handshakeStatus={handshakeStatus}
-            childReport={childReport}
           />
         )}
     </div>
