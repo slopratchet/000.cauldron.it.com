@@ -82,15 +82,17 @@ export default function SystemLogs({
 
       <div
         ref={containerRef}
-        className="font-mono text-[11px] space-y-1.5 overflow-y-auto h-48 scrollbar-hide select-text pr-1.5"
+        className="font-mono text-[11px] space-y-1.5 overflow-y-auto overflow-x-hidden h-48 scrollbar-hide select-text pr-1.5"
         style={{ scrollBehavior: 'smooth' }}
       >
         {logs.map((log, idx) => (
           <p key={idx} className="leading-normal flex items-start gap-1">
-            <span className="opacity-40 select-none font-sans">
+            <span className="opacity-40 select-none font-sans shrink-0">
               [{log.timestamp}]
             </span>
-            <span className={getLogColorClass(log.type)}>- {log.text}</span>
+            <span className={`${getLogColorClass(log.type)} break-all`}>
+              - {log.text}
+            </span>
           </p>
         ))}
         {logs.length === 0 && (
