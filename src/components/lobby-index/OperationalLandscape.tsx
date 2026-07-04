@@ -1,15 +1,27 @@
 import { Cpu } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { $clerkStore } from '@clerk/astro/client';
+import SystemLogs from './SystemLogs';
+import type { SystemLogEntry } from './types';
 
 interface OperationalLandscapeProps {
   title?: string;
   imgRef?: string;
+  logs?: SystemLogEntry[];
+  onClearLogs?: () => void;
+  isPaused?: boolean;
+  onTogglePause?: () => void;
+  isLogsVisible?: boolean;
 }
 
 export default function OperationalLandscape({
   title = 'Operational Landscape',
   imgRef = 'IMG_REF_69.SYS',
+  logs,
+  onClearLogs,
+  isPaused,
+  onTogglePause,
+  isLogsVisible = false,
 }: OperationalLandscapeProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>('');
@@ -165,27 +177,23 @@ export default function OperationalLandscape({
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
 
-      {/* Real-time Diagnostic Matrix Terminal */}
-      <div className="bg-slate-900 border-t-2 border-black text-emerald-400 text-[10px] p-2 space-y-1 font-mono z-20">
-        <div>
-          📡 <span className="text-white font-bold">1. CLERK STATUS:</span>{' '}
-          {clerkStatus}
-        </div>
-        <div>
-          ⏱️ <span className="text-white font-bold">2. NATIVE ONLOAD:</span>{' '}
-          {iframeLoaded}
-        </div>
-        <div>
-          🤝{' '}
-          <span className="text-white font-bold">3. HANDSHAKE PIPELINE:</span>{' '}
-          {handshakeStatus}
-        </div>
-        <div>
-          📊{' '}
-          <span className="text-white font-bold">4. CHILD REPORT MATRIX:</span>{' '}
-          <span className="text-amber-300 break-all">{childReport}</span>
-        </div>
-      </div>
+      {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
+      {isLogsVisible &&
+        logs &&
+        onClearLogs &&
+        onTogglePause &&
+        isPaused !== undefined && (
+          <SystemLogs
+            logs={logs}
+            onClearLogs={onClearLogs}
+            isPaused={isPaused}
+            onTogglePause={onTogglePause}
+            clerkStatus={clerkStatus}
+            iframeLoaded={iframeLoaded}
+            handshakeStatus={handshakeStatus}
+            childReport={childReport}
+          />
+        )}
     </div>
   );
 }

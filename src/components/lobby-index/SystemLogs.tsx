@@ -7,6 +7,10 @@ interface SystemLogsProps {
   onClearLogs: () => void;
   isPaused: boolean;
   onTogglePause: () => void;
+  clerkStatus?: string;
+  iframeLoaded?: string;
+  handshakeStatus?: string;
+  childReport?: string;
 }
 
 export default function SystemLogs({
@@ -14,6 +18,10 @@ export default function SystemLogs({
   onClearLogs,
   isPaused,
   onTogglePause,
+  clerkStatus,
+  iframeLoaded,
+  handshakeStatus,
+  childReport,
 }: SystemLogsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -34,7 +42,7 @@ export default function SystemLogs({
   return (
     <div
       id="system-logs-card"
-      className="border-2 border-black p-4 bg-zinc-800 text-[#E6E2D8] hard-shadow-sm flex flex-col font-mono h-full"
+      className="p-4 bg-zinc-800 text-[#E6E2D8] flex flex-col font-mono border-t-2 border-black z-20"
     >
       <div className="flex items-center justify-between border-b border-[#E6E2D8]/20 pb-1.5 mb-3">
         <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-1.5">
@@ -79,6 +87,31 @@ export default function SystemLogs({
           </button>
         </div>
       </div>
+
+      {clerkStatus !== undefined && (
+        <div className="text-emerald-400 text-[10px] space-y-1 mb-3 border-b border-[#E6E2D8]/20 pb-3">
+          <div>
+            📡 <span className="text-white font-bold">1. CLERK STATUS:</span>{' '}
+            {clerkStatus}
+          </div>
+          <div>
+            ⏱️ <span className="text-white font-bold">2. NATIVE ONLOAD:</span>{' '}
+            {iframeLoaded}
+          </div>
+          <div>
+            🤝{' '}
+            <span className="text-white font-bold">3. HANDSHAKE PIPELINE:</span>{' '}
+            {handshakeStatus}
+          </div>
+          <div>
+            📊{' '}
+            <span className="text-white font-bold">
+              4. CHILD REPORT MATRIX:
+            </span>{' '}
+            <span className="text-amber-300 break-all">{childReport}</span>
+          </div>
+        </div>
+      )}
 
       <div
         ref={containerRef}
