@@ -1,0 +1,488 @@
+{
+  "characterData": {
+    "meta": {
+      "character_id": "uuid-08b8f2b7-846c-4b51-935f-359f63569720",
+      "user_id": "owner-uuid-789",
+      "schemaVersion": "5.1",
+      "active_sources": ["SRD", "PHB2024", "SCAG"],
+      "createdAt": "2025-05-12T08:15:00Z",
+      "updatedAt": "2026-07-04T12:00:00Z"
+    },
+    "identity": {
+      "name": "Catharsis Gale",
+      "alignment": "Chaotic Neutral",
+      "background": "Tactical Meteorologist",
+      "species": "Sylph / Electro-kinetic Human"
+    },
+    "description": {
+      "age": 34,
+      "height": "6' 2\"",
+      "weight": "160 lbs",
+      "eyes": "Storm Grey (crackling with static)",
+      "skin": "Pale with glowing blue lightning scarification along the spine and temples",
+      "hair": "Spiky Electric Blue"
+    },
+    "personality": {
+      "traits": "Extremely hyperactive and alert. Talks fast, constantly scanning skies for barometric shifts. Can sense atmospheric charge before lightning strikes.",
+      "ideals": "Liberty. Disruption of rigid power grids. Mastering the storm.",
+      "bonds": "My focal antenna is my life. It has survived three direct lightning strikes. I will protect my ridge outpost at all costs.",
+      "flaws": "Completely unable to sit still in low-pressure zones. Prone to sparking when agitated. Tends to overcomplicate simple logistical routing."
+    },
+    "notes": "A rogue field operative and weather-weaver who weaponizes electrostatic potentials. Once a high-altitude researcher for Chronos Systems, Gale went rogue after a critical overload event fused their neural net with a prototype micro-barometer. Now guides deep-canopy rebel cells through volatile thermal storms, using a custom copper-wound field baton to redirect incoming shock discharges.",
+    "definition": {
+      "abilityScoreGeneration": {
+        "method": "PointBuy",
+        "scores": {
+          "Strength": 10,
+          "Dexterity": 16,
+          "Constitution": 12,
+          "Intelligence": 14,
+          "Wisdom": 11,
+          "Charisma": 15
+        }
+      },
+      "levelProgression": {
+        "1": {
+          "class": "Sorcerer",
+          "choices": [
+            {
+              "type": "subclass",
+              "value": "Storm Magic"
+            },
+            {
+              "type": "skill_proficiency",
+              "values": ["Arcana", "Insight"]
+            }
+          ]
+        },
+        "2": {
+          "class": "Sorcerer",
+          "choices": [
+            {
+              "type": "spell_known",
+              "value": "Thunderwave"
+            }
+          ]
+        },
+        "3": {
+          "class": "Sorcerer",
+          "choices": [
+            {
+              "type": "spell_known",
+              "value": "Shatter"
+            }
+          ]
+        },
+        "4": {
+          "class": "Sorcerer",
+          "choices": [
+            {
+              "type": "feat",
+              "value": "Elemental Adept (Lightning)"
+            }
+          ]
+        }
+      }
+    },
+    "proficiencies": {
+      "skills": [
+        {
+          "name": "Nature",
+          "source": "Background: Tactician",
+          "modifier": "proficient"
+        },
+        {
+          "name": "Survival",
+          "source": "Background: Tactician",
+          "modifier": "proficient"
+        },
+        {
+          "name": "Performance",
+          "source": "Class: Sorcerer",
+          "modifier": "proficient"
+        },
+        {
+          "name": "Stealth",
+          "source": "Class: Sorcerer",
+          "modifier": "proficient"
+        },
+        {
+          "name": "Acrobatics",
+          "source": "Class: Sorcerer",
+          "modifier": "proficient"
+        },
+        {
+          "name": "Perception",
+          "source": "Class: Sorcerer",
+          "modifier": "expertise"
+        }
+      ],
+      "saving_throws": ["Constitution", "Charisma"],
+      "armor": ["Light Armor", "Medium Armor"],
+      "weapons": ["Simple weapons", "shortswords", "batons", "darts"],
+      "tools": ["Barometer", "Copper Soldering Kit", "Synthesizer"],
+      "languages": ["Common", "Auran"]
+    },
+    "spellcasting": {
+      "sources": [
+        {
+          "source": "Class: Sorcerer (Storm Magic)",
+          "ability": "Charisma",
+          "cantrips": [
+            "Shocking Grasp",
+            "Thunderclap",
+            "Light",
+            "Gust",
+            "Message"
+          ],
+          "known_spells": [
+            "Thunderwave",
+            "Shatter",
+            "Lightning Bolt",
+            "Storm Sphere",
+            "Control Winds",
+            "Chain Lightning",
+            "Whirlwind"
+          ]
+        }
+      ]
+    },
+    "currentState": {
+      "xp": 355000,
+      "currentHp": 112,
+      "temporaryHp": 10,
+      "usedHitDice": { "d8": 0, "d6": 0 },
+      "deathSaves": { "successes": 0, "failures": 0 },
+      "conditions": [],
+      "exhaustionLevel": 0,
+      "inspiration": true,
+      "activeEffects": [],
+      "usedResources": { "Sorcery Points": 0 },
+      "usedSpellSlots": {
+        "level_1": 0,
+        "level_2": 0,
+        "level_3": 0,
+        "level_4": 0,
+        "level_5": 0,
+        "level_6": 0,
+        "level_7": 0,
+        "level_8": 0,
+        "level_9": 0
+      },
+      "usedItemCharges": {
+        "uuid-item-baton": 0
+      },
+      "inventory": {
+        "currency": { "cp": 120, "sp": 40, "gp": 8200, "pp": 12 },
+        "items": {
+          "uuid-item-baton": { "item_id": "cathode_discharger", "quantity": 1 },
+          "uuid-item-synthesizer": {
+            "item_id": "portable_synth",
+            "quantity": 1
+          },
+          "uuid-item-pack": {
+            "item_id": "insulated_backpack",
+            "quantity": 1,
+            "contents": ["uuid-item-solder", "uuid-item-coils"]
+          },
+          "uuid-item-solder": { "item_id": "soldering_iron", "quantity": 1 },
+          "uuid-item-coils": { "item_id": "copper_coils", "quantity": 4 },
+          "uuid-item-suit": {
+            "item_id": "insulated_faraday_suit",
+            "quantity": 1
+          },
+          "uuid-item-boots": {
+            "item_id": "light-foot_mag-boots",
+            "quantity": 1
+          },
+          "uuid-item-barometer": {
+            "item_id": "micro-barometer",
+            "quantity": 1
+          },
+          "uuid-item-capacitors": {
+            "item_id": "magnetic_capacitors",
+            "quantity": 2
+          }
+        },
+        "loadout": {
+          "worn": ["uuid-item-suit", "uuid-item-boots"],
+          "held": {
+            "main_hand": "uuid-item-baton",
+            "off_hand": "uuid-item-barometer"
+          },
+          "attuned_items": ["uuid-item-baton", "uuid-item-boots"]
+        }
+      }
+    }
+  },
+  "weapons": [
+    {
+      "label": "WEAPON_1",
+      "name": "Cathode Discharger (+2 Baton)",
+      "atk_bonus": "+9",
+      "damage": "1d8 + 5 (lightning)",
+      "critical": "20 / x2",
+      "range": "Melee",
+      "weight": "3 lbs",
+      "type": "Bludgeoning / Lightning",
+      "size": "Medium",
+      "special_properties": "Focal conductor for kinetic static. Can expend charges to emit a 15ft electrical cone."
+    },
+    {
+      "label": "WEAPON_2",
+      "name": "Pneumatic Dart Launcher",
+      "atk_bonus": "+8",
+      "damage": "1d6 + 4 (piercing)",
+      "critical": "19-20 / x2",
+      "range": "40 / 160",
+      "weight": "2 lbs",
+      "type": "Ranged / Piercing",
+      "size": "Medium",
+      "special_properties": "Silent compressed air system. Ignores crosswind penalties."
+    },
+    {
+      "label": "WEAPON_3",
+      "name": "Static Grenades",
+      "atk_bonus": "+7",
+      "damage": "3d6 (thunder)",
+      "critical": "20 / x2",
+      "range": "20 / 60",
+      "weight": "1 lb",
+      "type": "Thrown / Thunder",
+      "size": "Small",
+      "special_properties": "Creates a 10ft EMP sphere on impact, disrupting mechanical sensors."
+    }
+  ],
+  "ammo": {
+    "ammo1": [
+      "15x Electro-charged Darts",
+      "10x Standard Steel Darts",
+      "5x Acidic Peat Darts"
+    ],
+    "ammo2": [
+      "4x High-frequency EMP Nodes",
+      "2x Flare Signals",
+      "Empty magnetic harness"
+    ]
+  },
+  "ammoTracker1": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+  ],
+  "ammoTracker2": [true, true, true, true, true, true],
+  "ammoTrackerSize1": 15,
+  "ammoTrackerSize2": 6,
+  "armor1": {
+    "name": "Insulated Faraday Suit",
+    "location": "Torso",
+    "type": "Medium Armor",
+    "equip_bonus": "+7 AC",
+    "proficient": "Y",
+    "penalty": "None",
+    "weight": "12 lbs",
+    "speed": "No penalty",
+    "size": "Medium",
+    "max_dex": "+3 Dex",
+    "special_properties": "Immunity to lightning/electric damage and storm weather hazards."
+  },
+  "armor2": {
+    "name": "Light-foot Mag-Boots",
+    "location": "Feet",
+    "type": "Plated Boots / Electromagnetic",
+    "equip_bonus": "+3 AC",
+    "proficient": "Y",
+    "penalty": "None",
+    "weight": "4 lbs",
+    "speed": "No penalty",
+    "size": "Medium",
+    "max_dex": "No Max",
+    "special_properties": "Allows walking on sheer metal surfaces and ignoring difficult swamp terrain."
+  },
+  "contacts": "• Comm-Link Node 'Echo-4' — A rogue AI agent inhabiting an abandoned communications satellite, providing weather projections.\n• The High-Altitude Glider Renegades — An acrobatic smuggling crew who transport Gale's supplies through high-level jet streams.\n• Undergrid Resistance Cells — Urban saboteurs who pay Gale in copper coils, vacuum tubes, and premium battery cells.",
+  "fractions": "• Chronos Atmospheric Division — The monolithic corporation that created Gale's implants and hunts them to retrieve the prototype.\n• The Cloud-Weavers Circle — A mystical guild of wind-priests who view Gale's technology-assisted weather-weaving as heresy.\n• The Free Sky Coalition — A loose federation of pilots and weather-outlaws.",
+  "desires": "• Overloading the Chronos Power Grids — To trigger a chain-reaction power failure across the entire industrial sector.\n• Tuning the Electrostatic Antenna — To establish a stable telepathic link with the storm-spirits of the upper atmosphere.\n• Releasing the Silt-mists — To blanket the entire lowlands in static mist to cover an imminent refugee escape.",
+  "sacrifices": "• Safe Grounding — Fused nervous system means Gale can never touch uninsulated organic life without administering a mild shock.\n• Corporate Career & Prestige — Abandoned high-paying researcher status at Chronos Systems to avoid weapons-testing on sentient mires.\n• Left Ear Hearing — Lost entirely during a high-frequency atmospheric sound-barrier breach.",
+  "atonements": "• Grounding Static Overloads — Safely dispersing lightning strikes away from vulnerable agrarian wooden settlements.\n• Free Battery Charging — Utilizing bio-electric generation to recharge local rebel radios and medical devices.\n• Restoring local radio relays — Restoring free, unmonitored communication lines for low-sector civilian refugees.",
+  "vitalRecords": {
+    "placeOfBirth": "UPPER ATMOSPHERE SECTOR 1, RESEARCH LAB",
+    "dateOfBirth": "2092.11.03",
+    "employerAffiliation": "CHRONOS ATMOSPHERICS - FORMER SENIOR SCIENTIST"
+  },
+  "familyHistory": "Subject is the offspring of two Chronos Aerology division directors. Conceived and raised in low-gravity test chambers. Subject's sister remains in corporate custody as a lead designer. Potential leverage vector identified.",
+  "assetsEquipment": {
+    "standardOfLiving": "MINIMALIST / MOBILE",
+    "monthlyIncome": "0 CR (BARTER / SCAVENGED ONLY)",
+    "propertyList": "• Prototype Atmospheric Baton\n• Fused neural telemetry rig (Internal)\n• Modular hideout inside an old wind turbine\n• Insulated cargo chest with spare vacuum tubes"
+  },
+  "mentalDiagnostics": {
+    "insanityPoints": 4,
+    "corruptionPoints": 2,
+    "synchronicityPoints": 9,
+    "inspirationPoints": 7
+  },
+  "manifestations": "Intermittent eye twitching synced with nearby AC power hums. Spontaneous static discharges from fingers when excited.",
+  "actionSummary": [
+    { "action": "Discharge Storm-shock", "type": "Standard" },
+    { "action": "Pneumatic Shot", "type": "Half" },
+    { "action": "Deploy Static Grenade", "type": "Full" },
+    { "action": "Calibrate Antenna", "type": "Half" }
+  ],
+  "operativeNotes": "Subject's neural integration with the micro-barometer is irreversible. Unlike Charity Vaughn's wild organic magic, Gale's potential is a hybrid of cybernetic transduction and elemental storm attunement. Standard neural suppressors fail due to constant electrostatic discharge. Recommend immediate thermal containment if capture is ordered.",
+  "supplyMetrics": {
+    "waterWine": [
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "rations": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "feed": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "stabilizersAntibiotics": [
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ],
+    "bioOilHydrocarbons": [
+      true,
+      true,
+      true,
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false
+    ],
+    "weldingSlagScrap": [
+      true,
+      true,
+      true,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "maxRanks": 23,
+  "skillsList": [
+    {
+      "isClassSkill": true,
+      "name": "Balance",
+      "keyAbility": "DEX",
+      "abilityModifier": 3,
+      "ranks": 12,
+      "miscModifier": 0
+    },
+    {
+      "isClassSkill": true,
+      "name": "Climb",
+      "keyAbility": "STR",
+      "abilityModifier": 0,
+      "ranks": 5,
+      "miscModifier": 0
+    },
+    {
+      "isClassSkill": true,
+      "name": "Concentration",
+      "keyAbility": "CON",
+      "abilityModifier": 1,
+      "ranks": 10,
+      "miscModifier": 1
+    },
+    {
+      "isClassSkill": true,
+      "name": "Knowledge (Meteorology)",
+      "keyAbility": "INT",
+      "abilityModifier": 2,
+      "ranks": 16,
+      "miscModifier": 2
+    },
+    {
+      "isClassSkill": true,
+      "name": "Spellcraft",
+      "keyAbility": "INT",
+      "abilityModifier": 2,
+      "ranks": 12,
+      "miscModifier": 2
+    },
+    {
+      "isClassSkill": true,
+      "name": "Listen",
+      "keyAbility": "WIS",
+      "abilityModifier": 0,
+      "ranks": 8,
+      "miscModifier": 0
+    },
+    {
+      "isClassSkill": true,
+      "name": "Move Silently",
+      "keyAbility": "DEX",
+      "abilityModifier": 3,
+      "ranks": 14,
+      "miscModifier": 3
+    }
+  ],
+  "vitalsAndWounds": {
+    "maxHp": 18,
+    "currentHp": 16,
+    "majorWoundThreshold": 9,
+    "wounds": [true, true, false, false, false, false]
+  }
+}

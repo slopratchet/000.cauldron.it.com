@@ -1,0 +1,87 @@
+{
+  "identity": {
+    "name": "CATHARSIS GALE",
+    "title": "TEMPEST ARCHITECT",
+    "tagline": "THE STORM THAT CLEANSES THE WORLD",
+    "quote": "You speak of order as if the sky does not scream before the rain. Let the lightning strike where it may; only the strong will rise from the ash.",
+    "portraits": [
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?auto=format&fit=crop&q=80&w=800",
+      "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?auto=format&fit=crop&q=80&w=800"
+    ],
+    "reserveButtonText": "UNLEASH CATHARSIS",
+    "reservationOptions": [
+      "[storm 1 : forming]",
+      "[storm 2 : active]",
+      "[storm 3 : dissipated]"
+    ],
+    "embraceButtonText": "SURRENDER TO THE GALE"
+  },
+  "lore": {
+    "sectionHeader": "THE VOICE OF THE HURRICANE",
+    "paragraphs": [
+      "Catharsis Gale is not just a mage; they are an atmospheric event. Born during the convergence of three planetary squalls, their blood beats to the rhythm of thunder. Where others see destruction, Catharsis sees a clean slate, an inevitable clearing of the old world's stagnant air.",
+      "Armed with an iron will and a staff carved from a lightning-struck elder tree, they command the upper currents of the world. They do not negotiate with kings; they negotiate with the sky."
+    ],
+    "quoteBlock": "WHEN THE WIND HOWLS, IT IS NOT A WARNING. IT IS THE SOUND OF MY ARRIVAL."
+  },
+  "highlights": [
+    {
+      "title": "CHAIN LIGHTNING",
+      "description": "An explosive discharge of electrical energy that arcs effortlessly across multiple foes."
+    },
+    {
+      "title": "WIND WALL",
+      "description": "A towering barrier of high-velocity air that deflects all kinetic projectiles."
+    }
+  ],
+  "technicalDossier": {
+    "level": 20,
+    "class": "TEMPEST EVOKER",
+    "archetype": "CALAMITY WEAVER",
+    "stats": [
+      {
+        "abbr": "STR",
+        "value": 12,
+        "detail": "decent physical conditioning, can swing a heavy staff"
+      },
+      {
+        "abbr": "DEX",
+        "value": 16,
+        "detail": "quick as lightning, hard to hit"
+      },
+      {
+        "abbr": "CON",
+        "value": 14,
+        "detail": "hardened by extreme altitudes and cold currents"
+      },
+      {
+        "abbr": "INT",
+        "value": 15,
+        "detail": "calculated understanding of fluid dynamics and thermodynamics"
+      },
+      {
+        "abbr": "WIS",
+        "value": 18,
+        "detail": "deeply attuned to the natural pressures of the environment"
+      },
+      {
+        "abbr": "CHA",
+        "value": 18,
+        "detail": "fierce, imposing presence that commands absolute awe"
+      }
+    ]
+  },
+  "tacticalInsight": {
+    "title": "CALAMITY DIRECTIVE",
+    "quote": "Gale's battlefield presence is characterized by high mobility and devastating area denial. They are most dangerous when cornered, as their emotional state directly influences local air pressure, often triggering sudden localized microbursts.",
+    "author": "- Arcane Weather Bureau Dossier"
+  },
+  "reviews": {
+    "tagline": "Rated 4.95 out of 5 lightning bolts.",
+    "rating": "4.95",
+    "count": "14 reviews"
+  }
+}

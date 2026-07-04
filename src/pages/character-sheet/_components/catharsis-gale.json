@@ -1,0 +1,535 @@
+{
+  "meta": {
+    "character_id": "uuid-ca7b4815-4ba1-417d-932d-3eb11ca2a490",
+    "user_id": "owner-uuid-456",
+    "schemaVersion": "5.1",
+    "active_sources": ["SRD", "PHB2024"],
+    "createdAt": "2024-03-20T11:00:00Z",
+    "updatedAt": "2026-03-20T15:45:00Z"
+  },
+  "identity": {
+    "name": "Catharsis Gale",
+    "alignment": "Chaotic Neutral",
+    "background": "Sage",
+    "species": "Gnome"
+  },
+  "description": {
+    "age": 42,
+    "height": "3' 6\"",
+    "weight": "45 lbs",
+    "eyes": "Sparkling Violet",
+    "skin": "Pale with glowing blue runic tracings along the neck",
+    "hair": "Spiky electric blue hair that seems to hold static",
+    "nationality": "Sector 9 Atmospheric Alliance"
+  },
+  "personality": {
+    "traits": "Obsessive and high-energy researcher. Speaks at twice the speed of anyone else, especially when explaining weather micro-anomalies or pneumatic pressure curves. Extremely protective of their notes.",
+    "ideals": "Catharsis. The clearing of old stagnant patterns through tempestuous release.",
+    "bonds": "My pneumatic research laboratory in the storm-swept ridges is my sanctuary. I must complete the storm-core resonance equations.",
+    "flaws": "Can't stay still for more than five seconds. Constantly tapping rhythms or muttering formula equations. Tends to overlook immediate physical hazards.",
+    "familyHistory": "Descended from the prominent Gale clan of Sector 9, known for their atmospheric control systems. Severed contact to pursue fringe pneumatic research. Regarded by peers as brilliant but highly unstable."
+  },
+  "vitalRecords": {
+    "gender": "non-binary",
+    "placeOfBirth": "ATMOSPHERIC RESEARCH HUB 9",
+    "dateOfBirth": "1984.11.02",
+    "employerAffiliation": "FRINGE RESEARCH COUNCIL",
+    "nationality": "Sector 9 Atmospheric Alliance"
+  },
+  "notes": "Fringe weather researcher and wind-weaver specializing in pneumatic micro-anomalies. Known for utilizing custom atmospheric pressure regulators to generate localized windbursts and electrical shields. Known as the Storm-Speaker of the ridges, capable of focusing tempestuous elemental energies through a custom-made brass pneumatic harmonica.",
+  "definition": {
+    "abilityScoreGeneration": {
+      "method": "PointBuy",
+      "scores": {
+        "Strength": 8,
+        "Dexterity": 16,
+        "Constitution": 14,
+        "Intelligence": 18,
+        "Wisdom": 10,
+        "Charisma": 12
+      },
+      "magicScores": {
+        "FORC": "gale force blue",
+        "FRIC": "unfettered slipstream",
+        "SPED": "lightning fast",
+        "MASS": "hollow cloud",
+        "BEIN": "tempestuous spark",
+        "CTRL": "vacuum vortex",
+        "RSLV": "static hum",
+        "WITS": "quick thunder",
+        "TUDE": "ozone crackle",
+        "VIZN": "storm horizon",
+        "POST": "buoyant hover",
+        "STYL": "aerodynamic slate",
+        "KOUD": "thunderhead",
+        "GRIT": "swirling dust",
+        "BYTE": "high frequency",
+        "FLOW": "jetstream flow"
+      }
+    },
+    "progression": {
+      "1": {
+        "class": "Sorcerer",
+        "choices": [
+          {
+            "type": "skill_proficiency",
+            "values": ["Arcana", "History"]
+          },
+          {
+            "type": "subclass",
+            "value": "Storm Sorcery"
+          }
+        ]
+      },
+      "2": {
+        "class": "Sorcerer",
+        "choices": [
+          {
+            "type": "spell_known",
+            "value": "Shield"
+          }
+        ]
+      },
+      "3": {
+        "class": "Sorcerer",
+        "choices": [
+          {
+            "type": "spell_known",
+            "value": "Gust of Wind"
+          }
+        ]
+      },
+      "4": {
+        "class": "Sorcerer",
+        "choices": [
+          {
+            "type": "spell_known",
+            "value": "Shatter"
+          }
+        ]
+      },
+      "5": {
+        "class": "Sorcerer",
+        "choices": [
+          {
+            "type": "spell_known",
+            "value": "Lightning Bolt"
+          }
+        ]
+      }
+    }
+  },
+  "proficiencies": {
+    "skills": [
+      {
+        "name": "Arcana",
+        "source": "Background: Sage",
+        "modifier": "expertise"
+      },
+      {
+        "name": "History",
+        "source": "Background: Sage",
+        "modifier": "proficient"
+      },
+      {
+        "name": "Sleight of Hand",
+        "source": "Class: Sorcerer",
+        "modifier": "proficient"
+      },
+      {
+        "name": "Perception",
+        "source": "Class: Sorcerer",
+        "modifier": "proficient"
+      }
+    ],
+    "detailedSkills": [
+      {
+        "isClassSkill": true,
+        "name": "Balance",
+        "keyAbility": "DEX",
+        "modifier": 6,
+        "abilityMod": 3,
+        "ranks": 3,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Barter",
+        "keyAbility": "CHA",
+        "modifier": 1,
+        "abilityMod": 1,
+        "ranks": 0,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Bluff",
+        "keyAbility": "CHA",
+        "modifier": 4,
+        "abilityMod": 1,
+        "ranks": 3,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Climb",
+        "keyAbility": "STR",
+        "modifier": -1,
+        "abilityMod": -1,
+        "ranks": 0,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Concentration",
+        "keyAbility": "CON",
+        "modifier": 10,
+        "abilityMod": 2,
+        "ranks": 8,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Diplomacy",
+        "keyAbility": "CHA",
+        "modifier": 1,
+        "abilityMod": 1,
+        "ranks": 0,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Heal",
+        "keyAbility": "WIS",
+        "modifier": 0,
+        "abilityMod": 0,
+        "ranks": 0,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Intimidate",
+        "keyAbility": "CHA",
+        "modifier": 3,
+        "abilityMod": 1,
+        "ranks": 2,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Knowledge (Occult)",
+        "keyAbility": "INT",
+        "modifier": 14,
+        "abilityMod": 4,
+        "ranks": 10,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Listen",
+        "keyAbility": "WIS",
+        "modifier": 3,
+        "abilityMod": 0,
+        "ranks": 3,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Move Silently",
+        "keyAbility": "DEX",
+        "modifier": 8,
+        "abilityMod": 3,
+        "ranks": 5,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Ride",
+        "keyAbility": "DEX",
+        "modifier": 3,
+        "abilityMod": 3,
+        "ranks": 0,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Search",
+        "keyAbility": "INT",
+        "modifier": 8,
+        "abilityMod": 4,
+        "ranks": 4,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": false,
+        "name": "Sense Motive",
+        "keyAbility": "WIS",
+        "modifier": 2,
+        "abilityMod": 0,
+        "ranks": 2,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Spellcraft",
+        "keyAbility": "INT",
+        "modifier": 16,
+        "abilityMod": 4,
+        "ranks": 10,
+        "miscMod": 2
+      },
+      {
+        "isClassSkill": false,
+        "name": "Spot",
+        "keyAbility": "WIS",
+        "modifier": 5,
+        "abilityMod": 0,
+        "ranks": 5,
+        "miscMod": 0
+      },
+      {
+        "isClassSkill": true,
+        "name": "Survival",
+        "keyAbility": "WIS",
+        "modifier": 4,
+        "abilityMod": 0,
+        "ranks": 4,
+        "miscMod": 0
+      }
+    ],
+    "saving_throws": ["Constitution", "Charisma"],
+    "armor": ["None"],
+    "weapons": [
+      "Daggers",
+      "darts",
+      "slings",
+      "quarterstaffs",
+      "light crossbows"
+    ],
+    "tools": ["Wind flute", "Weather glass"],
+    "languages": ["Common", "Gnomish", "Primordial"],
+    "loreCards": [
+      {
+        "cardId": "lore_card_1",
+        "type": "EXPERTISE",
+        "skillName": "ARCANA",
+        "modifier": "+12 MOD",
+        "subtitle": "Weather Micro-Anomalies & Storm blue print:",
+        "description": "Catharsis Gale reads wind friction indices and thermodynamic transitions like equations across a chalkboard. They anticipate stormburst formations and micro-baric fluctuations with absolute geometric accuracy.",
+        "footer": "[SAGE RESEARCH] +12 (INT +4, EXPERTISE +8)"
+      },
+      {
+        "cardId": "lore_card_2",
+        "type": "PROFICIENT",
+        "skillName": "HISTORY",
+        "modifier": "+8 MOD",
+        "subtitle": "Fringe Atmospheric Lineage:",
+        "description": "Exhaustive cataloger of ancient sector atmospheric installations and mechanical control hubs left by the early pioneers of the ridge zones.",
+        "footer": "[SAGE STUDY] +8 (INT +4, PROF +4)"
+      }
+    ],
+    "loreRegisters": {
+      "savingThrowsHeader": "CONSTITUTION (+6) & CHARISMA (+5)",
+      "savingThrowsText": "High fortitude protects Catharsis against hazardous atmospheric decompression and thermal vents, while their quick mind redirects static and eldritch discharges.",
+      "toolsHeader": "WIND FLUTE & WEATHER GLASS",
+      "toolsText": "Utilizes a modified copper Wind Flute for focusing sonic frequencies and an atmospheric Weather Glass to calibrate baric variations.",
+      "languagesHeader": "COMMON, GNOMISH, & PRIMORDIAL (AERAN)",
+      "languagesText": "Fluent in structural Common, rapid academic Gnomish, and the breathy, friction-based Aeran dialect of the outer planar spheres.",
+      "combatHeader": "UNARMORED DEFENSE | DAGGERS, SLINGS, & QUARTERSTAFFS",
+      "combatText": "Protected only by protective electrostatic wind shields and insulated researcher jumpsuits. Proficient with rapid throwing darts, defensive daggers, and focus staffs."
+    }
+  },
+  "spellcasting": {
+    "sources": [
+      {
+        "source": "Class: Sorcerer (Storm Sorcery)",
+        "ability": "Charisma",
+        "cantrips": [
+          "Shocking Grasp",
+          "Gust",
+          "Thunderclap",
+          "Light",
+          "Message"
+        ],
+        "known_spells": [
+          "Thunderwave",
+          "Shield",
+          "Witch Bolt",
+          "Gust of Wind",
+          "Shatter",
+          "Lightning Bolt",
+          "Storm Sphere"
+        ]
+      }
+    ]
+  },
+  "current": {
+    "xp": 120000,
+    "currentHp": 84,
+    "temporaryHp": 10,
+    "usedHitDice": { "d6": 2 },
+    "deathSaves": { "successes": 0, "failures": 0 },
+    "conditions": [],
+    "exhaustionLevel": 0,
+    "inspiration": true,
+    "activeEffects": ["Wind Aura"],
+    "usedResources": { "Sorcery Points": 3 },
+    "usedSpellSlots": {
+      "level_1": 1,
+      "level_2": 2,
+      "level_3": 0,
+      "level_4": 0,
+      "level_5": 0,
+      "level_6": 0,
+      "level_7": 0,
+      "level_8": 0,
+      "level_9": 0
+    },
+    "usedItemCharges": {
+      "uuid-item-gale-1": 1
+    },
+    "inventory": {
+      "currency": { "cp": 120, "sp": 50, "gp": 2400, "pp": 5 },
+      "items": {
+        "uuid-item-gale-1": { "item_id": "pneumatic_regulator", "quantity": 1 },
+        "uuid-item-gale-2": { "item_id": "brass_harmonica", "quantity": 1 },
+        "uuid-item-gale-3": {
+          "item_id": "backpack",
+          "quantity": 1,
+          "contents": ["uuid-item-gale-4", "uuid-item-gale-5"]
+        },
+        "uuid-item-gale-4": { "item_id": "weather_journal", "quantity": 1 },
+        "uuid-item-gale-5": { "item_id": "insulated_pliers", "quantity": 1 },
+        "uuid-item-gale-6": { "item_id": "goggles_of_ozone", "quantity": 1 }
+      },
+      "loadout": {
+        "worn": ["uuid-item-gale-6"],
+        "held": {
+          "main_hand": "uuid-item-gale-2",
+          "off_hand": "uuid-item-gale-1"
+        },
+        "attuned_items": ["uuid-item-gale-1"]
+      }
+    }
+  },
+  "capabilities": [
+    {
+      "category": "HOMELAND",
+      "skillAffiliation": "NAVIGATION",
+      "rank": 3,
+      "effectName": "JETSTREAM",
+      "effectDescription": "Increase base speed by 10 feet when travelling along windward ridges."
+    },
+    {
+      "category": "ARCHETYPE",
+      "skillAffiliation": "SPELLCASTING",
+      "rank": 4,
+      "effectName": "STATIC SHIELD",
+      "effectDescription": "Spend 1 Sorcery Point to deal 2d4 lightning damage to any close range melee attackers."
+    },
+    {
+      "category": "NATURE",
+      "skillAffiliation": "SPEED",
+      "rank": 2,
+      "effectName": "TEMPESTUOUS DESCENT",
+      "effectDescription": "Use reaction to initiate slow feather-fall when dropping from tall platforms."
+    }
+  ],
+  "registries": [
+    {
+      "nodeId": "REGISTRY_NODE_01",
+      "title": "CONTACTS",
+      "items": [
+        {
+          "title": "THE RIDGE METEOROLOGISTS COOPERATIVE",
+          "description": "An informal network of weather-station operators who share low-pressure alert indices with Catharsis Gale."
+        },
+        {
+          "title": "SILT-FLAT GLIDER REPAIR SHOP",
+          "description": "A workshop in Sector 9 that provides specialized pneumatic regulators and brass gauges."
+        }
+      ]
+    },
+    {
+      "nodeId": "REGISTRY_NODE_02",
+      "title": "FRACTIONS",
+      "items": [
+        {
+          "title": "THE TEMPEST SECT",
+          "description": "A radical fringe of elemental weavers studying the extreme baric core cycles of the ridge stormgrounds."
+        }
+      ]
+    },
+    {
+      "nodeId": "REGISTRY_NODE_03",
+      "title": "DESIRES",
+      "items": [
+        {
+          "title": "MAPPING THE STORMCORE RESONANCE",
+          "description": "To complete the multi-phase energy matrices explaining infinite lightning generation."
+        }
+      ]
+    }
+  ],
+  "arsenal": {
+    "weapons": [
+      {
+        "weaponId": "uuid-weapon-gale-w1",
+        "name": "Dagger of Sparking",
+        "atkBonus": "+7",
+        "damage": "1d4 + 3 (piercing) + 1d4 (lightning)",
+        "critical": "19-20 / x2",
+        "range": "20 / 60",
+        "weight": "1 lb",
+        "type": "Finesse / Piercing / Lightning",
+        "size": "Small",
+        "specialProperties": "Finesse, light weapon. Generates high voltage sparks on impact."
+      }
+    ],
+    "ammunition": []
+  },
+  "outfitting": [
+    {
+      "pieceId": "uuid-outfitting-gale-a1",
+      "name": "Ozone Camouflage Robes",
+      "location": "Torso",
+      "type": "Fabric Accessory",
+      "equipBonus": "+0 AC",
+      "isProficient": true,
+      "penalty": "None",
+      "weight": "2 lbs",
+      "speed": "No penalty",
+      "size": "Small",
+      "maxDex": "No Max",
+      "specialProperties": "Provides advantage on Stealth checks inside thick fog or cloud banks."
+    }
+  ],
+  "psychology": {
+    "diagnostics": {
+      "insanity": 3,
+      "corruption": 2,
+      "synchronicity": 9,
+      "inspiration": 8
+    },
+    "supplies": {
+      "waterWine": 5,
+      "rations": 8,
+      "feed": 0,
+      "stabilizers": 4,
+      "bioOil": 1,
+      "weldingSlag": 0
+    },
+    "manifestations": "Can hear a subtle atmospheric hum when low pressure zones approach.",
+    "operativeNotes": {
+      "column1": "Subject's kinetic energy indices are consistently in the 90th percentile. The runic blueprints mapped along the neck act as safety valves for excess static charge. While stable, any exposure to high-voltage environments raises internal synchronic levels to a critical state.",
+      "column2": "Observe for potential thermal runoff. Subject's mastery over storm constructs is highly efficient, though they have demonstrated a tendency to ignore safety protocols during active lightning storms."
+    },
+    "actions": [
+      { "actionId": "ACT_1", "name": "Aim", "type": "Half" },
+      { "actionId": "ACT_2", "name": "Cast", "type": "Varies" },
+      { "actionId": "ACT_3", "name": "Charge", "type": "Full" },
+      { "actionId": "ACT_4", "name": "Move", "type": "Half" },
+      { "actionId": "ACT_5", "name": "Standard Attack", "type": "Half" }
+    ]
+  }
+}
