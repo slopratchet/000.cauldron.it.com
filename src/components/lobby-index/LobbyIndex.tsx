@@ -11,7 +11,6 @@ import type { SessionLog, Seat, SystemLogEntry } from './types';
 import HeaderBanner from './HeaderBanner';
 import LedgerTable from './LedgerTable';
 import CommandPanel from './CommandPanel';
-import SystemLogs from './SystemLogs';
 import ClerkDataSchema from './ClerkDataSchema';
 import SchemaDatabase from './SchemaDatabase';
 import TheaterMap from './TheaterMap';
@@ -565,6 +564,10 @@ export default function LobbyIndex() {
                 <OperationalLandscape
                   title={schema.landscapeTitle}
                   imgRef={schema.landscapeImgRef}
+                  logs={schema.systemLogs}
+                  onClearLogs={handleClearLogs}
+                  isPaused={isPaused}
+                  onTogglePause={handleTogglePause}
                 />
               </div>
             )}
@@ -632,17 +635,11 @@ export default function LobbyIndex() {
               </div>
             )}
 
-            {/* SYSTEM EVENT LOGS */}
+            {/* SYSTEM EVENT LOGS (CLERK DATA SCHEMA ONLY) */}
             {isLogsVisible && (
               <div
                 className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
-                <SystemLogs
-                  logs={schema.systemLogs}
-                  onClearLogs={handleClearLogs}
-                  isPaused={isPaused}
-                  onTogglePause={handleTogglePause}
-                />
                 <ClerkDataSchema />
               </div>
             )}
