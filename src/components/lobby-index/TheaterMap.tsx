@@ -27,14 +27,11 @@ export default function TheaterMap({
       <div className="grid grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat) => {
           const isOccupied = seat.status === 'OCCUPIED';
-          const targetUrl =
-            seat.url || 'https://en.wikipedia.org/wiki/Theater_(structure)';
+          const targetUrl = seat.url || '/character-select';
           return (
             <a
               key={seat.id}
               href={targetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={() => {
                 onToggleSeat(seat.id);
                 onSelectSeatCoordinate(seat.id);

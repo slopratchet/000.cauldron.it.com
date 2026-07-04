@@ -123,29 +123,6 @@ export const generateInitialSeats = (): Seat[] => {
   const occupiedIndices = [1, 2, 4, 6, 8, 10, 11, 13, 14, 15, 17, 19, 20];
   const seats: Seat[] = [];
 
-  const urls = [
-    'https://en.wikipedia.org/wiki/Globe_Theatre',
-    'https://en.wikipedia.org/wiki/Theater_(structure)',
-    'https://en.wikipedia.org/wiki/Playwright',
-    'https://en.wikipedia.org/wiki/Stagecraft',
-    'https://en.wikipedia.org/wiki/Hamlet',
-    'https://en.wikipedia.org/wiki/Romeo_and_Juliet',
-    'https://en.wikipedia.org/wiki/Dramaturgy',
-    'https://en.wikipedia.org/wiki/William_Shakespeare',
-    'https://en.wikipedia.org/wiki/The_Tempest',
-    'https://en.wikipedia.org/wiki/Macbeth',
-    'https://en.wikipedia.org/wiki/A_Midsummer_Night%27s_Dream',
-    'https://en.wikipedia.org/wiki/The_Alchemist_(play)',
-    'https://en.wikipedia.org/wiki/Christopher_Marlowe',
-    'https://en.wikipedia.org/wiki/Doctor_Faustus_(play)',
-    'https://en.wikipedia.org/wiki/Volpone',
-    'https://en.wikipedia.org/wiki/Othello',
-    'https://en.wikipedia.org/wiki/King_Lear',
-    'https://en.wikipedia.org/wiki/Every_Man_in_His_Humour',
-    'https://en.wikipedia.org/wiki/Edward_II_(play)',
-    'https://en.wikipedia.org/wiki/The_Jew_of_Malta',
-  ];
-
   for (let i = 1; i <= 20; i++) {
     const id = `G-${i.toString().padStart(2, '0')}`;
     const isOccupied = occupiedIndices.includes(i);
@@ -155,7 +132,7 @@ export const generateInitialSeats = (): Seat[] => {
       sessionId: isOccupied
         ? `T-74092${Math.floor(Math.random() * 5 + 1)}-A`
         : undefined,
-      url: urls[i - 1],
+      url: '/character-select',
     });
   }
   return seats;
