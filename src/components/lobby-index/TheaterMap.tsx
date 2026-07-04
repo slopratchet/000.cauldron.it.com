@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Grid } from 'lucide-react';
 import type { Seat } from './types';
 
@@ -12,6 +13,8 @@ export default function TheaterMap({
   onToggleSeat,
   onSelectSeatCoordinate,
 }: TheaterMapProps) {
+  const [selectedSeatId, setSelectedSeatId] = useState<string | null>(null);
+
   return (
     <div
       id="theater-mapping-card"
@@ -27,20 +30,17 @@ export default function TheaterMap({
       <div className="grid grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat) => {
           const isOccupied = seat.status === 'OCCUPIED';
-          const targetUrl =
-            seat.url || 'https://en.wikipedia.org/wiki/Theater_(structure)';
           return (
-            <a
+            <button
+              type="button"
               key={seat.id}
-              href={targetUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={() => {
+                setSelectedSeatId(seat.id);
                 onToggleSeat(seat.id);
                 onSelectSeatCoordinate(seat.id);
               }}
-              title={`Seat ${seat.id} (${isOccupied ? 'Occupied' : 'Vacant'}) - Click to open page`}
-              className={`w-full aspect-[1/2] border-2 border-black cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
+              title={`Seat ${seat.id} (${isOccupied ? 'Occupied' : 'Vacant'}) - Click to toggle`}
+              className={`w-full aspect-[1/2] border-2 ${selectedSeatId === seat.id ? 'border-orange-500 z-10' : 'border-black'} cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
                 isOccupied
                   ? 'bg-black text-white hover:bg-neutral-800'
                   : 'bg-[#E6E2D8] text-black hover:bg-[#d0cbbe]'
@@ -48,7 +48,7 @@ export default function TheaterMap({
             >
               {/* Numeric or ID stamp on the squares */}
               <span>{seat.id.replace('G-', '')}</span>
-            </a>
+            </button>
           );
         })}
       </div>
@@ -64,7 +64,7 @@ export default function TheaterMap({
           <span className="text-[#E6E2D8]">Vacant</span>
         </div>
         <div className="ml-auto text-[10px] opacity-60 italic font-normal text-[#E6E2D8]">
-          Click coordinate to launch web page & toggle.
+          Click coordinate to toggle.
         </div>
       </div>
     </div>

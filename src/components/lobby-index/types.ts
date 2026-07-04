@@ -14,7 +14,6 @@ export interface Seat {
   id: string; // e.g., "G-01", "G-02" ...
   status: 'OCCUPIED' | 'VACANT';
   sessionId?: string; // Associated session if occupied
-  url?: string; // Web page link when clicked
 }
 
 export interface SystemLogEntry {
