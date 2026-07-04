@@ -37,7 +37,7 @@ export default function MainCountdown({ timeInSeconds }: MainCountdownProps) {
         {/* Technical Sub-label with snug 33px margin bottom */}
         <div className="relative z-10 w-full text-center mb-[33px]">
           <h2 className="font-label text-black text-sm md:text-xl font-bold uppercase tracking-[0.4em] inline-block relative px-4">
-            COUNTDOWN
+            [countdown to play time]
             <span className="absolute bottom-[-6px] left-0 right-0 h-[2px] bg-black"></span>
           </h2>
         </div>
