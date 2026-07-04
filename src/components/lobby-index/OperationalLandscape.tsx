@@ -146,8 +146,27 @@ export default function OperationalLandscape({
         </span>
       </div>
 
+      <div className="relative w-full flex-grow aspect-video bg-neutral-800">
+        {iframeSrc ? (
+          <iframe
+            ref={iframeRef}
+            sandbox="allow-scripts allow-same-origin"
+            id="app-iframe"
+            title="Operational Landscape View"
+            className="w-full h-full border-none block relative z-10"
+            src={iframeSrc}
+            onLoad={handleIframeLoad}
+          />
+        ) : (
+          <div className="absolute inset-0 flex items-center justify-center text-xs text-neutral-400 animate-pulse">
+            Compiling Destination Environment...
+          </div>
+        )}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
+      </div>
+
       {/* Real-time Diagnostic Matrix Terminal */}
-      <div className="bg-slate-900 border-b-2 border-black text-emerald-400 text-[10px] p-2 space-y-1 font-mono z-20">
+      <div className="bg-slate-900 border-t-2 border-black text-emerald-400 text-[10px] p-2 space-y-1 font-mono z-20">
         <div>
           📡 <span className="text-white font-bold">1. CLERK STATUS:</span>{' '}
           {clerkStatus}
@@ -166,25 +185,6 @@ export default function OperationalLandscape({
           <span className="text-white font-bold">4. CHILD REPORT MATRIX:</span>{' '}
           <span className="text-amber-300 break-all">{childReport}</span>
         </div>
-      </div>
-
-      <div className="relative w-full flex-grow aspect-video bg-neutral-800">
-        {iframeSrc ? (
-          <iframe
-            ref={iframeRef}
-            sandbox="allow-scripts allow-same-origin"
-            id="app-iframe"
-            title="Operational Landscape View"
-            className="w-full h-full border-none block relative z-10"
-            src={iframeSrc}
-            onLoad={handleIframeLoad}
-          />
-        ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-neutral-400 animate-pulse">
-            Compiling Destination Environment...
-          </div>
-        )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
     </div>
   );
