@@ -26,6 +26,7 @@ export default function OperationalLandscape({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>('');
   const [token, setToken] = useState<string | null>(null);
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   // Real-time tracking for the interface dashboard
   const appendLog = (
@@ -167,12 +168,22 @@ export default function OperationalLandscape({
         <span className="flex items-center gap-1">
           <Cpu className="w-3.5 h-3.5 inline text-amber-500" /> {title}
         </span>
-        <span className="text-red-400 text-[10px] animate-pulse font-bold">
-          CROSS-FRAME PROTOCOL ONLINE
-        </span>
+        <button
+          type="button"
+          onClick={() => setIsFullscreen(true)}
+          className="text-red-400 text-[10px] animate-pulse font-bold hover:text-red-300 cursor-pointer underline z-30"
+        >
+          [Open Full Screen]
+        </button>
       </div>
 
-      <div className="relative w-full flex-grow aspect-video bg-neutral-800">
+      <div
+        className={
+          isFullscreen
+            ? 'fixed inset-0 z-[9999] w-screen h-screen bg-black'
+            : 'relative w-full flex-grow aspect-video bg-neutral-800'
+        }
+      >
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
@@ -189,6 +200,15 @@ export default function OperationalLandscape({
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
+        {isFullscreen && (
+          <button
+            type="button"
+            onClick={() => setIsFullscreen(false)}
+            className="absolute top-4 right-4 z-[10000] bg-black border-2 border-red-500 text-red-500 px-4 py-2 text-xs font-bold hover:bg-red-900 cursor-pointer pointer-events-auto shadow-lg"
+          >
+            [CLOSE FULL SCREEN]
+          </button>
+        )}
       </div>
 
       {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
