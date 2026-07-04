@@ -15,6 +15,7 @@ import ClerkDataSchema from './ClerkDataSchema';
 import SchemaDatabase from './SchemaDatabase';
 import TheaterMap from './TheaterMap';
 import OperationalLandscape from './OperationalLandscape';
+import OperationalControl from './OperationalControl';
 import MainCountdown from './MainCountdown';
 
 const MAX_LOG_ENTRIES = 100;
@@ -641,6 +642,14 @@ export default function LobbyIndex() {
               <div
                 className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
+                <OperationalControl
+                  title="Operational Control"
+                  logs={schema.systemLogs}
+                  onClearLogs={handleClearLogs}
+                  isPaused={isPaused}
+                  onTogglePause={handleTogglePause}
+                  isLogsVisible={isLogsVisible}
+                />
                 <ClerkDataSchema />
               </div>
             )}
