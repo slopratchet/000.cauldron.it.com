@@ -21,34 +21,6 @@ const auth =
 <Layout bodyClass="cimmerian-theme">
   <!-- We add the fonts needed for the Cimmerian Sheet -->
 
-  <div class="flex justify-between items-center mb-4">
-    <span class="text-2xl font-bold">LOBBY</span>
-  </div>
-
-  <div class="font-label text-[10px] tracking-widest uppercase">
-    CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
-      id="status-indicator"
-      class={status === 'ONLINE'
-        ? 'text-green-400'
-        : status === 'WAITING'
-          ? 'text-yellow-400'
-          : 'text-red-400'}>{status}</span
-    >
-    <div class="mt-2 normal-case tracking-normal">
-      {
-        auth ? (
-          <div class="text-[10px] font-mono bg-[#1a1a1a] text-green-400 p-2 border border-primary overflow-x-auto">
-            <pre>{JSON.stringify(auth, null, 2)}</pre>
-          </div>
-        ) : (
-          <div class="text-[10px] font-mono bg-[#1a1a1a] text-red-400 p-2 border border-primary">
-            No auth data found
-          </div>
-        )
-      }
-    </div>
-  </div>
-
   <LobbyIndex client:load />
 
   <!-- WebSocket Logs -->
@@ -136,6 +108,36 @@ const auth =
 }`}</pre>
     </div>
   </section>
+
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-8 relative z-10">
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-2xl font-bold">LOBBY</span>
+    </div>
+
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={status === 'ONLINE'
+          ? 'text-green-400'
+          : status === 'WAITING'
+            ? 'text-yellow-400'
+            : 'text-red-400'}>{status}</span
+      >
+      <div class="mt-2 normal-case tracking-normal">
+        {
+          auth ? (
+            <div class="text-[10px] font-mono bg-[#1a1a1a] text-green-400 p-2 border border-primary overflow-x-auto">
+              <pre>{JSON.stringify(auth, null, 2)}</pre>
+            </div>
+          ) : (
+            <div class="text-[10px] font-mono bg-[#1a1a1a] text-red-400 p-2 border border-primary">
+              No auth data found
+            </div>
+          )
+        }
+      </div>
+    </div>
+  </div>
 
   <script>
     // WebSocket Connection

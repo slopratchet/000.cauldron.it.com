@@ -16,28 +16,30 @@ try {
 <Layout bodyClass="cimmerian-theme">
   <!-- We add the fonts needed for the Cimmerian Sheet -->
 
-  <div class="flex justify-between items-center mb-4">
-    <span class="text-2xl font-bold uppercase tracking-tighter">LOBBY</span>
-    <a
-      href="/log-out"
-      class="border-2 border-primary bg-paper px-4 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-paper transition-all active:scale-95"
-    >
-      LOG_OUT
-    </a>
-  </div>
-
-  <div class="font-label text-[10px] tracking-widest uppercase">
-    CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
-      id="status-indicator"
-      class={status === 'ONLINE'
-        ? 'text-green-400'
-        : status === 'WAITING'
-          ? 'text-yellow-400'
-          : 'text-red-400'}>{status}</span
-    >
-  </div>
-
   <LobbyIndex client:load />
+
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-8 relative z-10">
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-2xl font-bold uppercase tracking-tighter">LOBBY</span>
+      <a
+        href="/log-out"
+        class="border-2 border-primary bg-paper px-4 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-paper transition-all active:scale-95"
+      >
+        LOG_OUT
+      </a>
+    </div>
+
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={status === 'ONLINE'
+          ? 'text-green-400'
+          : status === 'WAITING'
+            ? 'text-yellow-400'
+            : 'text-red-400'}>{status}</span
+      >
+    </div>
+  </div>
 
   <script>
     import { $clerkStore } from '@clerk/astro/client';
