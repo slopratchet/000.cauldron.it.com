@@ -7,6 +7,12 @@ interface SystemLogsProps {
   onClearLogs: () => void;
   isPaused: boolean;
   onTogglePause: () => void;
+  diagnostics?: {
+    clerkStatus: string;
+    iframeLoaded: string;
+    handshakeStatus: string;
+    childReport: string;
+  };
 }
 
 export default function SystemLogs({
@@ -14,6 +20,7 @@ export default function SystemLogs({
   onClearLogs,
   isPaused,
   onTogglePause,
+  diagnostics,
 }: SystemLogsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
@@ -79,6 +86,33 @@ export default function SystemLogs({
           </button>
         </div>
       </div>
+
+      {diagnostics && (
+        <div className="bg-slate-900 border-b border-[#E6E2D8]/20 text-emerald-400 text-[10px] p-2 space-y-1 font-mono mb-3">
+          <div>
+            📡 <span className="text-white font-bold">1. CLERK STATUS:</span>{' '}
+            {diagnostics.clerkStatus}
+          </div>
+          <div>
+            ⏱️ <span className="text-white font-bold">2. NATIVE ONLOAD:</span>{' '}
+            {diagnostics.iframeLoaded}
+          </div>
+          <div>
+            🤝{' '}
+            <span className="text-white font-bold">3. HANDSHAKE PIPELINE:</span>{' '}
+            {diagnostics.handshakeStatus}
+          </div>
+          <div>
+            📊{' '}
+            <span className="text-white font-bold">
+              4. CHILD REPORT MATRIX:
+            </span>{' '}
+            <span className="text-amber-300 break-all">
+              {diagnostics.childReport}
+            </span>
+          </div>
+        </div>
+      )}
 
       <div
         ref={containerRef}
