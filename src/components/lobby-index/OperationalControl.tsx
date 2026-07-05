@@ -177,7 +177,7 @@ export default function OperationalControl({
       </div>
 
       <div
-        className={`w-full flex-grow bg-neutral-800 overflow-auto flex justify-start md:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
+        className={`w-full flex-grow bg-neutral-800 overflow-y-auto overflow-x-hidden flex justify-start md:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
       >
         {isFullScreen && (
           <button
