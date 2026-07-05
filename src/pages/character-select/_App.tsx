@@ -424,21 +424,6 @@ export default function App() {
                 {dbData.tacticalInsight?.author || ''}
               </p>
             </div>
-
-            <button className="mt-6 w-full block border-4 border-ink p-4 bg-white text-center shadow-[4px_4px_0px_0px_#000000] cursor-pointer hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all">
-              <p className="font-mono font-bold text-sm uppercase tracking-wide text-ink">
-                {dbData.reviews?.tagline || ''}
-              </p>
-              <p className="font-tinos mt-1 text-ink">
-                <span className="font-anton text-2xl align-middle">
-                  {dbData.reviews?.rating || ''}
-                </span>
-                <span className="mx-2 align-middle font-bold">·</span>
-                <span className="align-middle italic">
-                  {dbData.reviews?.count || ''}
-                </span>
-              </p>
-            </button>
           </aside>
         </section>
       </main>
