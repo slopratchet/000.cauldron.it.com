@@ -618,7 +618,26 @@ export default function LobbyIndex() {
           </section>
         )}
 
-        {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
+        {/* 4. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
+        {isLogsVisible && (
+          <section
+            id="operational-control-deck"
+            className="mb-8 w-full flex justify-center"
+          >
+            <div className="w-full max-w-[1280px]">
+              <OperationalControl
+                title="Operational Control"
+                logs={schema.systemLogs}
+                onClearLogs={handleClearLogs}
+                isPaused={isPaused}
+                onTogglePause={handleTogglePause}
+                isLogsVisible={isLogsVisible}
+              />
+            </div>
+          </section>
+        )}
+
+        {/* 4B. DYNAMIC SHREDDED GRID SYSTEM */}
         {(isInputVisible || isLogsVisible) && (
           <section
             id="coordinate-diagnostics-deck"
@@ -645,25 +664,6 @@ export default function LobbyIndex() {
                 <ClerkDataSchema />
               </div>
             )}
-          </section>
-        )}
-
-        {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
-        {isLogsVisible && (
-          <section
-            id="operational-control-deck"
-            className="mb-8 w-full flex justify-center"
-          >
-            <div className="w-full max-w-[1280px]">
-              <OperationalControl
-                title="Operational Control"
-                logs={schema.systemLogs}
-                onClearLogs={handleClearLogs}
-                isPaused={isPaused}
-                onTogglePause={handleTogglePause}
-                isLogsVisible={isLogsVisible}
-              />
-            </div>
           </section>
         )}
 
