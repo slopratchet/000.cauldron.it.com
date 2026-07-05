@@ -508,7 +508,7 @@ export default function LobbyIndex() {
   return (
     <div
       id="application-container"
-      className="min-h-screen relative flex flex-col p-4 md:p-8 bg-parchment-deep selection:bg-black selection:text-parchment-deep"
+      className="min-h-screen relative flex flex-col p-4 md:p-8 bg-parchment-deep selection:bg-black selection:text-parchment-deep scale-[0.3] origin-top"
     >
       {/* Background scanline/dots authenticity overlay */}
       <div className="dot-matrix-overlay absolute inset-0 z-0 pointer-events-none"></div>
