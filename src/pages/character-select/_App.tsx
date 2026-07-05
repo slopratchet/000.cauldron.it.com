@@ -252,16 +252,30 @@ export default function App() {
               <p className="font-tinos text-lg md:text-[20px] leading-[1.6] italic font-medium">
                 "{dbData.identity?.quote || ''}"
               </p>
-              <div className="mt-8 flex gap-3">
-                {dbData.identity?.portraits?.map((img, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setActivePortrait(img)}
-                    className={`w-8 h-8 md:w-10 md:h-10 border-2 border-ink flex items-center justify-center font-mono text-sm font-bold shadow-[2px_2px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all cursor-pointer ${activePortrait === img ? 'bg-ink text-parchment' : 'bg-white text-ink'}`}
-                  >
-                    {i + 1}
-                  </button>
-                ))}
+              <div className="mt-8 flex flex-wrap gap-3">
+                {Array.from({ length: 10 }).map((_, i) => {
+                  const img =
+                    dbData.identity?.portraits?.[i] ||
+                    dbData.identity?.portraits?.[
+                      i % (dbData.identity?.portraits?.length || 1)
+                    ];
+                  const isActive = activePortrait === img;
+                  return (
+                    <button
+                      key={i}
+                      onClick={() => setActivePortrait(img)}
+                      className="relative w-8 h-8 md:w-10 md:h-10 group outline-none border-0 bg-transparent cursor-pointer"
+                    >
+                      <div className="absolute inset-0 bg-ink [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] translate-x-[2px] translate-y-[2px] group-hover:translate-x-0 group-hover:translate-y-0 transition-transform"></div>
+                      <div className="absolute inset-0 bg-ink [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] z-10 transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px]"></div>
+                      <div
+                        className={`absolute inset-[2px] flex items-center justify-center font-mono text-sm font-bold [clip-path:polygon(25%_0%,75%_0%,100%_50%,75%_100%,25%_100%,0%_50%)] z-20 transition-transform group-hover:translate-x-[2px] group-hover:translate-y-[2px] ${isActive ? 'bg-ink text-parchment' : 'bg-white text-ink group-hover:bg-ink group-hover:text-parchment'}`}
+                      >
+                        {i + 1}
+                      </div>
+                    </button>
+                  );
+                })}
               </div>
               <button className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center">
                 {dbData.identity?.reserveButtonText || 'Reserve CHARITY'}
