@@ -164,9 +164,9 @@ export default function OperationalLandscape({
       id="landscape-container"
       className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
       style={{
-        minHeight: '1280px',
-        minWidth: '720px',
-        aspectRatio: '720/1280',
+        minHeight: '720px',
+        minWidth: '1280px',
+        aspectRatio: '1280/720',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
