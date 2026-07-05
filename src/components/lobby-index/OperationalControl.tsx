@@ -169,7 +169,7 @@ export default function OperationalControl({
         maxWidth: '720px',
         height: 'auto',
         maxHeight: '1280px',
-        margin: '0 auto'
+        margin: '0 auto',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
