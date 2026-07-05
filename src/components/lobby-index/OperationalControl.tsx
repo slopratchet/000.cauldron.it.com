@@ -164,7 +164,12 @@ export default function OperationalControl({
       id="landscape-container"
       className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
       style={{
-        aspectRatio: '1280/720',
+        aspectRatio: '720/1280',
+        width: '100%',
+        maxWidth: '720px',
+        height: 'auto',
+        maxHeight: '1280px',
+        margin: '0 auto',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">

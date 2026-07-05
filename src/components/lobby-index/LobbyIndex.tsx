@@ -545,7 +545,7 @@ export default function LobbyIndex() {
         )}
 
         {/* COUNTDOWN CLOCK */}
-        <div className="mb-8 scale-[0.7] origin-top">
+        <div className="mb-3 scale-[0.7] origin-top">
           <MainCountdown timeInSeconds={timeInSeconds} />
         </div>
 
