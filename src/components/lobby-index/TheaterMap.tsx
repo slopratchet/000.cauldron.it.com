@@ -50,7 +50,14 @@ export default function TheaterMap({
               }`}
             >
               {/* Numeric or ID stamp on the squares */}
-              <span>{seat.id.replace('G-', '')}</span>
+              <span>
+                [
+                {String(parseInt(seat.id.replace('G-', ''), 10) - 1).padStart(
+                  3,
+                  '0',
+                )}
+                ]
+              </span>
             </button>
           );
         })}
