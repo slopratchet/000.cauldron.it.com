@@ -70,6 +70,13 @@ export default function TheaterMap({
           Click coordinate to toggle.
         </div>
       </div>
+
+      <a
+        href="/character-select"
+        className="w-full mt-4 border-2 border-[#E6E2D8]/20 p-2 text-center uppercase font-bold text-[#E6E2D8] hover:bg-[#E6E2D8] hover:text-black transition-colors block text-sm tracking-widest cursor-pointer"
+      >
+        [CREATE PLAYER]
+      </a>
     </div>
   );
 }
