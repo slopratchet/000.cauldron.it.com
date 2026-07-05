@@ -252,15 +252,23 @@ export default function App() {
               <p className="font-tinos text-lg md:text-[20px] leading-[1.6] italic font-medium">
                 "{dbData.identity?.quote || ''}"
               </p>
-              <div className="mt-8 flex gap-3">
-                {dbData.identity?.portraits?.map((img, i) => (
-                  <button
+              <div className="mt-8 flex gap-2 flex-wrap">
+                {dbData.identity?.portraits?.slice(0, 10).map((img, i) => (
+                  <div
                     key={i}
-                    onClick={() => setActivePortrait(img)}
-                    className={`w-8 h-8 md:w-10 md:h-10 border-2 border-ink flex items-center justify-center font-mono text-sm font-bold shadow-[2px_2px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all cursor-pointer ${activePortrait === img ? 'bg-ink text-parchment' : 'bg-white text-ink'}`}
+                    className={`[clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)] p-[3px] w-10 h-10 md:w-12 md:h-12 flex items-center justify-center transition-all hover:translate-x-[2px] hover:translate-y-[2px] cursor-pointer group shadow-[2px_2px_0px_0px_#000000] ${activePortrait === img ? 'bg-ink' : 'bg-white'}`}
                   >
-                    {i + 1}
-                  </button>
+                    <button
+                      onClick={() => setActivePortrait(img)}
+                      className={`w-full h-full [clip-path:polygon(50%_0%,_100%_25%,_100%_75%,_50%_100%,_0%_75%,_0%_25%)] flex items-center justify-center transition-all cursor-pointer overflow-hidden relative ${activePortrait === img ? 'bg-white' : 'bg-black'}`}
+                    >
+                      <img
+                        src={img}
+                        alt={`Portrait ${i + 1}`}
+                        className={`w-full h-full object-cover transition-all scale-110 group-hover:scale-125 ${activePortrait === img ? 'opacity-100' : 'opacity-50 group-hover:opacity-100'}`}
+                      />
+                    </button>
+                  </div>
                 ))}
               </div>
               <button className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center">
