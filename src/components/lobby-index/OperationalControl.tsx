@@ -26,6 +26,7 @@ export default function OperationalControl({
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>('');
   const [token, setToken] = useState<string | null>(null);
+  const [isFullScreen, setIsFullScreen] = useState(false);
 
   // Real-time tracking for the interface dashboard
   const appendLog = (
@@ -162,35 +163,49 @@ export default function OperationalControl({
     <div
       id="landscape-container"
       className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
+      style={{
+        minWidth: '720px',
+        minHeight: '1280px',
+        aspectRatio: '720 / 1280',
+        width: '100%',
+        height: 'auto',
+      }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
         <span className="flex items-center gap-1">
           <Cpu className="w-3.5 h-3.5 inline text-amber-500" /> {title}
         </span>
-        <span className="text-red-400 text-[10px] animate-pulse font-bold">
-          CROSS-FRAME PROTOCOL ONLINE
-        </span>
+        <button
+          onClick={() => setIsFullScreen(true)}
+          className="text-red-400 text-[10px] animate-pulse font-bold cursor-pointer hover:text-white uppercase"
+        >
+          Open Full Screen
+        </button>
       </div>
 
-      <div className="relative w-full bg-neutral-800 mx-auto overflow-auto flex justify-start md:justify-center items-center">
+      <div
+        className={`w-full flex-grow bg-neutral-800 overflow-auto flex justify-start lg:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative mx-auto'}`}
+      >
+        {isFullScreen && (
+          <button
+            onClick={() => setIsFullScreen(false)}
+            className="absolute top-4 right-4 z-[110] bg-black/50 border border-white/20 text-white px-4 py-2 font-bold text-xs uppercase tracking-widest hover:bg-white/10 transition-colors cursor-pointer backdrop-blur-sm rounded"
+          >
+            Close
+          </button>
+        )}
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className="border-none block relative z-10 mx-auto"
-            style={{ width: '720px', height: '1280px' }}
-            width={720}
-            height={1280}
+            className="w-full h-full border-none block relative z-10 mx-auto"
             src={iframeSrc}
             onLoad={handleIframeLoad}
           />
         ) : (
-          <div
-            className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
-            style={{ width: '720px', height: '1280px' }}
-          >
+          <div className="w-full h-full flex items-center justify-center text-xs text-neutral-400 animate-pulse">
             Compiling Destination Environment...
           </div>
         )}
