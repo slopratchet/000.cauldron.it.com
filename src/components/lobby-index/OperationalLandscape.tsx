@@ -180,7 +180,11 @@ export default function OperationalLandscape({
       </div>
 
       <div
-        className={`w-full flex-grow bg-neutral-800 overflow-hidden flex justify-start lg:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
+        className={`w-full flex-grow bg-neutral-800 overflow-hidden flex items-center ${
+          isFullScreen
+            ? 'fixed inset-0 z-[100] h-screen w-screen justify-center bg-black'
+            : 'relative justify-start lg:justify-center'
+        }`}
       >
         {isFullScreen && (
           <button
@@ -196,14 +200,14 @@ export default function OperationalLandscape({
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className={
-              isFullScreen
-                ? 'w-full h-full border-none block relative z-10'
-                : 'border-none block relative z-10 mx-auto'
-            }
+            className="border-none block relative z-10 mx-auto"
             style={
               isFullScreen
-                ? {}
+                ? {
+                    width: 'min(100vw, calc(100vh * 1280 / 720))',
+                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    aspectRatio: '1280 / 720',
+                  }
                 : {
                     maxWidth: '100%',
                     maxHeight: '100%',
@@ -222,7 +226,11 @@ export default function OperationalLandscape({
             className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
             style={
               isFullScreen
-                ? { width: '100vw', height: '100vh' }
+                ? {
+                    width: 'min(100vw, calc(100vh * 1280 / 720))',
+                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    aspectRatio: '1280 / 720',
+                  }
                 : {
                     maxWidth: '100%',
                     maxHeight: '100%',
