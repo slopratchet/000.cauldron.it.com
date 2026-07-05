@@ -549,19 +549,14 @@ export default function LobbyIndex() {
         </div>
 
         {/* 2. UPPER REGISTRY & IMAGING PANEL */}
-        {(isLandscapeVisible ||
-          isTheaterMappingVisible ||
-          isDiagnosticsVisible ||
-          isRegistryVisible) && (
+        {(isLandscapeVisible || isDiagnosticsVisible || isRegistryVisible) && (
           <section
             id="upper-grid-deck"
             className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8"
           >
             {/* Left side: Operational Landscape Image */}
             {isLandscapeVisible && (
-              <div
-                className={`${isTheaterMappingVisible || isDiagnosticsVisible || isRegistryVisible ? 'lg:col-span-8' : 'lg:col-span-12'}`}
-              >
+              <div className="lg:col-span-12">
                 <OperationalLandscape
                   title={schema.landscapeTitle}
                   imgRef={schema.landscapeImgRef}
@@ -574,21 +569,9 @@ export default function LobbyIndex() {
               </div>
             )}
 
-            {/* Right side: Theater Map & Diagnostics & Registry */}
-            {(isTheaterMappingVisible ||
-              isDiagnosticsVisible ||
-              isRegistryVisible) && (
-              <div
-                className={`${isLandscapeVisible ? 'lg:col-span-4' : 'lg:col-span-12'} flex flex-col gap-4`}
-              >
-                {isTheaterMappingVisible && (
-                  <TheaterMap
-                    seats={schema.seats}
-                    onToggleSeat={handleToggleSeat}
-                    onSelectSeatCoordinate={handleSelectSeatCoordinate}
-                  />
-                )}
-
+            {/* Right side: Diagnostics & Registry */}
+            {(isDiagnosticsVisible || isRegistryVisible) && (
+              <div className="lg:col-span-12 flex flex-col gap-4">
                 {(isDiagnosticsVisible || isRegistryVisible) && (
                   <HeaderBanner
                     seats={schema.seats}
@@ -618,22 +601,40 @@ export default function LobbyIndex() {
           </section>
         )}
 
-        {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
-        {isLogsVisible && (
+        {/* 4B. OPERATIONAL CONTROL & THEATER MAP */}
+        {(isLogsVisible || isTheaterMappingVisible) && (
           <section
             id="operational-control-deck"
-            className="mb-8 w-full flex justify-center"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8 w-full"
           >
-            <div className="w-full max-w-[1280px]">
-              <OperationalControl
-                title="Operational Control"
-                logs={schema.systemLogs}
-                onClearLogs={handleClearLogs}
-                isPaused={isPaused}
-                onTogglePause={handleTogglePause}
-                isLogsVisible={isLogsVisible}
-              />
-            </div>
+            {isLogsVisible && (
+              <div
+                className={`${isTheaterMappingVisible ? 'lg:col-span-8' : 'lg:col-span-12'} flex justify-center`}
+              >
+                <div className="w-full max-w-[1280px]">
+                  <OperationalControl
+                    title="Operational Control"
+                    logs={schema.systemLogs}
+                    onClearLogs={handleClearLogs}
+                    isPaused={isPaused}
+                    onTogglePause={handleTogglePause}
+                    isLogsVisible={isLogsVisible}
+                  />
+                </div>
+              </div>
+            )}
+
+            {isTheaterMappingVisible && (
+              <div
+                className={`${isLogsVisible ? 'lg:col-span-4' : 'lg:col-span-12'}`}
+              >
+                <TheaterMap
+                  seats={schema.seats}
+                  onToggleSeat={handleToggleSeat}
+                  onSelectSeatCoordinate={handleSelectSeatCoordinate}
+                />
+              </div>
+            )}
           </section>
         )}
 
