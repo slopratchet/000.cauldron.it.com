@@ -17,6 +17,7 @@ import TheaterMap from './TheaterMap';
 import OperationalLandscape from './OperationalLandscape';
 import OperationalControl from './OperationalControl';
 import MainCountdown from './MainCountdown';
+import SystemLogs from './SystemLogs';
 
 const MAX_LOG_ENTRIES = 100;
 
@@ -560,11 +561,6 @@ export default function LobbyIndex() {
                 <OperationalLandscape
                   title={schema.landscapeTitle}
                   imgRef={schema.landscapeImgRef}
-                  logs={schema.systemLogs}
-                  onClearLogs={handleClearLogs}
-                  isPaused={isPaused}
-                  onTogglePause={handleTogglePause}
-                  isLogsVisible={isLogsVisible}
                 />
               </div>
             )}
@@ -599,6 +595,23 @@ export default function LobbyIndex() {
           </section>
         )}
 
+        {/* SYSTEM LOGS — FULL-WIDTH CENTERED */}
+        {isLogsVisible && (
+          <section
+            id="system-logs-deck"
+            className="mb-8 w-full flex justify-center"
+          >
+            <div className="w-full max-w-[1280px]">
+              <SystemLogs
+                logs={schema.systemLogs}
+                onClearLogs={handleClearLogs}
+                isPaused={isPaused}
+                onTogglePause={handleTogglePause}
+              />
+            </div>
+          </section>
+        )}
+
         {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
         {(isLogsVisible || isTheaterMappingVisible) && (
           <section
@@ -609,14 +622,7 @@ export default function LobbyIndex() {
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                 {isLogsVisible && (
                   <div className="lg:col-span-12">
-                    <OperationalControl
-                      title="Operational Control"
-                      logs={schema.systemLogs}
-                      onClearLogs={handleClearLogs}
-                      isPaused={isPaused}
-                      onTogglePause={handleTogglePause}
-                      isLogsVisible={isLogsVisible}
-                    />
+                    <OperationalControl title="Operational Control" />
                   </div>
                 )}
 
