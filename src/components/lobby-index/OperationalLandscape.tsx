@@ -200,7 +200,7 @@ export default function OperationalLandscape({
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className="border-none block relative z-10 mx-auto"
+            className="border-none block relative z-10 mx-auto w-full h-full"
             style={
               isFullScreen
                 ? {
@@ -208,16 +208,8 @@ export default function OperationalLandscape({
                     height: 'min(100vh, calc(100vw * 720 / 1280))',
                     aspectRatio: '1280 / 720',
                   }
-                : {
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    aspectRatio: '1280 / 720',
-                    width: 'auto',
-                    height: 'auto',
-                  }
+                : { width: '100%', height: '100%' }
             }
-            width={1280}
-            height={720}
             src={iframeSrc}
             onLoad={handleIframeLoad}
           />
@@ -231,13 +223,7 @@ export default function OperationalLandscape({
                     height: 'min(100vh, calc(100vw * 720 / 1280))',
                     aspectRatio: '1280 / 720',
                   }
-                : {
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    aspectRatio: '1280 / 720',
-                    width: 'auto',
-                    height: 'auto',
-                  }
+                : { width: '100%', height: '100%' }
             }
           >
             Compiling Destination Environment...
