@@ -27,7 +27,7 @@ export default function TheaterMap({
       </h3>
 
       {/* Grid mapping space */}
-      <div className="grid grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat) => {
           const isOccupied = seat.status === 'OCCUPIED';
           const isSelected = seat.id === selectedSeatId;
