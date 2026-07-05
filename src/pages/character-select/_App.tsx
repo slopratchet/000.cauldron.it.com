@@ -252,12 +252,12 @@ export default function App() {
               <p className="font-tinos text-lg md:text-[20px] leading-[1.6] italic font-medium">
                 "{dbData.identity?.quote || ''}"
               </p>
-              <div className="mt-8 flex gap-3">
+              <div className="mt-8 flex flex-wrap gap-3">
                 {dbData.identity?.portraits?.map((img, i) => (
                   <button
                     key={i}
                     onClick={() => setActivePortrait(img)}
-                    className={`w-8 h-8 md:w-10 md:h-10 border-2 border-ink flex items-center justify-center font-mono text-sm font-bold shadow-[2px_2px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-none transition-all cursor-pointer ${activePortrait === img ? 'bg-ink text-parchment' : 'bg-white text-ink'}`}
+                    className={`w-8 h-8 md:w-10 md:h-10 flex items-center justify-center font-mono text-sm font-bold [clip-path:polygon(50%_0%,100%_25%,100%_75%,50%_100%,0%_75%,0%_25%)] hover:translate-x-[2px] hover:translate-y-[2px] transition-all cursor-pointer ${activePortrait === img ? 'bg-ink text-parchment' : 'bg-white text-ink'}`}
                   >
                     {i + 1}
                   </button>
