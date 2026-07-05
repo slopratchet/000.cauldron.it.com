@@ -253,7 +253,7 @@ export default function App() {
                 "{dbData.identity?.quote || ''}"
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {Array.from({ length: 10 }).map((_, i) => {
+                {Array.from({ length: 7 }).map((_, i) => {
                   const img =
                     dbData.identity?.portraits?.[i] ||
                     dbData.identity?.portraits?.[
@@ -352,9 +352,12 @@ export default function App() {
               </div>
             </div>
 
-            <button className="mt-16 w-full block bg-ink text-parchment font-anton text-2xl md:text-3xl py-4 border-[3px] border-ink shadow-[4px_4px_0px_0px_#cc5500] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#cc5500] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center">
+            <a
+              href="/character-profile"
+              className="mt-16 w-full block bg-ink text-parchment font-anton text-2xl md:text-3xl py-4 border-[3px] border-ink shadow-[4px_4px_0px_0px_#cc5500] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#cc5500] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center"
+            >
               {dbData.identity?.embraceButtonText || 'Embrace more of CHARITY'}
-            </button>
+            </a>
           </div>
 
           {/* Right Column (Sidebar) */}
@@ -421,21 +424,6 @@ export default function App() {
                 {dbData.tacticalInsight?.author || ''}
               </p>
             </div>
-
-            <button className="mt-6 w-full block border-4 border-ink p-4 bg-white text-center shadow-[4px_4px_0px_0px_#000000] cursor-pointer hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all">
-              <p className="font-mono font-bold text-sm uppercase tracking-wide text-ink">
-                {dbData.reviews?.tagline || ''}
-              </p>
-              <p className="font-tinos mt-1 text-ink">
-                <span className="font-anton text-2xl align-middle">
-                  {dbData.reviews?.rating || ''}
-                </span>
-                <span className="mx-2 align-middle font-bold">·</span>
-                <span className="align-middle italic">
-                  {dbData.reviews?.count || ''}
-                </span>
-              </p>
-            </button>
           </aside>
         </section>
       </main>
