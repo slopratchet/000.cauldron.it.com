@@ -162,13 +162,11 @@ export default function OperationalControl({
   return (
     <div
       id="landscape-container"
-      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
+      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative w-full"
       style={{
         aspectRatio: '720/1280',
         minWidth: '720px',
-        maxWidth: '720px',
         minHeight: '1280px',
-        maxHeight: '1280px',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
