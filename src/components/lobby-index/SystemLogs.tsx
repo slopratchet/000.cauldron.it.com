@@ -39,7 +39,7 @@ export default function SystemLogs({
       <div className="flex items-center justify-between border-b border-[#E6E2D8]/20 pb-1.5 mb-3">
         <h3 className="text-sm font-bold uppercase tracking-wider flex items-center gap-1.5">
           <Terminal className="w-4 h-4 text-amber-500" />
-          <span>System Logs</span>
+          <span></span>
         </h3>
         {/* Simple tactile Controls */}
         <div className="flex items-center gap-1">

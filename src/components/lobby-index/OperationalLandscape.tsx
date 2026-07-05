@@ -1,27 +1,16 @@
 import { Cpu } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { $clerkStore } from '@clerk/astro/client';
-import SystemLogs from './SystemLogs';
 import type { SystemLogEntry } from './types';
 
 interface OperationalLandscapeProps {
   title?: string;
   imgRef?: string;
-  logs?: SystemLogEntry[];
-  onClearLogs?: () => void;
-  isPaused?: boolean;
-  onTogglePause?: () => void;
-  isLogsVisible?: boolean;
 }
 
 export default function OperationalLandscape({
   title = 'Operational Landscape',
   imgRef = 'IMG_REF_69.SYS',
-  logs,
-  onClearLogs,
-  isPaused,
-  onTogglePause,
-  isLogsVisible = false,
 }: OperationalLandscapeProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>('');
@@ -236,20 +225,6 @@ export default function OperationalLandscape({
           </div>
         )}
       </div>
-
-      {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
-      {isLogsVisible &&
-        logs &&
-        onClearLogs &&
-        onTogglePause &&
-        isPaused !== undefined && (
-          <SystemLogs
-            logs={logs}
-            onClearLogs={onClearLogs}
-            isPaused={isPaused}
-            onTogglePause={onTogglePause}
-          />
-        )}
     </div>
   );
 }

@@ -1,27 +1,16 @@
 import { Cpu } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
 import { $clerkStore } from '@clerk/astro/client';
-import SystemLogs from './SystemLogs';
 import type { SystemLogEntry } from './types';
 
 interface OperationalControlProps {
   title?: string;
   imgRef?: string;
-  logs?: SystemLogEntry[];
-  onClearLogs?: () => void;
-  isPaused?: boolean;
-  onTogglePause?: () => void;
-  isLogsVisible?: boolean;
 }
 
 export default function OperationalControl({
   title = 'Operational Control',
   imgRef = 'IMG_REF_69.SYS',
-  logs,
-  onClearLogs,
-  isPaused,
-  onTogglePause,
-  isLogsVisible = false,
 }: OperationalControlProps) {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [iframeSrc, setIframeSrc] = useState<string>('');
@@ -163,6 +152,11 @@ export default function OperationalControl({
     <div
       id="landscape-container"
       className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
+      style={{
+        aspectRatio: '720/1280',
+        minWidth: '720px',
+        minHeight: '1280px',
+      }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
         <span className="flex items-center gap-1">
@@ -195,23 +189,8 @@ export default function OperationalControl({
             title="Operational Landscape View"
             className={
               isFullScreen
-                ? 'border-none block relative z-10 h-full'
-                : 'border-none block relative z-10 mx-auto'
-            }
-            style={
-              isFullScreen
-                ? {
-                    height: '100%',
-                    minHeight: '1280px',
-                    minWidth: '720px',
-                    aspectRatio: '720 / 1280',
-                  }
-                : {
-                    width: '100%',
-                    minHeight: '1280px',
-                    minWidth: '720px',
-                    aspectRatio: '720 / 1280',
-                  }
+                ? 'border-none block relative z-10 h-full w-full'
+                : 'border-none block relative z-10 mx-auto h-full w-full'
             }
             width={720}
             height={1280}
@@ -219,43 +198,12 @@ export default function OperationalControl({
             onLoad={handleIframeLoad}
           />
         ) : (
-          <div
-            className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
-            style={
-              isFullScreen
-                ? {
-                    height: '100%',
-                    minHeight: '1280px',
-                    minWidth: '720px',
-                    aspectRatio: '720 / 1280',
-                  }
-                : {
-                    width: '100%',
-                    minHeight: '1280px',
-                    minWidth: '720px',
-                    aspectRatio: '720 / 1280',
-                  }
-            }
-          >
+          <div className="flex items-center justify-center text-xs text-neutral-400 animate-pulse w-full h-full">
             Compiling Destination Environment...
           </div>
         )}
         <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
-
-      {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
-      {isLogsVisible &&
-        logs &&
-        onClearLogs &&
-        onTogglePause &&
-        isPaused !== undefined && (
-          <SystemLogs
-            logs={logs}
-            onClearLogs={onClearLogs}
-            isPaused={isPaused}
-            onTogglePause={onTogglePause}
-          />
-        )}
     </div>
   );
 }
