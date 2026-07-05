@@ -198,7 +198,17 @@ export default function OperationalLandscape({
                 ? 'w-full h-full border-none block relative z-10'
                 : 'border-none block relative z-10 mx-auto'
             }
-            style={isFullScreen ? {} : { width: '1280px', height: '720px' }}
+            style={
+              isFullScreen
+                ? {}
+                : {
+                    minWidth: '1280px',
+                    minHeight: '720px',
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '16/9',
+                  }
+            }
             width={1280}
             height={720}
             src={iframeSrc}
@@ -210,7 +220,13 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? { width: '100vw', height: '100vh' }
-                : { width: '1280px', height: '720px' }
+                : {
+                    minWidth: '1280px',
+                    minHeight: '720px',
+                    width: '100%',
+                    height: 'auto',
+                    aspectRatio: '16/9',
+                  }
             }
           >
             Compiling Destination Environment...
