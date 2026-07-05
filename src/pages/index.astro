@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 // SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
 const auth = Astro.locals.auth();
 if (auth.userId) {
-  const target = '/lobby.00';
+  const target = '/lobby';
   return Astro.redirect(target);
 }
 ---
@@ -197,7 +197,7 @@ if (auth.userId) {
     const unsubscribe = $clerkStore.subscribe((clerk) => {
       if (clerk && clerk.loaded && clerk.user) {
         console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
-        window.location.href = '/lobby.00';
+        window.location.href = '/lobby';
       }
     });
 
@@ -403,7 +403,7 @@ if (auth.userId) {
 
           // Metadata Fork: Determine landing zone
           const userRole = clerk.user?.publicMetadata?.role;
-          const target = '/lobby.00';
+          const target = '/lobby';
           console.log('BIO_PUNK_UI: REDIRECT_TRIGGERED', { target, userRole });
           window.location.href = target;
         } else if (
@@ -447,7 +447,7 @@ if (auth.userId) {
           'UNKNOWN_IMPULSE_FAILURE';
 
         if (message.toUpperCase().includes('ALREADY SIGNED IN')) {
-          window.location.href = '/lobby.00';
+          window.location.href = '/lobby';
           return;
         }
 
