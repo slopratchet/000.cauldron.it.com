@@ -545,8 +545,10 @@ export default function LobbyIndex() {
         )}
 
         {/* COUNTDOWN CLOCK */}
-        <div className="mb-3 scale-[0.3] origin-top">
-          <MainCountdown timeInSeconds={timeInSeconds} />
+        <div className="h-[107px] mb-[33px]">
+          <div className="scale-[0.3] origin-top">
+            <MainCountdown timeInSeconds={timeInSeconds} />
+          </div>
         </div>
 
         {/* 2. UPPER REGISTRY & IMAGING PANEL */}
