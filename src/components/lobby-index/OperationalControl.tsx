@@ -162,14 +162,9 @@ export default function OperationalControl({
   return (
     <div
       id="landscape-container"
-      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
+      className="border-4 border-black bg-white overflow-hidden flex flex-col h-full font-mono relative"
       style={{
-        aspectRatio: '720/1280',
-        width: '100%',
-        maxWidth: '720px',
-        height: 'auto',
-        maxHeight: '1280px',
-        margin: '0 auto',
+        aspectRatio: '1280/720',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
@@ -185,7 +180,11 @@ export default function OperationalControl({
       </div>
 
       <div
-        className={`w-full flex-grow bg-neutral-800 overflow-y-auto overflow-x-hidden flex justify-start md:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
+        className={`w-full flex-grow bg-neutral-800 overflow-hidden flex items-center ${
+          isFullScreen
+            ? 'fixed inset-0 z-[100] h-screen w-screen justify-center bg-black'
+            : 'relative justify-start lg:justify-center'
+        }`}
       >
         {isFullScreen && (
           <button
@@ -201,22 +200,35 @@ export default function OperationalControl({
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className={
+            className="border-none block relative z-10 mx-auto w-full h-full"
+            style={
               isFullScreen
-                ? 'border-none block relative z-10 h-full w-full'
-                : 'border-none block relative z-10 mx-auto h-full w-full'
+                ? {
+                    width: 'min(100vw, calc(100vh * 1280 / 720))',
+                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    aspectRatio: '1280 / 720',
+                  }
+                : { width: '100%', height: '100%' }
             }
-            width={1280}
-            height={720}
             src={iframeSrc}
             onLoad={handleIframeLoad}
           />
         ) : (
-          <div className="flex items-center justify-center text-xs text-neutral-400 animate-pulse w-full h-full">
+          <div
+            className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
+            style={
+              isFullScreen
+                ? {
+                    width: 'min(100vw, calc(100vh * 1280 / 720))',
+                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    aspectRatio: '1280 / 720',
+                  }
+                : { width: '100%', height: '100%' }
+            }
+          >
             Compiling Destination Environment...
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
     </div>
   );
