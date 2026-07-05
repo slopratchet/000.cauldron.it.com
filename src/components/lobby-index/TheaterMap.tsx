@@ -46,6 +46,15 @@ export default function TheaterMap({
                 setSelectedSeatId(seat.id);
                 onToggleSeat(seat.id);
                 onSelectSeatCoordinate(seat.id);
+
+                const actorId = ((index + offset) % 1000)
+                  .toString()
+                  .padStart(3, '0');
+                const params = new URLSearchParams(window.location.search);
+                params.set('actor', actorId);
+                const newPath =
+                  window.location.pathname + '?' + params.toString();
+                window.history.pushState(null, '', newPath);
               }}
               title={`Seat ${seat.id} (${isOccupied ? 'Occupied' : 'Vacant'})`}
               className={`w-[180px] h-[90px] border-2 cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
