@@ -41,7 +41,7 @@ export default function TheaterMap({
                 onSelectSeatCoordinate(seat.id);
               }}
               title={`Seat ${seat.id} (${isOccupied ? 'Occupied' : 'Vacant'})`}
-              className={`w-full aspect-[1/2] border-2 cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
+              className={`w-full aspect-[2/1] border-2 cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
                 isSelected ? '!border-orange-500' : 'border-black'
               } ${
                 isOccupied
@@ -65,9 +65,6 @@ export default function TheaterMap({
         <div className="flex items-center gap-1.5">
           <span className="w-3.5 h-3.5 bg-[#E6E2D8] border border-[#E6E2D8] inline-block"></span>
           <span className="text-[#E6E2D8]">Vacant</span>
-        </div>
-        <div className="ml-auto text-[10px] opacity-60 italic font-normal text-[#E6E2D8]">
-          Click coordinate to toggle.
         </div>
       </div>
 
