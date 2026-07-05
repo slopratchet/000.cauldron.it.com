@@ -549,6 +549,17 @@ export default function LobbyIndex() {
           <MainCountdown timeInSeconds={timeInSeconds} />
         </div>
 
+        {/* THEATER MAPPING */}
+        {isTheaterMappingVisible && (
+          <div className="w-full mb-6 mt-2">
+            <TheaterMap
+              seats={schema.seats}
+              onToggleSeat={handleToggleSeat}
+              onSelectSeatCoordinate={handleSelectSeatCoordinate}
+            />
+          </div>
+        )}
+
         {/* 2. UPPER REGISTRY & IMAGING PANEL */}
         {(isLandscapeVisible || isDiagnosticsVisible || isRegistryVisible) && (
           <section
@@ -597,23 +608,11 @@ export default function LobbyIndex() {
       </div>
 
       {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH OF THE PAGE */}
-      {(isLogsVisible || isTheaterMappingVisible) && (
+      {isLogsVisible && (
         <section id="operational-control-deck" className="mb-8 w-full">
-          {isLogsVisible && (
-            <div className="w-full">
-              <OperationalControl title="Operational Control" />
-            </div>
-          )}
-
-          {isTheaterMappingVisible && (
-            <div className="max-w-7xl mx-auto w-full px-4 md:px-8 mt-6">
-              <TheaterMap
-                seats={schema.seats}
-                onToggleSeat={handleToggleSeat}
-                onSelectSeatCoordinate={handleSelectSeatCoordinate}
-              />
-            </div>
-          )}
+          <div className="w-full">
+            <OperationalControl title="Operational Control" />
+          </div>
         </section>
       )}
 
