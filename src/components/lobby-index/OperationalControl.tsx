@@ -161,7 +161,7 @@ export default function OperationalControl({
   return (
     <div
       id="landscape-container"
-      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
+      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col w-[720px] h-[1280px] font-mono relative"
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
         <span className="flex items-center gap-1">
@@ -172,7 +172,7 @@ export default function OperationalControl({
         </span>
       </div>
 
-      <div className="relative w-full flex-grow min-h-[1280px] min-w-[720px] aspect-[720/1280] bg-neutral-800">
+      <div className="relative w-full flex-grow bg-neutral-800">
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
