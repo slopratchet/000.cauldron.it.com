@@ -14,6 +14,7 @@ export default function TheaterMap({
   onSelectSeatCoordinate,
 }: TheaterMapProps) {
   const [selectedSeatId, setSelectedSeatId] = useState<string | null>(null);
+  const [offset, setOffset] = useState(0);
 
   return (
     <div
@@ -23,7 +24,13 @@ export default function TheaterMap({
       {/* Grid title panel */}
       <h3 className="text-sm font-bold uppercase border-b-2 border-[#E6E2D8]/20 pb-1.5 mb-4 flex items-center justify-between">
         <span>Theater Mapping</span>
-        <Grid className="w-4 h-4 text-[#E6E2D8]" />
+        <button
+          type="button"
+          className="cursor-pointer"
+          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+        >
+          <Grid className="w-4 h-4 text-[#E6E2D8]" />
+        </button>
       </h3>
 
       {/* Grid mapping space */}
@@ -50,7 +57,9 @@ export default function TheaterMap({
               }`}
             >
               {/* Numeric or ID stamp on the squares */}
-              <span>[{index.toString().padStart(3, '0')}]</span>
+              <span>
+                [{((index + offset) % 1000).toString().padStart(3, '0')}]
+              </span>
             </button>
           );
         })}
