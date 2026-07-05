@@ -162,12 +162,7 @@ export default function OperationalLandscape({
   return (
     <div
       id="landscape-container"
-      className="border-4 border-black bg-white overflow-hidden hard-shadow flex flex-col h-full font-mono relative"
-      style={{
-        minHeight: '720px',
-        minWidth: '1280px',
-        aspectRatio: '1280/720',
-      }}
+      className="border-4 border-black bg-white overflow-hidden flex flex-col h-full font-mono relative"
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
         <span className="flex items-center gap-1">
@@ -207,8 +202,6 @@ export default function OperationalLandscape({
               isFullScreen
                 ? {}
                 : {
-                    minWidth: '1280px',
-                    minHeight: '720px',
                     width: '100%',
                     height: 'auto',
                     aspectRatio: '16/9',
@@ -226,8 +219,6 @@ export default function OperationalLandscape({
               isFullScreen
                 ? { width: '100vw', height: '100vh' }
                 : {
-                    minWidth: '1280px',
-                    minHeight: '720px',
                     width: '100%',
                     height: 'auto',
                     aspectRatio: '16/9',
@@ -237,7 +228,6 @@ export default function OperationalLandscape({
             Compiling Destination Environment...
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
 
       {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
