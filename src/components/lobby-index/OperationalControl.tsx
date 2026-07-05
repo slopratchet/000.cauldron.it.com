@@ -172,7 +172,7 @@ export default function OperationalControl({
         </span>
       </div>
 
-      <div className="relative w-full flex-grow min-h-[1280px] min-w-[720px] aspect-[720/1280] bg-neutral-800">
+      <div className="relative w-[720px] h-[1280px] aspect-[720/1280] bg-neutral-800">
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
