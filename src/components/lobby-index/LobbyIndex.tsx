@@ -595,23 +595,6 @@ export default function LobbyIndex() {
           </section>
         )}
 
-        {/* SYSTEM LOGS — FULL-WIDTH CENTERED */}
-        {isLogsVisible && (
-          <section
-            id="system-logs-deck"
-            className="mb-8 w-full flex justify-center"
-          >
-            <div className="w-full max-w-[1280px]">
-              <SystemLogs
-                logs={schema.systemLogs}
-                onClearLogs={handleClearLogs}
-                isPaused={isPaused}
-                onTogglePause={handleTogglePause}
-              />
-            </div>
-          </section>
-        )}
-
         {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
         {(isLogsVisible || isTheaterMappingVisible) && (
           <section
@@ -710,6 +693,23 @@ export default function LobbyIndex() {
               ))}
             </div>
           </footer>
+        )}
+
+        {/* SYSTEM LOGS — FULL-WIDTH CENTERED */}
+        {isLogsVisible && (
+          <section
+            id="system-logs-deck"
+            className="mb-8 w-full flex justify-center"
+          >
+            <div className="w-full max-w-[1280px]">
+              <SystemLogs
+                logs={schema.systemLogs}
+                onClearLogs={handleClearLogs}
+                isPaused={isPaused}
+                onTogglePause={handleTogglePause}
+              />
+            </div>
+          </section>
         )}
       </div>
     </div>
