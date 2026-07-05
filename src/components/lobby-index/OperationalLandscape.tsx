@@ -209,11 +209,8 @@ export default function OperationalLandscape({
                     aspectRatio: '1280 / 720',
                   }
                 : {
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    aspectRatio: '1280 / 720',
-                    width: 'auto',
-                    height: 'auto',
+                    width: '100%',
+                    height: '100%',
                   }
             }
             width={1280}
@@ -232,11 +229,8 @@ export default function OperationalLandscape({
                     aspectRatio: '1280 / 720',
                   }
                 : {
-                    maxWidth: '100%',
-                    maxHeight: '100%',
-                    aspectRatio: '1280 / 720',
-                    width: 'auto',
-                    height: 'auto',
+                    width: '100%',
+                    height: '100%',
                   }
             }
           >
