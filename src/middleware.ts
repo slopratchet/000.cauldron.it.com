@@ -27,7 +27,7 @@ const ACCESS_CONFIG = {
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
-  authGateways: ['/', '/log-in', '/login'],
+  authGateways: ['/', '/log-in', '/login', '/sign-up'],
 };
 
 /**
@@ -99,7 +99,14 @@ export const onRequest = sequence(
     }
 
     // Execute the Clerk engine with the extracted edge environment context
-    return clerkMiddleware({ publishableKey, secretKey })(context, next);
+    return clerkMiddleware({
+      publishableKey,
+      secretKey,
+      signInUrl: '/log-in',
+      signUpUrl: '/sign-up',
+      afterSignInUrl: '/lobby',
+      afterSignUpUrl: '/lobby',
+    })(context, next);
   }),
 
   /**
