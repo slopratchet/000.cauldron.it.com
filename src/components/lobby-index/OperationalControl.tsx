@@ -166,7 +166,9 @@ export default function OperationalControl({
       style={{
         aspectRatio: '720/1280',
         minWidth: '720px',
+        maxWidth: '720px',
         minHeight: '1280px',
+        maxHeight: '1280px',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
