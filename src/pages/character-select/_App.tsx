@@ -253,7 +253,7 @@ export default function App() {
                 "{dbData.identity?.quote || ''}"
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                {Array.from({ length: 10 }).map((_, i) => {
+                {Array.from({ length: 7 }).map((_, i) => {
                   const img =
                     dbData.identity?.portraits?.[i] ||
                     dbData.identity?.portraits?.[
