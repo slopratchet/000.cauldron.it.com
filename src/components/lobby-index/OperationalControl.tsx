@@ -172,19 +172,25 @@ export default function OperationalControl({
         </span>
       </div>
 
-      <div className="relative flex-grow w-full max-w-[1280px] max-h-[720px] aspect-video bg-neutral-800 mx-auto">
+      <div className="relative w-full bg-neutral-800 mx-auto overflow-auto flex justify-start md:justify-center items-center">
         {iframeSrc ? (
           <iframe
             ref={iframeRef}
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className="w-full h-full border-none block relative z-10"
+            className="border-none block relative z-10 mx-auto"
+            style={{ width: '720px', height: '1280px' }}
+            width={720}
+            height={1280}
             src={iframeSrc}
             onLoad={handleIframeLoad}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-neutral-400 animate-pulse">
+          <div
+            className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
+            style={{ width: '720px', height: '1280px' }}
+          >
             Compiling Destination Environment...
           </div>
         )}

@@ -177,7 +177,7 @@ export default function OperationalLandscape({
       </div>
 
       <div
-        className={`w-full flex-grow bg-neutral-800 ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative aspect-video'}`}
+        className={`w-full flex-grow bg-neutral-800 overflow-auto flex justify-start lg:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
       >
         {isFullScreen && (
           <button
@@ -193,12 +193,26 @@ export default function OperationalLandscape({
             sandbox="allow-scripts allow-same-origin"
             id="app-iframe"
             title="Operational Landscape View"
-            className="w-full h-full border-none block relative z-10"
+            className={
+              isFullScreen
+                ? 'w-full h-full border-none block relative z-10'
+                : 'border-none block relative z-10 mx-auto'
+            }
+            style={isFullScreen ? {} : { width: '1280px', height: '720px' }}
+            width={1280}
+            height={720}
             src={iframeSrc}
             onLoad={handleIframeLoad}
           />
         ) : (
-          <div className="absolute inset-0 flex items-center justify-center text-xs text-neutral-400 animate-pulse">
+          <div
+            className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
+            style={
+              isFullScreen
+                ? { width: '100vw', height: '100vh' }
+                : { width: '1280px', height: '720px' }
+            }
+          >
             Compiling Destination Environment...
           </div>
         )}
