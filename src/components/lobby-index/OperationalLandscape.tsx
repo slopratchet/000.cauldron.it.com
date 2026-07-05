@@ -17,6 +17,17 @@ export default function OperationalLandscape({
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
 
+  useEffect(() => {
+    if (isFullScreen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isFullScreen]);
+
   // Real-time tracking for the interface dashboard
   const appendLog = (
     text: string,
