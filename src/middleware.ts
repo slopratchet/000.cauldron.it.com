@@ -22,6 +22,7 @@ const ACCESS_CONFIG = {
     // '/script',
     // '/sheet',
     '/lobby',
+    '/lobby.00',
     '/log-out',
   ],
   publicExact: ['/'],
@@ -124,7 +125,7 @@ export const onRequest = sequence(
 
     // --- GATE 1: REDIRECT AUTHENTICATED USERS AWAY FROM PUBLIC AUTH PATHS ---
     if (auth.userId && isAuthGateway(pathname)) {
-      return redirect('/lobby');
+      return redirect('/lobby.00');
     }
 
     // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---

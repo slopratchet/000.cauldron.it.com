@@ -642,17 +642,28 @@ export default function LobbyIndex() {
               <div
                 className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
-                <OperationalControl
-                  title="Operational Control"
-                  logs={schema.systemLogs}
-                  onClearLogs={handleClearLogs}
-                  isPaused={isPaused}
-                  onTogglePause={handleTogglePause}
-                  isLogsVisible={isLogsVisible}
-                />
                 <ClerkDataSchema />
               </div>
             )}
+          </section>
+        )}
+
+        {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
+        {isLogsVisible && (
+          <section
+            id="operational-control-deck"
+            className="mb-8 w-full flex justify-center"
+          >
+            <div className="w-full max-w-[1280px]">
+              <OperationalControl
+                title="Operational Control"
+                logs={schema.systemLogs}
+                onClearLogs={handleClearLogs}
+                isPaused={isPaused}
+                onTogglePause={handleTogglePause}
+                isLogsVisible={isLogsVisible}
+              />
+            </div>
           </section>
         )}
 
