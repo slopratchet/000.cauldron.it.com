@@ -608,9 +608,7 @@ export default function LobbyIndex() {
             <div className="w-full max-w-[1280px]">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
                 {isLogsVisible && (
-                  <div
-                    className={`${isTheaterMappingVisible ? 'lg:col-span-8' : 'lg:col-span-12'}`}
-                  >
+                  <div className="lg:col-span-12">
                     <OperationalControl
                       title="Operational Control"
                       logs={schema.systemLogs}
@@ -623,9 +621,7 @@ export default function LobbyIndex() {
                 )}
 
                 {isTheaterMappingVisible && (
-                  <div
-                    className={`${isLogsVisible ? 'lg:col-span-4' : 'lg:col-span-12'} flex flex-col gap-4`}
-                  >
+                  <div className="lg:col-span-12 flex flex-col gap-4">
                     <TheaterMap
                       seats={schema.seats}
                       onToggleSeat={handleToggleSeat}

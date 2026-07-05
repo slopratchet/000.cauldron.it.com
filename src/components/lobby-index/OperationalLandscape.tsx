@@ -180,7 +180,7 @@ export default function OperationalLandscape({
       </div>
 
       <div
-        className={`w-full flex-grow bg-neutral-800 overflow-auto flex justify-start lg:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
+        className={`w-full flex-grow bg-neutral-800 overflow-hidden flex justify-start lg:justify-center items-center ${isFullScreen ? 'fixed inset-0 z-[100] h-screen w-screen flex flex-col' : 'relative'}`}
       >
         {isFullScreen && (
           <button
@@ -205,9 +205,10 @@ export default function OperationalLandscape({
               isFullScreen
                 ? {}
                 : {
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '16/9',
+                    width: 'auto',
+                    height: '100%',
+                    maxWidth: '100%',
+                    aspectRatio: '1280 / 720',
                   }
             }
             width={1280}
@@ -222,16 +223,16 @@ export default function OperationalLandscape({
               isFullScreen
                 ? { width: '100vw', height: '100vh' }
                 : {
-                    width: '100%',
-                    height: 'auto',
-                    aspectRatio: '16/9',
+                    width: 'auto',
+                    height: '100%',
+                    maxWidth: '100%',
+                    aspectRatio: '1280 / 720',
                   }
             }
           >
             Compiling Destination Environment...
           </div>
         )}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/45 to-transparent pointer-events-none z-20"></div>
       </div>
 
       {/* Real-time Diagnostic Matrix Terminal combined with System Logs */}
