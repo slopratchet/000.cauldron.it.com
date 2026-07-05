@@ -70,6 +70,12 @@ export default function TheaterMap({
           Click coordinate to toggle.
         </div>
       </div>
+      <button
+        type="button"
+        className="w-full mt-4 py-2 border-2 border-[#E6E2D8] text-[#E6E2D8] hover:bg-[#E6E2D8] hover:text-black font-bold uppercase transition-colors text-center text-xs"
+      >
+        CREATE PLAYER
+      </button>
     </div>
   );
 }
