@@ -508,12 +508,12 @@ export default function LobbyIndex() {
   return (
     <div
       id="application-container"
-      className="min-h-screen relative flex flex-col p-4 md:p-8 bg-parchment-deep selection:bg-black selection:text-parchment-deep"
+      className="min-h-screen relative flex flex-col py-4 md:py-8 bg-parchment-deep selection:bg-black selection:text-parchment-deep"
     >
       {/* Background scanline/dots authenticity overlay */}
       <div className="dot-matrix-overlay absolute inset-0 z-0 pointer-events-none"></div>
 
-      <div className="max-w-7xl mx-auto w-full flex-grow flex flex-col relative z-10">
+      <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex-grow flex flex-col relative z-10">
         {/* Simple Utility Navigation Rail */}
         {isHeaderVisible && (
           <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-black pb-3">
@@ -594,35 +594,30 @@ export default function LobbyIndex() {
             />
           </section>
         )}
+      </div>
 
-        {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH CENTERED */}
-        {(isLogsVisible || isTheaterMappingVisible) && (
-          <section
-            id="operational-control-deck"
-            className="mb-8 w-full flex justify-center"
-          >
-            <div className="w-full max-w-[1280px]">
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
-                {isLogsVisible && (
-                  <div className="lg:col-span-12">
-                    <OperationalControl title="Operational Control" />
-                  </div>
-                )}
-
-                {isTheaterMappingVisible && (
-                  <div className="lg:col-span-12 flex flex-col gap-4">
-                    <TheaterMap
-                      seats={schema.seats}
-                      onToggleSeat={handleToggleSeat}
-                      onSelectSeatCoordinate={handleSelectSeatCoordinate}
-                    />
-                  </div>
-                )}
-              </div>
+      {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH OF THE PAGE */}
+      {(isLogsVisible || isTheaterMappingVisible) && (
+        <section id="operational-control-deck" className="mb-8 w-full">
+          {isLogsVisible && (
+            <div className="w-full">
+              <OperationalControl title="Operational Control" />
             </div>
-          </section>
-        )}
+          )}
 
+          {isTheaterMappingVisible && (
+            <div className="max-w-7xl mx-auto w-full px-4 md:px-8 mt-6">
+              <TheaterMap
+                seats={schema.seats}
+                onToggleSeat={handleToggleSeat}
+                onSelectSeatCoordinate={handleSelectSeatCoordinate}
+              />
+            </div>
+          )}
+        </section>
+      )}
+
+      <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex-grow flex flex-col relative z-10">
         {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
         {(isInputVisible || isLogsVisible) && (
           <section
