@@ -607,18 +607,14 @@ export default function LobbyIndex() {
             />
           </section>
         )}
-      </div>
-
-      {/* 4B. OPERATIONAL CONTROL — FULL-WIDTH OF THE PAGE */}
-      {isLogsVisible && (
-        <section id="operational-control-deck" className="mb-8 w-full">
-          <div className="w-full">
-            <OperationalControl title="Operational Control" />
-          </div>
-        </section>
-      )}
-
-      <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex-grow flex flex-col relative z-10">
+        {/* 4B. OPERATIONAL CONTROL */}
+        {isLogsVisible && (
+          <section id="operational-control-deck" className="mb-8 w-full">
+            <div className="w-full">
+              <OperationalControl title="Operational Control" />
+            </div>
+          </section>
+        )}
         {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
         {(isInputVisible || isLogsVisible) && (
           <section
