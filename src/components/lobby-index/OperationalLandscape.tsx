@@ -44,7 +44,7 @@ export default function OperationalLandscape({
     console.log(
       '🔍 [PARENT] Component mounted. Resolving Authentication Context...',
     );
-    const baseUrl = 'https://react.mmorpg.it.com/canvas?display=false';
+    const baseUrl = 'https://react.mmorpg.it.com/canvas?ui=false';
     let clerkRetries = 0;
 
     const initIframe = async () => {

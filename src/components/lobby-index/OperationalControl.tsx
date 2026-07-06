@@ -44,7 +44,7 @@ export default function OperationalControl({
     console.log(
       '🔍 [PARENT] Component mounted. Resolving Authentication Context...',
     );
-    const baseUrl = 'https://react.mmorpg.it.com/gamepad?display=false';
+    const baseUrl = 'https://react.mmorpg.it.com/gamepad?ui=false';
     let clerkRetries = 0;
 
     const initIframe = async () => {
