@@ -14,16 +14,12 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    fetch('/actor-lookup.json')
+    fetch('/data/lookups/actor.json')
       .then((res) => res.json())
       .then((data) => setActorLookup(data))
       .catch((err) => console.error('Failed to load actor lookup:', err));
-
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      setSelectedActor(params.get('actor'));
-    }
   }, []);
+
 
   return (
     <div
@@ -56,7 +52,8 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
                 setSelectedActor(actorId);
                 const params = new URLSearchParams(window.location.search);
                 params.set('actor', actorId);
-                params.set('json', actorId);
+                const jsonName = actorLookup[actorId] || actorId;
+                params.set('json', jsonName);
                 const newPath =
                   window.location.pathname + '?' + params.toString();
                 window.history.pushState(null, '', newPath);
@@ -89,14 +86,18 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       <button
         type="button"
         onClick={() => {
+          const currentActor = selectedActor || '000';
+          const jsonName = actorLookup[currentActor] || currentActor;
+          window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
+        }}
+        className="mt-4 w-full bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 active:scale-95 transition-transform cursor-pointer"
           if (selectedActor) {
             window.location.href = `/character-select?actor=${selectedActor}`;
           } else {
             window.location.href = '/character-select';
           }
         }}
-        className="w-full mt-4 bg-white text-black py-2 font-bold text-sm uppercase hover:bg-neutral-200 transition-colors cursor-pointer"
-      >
+            >
         [Open Agent]
       </button>
     </div>
