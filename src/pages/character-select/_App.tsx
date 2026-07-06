@@ -397,13 +397,6 @@ export default function App() {
                 ))}
               </div>
             </div>
-
-            <a
-              href="/character-profile"
-              className="mt-16 w-full block bg-ink text-parchment font-anton text-2xl md:text-3xl py-4 border-[3px] border-ink shadow-[4px_4px_0px_0px_#cc5500] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#cc5500] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center"
-            >
-              {dbData.identity?.embraceButtonText || 'Embrace more of CHARITY'}
-            </a>
           </div>
 
           {/* Right Column (Sidebar) */}
@@ -472,6 +465,13 @@ export default function App() {
             </div>
           </aside>
         </section>
+
+        <a
+          href="/character-profile"
+          className="mt-8 w-full block bg-ink text-parchment font-anton text-2xl md:text-3xl py-4 border-[3px] border-ink shadow-[4px_4px_0px_0px_#cc5500] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#cc5500] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center"
+        >
+          {dbData.identity?.embraceButtonText || 'Embrace more of CHARITY'}
+        </a>
       </main>
     </div>
   );
