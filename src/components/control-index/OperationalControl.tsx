@@ -164,7 +164,9 @@ export default function OperationalControl({
       id="landscape-container"
       className="border-4 border-black bg-white overflow-hidden flex flex-col h-full font-mono relative"
       style={{
-        aspectRatio: '1280/720',
+        width: '1080px',
+        height: '1260px',
+        maxWidth: '100%',
       }}
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
@@ -204,9 +206,9 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
-                    aspectRatio: '1280 / 720',
+                    width: 'min(100vw, calc(100vh * 1080 / 1260))',
+                    height: 'min(100vh, calc(100vw * 1260 / 1080))',
+                    aspectRatio: '1080 / 1260',
                   }
                 : { width: '100%', height: '100%' }
             }
@@ -219,9 +221,9 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
-                    aspectRatio: '1280 / 720',
+                    width: 'min(100vw, calc(100vh * 1080 / 1260))',
+                    height: 'min(100vh, calc(100vw * 1260 / 1080))',
+                    aspectRatio: '1080 / 1260',
                   }
                 : { width: '100%', height: '100%' }
             }
