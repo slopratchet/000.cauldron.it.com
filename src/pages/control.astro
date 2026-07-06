@@ -1,0 +1,204 @@
+---
+import Layout from '../layouts/Layout.astro';
+import LobbyIndex from '../components/control-index/ControlIndex.tsx';
+
+let status = 'OFFLINE';
+try {
+  const response = await fetch(new URL('/api/moon', Astro.url));
+  if (response.ok) {
+    status = 'WAITING';
+  }
+} catch (e) {
+  console.error('Failed to fetch system status:', e);
+}
+---
+
+<Layout bodyClass="cimmerian-theme">
+  <!-- We add the fonts needed for the Cimmerian Sheet -->
+
+  <LobbyIndex client:load />
+
+  <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-8 relative z-10">
+    <div class="flex justify-between items-center mb-4">
+      <span class="text-2xl font-bold uppercase tracking-tighter">LOBBY</span>
+      <a
+        href="/log-out"
+        class="border-2 border-primary bg-paper px-4 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-paper transition-all active:scale-95"
+      >
+        LOG_OUT
+      </a>
+    </div>
+
+    <div class="font-label text-[10px] tracking-widest uppercase">
+      CAMP CANDOR SYSTEMS | PRINTED IN THE KINGDOM OF MANOR | STATUS: <span
+        id="status-indicator"
+        class={status === 'ONLINE'
+          ? 'text-green-400'
+          : status === 'WAITING'
+            ? 'text-yellow-400'
+            : 'text-red-400'}>{status}</span
+      >
+    </div>
+  </div>
+
+  <script>
+    import { $clerkStore } from '@clerk/astro/client';
+
+    // WebSocket Connection
+    {
+      let ws;
+      let usingFallback = false;
+      let retryCount = 0;
+      let hasReceivedTick = false;
+      const MAX_RETRIES = 10;
+
+      const EFFORT_MESSAGES = [
+        'RE-ESTABLISHING NEURAL LINK',
+        'CALIBRATING SIGNAL AMPLITUDE',
+        'BYPASSING ENCRYPTION BARRIER',
+        'SYNCHRONIZING TEMPORAL DATA',
+        'HARNESSING KINETIC ENERGY',
+        'REDIRECTING POWER TO TRANSMITTER',
+        'STABILIZING QUANTUM TUNNEL',
+        'PROBING VOID FOR SIGNAL',
+        'AMPLIFYING SUB-SPACE RESONANCE',
+        'OPTIMIZING DATA PACKET FLOW',
+      ];
+
+      const appendLog = (htmlContent, type = 'INFO') => {
+        // Dispatch a custom event for the LobbyIndex component to catch
+        // Strip HTML tags for the text-only system log
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = htmlContent;
+        const plainText = tempDiv.textContent || tempDiv.innerText || '';
+
+        window.dispatchEvent(
+          new CustomEvent('lobby-system-log', {
+            detail: { text: plainText, type },
+          }),
+        );
+      };
+
+      const getToken = async () => {
+        let clerk = $clerkStore.get();
+        let retry = 0;
+        while ((!clerk || !clerk.loaded) && retry < 50) {
+          await new Promise((resolve) => setTimeout(resolve, 100));
+          clerk = $clerkStore.get();
+          retry++;
+        }
+        if (clerk && clerk.session) {
+          try {
+            return (await clerk.session.getToken()) || '';
+          } catch (e) {
+            console.error('Error fetching session token:', e);
+          }
+        }
+        return '';
+      };
+
+      const connect = async (isFallback = false) => {
+        const token = await getToken();
+        let url;
+        if (isFallback) {
+          url = `wss://worker-warden.berad4000.workers.dev/ws${token ? `?jwt=${encodeURIComponent(token)}` : ''}`;
+        } else {
+          const protocol =
+            window.location.protocol === 'https:' ? 'wss:' : 'ws:';
+          url = `${protocol}//${window.location.host}/api/sun${token ? `?jwt=${encodeURIComponent(token)}` : ''}`;
+        }
+
+        ws = new WebSocket(url);
+
+        ws.onopen = () => {
+          retryCount = 0;
+          appendLog(
+            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
+            'SUCCESS',
+          );
+        };
+
+        ws.onmessage = (event) => {
+          if (!hasReceivedTick) {
+            hasReceivedTick = true;
+            document.getElementById('status-indicator').innerText = 'ONLINE';
+            document.getElementById('status-indicator').className =
+              'text-green-400';
+          }
+          let data = event.data;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed && parsed.type === 'auth_status') {
+              const { userId, mockAuth } = parsed.payload;
+              if (mockAuth) {
+                appendLog(
+                  `<span class="text-yellow-500">[SECURITY ALERT] Neural Link established using MOCK DEVELOPMENT AUTH BYPASS (User: ${userId}).</span>`,
+                  'WARNING',
+                );
+              }
+              return;
+            }
+            data = JSON.stringify(parsed);
+          } catch (e) {}
+          appendLog(
+            `<span class="text-white">[TICK]</span> ${data}`,
+            'SUCCESS',
+          );
+        };
+
+        ws.onerror = (error) => {
+          if (!usingFallback) {
+            usingFallback = true;
+            appendLog(
+              '<span class="text-yellow-500">[SYSTEM] Connection via /api/sun failed. Will retry with direct worker fallback...</span>',
+              'WARNING',
+            );
+          } else {
+            appendLog(
+              '<span class="text-red-500">[ERROR] Connection failed.</span>',
+              'ALERT',
+            );
+          }
+        };
+
+        ws.onclose = (event) => {
+          document.getElementById('status-indicator').innerText = 'OFFLINE';
+          document.getElementById('status-indicator').className =
+            'text-red-400';
+
+          const reason = event.reason ? `: ${event.reason}` : '';
+          appendLog(
+            `[SYSTEM] CONNECTION CLOSED. (CODE: ${event.code}${reason})`,
+            'WARNING',
+          );
+
+          if (retryCount < MAX_RETRIES) {
+            retryCount++;
+            const effort =
+              EFFORT_MESSAGES[
+                Math.floor(Math.random() * EFFORT_MESSAGES.length)
+              ];
+            const progress = Math.round((retryCount / MAX_RETRIES) * 10);
+            const bar = '█'.repeat(progress) + '░'.repeat(10 - progress);
+
+            appendLog(
+              `[SYSTEM] ${effort} [${bar}] (ATTEMPT ${retryCount}/${MAX_RETRIES})`,
+              'INFO',
+            );
+
+            setTimeout(() => {
+              connect(usingFallback);
+            }, 3000);
+          } else {
+            appendLog(
+              '[SYSTEM] MAXIMUM RECONNECTION ATTEMPTS EXHAUSTED. TERMINAL OFFLINE.',
+              'ALERT',
+            );
+          }
+        };
+      };
+
+      connect();
+    }
+  </script>
+</Layout>
