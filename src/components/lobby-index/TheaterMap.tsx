@@ -11,6 +11,14 @@ interface TheaterMapProps {
 export default function TheaterMap({ seats }: TheaterMapProps) {
   const [offset, setOffset] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
+  const [actorMapping, setActorMapping] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetch('/actor-mapping.json')
+      .then((res) => res.json())
+      .then((data) => setActorMapping(data))
+      .catch((err) => console.error('Failed to load actor mapping:', err));
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -79,6 +87,18 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           <span className="text-[#E6E2D8]">Inactive Toggle (Black/Off)</span>
         </div>
       </div>
+
+      <button
+        type="button"
+        className="w-full mt-4 bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 transition-colors"
+        onClick={() => {
+          window.location.href = selectedActor
+            ? '/character-select?actor=' + selectedActor
+            : '/character-select';
+        }}
+      >
+        [Open Agent]
+      </button>
     </div>
   );
 }
