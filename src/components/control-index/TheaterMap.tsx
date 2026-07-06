@@ -48,7 +48,12 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
               type="button"
               onClick={() => {
                 setSelectedActor(actorId);
-                window.location.href = `/character-select?actor=${actorId}`;
+                const params = new URLSearchParams(window.location.search);
+                params.set('actor', actorId);
+                params.set('json', actorId);
+                const newPath =
+                  window.location.pathname + '?' + params.toString();
+                window.history.pushState(null, '', newPath);
               }}
               title={`Actor ${actorId}`}
               className={`w-[180px] h-[90px] border-2 cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${
