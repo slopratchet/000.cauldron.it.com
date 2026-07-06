@@ -545,8 +545,8 @@ export default function LobbyIndex() {
         )}
 
         {/* COUNTDOWN CLOCK */}
-        <div className="h-[107px] mb-[33px]">
-          <div className="scale-[0.3] origin-top">
+        <div className="h-[107px] mb-[33px] relative flex justify-center w-full overflow-hidden">
+          <div className="scale-[0.3] origin-top flex justify-center shrink-0 w-[333.333%]">
             <MainCountdown timeInSeconds={timeInSeconds} />
           </div>
         </div>
