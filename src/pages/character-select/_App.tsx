@@ -177,6 +177,18 @@ export default function App() {
     }
   };
 
+  const handlePlayClick = () => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const actor = params.get('actor');
+      let targetUrl = '/control';
+      if (actor) {
+        targetUrl += `?actor=${encodeURIComponent(actor)}`;
+      }
+      window.location.href = targetUrl;
+    }
+  };
+
   return (
     <div className="min-h-screen flex flex-col font-tinos text-base selection:bg-ink selection:text-parchment pb-12">
       {/* Database Schema Console Panel at the very top */}
@@ -277,8 +289,13 @@ export default function App() {
                   );
                 })}
               </div>
-              <button className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center">
-                {dbData.identity?.reserveButtonText || 'Reserve CHARITY'}
+              <button
+                onClick={handlePlayClick}
+                className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center"
+              >
+                {dbData.identity?.reserveButtonText === 'Reserve CHARITY'
+                  ? '[Play Charity]'
+                  : dbData.identity?.reserveButtonText || '[Play Charity]'}
               </button>
               <div className="mt-4 relative">
                 <select className="w-full appearance-none bg-white border-[3px] border-ink py-3 pl-4 pr-10 font-mono font-bold uppercase text-ink shadow-[4px_4px_0px_0px_#000000] cursor-pointer focus:outline-none focus:ring-0 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] transition-all">
