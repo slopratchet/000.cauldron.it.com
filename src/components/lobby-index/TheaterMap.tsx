@@ -33,6 +33,20 @@ export default function TheaterMap({
         </button>
       </h3>
 
+      <button
+        type="button"
+        onClick={() => {
+          const params = new URLSearchParams(window.location.search);
+          const actor = params.get('actor');
+          window.location.href = actor
+            ? `/character-select?actor=${actor}`
+            : '/character-select';
+        }}
+        className="w-full mb-4 border-2 border-[#E6E2D8]/20 p-2 text-center uppercase font-bold text-[#E6E2D8] hover:bg-[#E6E2D8] hover:text-black transition-colors block text-sm tracking-widest cursor-pointer"
+      >
+        [Open Agent]
+      </button>
+
       {/* Grid mapping space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5 p-1 bg-black border border-[#E6E2D8]/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat, index) => {
