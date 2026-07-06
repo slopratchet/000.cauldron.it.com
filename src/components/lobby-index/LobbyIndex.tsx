@@ -545,7 +545,7 @@ export default function LobbyIndex() {
         )}
 
         {/* COUNTDOWN CLOCK */}
-        <div className="h-[107px] mb-[33px] relative flex justify-center w-full overflow-hidden">
+        <div className="h-[107px] mb-0 relative flex justify-center w-full overflow-hidden">
           <div className="scale-[0.3] origin-top flex justify-center shrink-0 w-[333.333%]">
             <MainCountdown timeInSeconds={timeInSeconds} />
           </div>
@@ -553,7 +553,7 @@ export default function LobbyIndex() {
 
         {/* THEATER MAPPING */}
         {isTheaterMappingVisible && (
-          <div className="w-full mb-6 mt-2">
+          <div className="w-full mb-6 mt-0">
             <TheaterMap
               seats={schema.seats}
               onToggleSeat={handleToggleSeat}
