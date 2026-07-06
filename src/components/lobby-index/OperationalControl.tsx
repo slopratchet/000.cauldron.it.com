@@ -165,7 +165,7 @@ export default function OperationalControl({
       className="border-4 border-black bg-white overflow-hidden flex flex-col h-full font-mono relative"
       style={{
         width: '1080px',
-        height: '1280px',
+        height: '1080px',
         maxWidth: '100%',
       }}
     >
@@ -206,9 +206,9 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1080 / 1280))',
-                    height: 'min(100vh, calc(100vw * 1280 / 1080))',
-                    aspectRatio: '1080 / 1280',
+                    width: 'min(100vw, calc(100vh * 1080 / 1080))',
+                    height: 'min(100vh, calc(100vw * 1080 / 1080))',
+                    aspectRatio: '1080 / 1080',
                   }
                 : { width: '100%', height: '100%' }
             }
@@ -221,9 +221,9 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1080 / 1280))',
-                    height: 'min(100vh, calc(100vw * 1280 / 1080))',
-                    aspectRatio: '1080 / 1280',
+                    width: 'min(100vw, calc(100vh * 1080 / 1080))',
+                    height: 'min(100vh, calc(100vw * 1080 / 1080))',
+                    aspectRatio: '1080 / 1080',
                   }
                 : { width: '100%', height: '100%' }
             }
