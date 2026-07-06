@@ -612,6 +612,12 @@ export default function LobbyIndex() {
           <section id="operational-control-deck" className="mb-8 w-full">
             <div className="w-full">
               <OperationalControl title="Operational Control" />
+              <a
+                href="/000.pdf"
+                className="block w-full mt-4 border-2 border-black bg-black text-[#E6E2D8] px-4 py-3 text-center font-mono text-sm font-bold uppercase tracking-widest hover:bg-[#E6E2D8] hover:text-black transition-all active:scale-[0.99]"
+              >
+                Download pdf of [campaign settings ]
+              </a>
             </div>
           </section>
         )}
