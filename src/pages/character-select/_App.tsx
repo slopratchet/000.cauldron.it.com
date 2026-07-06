@@ -277,8 +277,31 @@ export default function App() {
                   );
                 })}
               </div>
-              <button className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center">
-                {dbData.identity?.reserveButtonText || 'Reserve CHARITY'}
+              <button
+                onClick={() => {
+                  const targetParams = new URLSearchParams();
+                  if (typeof window !== 'undefined') {
+                    const currentParams = new URLSearchParams(
+                      window.location.search,
+                    );
+                    for (const [key, value] of currentParams.entries()) {
+                      if (
+                        value.startsWith('http://') ||
+                        value.startsWith('https://') ||
+                        value.includes('://')
+                      ) {
+                        targetParams.set(key, value);
+                      }
+                    }
+                  }
+                  const queryString = targetParams.toString();
+                  window.location.href = queryString
+                    ? `/control?${queryString}`
+                    : '/control';
+                }}
+                className="mt-6 block w-full bg-[#cc5500] text-parchment font-anton text-2xl md:text-3xl py-3 border-[3px] border-ink shadow-[4px_4px_0px_0px_#000000] hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none transition-all uppercase cursor-pointer text-center"
+              >
+                {dbData.identity?.reserveButtonText || 'Play Charity'}
               </button>
               <div className="mt-4 relative">
                 <select className="w-full appearance-none bg-white border-[3px] border-ink py-3 pl-4 pr-10 font-mono font-bold uppercase text-ink shadow-[4px_4px_0px_0px_#000000] cursor-pointer focus:outline-none focus:ring-0 hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_0px_#000000] transition-all">
