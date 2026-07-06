@@ -20,12 +20,6 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       .catch((err) => console.error('Failed to load actor lookup:', err));
   }, []);
 
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      setSelectedActor(params.get('actor'));
-    }
-  }, []);
 
   return (
     <div
@@ -97,7 +91,13 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
         }}
         className="mt-4 w-full bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 active:scale-95 transition-transform cursor-pointer"
-      >
+          if (selectedActor) {
+            window.location.href = `/character-select?actor=${selectedActor}`;
+          } else {
+            window.location.href = '/character-select';
+          }
+        }}
+            >
         [Open Agent]
       </button>
     </div>
