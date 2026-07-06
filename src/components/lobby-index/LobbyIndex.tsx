@@ -614,7 +614,7 @@ export default function LobbyIndex() {
               <OperationalControl title="Operational Control" />
               <a
                 href="/000.pdf"
-                className="mt-4 block w-full bg-black text-[#E6E2D8] py-3 text-center font-mono font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors"
+                className="mt-4 block w-full border-2 border-black bg-[#E6E2D8] text-black py-3 text-center font-mono font-bold hard-shadow-sm uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
                 download
               >
                 Download pdf of [campaign settings ]
