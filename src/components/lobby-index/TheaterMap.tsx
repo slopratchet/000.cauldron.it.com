@@ -11,6 +11,14 @@ interface TheaterMapProps {
 export default function TheaterMap({ seats }: TheaterMapProps) {
   const [offset, setOffset] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
+  const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    fetch('/data/lookups/actor.json')
+      .then((res) => res.json())
+      .then((data) => setActorLookup(data))
+      .catch((err) => console.error('Failed to load actor lookup:', err));
+  }, []);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -50,7 +58,8 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
                 setSelectedActor(actorId);
                 const params = new URLSearchParams(window.location.search);
                 params.set('actor', actorId);
-                params.set('json', actorId);
+                const jsonName = actorLookup[actorId] || actorId;
+                params.set('json', jsonName);
                 const newPath =
                   window.location.pathname + '?' + params.toString();
                 window.history.pushState(null, '', newPath);
@@ -79,6 +88,18 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           <span className="text-[#E6E2D8]">Inactive Toggle (Black/Off)</span>
         </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          const currentActor = selectedActor || '000';
+          const jsonName = actorLookup[currentActor] || currentActor;
+          window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
+        }}
+        className="mt-4 w-full bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 active:scale-95 transition-transform cursor-pointer"
+      >
+        [Open Agent]
+      </button>
     </div>
   );
 }
