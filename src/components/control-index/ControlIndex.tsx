@@ -544,9 +544,6 @@ export default function LobbyIndex() {
           />
         )}
 
-   
-   
-
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
           <section id="operational-control-deck" className="mb-8 w-full">

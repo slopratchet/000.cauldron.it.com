@@ -7,7 +7,17 @@ export default function App() {
   const [jsonParam, setJsonParam] = useState<string | null>(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      return params.get('json');
+      const json = params.get('json');
+      if (json) return json;
+      const actor = params.get('actor');
+      if (actor) {
+        const actorNum = parseInt(actor, 10);
+        if (!isNaN(actorNum)) {
+          return actorNum % 2 === 0
+            ? 'charity-vaughn.json'
+            : 'catharsis-gale.json';
+        }
+      }
     }
     return null;
   });
@@ -55,7 +65,20 @@ export default function App() {
     const handleUrlChange = () => {
       const params = new URLSearchParams(window.location.search);
       setShowConsole(params.get('db') === 'true');
-      setJsonParam(params.get('json'));
+      let resolvedJson = params.get('json');
+      if (!resolvedJson) {
+        const actor = params.get('actor');
+        if (actor) {
+          const actorNum = parseInt(actor, 10);
+          if (!isNaN(actorNum)) {
+            resolvedJson =
+              actorNum % 2 === 0
+                ? 'charity-vaughn.json'
+                : 'catharsis-gale.json';
+          }
+        }
+      }
+      setJsonParam(resolvedJson);
     };
     window.addEventListener('popstate', handleUrlChange);
     const interval = setInterval(handleUrlChange, 1000);
