@@ -9,15 +9,21 @@ interface TheaterMapProps {
 }
 
 export default function TheaterMap({ seats }: TheaterMapProps) {
-  const [offset, setOffset] = useState<number>(0);
+  const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       setSelectedActor(params.get('actor'));
+      const urlIconIndex = params.get('iconIndex');
+      if (urlIconIndex !== null) {
+        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+      }
     }
   }, []);
+
+  const offset = (iconIndex * 20) % 1000;
 
   return (
     <div
@@ -30,7 +36,17 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+          onClick={() => {
+            const nextIndex = iconIndex + 1;
+            setIconIndex(nextIndex);
+            if (typeof window !== 'undefined') {
+              const params = new URLSearchParams(window.location.search);
+              params.set('iconIndex', nextIndex.toString());
+              const newPath =
+                window.location.pathname + '?' + params.toString();
+              window.history.pushState(null, '', newPath);
+            }
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>

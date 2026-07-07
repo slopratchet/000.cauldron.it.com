@@ -9,7 +9,7 @@ interface TheaterMapProps {
 }
 
 export default function TheaterMap({ seats }: TheaterMapProps) {
-  const [offset, setOffset] = useState<number>(0);
+  const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
   const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
@@ -18,7 +18,21 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       .then((res) => res.json())
       .then((data) => setActorLookup(data))
       .catch((err) => console.error('Failed to load actor lookup:', err));
+
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlIconIndex = params.get('iconIndex');
+      if (urlIconIndex !== null) {
+        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+      }
+      const urlActor = params.get('actor');
+      if (urlActor !== null) {
+        setSelectedActor(urlActor);
+      }
+    }
   }, []);
+
+  const offset = (iconIndex * 9) % 1000;
 
   return (
     <div
@@ -31,7 +45,17 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
+          onClick={() => {
+            const nextIndex = iconIndex + 1;
+            setIconIndex(nextIndex);
+            if (typeof window !== 'undefined') {
+              const params = new URLSearchParams(window.location.search);
+              params.set('iconIndex', nextIndex.toString());
+              const newPath =
+                window.location.pathname + '?' + params.toString();
+              window.history.pushState(null, '', newPath);
+            }
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
