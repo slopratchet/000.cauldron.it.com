@@ -545,15 +545,15 @@ export default function LobbyIndex() {
         )}
 
         {/* COUNTDOWN CLOCK */}
-        <div className="h-[107px] mb-[33px]">
-          <div className="scale-[0.3] origin-top">
+        <div className="h-[107px] mb-0 relative flex justify-center w-full overflow-hidden">
+          <div className="scale-[0.3] origin-top flex justify-center shrink-0 w-[333.333%]">
             <MainCountdown timeInSeconds={timeInSeconds} />
           </div>
         </div>
 
         {/* THEATER MAPPING */}
         {isTheaterMappingVisible && (
-          <div className="w-full mb-6 mt-2">
+          <div className="w-full mb-6 mt-0">
             <TheaterMap
               seats={schema.seats}
               onToggleSeat={handleToggleSeat}
@@ -612,6 +612,13 @@ export default function LobbyIndex() {
           <section id="operational-control-deck" className="mb-8 w-full">
             <div className="w-full">
               <OperationalControl title="Operational Control" />
+              <a
+                href="/000.pdf"
+                className="mt-4 block w-full border-2 border-black bg-[#E6E2D8] text-black py-3 text-center font-mono font-bold hard-shadow-sm uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+                download
+              >
+                Download pdf of [campaign settings ]
+              </a>
             </div>
           </section>
         )}

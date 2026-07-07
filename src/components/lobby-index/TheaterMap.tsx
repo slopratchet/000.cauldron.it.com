@@ -11,12 +11,13 @@ interface TheaterMapProps {
 export default function TheaterMap({ seats }: TheaterMapProps) {
   const [offset, setOffset] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
+  const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
   useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      setSelectedActor(params.get('actor'));
-    }
+    fetch('/data/lookups/actor.json')
+      .then((res) => res.json())
+      .then((data) => setActorLookup(data))
+      .catch((err) => console.error('Failed to load actor lookup:', err));
   }, []);
 
   return (
@@ -30,15 +31,15 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
       </h3>
 
       {/* Grid mapping space */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
-        {seats.map((seat, index) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
+        {seats.slice(0, 9).map((seat, index) => {
           const actorId = ((index + offset) % 1000).toString().padStart(3, '0');
           const isSelected = selectedActor === actorId;
 
@@ -50,7 +51,8 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
                 setSelectedActor(actorId);
                 const params = new URLSearchParams(window.location.search);
                 params.set('actor', actorId);
-                params.set('json', actorId);
+                const jsonName = actorLookup[actorId] || actorId;
+                params.set('json', jsonName);
                 const newPath =
                   window.location.pathname + '?' + params.toString();
                 window.history.pushState(null, '', newPath);
@@ -79,6 +81,18 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           <span className="text-[#E6E2D8]">Inactive Toggle (Black/Off)</span>
         </div>
       </div>
+
+      <button
+        type="button"
+        onClick={() => {
+          const currentActor = selectedActor || '000';
+          const jsonName = actorLookup[currentActor] || currentActor;
+          window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
+        }}
+        className="mt-4 w-full bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 active:scale-95 transition-transform cursor-pointer"
+      >
+        [Open Agent]
+      </button>
     </div>
   );
 }
