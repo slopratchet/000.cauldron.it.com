@@ -31,7 +31,7 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
