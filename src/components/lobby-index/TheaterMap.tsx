@@ -14,6 +14,14 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const iconIndexParam = params.get('iconIndex');
+      if (iconIndexParam !== null) {
+        setOffset(parseInt(iconIndexParam, 10) || 0);
+      }
+    }
+
     fetch('/data/lookups/actor.json')
       .then((res) => res.json())
       .then((data) => setActorLookup(data))
@@ -31,7 +39,17 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
+          onClick={() => {
+            const nextOffset = (offset + 9) % 1000;
+            setOffset(nextOffset);
+            if (typeof window !== 'undefined') {
+              const params = new URLSearchParams(window.location.search);
+              params.set('iconIndex', nextOffset.toString());
+              const newPath =
+                window.location.pathname + '?' + params.toString();
+              window.history.pushState(null, '', newPath);
+            }
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>

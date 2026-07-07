@@ -16,6 +16,10 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       setSelectedActor(params.get('actor'));
+      const iconIndexParam = params.get('iconIndex');
+      if (iconIndexParam !== null) {
+        setOffset(parseInt(iconIndexParam, 10) || 0);
+      }
     }
   }, []);
 
@@ -30,7 +34,17 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+          onClick={() => {
+            const nextOffset = (offset + 9) % 1000;
+            setOffset(nextOffset);
+            if (typeof window !== 'undefined') {
+              const params = new URLSearchParams(window.location.search);
+              params.set('iconIndex', nextOffset.toString());
+              const newPath =
+                window.location.pathname + '?' + params.toString();
+              window.history.pushState(null, '', newPath);
+            }
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
