@@ -31,15 +31,15 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 20) % 1000)}
+          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
       </h3>
 
       {/* Grid mapping space */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
-        {seats.map((seat, index) => {
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
+        {seats.slice(0, 9).map((seat, index) => {
           const actorId = ((index + offset) % 1000).toString().padStart(3, '0');
           const isSelected = selectedActor === actorId;
 
