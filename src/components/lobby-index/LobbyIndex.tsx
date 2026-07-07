@@ -516,7 +516,7 @@ export default function LobbyIndex() {
       <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex-grow flex flex-col relative z-10">
         {/* Simple Utility Navigation Rail */}
         {isHeaderVisible && (
-          <header className="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-black pb-3">
+          <header className="mb-0 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-black pb-3">
             <div className="flex items-center gap-2">
               <span className="text-xl font-bold font-anton tracking-widest text-[#000000] flex items-center gap-1.5">
                 ⊞ {schema.systemName}
@@ -566,7 +566,7 @@ export default function LobbyIndex() {
         {(isLandscapeVisible || isDiagnosticsVisible || isRegistryVisible) && (
           <section
             id="upper-grid-deck"
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-y-0 gap-x-6 items-stretch mb-0"
           >
             {/* Operational Landscape Image */}
             {isLandscapeVisible && (
@@ -598,7 +598,7 @@ export default function LobbyIndex() {
 
         {/* 3. LEDGER ARCHIVES TABLE */}
         {isLedgerVisible && (
-          <section id="ledger-history-section" className="mb-8">
+          <section id="ledger-history-section" className="mb-0">
             <LedgerTable
               sessions={schema.sessions}
               selectedSessionId={selectedSessionId}
@@ -609,12 +609,12 @@ export default function LobbyIndex() {
         )}
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
-          <section id="operational-control-deck" className="mb-8 w-full">
+          <section id="operational-control-deck" className="mb-0 w-full">
             <div className="w-full">
               <OperationalControl title="Operational Control" />
               <a
                 href="/000.pdf"
-                className="mt-4 block w-full border-2 border-black bg-[#E6E2D8] text-black py-3 text-center font-mono font-bold hard-shadow-sm uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
+                className="mt-0 block w-full border-2 border-black bg-[#E6E2D8] text-black py-3 text-center font-mono font-bold hard-shadow-sm uppercase tracking-wider hover:bg-black hover:text-white transition-colors"
                 download
               >
                 Download pdf of [campaign settings ]
@@ -626,7 +626,7 @@ export default function LobbyIndex() {
         {(isInputVisible || isLogsVisible) && (
           <section
             id="coordinate-diagnostics-deck"
-            className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch mb-8"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-y-0 gap-x-6 items-stretch mb-0"
           >
             {/* INPUT FORMS OVERRIDE */}
             {isInputVisible && (
@@ -698,7 +698,7 @@ export default function LobbyIndex() {
         {isLogsVisible && (
           <section
             id="system-logs-deck"
-            className="mb-8 w-full flex justify-center"
+            className="mb-0 w-full flex justify-center"
           >
             <div className="w-full max-w-[1280px]">
               <SystemLogs
