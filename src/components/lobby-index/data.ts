@@ -117,10 +117,10 @@ export const INITIAL_SYSTEM_LOGS: SystemLogEntry[] = [
   { timestamp: '14:02:11', text: 'PING SUCCESS', type: 'SUCCESS' },
 ];
 
-// Initialize 20 seats for Sector G (G-01 to G-20) with standard occupancy and web urls
+// Initialize 6 seats for Sector G (G-01 to G-06) with standard occupancy and web urls
 export const generateInitialSeats = (): Seat[] => {
-  // Pre-determined indices of occupied seats to match visual pattern of ~1/2 capacity out of 20
-  const occupiedIndices = [1, 2, 4, 6, 8, 10, 11, 13, 14, 15, 17, 19, 20];
+  // Pre-determined indices of occupied seats to match visual pattern of ~1/2 capacity out of 6
+  const occupiedIndices = [1, 2, 4, 6];
   const seats: Seat[] = [];
 
   const urls = [
@@ -146,7 +146,7 @@ export const generateInitialSeats = (): Seat[] => {
     'https://en.wikipedia.org/wiki/The_Jew_of_Malta',
   ];
 
-  for (let i = 1; i <= 20; i++) {
+  for (let i = 1; i <= 6; i++) {
     const id = `G-${i.toString().padStart(2, '0')}`;
     const isOccupied = occupiedIndices.includes(i);
     seats.push({
