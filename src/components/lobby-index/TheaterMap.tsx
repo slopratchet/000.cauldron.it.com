@@ -9,11 +9,18 @@ interface TheaterMapProps {
 }
 
 export default function TheaterMap({ seats }: TheaterMapProps) {
-  const [offset, setOffset] = useState<number>(0);
+  const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
   const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlIconIndex = params.get('iconIndex');
+      if (urlIconIndex !== null) {
+        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+      }
+    }
     fetch('/data/lookups/actor.json')
       .then((res) => res.json())
       .then((data) => setActorLookup(data))
@@ -31,7 +38,19 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
+          onClick={() => {
+            setIconIndex((prev) => {
+              const next = prev + 1;
+              if (typeof window !== 'undefined') {
+                const params = new URLSearchParams(window.location.search);
+                params.set('iconIndex', next.toString());
+                const newPath =
+                  window.location.pathname + '?' + params.toString();
+                window.history.pushState(null, '', newPath);
+              }
+              return next;
+            });
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
@@ -40,7 +59,9 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       {/* Grid mapping space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
         {seats.slice(0, 9).map((seat, index) => {
-          const actorId = ((index + offset) % 1000).toString().padStart(3, '0');
+          const actorId = ((index + iconIndex * 9) % 1000)
+            .toString()
+            .padStart(3, '0');
           const isSelected = selectedActor === actorId;
 
           return (

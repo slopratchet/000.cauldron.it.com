@@ -9,13 +9,17 @@ interface TheaterMapProps {
 }
 
 export default function TheaterMap({ seats }: TheaterMapProps) {
-  const [offset, setOffset] = useState<number>(0);
+  const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
 
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       setSelectedActor(params.get('actor'));
+      const urlIconIndex = params.get('iconIndex');
+      if (urlIconIndex !== null) {
+        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+      }
     }
   }, []);
 
@@ -30,7 +34,19 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         <button
           type="button"
           className="cursor-pointer"
-          onClick={() => setOffset((prev) => (prev + 6) % 1000)}
+          onClick={() => {
+            setIconIndex((prev) => {
+              const next = prev + 1;
+              if (typeof window !== 'undefined') {
+                const params = new URLSearchParams(window.location.search);
+                params.set('iconIndex', next.toString());
+                const newPath =
+                  window.location.pathname + '?' + params.toString();
+                window.history.pushState(null, '', newPath);
+              }
+              return next;
+            });
+          }}
         >
           <Grid className="w-4 h-4 text-white" />
         </button>
@@ -39,7 +55,9 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       {/* Grid mapping space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
         {seats.map((seat, index) => {
-          const actorId = ((index + offset) % 1000).toString().padStart(3, '0');
+          const actorId = ((index + iconIndex * 20) % 1000)
+            .toString()
+            .padStart(3, '0');
           const isSelected = selectedActor === actorId;
 
           return (
