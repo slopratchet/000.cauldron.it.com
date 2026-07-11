@@ -179,7 +179,7 @@ export default function OperationalLandscape({
       <div
         className={`w-full flex-grow bg-neutral-800 overflow-hidden flex items-center ${
           isFullScreen
-            ? 'fixed inset-0 z-[100] h-screen w-screen justify-center bg-black'
+            ? 'fixed inset-0 z-[100] h-[100dvh] w-screen justify-center bg-black'
             : 'relative justify-start lg:justify-center'
         }`}
       >
@@ -201,8 +201,8 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    width: 'min(100vw, calc(100dvh * 1280 / 720))',
+                    height: 'min(100dvh, calc(100vw * 720 / 1280))',
                     aspectRatio: '1280 / 720',
                   }
                 : { width: '100%', height: '100%' }
@@ -216,8 +216,8 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    width: 'min(100vw, calc(100dvh * 1280 / 720))',
+                    height: 'min(100dvh, calc(100vw * 720 / 1280))',
                     aspectRatio: '1280 / 720',
                   }
                 : { width: '100%', height: '100%' }
