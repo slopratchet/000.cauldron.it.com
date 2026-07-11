@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Grid } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Seat } from './types';
 
 interface TheaterMapProps {
@@ -35,31 +35,52 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       {/* Grid title panel */}
       <h3 className="text-sm font-bold uppercase border-b-2 border-white/20 pb-1.5 mb-4 flex items-center justify-between">
         <span>Theater Mapping</span>
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={() => {
-            setIconIndex((prev) => {
-              const next = prev + 1;
-              if (typeof window !== 'undefined') {
-                const params = new URLSearchParams(window.location.search);
-                params.set('iconIndex', next.toString());
-                const newPath =
-                  window.location.pathname + '?' + params.toString();
-                window.history.pushState(null, '', newPath);
-              }
-              return next;
-            });
-          }}
-        >
-          <Grid className="w-4 h-4 text-white" />
-        </button>
+        <div className="flex items-center gap-3">
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => {
+              setIconIndex((prev) => {
+                const next = prev - 1;
+                if (typeof window !== 'undefined') {
+                  const params = new URLSearchParams(window.location.search);
+                  params.set('iconIndex', next.toString());
+                  const newPath =
+                    window.location.pathname + '?' + params.toString();
+                  window.history.pushState(null, '', newPath);
+                }
+                return next;
+              });
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 text-white" />
+          </button>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => {
+              setIconIndex((prev) => {
+                const next = prev + 1;
+                if (typeof window !== 'undefined') {
+                  const params = new URLSearchParams(window.location.search);
+                  params.set('iconIndex', next.toString());
+                  const newPath =
+                    window.location.pathname + '?' + params.toString();
+                  window.history.pushState(null, '', newPath);
+                }
+                return next;
+              });
+            }}
+          >
+            <ArrowRight className="w-4 h-4 text-white" />
+          </button>
+        </div>
       </h3>
 
       {/* Grid mapping space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
         {seats.slice(0, 9).map((seat, index) => {
-          const actorId = ((index + iconIndex * 6) % 1000)
+          const actorId = ((((index + iconIndex * 6) % 1000) + 1000) % 1000)
             .toString()
             .padStart(3, '0');
           const isSelected = selectedActor === actorId;
