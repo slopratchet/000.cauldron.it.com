@@ -184,7 +184,7 @@ export default function OperationalControl({
       <div
         className={`w-full flex-grow bg-neutral-800 overflow-hidden flex items-center ${
           isFullScreen
-            ? 'fixed inset-0 z-[100] h-screen w-screen justify-center bg-black'
+            ? 'fixed inset-0 z-[100] h-dvh w-screen justify-center bg-black'
             : 'relative justify-start lg:justify-center'
         }`}
       >
@@ -206,8 +206,8 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1080 / 1260))',
-                    height: 'min(100vh, calc(100vw * 1260 / 1080))',
+                    width: 'min(100vw, calc(100dvh * 1080 / 1260))',
+                    height: 'min(100dvh, calc(100vw * 1260 / 1080))',
                     aspectRatio: '1080 / 1260',
                   }
                 : { width: '100%', height: '100%' }
@@ -221,8 +221,8 @@ export default function OperationalControl({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100vw, calc(100vh * 1080 / 1260))',
-                    height: 'min(100vh, calc(100vw * 1260 / 1080))',
+                    width: 'min(100vw, calc(100dvh * 1080 / 1260))',
+                    height: 'min(100dvh, calc(100vw * 1260 / 1080))',
                     aspectRatio: '1080 / 1260',
                   }
                 : { width: '100%', height: '100%' }
