@@ -85,18 +85,6 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           );
         })}
       </div>
-
-      {/* Status Legend indices */}
-      <div className="mt-auto flex flex-wrap gap-4 text-xs font-bold uppercase border-t border-white/20 pt-3">
-        <div className="flex items-center gap-1.5">
-          <span className="w-3.5 h-3.5 bg-white border border-white inline-block"></span>
-          <span>Active Toggle (White/On)</span>
-        </div>
-        <div className="flex items-center gap-1.5">
-          <span className="w-3.5 h-3.5 bg-black border border-neutral-700 inline-block"></span>
-          <span className="text-[#E6E2D8]">Inactive Toggle (Black/Off)</span>
-        </div>
-      </div>
     </div>
   );
 }
