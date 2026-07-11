@@ -16,6 +16,7 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
+      setSelectedActor(params.get('actor'));
       const urlIconIndex = params.get('iconIndex');
       if (urlIconIndex !== null) {
         setIconIndex(parseInt(urlIconIndex, 10) || 0);
