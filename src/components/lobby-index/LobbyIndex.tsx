@@ -570,7 +570,7 @@ export default function LobbyIndex() {
           >
             {/* Operational Landscape Image */}
             {isLandscapeVisible && (
-              <div className="lg:col-span-12">
+              <div className="lg:col-span-12 aspect-video">
                 <OperationalLandscape
                   title={schema.landscapeTitle}
                   imgRef={schema.landscapeImgRef}
