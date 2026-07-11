@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Grid } from 'lucide-react';
+import { ArrowLeft, ArrowRight } from 'lucide-react';
 import type { Seat } from './types';
 
 interface TheaterMapProps {
@@ -31,25 +31,46 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
       {/* Grid title panel */}
       <h3 className="text-sm font-bold uppercase border-b-2 border-white/20 pb-1.5 mb-4 flex items-center justify-between">
         <span>Theater Mapping</span>
-        <button
-          type="button"
-          className="cursor-pointer"
-          onClick={() => {
-            setIconIndex((prev) => {
-              const next = prev + 1;
-              if (typeof window !== 'undefined') {
-                const params = new URLSearchParams(window.location.search);
-                params.set('iconIndex', next.toString());
-                const newPath =
-                  window.location.pathname + '?' + params.toString();
-                window.history.pushState(null, '', newPath);
-              }
-              return next;
-            });
-          }}
-        >
-          <Grid className="w-4 h-4 text-white" />
-        </button>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => {
+              setIconIndex((prev) => {
+                const next = Math.max(0, prev - 1);
+                if (typeof window !== 'undefined') {
+                  const params = new URLSearchParams(window.location.search);
+                  params.set('iconIndex', next.toString());
+                  const newPath =
+                    window.location.pathname + '?' + params.toString();
+                  window.history.pushState(null, '', newPath);
+                }
+                return next;
+              });
+            }}
+          >
+            <ArrowLeft className="w-4 h-4 text-white" />
+          </button>
+          <button
+            type="button"
+            className="cursor-pointer"
+            onClick={() => {
+              setIconIndex((prev) => {
+                const next = prev + 1;
+                if (typeof window !== 'undefined') {
+                  const params = new URLSearchParams(window.location.search);
+                  params.set('iconIndex', next.toString());
+                  const newPath =
+                    window.location.pathname + '?' + params.toString();
+                  window.history.pushState(null, '', newPath);
+                }
+                return next;
+              });
+            }}
+          >
+            <ArrowRight className="w-4 h-4 text-white" />
+          </button>
+        </div>
       </h3>
 
       {/* Grid mapping space */}
