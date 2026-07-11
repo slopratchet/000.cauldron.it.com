@@ -16,6 +16,7 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
+      setSelectedActor(params.get('actor'));
       const urlIconIndex = params.get('iconIndex');
       if (urlIconIndex !== null) {
         setIconIndex(parseInt(urlIconIndex, 10) || 0);
@@ -114,12 +115,18 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
 
       <button
         type="button"
+        disabled={!selectedActor}
         onClick={() => {
-          const currentActor = selectedActor || '000';
+          if (!selectedActor) return;
+          const currentActor = selectedActor;
           const jsonName = actorLookup[currentActor] || currentActor;
           window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
         }}
-        className="mt-4 w-full bg-white text-black font-bold uppercase py-2 border-2 border-white hover:bg-neutral-200 active:scale-95 transition-transform cursor-pointer"
+        className={`mt-4 w-full font-bold uppercase py-2 border-2 transition-transform ${
+          selectedActor
+            ? 'bg-white text-black border-white hover:bg-neutral-200 active:scale-95 cursor-pointer'
+            : 'bg-transparent text-neutral-500 border-neutral-700 cursor-not-allowed opacity-50'
+        }`}
       >
         [Open Agent]
       </button>
