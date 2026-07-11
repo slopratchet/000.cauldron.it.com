@@ -15,13 +15,29 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      setSelectedActor(params.get('actor'));
       const urlIconIndex = params.get('iconIndex');
+      let currentIconIndex = 0;
       if (urlIconIndex !== null) {
-        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+        currentIconIndex = parseInt(urlIconIndex, 10) || 0;
+        setIconIndex(currentIconIndex);
+      }
+
+      const actorParam = params.get('actor');
+      if (actorParam) {
+        const paddedActor = actorParam.padStart(3, '0');
+        const visibleActors = seats.map((_, index) =>
+          ((((index + currentIconIndex * 20) % 1000) + 1000) % 1000)
+            .toString()
+            .padStart(3, '0'),
+        );
+        if (visibleActors.includes(paddedActor)) {
+          setSelectedActor(paddedActor);
+        } else {
+          setSelectedActor(null);
+        }
       }
     }
-  }, []);
+  }, [seats]);
 
   return (
     <div
