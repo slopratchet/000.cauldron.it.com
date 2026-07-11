@@ -58,8 +58,8 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
 
       {/* Grid mapping space */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-1.5 p-1 bg-black border border-white/20 mb-4 flex-grow justify-items-center items-center">
-        {seats.slice(0, 9).map((seat, index) => {
-          const actorId = ((index + iconIndex * 9) % 1000)
+        {seats.slice(0, 6).map((seat, index) => {
+          const actorId = ((index + iconIndex * 6) % 1000)
             .toString()
             .padStart(3, '0');
           const isSelected = selectedActor === actorId;
