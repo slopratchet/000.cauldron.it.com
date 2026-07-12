@@ -16,6 +16,16 @@ export default function OperationalLandscape({
   const [iframeSrc, setIframeSrc] = useState<string>('');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
+  const [viewportSize, setViewportSize] = useState({ width: 0, height: 0 });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportSize({ width: window.innerWidth, height: window.innerHeight });
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -179,7 +189,7 @@ export default function OperationalLandscape({
       <div
         className={`w-full flex-grow bg-neutral-800 overflow-hidden flex items-center ${
           isFullScreen
-            ? 'fixed inset-0 z-[100] h-screen w-screen justify-center bg-black'
+            ? 'fixed inset-0 z-[100] h-screen w-screen h-[100dvh] w-[100dvw] justify-center bg-black'
             : 'relative justify-start lg:justify-center'
         }`}
       >
@@ -199,10 +209,18 @@ export default function OperationalLandscape({
             title="Operational Landscape View"
             className="border-none block relative z-10 mx-auto w-full h-full"
             style={
-              isFullScreen
+              isFullScreen && viewportSize.height > 0
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    width:
+                      Math.min(
+                        viewportSize.width,
+                        (viewportSize.height * 1280) / 720,
+                      ) + 'px',
+                    height:
+                      Math.min(
+                        viewportSize.height,
+                        (viewportSize.width * 720) / 1280,
+                      ) + 'px',
                     aspectRatio: '1280 / 720',
                   }
                 : { width: '100%', height: '100%' }
@@ -214,10 +232,18 @@ export default function OperationalLandscape({
           <div
             className="flex items-center justify-center text-xs text-neutral-400 animate-pulse"
             style={
-              isFullScreen
+              isFullScreen && viewportSize.height > 0
                 ? {
-                    width: 'min(100vw, calc(100vh * 1280 / 720))',
-                    height: 'min(100vh, calc(100vw * 720 / 1280))',
+                    width:
+                      Math.min(
+                        viewportSize.width,
+                        (viewportSize.height * 1280) / 720,
+                      ) + 'px',
+                    height:
+                      Math.min(
+                        viewportSize.height,
+                        (viewportSize.width * 720) / 1280,
+                      ) + 'px',
                     aspectRatio: '1280 / 720',
                   }
                 : { width: '100%', height: '100%' }
