@@ -15,10 +15,30 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   useEffect(() => {
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
-      setSelectedActor(params.get('actor'));
+      const urlActor = params.get('actor');
+      const urlJson = params.get('json');
       const urlIconIndex = params.get('iconIndex');
+      let currentIconIndex = 0;
+
       if (urlIconIndex !== null) {
-        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+        currentIconIndex = parseInt(urlIconIndex, 10) || 0;
+        setIconIndex(currentIconIndex);
+      }
+
+      if (!urlActor || !urlJson) {
+        const firstActorId = (
+          (((0 + currentIconIndex * 20) % 1000) + 1000) %
+          1000
+        )
+          .toString()
+          .padStart(3, '0');
+        setSelectedActor(firstActorId);
+        params.set('actor', firstActorId);
+        params.set('json', firstActorId);
+        const newPath = window.location.pathname + '?' + params.toString();
+        window.history.replaceState(null, '', newPath);
+      } else {
+        setSelectedActor(urlActor);
       }
     }
   }, []);
