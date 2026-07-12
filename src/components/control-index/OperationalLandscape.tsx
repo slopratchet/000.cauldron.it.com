@@ -215,12 +215,10 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-
                     width: '1280px',
                     height: '720px',
                     transform: `scale(${scale})`,
                     transformOrigin: 'center center',
-
                   }
                 : { width: '100%', height: '100%' }
             }
@@ -233,12 +231,10 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-
                     width: '1280px',
                     height: '720px',
                     transform: `scale(${scale})`,
                     transformOrigin: 'center center',
-
                   }
                 : { width: '100%', height: '100%' }
             }
