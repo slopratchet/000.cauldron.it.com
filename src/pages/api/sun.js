@@ -40,6 +40,9 @@ export const GET = async (context) => {
       }
 
       // Proxy the upgrade request down to the Warden Worker
+      console.log(
+        `[SUN-PROXY] ☀️ Forwarding WebSocket handshake to Warden Worker...`,
+      );
       return await fetch(targetUrl.toString(), {
         headers: request.headers,
       });
@@ -81,8 +84,8 @@ export const GET = async (context) => {
     }
   };
 
-  console.log('the moon is going down ');
-  console.log('the sun is going up ');
+  console.log('[SUN-PROXY] 🌙 The moon is going down, the sun is going up...');
+  console.log('[SUN-PROXY] 📡 Sending HTTP request to Gatekeeper...');
 
   try {
     const bit = await queryFn();

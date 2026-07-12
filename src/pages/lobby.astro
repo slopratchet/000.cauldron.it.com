@@ -113,7 +113,7 @@ try {
         ws.onopen = () => {
           retryCount = 0;
           appendLog(
-            `[SYSTEM] Connected via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. Waiting for ticks...`,
+            `[SYSTEM] ✨ NEURAL LINK ESTABLISHED via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. All systems operational. Waiting for ticks...`,
             'SUCCESS',
           );
         };
@@ -134,6 +134,11 @@ try {
                 appendLog(
                   `<span class="text-yellow-500">[SECURITY ALERT] Neural Link established using MOCK DEVELOPMENT AUTH BYPASS (User: ${userId}).</span>`,
                   'WARNING',
+                );
+              } else {
+                appendLog(
+                  `<span class="text-cyan-400">[IDENTITY CONFIRMED] Warden verification successful for User: ${userId}.</span>`,
+                  'SUCCESS',
                 );
               }
               return;
