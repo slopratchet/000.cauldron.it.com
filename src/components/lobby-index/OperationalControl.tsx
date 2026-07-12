@@ -99,6 +99,28 @@ export default function OperationalControl({
         `🚀 [PARENT] Pointing iframe destination to: "${finalIframeUrl}"`,
       );
       setIframeSrc(finalIframeUrl);
+
+
+      const handleIframeLoad = () => {
+  if (iframeRef.current && iframeRef.current.contentWindow) {
+    const iframeWindow = iframeRef.current.contentWindow;
+
+    // Listen for hash changes inside the iframe automatically
+    iframeWindow.addEventListener('hashchange', () => {
+      console.log('🔄 [PARENT] Detected a Hash URL change inside the iframe:', iframeWindow.location.hash);
+    });
+
+    // Listen for custom SPA state updates or button clicks if needed
+    iframeWindow.addEventListener('popstate', () => {
+      console.log('🔄 [PARENT] Detected a History API URL change inside the iframe:', iframeWindow.location.search);
+    });
+  }
+};
+
+
+
+
+      
     };
 
     initIframe();
