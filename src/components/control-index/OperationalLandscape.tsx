@@ -16,6 +16,20 @@ export default function OperationalLandscape({
   const [iframeSrc, setIframeSrc] = useState<string>('');
   const [isFullScreen, setIsFullScreen] = useState(false);
   const [token, setToken] = useState<string | null>(null);
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (isFullScreen) {
+        setScale(Math.min(window.innerWidth / 1280, window.innerHeight / 720));
+      } else {
+        setScale(1);
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [isFullScreen]);
 
   useEffect(() => {
     if (isFullScreen) {
@@ -201,9 +215,12 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100dvw, calc(100dvh * 1280 / 720))',
-                    height: 'min(100dvh, calc(100dvw * 720 / 1280))',
-                    aspectRatio: '1280 / 720',
+
+                    width: '1280px',
+                    height: '720px',
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'center center',
+
                   }
                 : { width: '100%', height: '100%' }
             }
@@ -216,9 +233,12 @@ export default function OperationalLandscape({
             style={
               isFullScreen
                 ? {
-                    width: 'min(100dvw, calc(100dvh * 1280 / 720))',
-                    height: 'min(100dvh, calc(100dvw * 720 / 1280))',
-                    aspectRatio: '1280 / 720',
+
+                    width: '1280px',
+                    height: '720px',
+                    transform: `scale(${scale})`,
+                    transformOrigin: 'center center',
+
                   }
                 : { width: '100%', height: '100%' }
             }
