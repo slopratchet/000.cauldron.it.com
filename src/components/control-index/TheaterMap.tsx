@@ -11,16 +11,46 @@ interface TheaterMapProps {
 export default function TheaterMap({ seats }: TheaterMapProps) {
   const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
+  const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
 
   useEffect(() => {
+    let currentIconIndex = 0;
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
       setSelectedActor(params.get('actor'));
       const urlIconIndex = params.get('iconIndex');
       if (urlIconIndex !== null) {
-        setIconIndex(parseInt(urlIconIndex, 10) || 0);
+        currentIconIndex = parseInt(urlIconIndex, 10) || 0;
+        setIconIndex(currentIconIndex);
       }
     }
+    fetch('/data/lookups/actor.json')
+      .then((res) => res.json())
+      .then((data) => {
+        setActorLookup(data);
+        if (typeof window !== 'undefined') {
+          const params = new URLSearchParams(window.location.search);
+          const currentActor = params.get('actor');
+          const currentJson = params.get('json');
+          if (!currentActor || !currentJson) {
+            const firstActorId = (
+              (((0 + currentIconIndex * 20) % 1000) + 1000) %
+              1000
+            )
+              .toString()
+              .padStart(3, '0');
+            setSelectedActor(firstActorId);
+            params.set('actor', firstActorId);
+            params.set('json', data[firstActorId] || firstActorId);
+            window.history.replaceState(
+              null,
+              '',
+              window.location.pathname + '?' + params.toString(),
+            );
+          }
+        }
+      })
+      .catch((err) => console.error('Failed to load actor lookup:', err));
   }, []);
 
   return (
