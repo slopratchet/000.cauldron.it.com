@@ -72,6 +72,8 @@ try {
         tempDiv.innerHTML = htmlContent;
         const plainText = tempDiv.textContent || tempDiv.innerText || '';
 
+        console.log(`[LobbyHost] [${type}] ${plainText}`);
+
         window.dispatchEvent(
           new CustomEvent('lobby-system-log', {
             detail: { text: plainText, type },
