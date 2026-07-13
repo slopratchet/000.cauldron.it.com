@@ -182,6 +182,13 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'sower_backup_failed') {
+              appendLog(
+                `<span class="text-red-500">[ARCHIVIST WARNING] Out-of-band backup failed: ${parsed.payload?.error || 'Unknown error'}. Check server credentials and R2 bindings.</span>`,
+                'WARNING',
+              );
+              return;
+            }
             if (parsed && parsed.type === 'character_swapped') {
               appendLog(
                 `<span class="text-cyan-400">[ACTOR ENGINE] Character session successfully hot-swapped to [${parsed.payload?.characterId}] in memory.</span>`,
