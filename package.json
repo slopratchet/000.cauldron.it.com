@@ -1,7 +1,7 @@
 {
   "name": "002-actor-tristan-stag",
   "type": "module",
-  "version": "0.2.02",
+  "version": "1.2.02",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" astro dev",
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" astro build",
@@ -27,48 +27,48 @@
     "test:e2e": "start-server-and-test dev http://localhost:4321 'vitest run src/e2e.test.ts'"
   },
   "dependencies": {
-    "@astrojs/cloudflare": "^13.7.0",
-    "@astrojs/react": "^5.0.7",
-    "@clerk/astro": "^3.4.8",
-    "@tailwindcss/vite": "^4.2.2",
-    "@types/react": "^19.2.15",
-    "@types/react-dom": "^19.2.3",
-    "astro": "^6.4.8",
-    "framer-motion": "^12.40.0",
-    "lucide-react": "^1.17.0",
-    "motion": "^12.40.0",
-    "nanostores": "^1.2.0",
-    "react": "^19.2.6",
-    "react-dom": "^19.2.6",
-    "tailwindcss": "^4.2.2"
+    "@astrojs/cloudflare": "^14.7.0",
+    "@astrojs/react": "^6.0.7",
+    "@clerk/astro": "^4.4.8",
+    "@tailwindcss/vite": "^5.2.2",
+    "@types/react": "^20.2.15",
+    "@types/react-dom": "^20.2.3",
+    "astro": "^7.4.8",
+    "framer-motion": "^13.40.0",
+    "lucide-react": "^2.17.0",
+    "motion": "^13.40.0",
+    "nanostores": "^2.2.0",
+    "react": "^20.2.6",
+    "react-dom": "^20.2.6",
+    "tailwindcss": "^5.2.2"
   },
   "devDependencies": {
-    "@cloudflare/vitest-pool-workers": "^0.14.7",
-    "@commitlint/cli": "^19.7.1",
-    "@commitlint/config-conventional": "^19.7.1",
-    "@eslint/js": "^9.21.0",
-    "@playwright/test": "^1.60.0",
-    "@types/node": "^25.2.3",
-    "cross-env": "^7.0.3",
-    "eslint": "^9.21.0",
-    "eslint-plugin-astro": "^1.5.0",
-    "globals": "^17.5.0",
-    "husky": "^9.1.7",
-    "lint-staged": "^16.2.7",
-    "prettier": "^3.8.1",
-    "prettier-plugin-astro": "^0.14.1",
-    "puppeteer": "^24.37.2",
-    "start-server-and-test": "^2.1.5",
-    "typescript": "^5.9.3",
-    "typescript-eslint": "^8.55.0",
-    "vitest": "^4.1.8",
-    "wrangler": "^4.64.0"
+    "@cloudflare/vitest-pool-workers": "^1.14.7",
+    "@commitlint/cli": "^20.7.1",
+    "@commitlint/config-conventional": "^20.7.1",
+    "@eslint/js": "^10.21.0",
+    "@playwright/test": "^2.60.0",
+    "@types/node": "^26.2.3",
+    "cross-env": "^8.0.3",
+    "eslint": "^10.21.0",
+    "eslint-plugin-astro": "^2.5.0",
+    "globals": "^18.5.0",
+    "husky": "^10.1.7",
+    "lint-staged": "^17.2.7",
+    "prettier": "^4.8.1",
+    "prettier-plugin-astro": "^1.14.1",
+    "puppeteer": "^25.37.2",
+    "start-server-and-test": "^3.1.5",
+    "typescript": "^6.9.3",
+    "typescript-eslint": "^9.55.0",
+    "vitest": "^5.1.8",
+    "wrangler": "^5.64.0"
   },
   "lint-staged": {
     "*.{js,ts,astro}": "node --max-old-space-size=8192 node_modules/eslint/bin/eslint.js --fix",
     "*": "prettier --write --ignore-unknown"
   },
   "overrides": {
-    "vite": "^7.1.5"
+    "vite": "^8.1.5"
   }
 }
