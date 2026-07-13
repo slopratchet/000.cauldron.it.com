@@ -30,11 +30,9 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         setActorLookup(data);
         if (typeof window !== 'undefined') {
           const params = new URLSearchParams(window.location.search);
-          if (!params.get('actor') || !params.get('json')) {
-            const actorId = (
-              (((0 + currentIconIndex * 6) % 1000) + 1000) %
-              1000
-            )
+          let actorId = params.get('actor');
+          if (!actorId || !params.get('json')) {
+            actorId = ((((0 + currentIconIndex * 6) % 1000) + 1000) % 1000)
               .toString()
               .padStart(3, '0');
             const jsonName = data[actorId] || actorId;
@@ -43,7 +41,16 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
             params.set('json', jsonName);
             const newPath = window.location.pathname + '?' + params.toString();
             window.history.replaceState(null, '', newPath);
+          } else {
+            setSelectedActor(actorId);
           }
+
+          // Dispatch initial selection coordinates to the host page websocket loop
+          window.dispatchEvent(
+            new CustomEvent('lobby-ws-send', {
+              detail: { type: 'CHARACTER_SELECT', characterId: actorId },
+            }),
+          );
         }
       })
       .catch((err) => console.error('Failed to load actor lookup:', err));
@@ -120,6 +127,17 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
                 const newPath =
                   window.location.pathname + '?' + params.toString();
                 window.history.pushState(null, '', newPath);
+
+                if (typeof window !== 'undefined') {
+                  window.dispatchEvent(
+                    new CustomEvent('lobby-ws-send', {
+                      detail: {
+                        type: 'CHARACTER_SELECT',
+                        characterId: actorId,
+                      },
+                    }),
+                  );
+                }
               }}
               title={`Actor ${actorId}`}
               className={`w-[180px] h-[90px] border-2 cursor-pointer transition-all duration-75 hover:scale-105 active:scale-95 flex items-center justify-center font-bold text-xs ${

@@ -47,6 +47,7 @@ try {
     // WebSocket Connection
     {
       let ws;
+      let pendingCharacterSelect = null;
       let usingFallback = false;
       let retryCount = 0;
       let hasReceivedTick = false;
@@ -120,6 +121,26 @@ try {
           );
           // Dictate LOBBY role to suppress high-frequency simulation ticks
           ws.send(JSON.stringify({ type: 'DEVICE_ROLE', role: 'LOBBY' }));
+
+          // Execute initial CHARACTER_SELECT dispatch if queued, otherwise check URL query param
+          const initialSelect =
+            pendingCharacterSelect ||
+            (() => {
+              const params = new URLSearchParams(window.location.search);
+              const actor = params.get('actor');
+              return actor
+                ? { type: 'CHARACTER_SELECT', characterId: actor }
+                : null;
+            })();
+
+          if (initialSelect) {
+            ws.send(JSON.stringify(initialSelect));
+            appendLog(
+              `[SYSTEM] Relaying agent selection coordinates to core... [${initialSelect.characterId}]`,
+              'INFO',
+            );
+            pendingCharacterSelect = null;
+          }
         };
 
         ws.onmessage = (event) => {
@@ -150,6 +171,20 @@ try {
             if (parsed && parsed.type === 'device_role_acknowledged') {
               appendLog(
                 `[SYSTEM] Role acknowledged as [${parsed.payload?.role}].`,
+                'SUCCESS',
+              );
+              return;
+            }
+            if (parsed && parsed.type === 'sower_backup_complete') {
+              appendLog(
+                `<span class="text-green-400">[ARCHIVIST] Database entity successfully backed up to cold storage in background.</span>`,
+                'SUCCESS',
+              );
+              return;
+            }
+            if (parsed && parsed.type === 'character_swapped') {
+              appendLog(
+                `<span class="text-cyan-400">[ACTOR ENGINE] Character session successfully hot-swapped to [${parsed.payload?.characterId}] in memory.</span>`,
                 'SUCCESS',
               );
               return;
@@ -215,6 +250,18 @@ try {
       };
 
       connect();
+
+      window.addEventListener('lobby-ws-send', (e: any) => {
+        if (ws && ws.readyState === WebSocket.OPEN) {
+          ws.send(JSON.stringify(e.detail));
+          appendLog(
+            `[SYSTEM] Relaying agent selection coordinates to core... [${e.detail.characterId}]`,
+            'INFO',
+          );
+        } else {
+          pendingCharacterSelect = e.detail;
+        }
+      });
     }
   </script>
 </Layout>
