@@ -16,6 +16,7 @@ const ACCESS_CONFIG = {
     '/log-in',
     '/sign-up',
     '/api/moon',
+    '/api/sun',
     '/api/gitAgent',
     // '/market',
     '/location',
