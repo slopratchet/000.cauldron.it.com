@@ -116,6 +116,8 @@ try {
             `[SYSTEM] ✨ NEURAL LINK ESTABLISHED via ${isFallback ? 'direct worker fallback' : 'API /api/sun'}. All systems operational. Waiting for ticks...`,
             'SUCCESS',
           );
+          // Dictate LOBBY role to suppress high-frequency simulation ticks
+          ws.send(JSON.stringify({ type: 'DEVICE_ROLE', role: 'LOBBY' }));
         };
 
         ws.onmessage = (event) => {
@@ -141,6 +143,13 @@ try {
                   'SUCCESS',
                 );
               }
+              return;
+            }
+            if (parsed && parsed.type === 'device_role_acknowledged') {
+              appendLog(
+                `[SYSTEM] Role acknowledged as [${parsed.payload?.role}].`,
+                'SUCCESS',
+              );
               return;
             }
             data = JSON.stringify(parsed);
