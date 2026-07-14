@@ -196,6 +196,13 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'spatial_diagnostic') {
+              appendLog(
+                `<span class="text-fuchsia-400">[SPATIAL HIERARCHY] ${parsed.payload?.message}</span>`,
+                'INFO',
+              );
+              return;
+            }
             data = JSON.stringify(parsed);
           } catch (e) {}
           appendLog(
