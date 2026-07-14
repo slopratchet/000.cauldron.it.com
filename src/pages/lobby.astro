@@ -217,6 +217,13 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'straightjacket_diagnostic') {
+              appendLog(
+                `<span class="text-emerald-400">[STRAIGHTJACKET] ${parsed.payload?.message}</span>`,
+                'INFO',
+              );
+              return;
+            }
             data = JSON.stringify(parsed);
           } catch (e) {}
           appendLog(
