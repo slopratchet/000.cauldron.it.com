@@ -203,6 +203,20 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'gillian_diagnostic') {
+              appendLog(
+                `<span class="text-orange-400">[GILLIAN-BASE] ${parsed.payload?.message}</span>`,
+                'INFO',
+              );
+              return;
+            }
+            if (parsed && parsed.type === 'deterministic_diagnostic') {
+              appendLog(
+                `<span class="text-blue-400">[PURE FUNCTION] ${parsed.payload?.message}</span>`,
+                'INFO',
+              );
+              return;
+            }
             data = JSON.stringify(parsed);
           } catch (e) {}
           appendLog(
