@@ -231,6 +231,15 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'nomad_diagnostic') {
+              const isError =
+                parsed.payload?.message?.includes('[CRITICAL FAILURE]');
+              appendLog(
+                `<span class="${isError ? 'text-red-500 font-bold' : 'text-amber-400'}">[THE NOMAD] ${parsed.payload?.message}</span>`,
+                isError ? 'ERROR' : 'INFO',
+              );
+              return;
+            }
             if (parsed && parsed.type === 'warden_diagnostic') {
               const isError =
                 parsed.payload?.message?.includes('[CRITICAL FAILURE]');
