@@ -224,6 +224,13 @@ try {
               );
               return;
             }
+            if (parsed && parsed.type === 'spatial_integrity_diagnostic') {
+              appendLog(
+                `<span class="text-purple-400">[SPATIAL INTEGRITY] ${parsed.payload?.message}</span>`,
+                'INFO',
+              );
+              return;
+            }
             data = JSON.stringify(parsed);
           } catch (e) {}
           appendLog(
