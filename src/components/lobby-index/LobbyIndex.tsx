@@ -105,6 +105,7 @@ export default function LobbyIndex() {
 
   // Schema DB Viewer visibility state driven by URL variable (?schema=true, ?db=true, ?editor=true, ?database=true)
   const [showDbEditor, setShowDbEditor] = useState(false);
+  const [showSystemLogsUrl, setShowSystemLogsUrl] = useState(false);
 
   // Raw text value for the editable JSON database representation
   const [jsonText, setJsonText] = useState<string>(
@@ -126,6 +127,7 @@ export default function LobbyIndex() {
       params.get('database') === 'true' ||
       params.get('db') === 'true';
     setShowDbEditor(hasParam);
+    setShowSystemLogsUrl(params.get('logs') === 'true');
   }, []);
 
   const toggleDbEditor = () => {
@@ -695,7 +697,7 @@ export default function LobbyIndex() {
         )}
 
         {/* SYSTEM LOGS — FULL-WIDTH CENTERED */}
-        {isLogsVisible && (
+        {isLogsVisible && showSystemLogsUrl && (
           <section
             id="system-logs-deck"
             className="mb-0 w-full flex justify-center"
