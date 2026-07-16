@@ -106,6 +106,7 @@ export default function LobbyIndex() {
   // Schema DB Viewer visibility state driven by URL variable (?schema=true, ?db=true, ?editor=true, ?database=true)
   const [showDbEditor, setShowDbEditor] = useState(false);
   const [showSystemLogsUrl, setShowSystemLogsUrl] = useState(false);
+  const [showClerkDataUrl, setShowClerkDataUrl] = useState(false);
 
   // Raw text value for the editable JSON database representation
   const [jsonText, setJsonText] = useState<string>(
@@ -128,6 +129,7 @@ export default function LobbyIndex() {
       params.get('db') === 'true';
     setShowDbEditor(hasParam);
     setShowSystemLogsUrl(params.get('logs') === 'true');
+    setShowClerkDataUrl(params.get('clerkdata') === 'true');
   }, []);
 
   const toggleDbEditor = () => {
@@ -625,7 +627,7 @@ export default function LobbyIndex() {
           </section>
         )}
         {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
-        {(isInputVisible || isLogsVisible) && (
+        {(isInputVisible || showClerkDataUrl) && (
           <section
             id="coordinate-diagnostics-deck"
             className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch mb-0"
@@ -633,7 +635,7 @@ export default function LobbyIndex() {
             {/* INPUT FORMS OVERRIDE */}
             {isInputVisible && (
               <div
-                className={`${isLogsVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
+                className={`${showClerkDataUrl ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
                 <CommandPanel
                   onExecuteQuery={handleExecuteQuery}
@@ -643,8 +645,8 @@ export default function LobbyIndex() {
               </div>
             )}
 
-            {/* SYSTEM EVENT LOGS */}
-            {isLogsVisible && (
+            {/* CLERK DATA SCHEMA */}
+            {showClerkDataUrl && (
               <div
                 className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
