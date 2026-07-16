@@ -184,12 +184,7 @@ export default function OperationalControl({
   return (
     <div
       id="landscape-container"
-      className="border-4 border-black bg-white overflow-hidden flex flex-col h-full font-mono relative"
-      style={{
-        width: '1080px',
-        height: '1080px',
-        maxWidth: '100%',
-      }}
+      className="border-4 border-black bg-white overflow-hidden flex flex-col w-full h-full font-mono relative"
     >
       <div className="bg-black text-white px-4 py-1 text-xs uppercase flex justify-between tracking-widest font-bold z-20">
         <span className="flex items-center gap-1">
