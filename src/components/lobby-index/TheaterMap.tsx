@@ -12,8 +12,16 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
   const [iconIndex, setIconIndex] = useState<number>(0);
   const [selectedActor, setSelectedActor] = useState<string | null>(null);
   const [actorLookup, setActorLookup] = useState<Record<string, string>>({});
+  const [clickState, setClickState] = useState<string>('00');
 
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const urlClick = params.get('click');
+      if (urlClick) {
+        setClickState(urlClick);
+      }
+    }
     let currentIconIndex = 0;
     if (typeof window !== 'undefined') {
       const params = new URLSearchParams(window.location.search);
@@ -167,7 +175,7 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
             : 'bg-transparent text-neutral-500 border-neutral-700 cursor-not-allowed opacity-50'
         }`}
       >
-        [Open Agent]
+        {clickState === '01' ? '[Create Agent]' : '[Open Agent]'}
       </button>
     </div>
   );
