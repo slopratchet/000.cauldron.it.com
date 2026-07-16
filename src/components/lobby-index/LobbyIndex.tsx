@@ -106,6 +106,9 @@ export default function LobbyIndex() {
   // Schema DB Viewer visibility state driven by URL variable (?schema=true, ?db=true, ?editor=true, ?database=true)
   const [showDbEditor, setShowDbEditor] = useState(false);
 
+  // Clerk Data Viewer visibility state driven by URL variable (?clerkdata=true)
+  const [showClerkData, setShowClerkData] = useState(false);
+
   // Raw text value for the editable JSON database representation
   const [jsonText, setJsonText] = useState<string>(
     JSON.stringify(getInitialSchemaState(), null, 2),
@@ -126,6 +129,9 @@ export default function LobbyIndex() {
       params.get('database') === 'true' ||
       params.get('db') === 'true';
     setShowDbEditor(hasParam);
+
+    const hasClerkData = params.get('clerkdata') === 'true';
+    setShowClerkData(hasClerkData);
   }, []);
 
   const toggleDbEditor = () => {
@@ -641,8 +647,8 @@ export default function LobbyIndex() {
               </div>
             )}
 
-            {/* SYSTEM EVENT LOGS */}
-            {isLogsVisible && (
+            {/* CLERK DATA SCHEMA */}
+            {showClerkData && (
               <div
                 className={`${isInputVisible ? 'lg:col-span-6' : 'lg:col-span-12'} flex flex-col justify-between`}
               >
