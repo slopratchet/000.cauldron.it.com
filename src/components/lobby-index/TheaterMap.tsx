@@ -164,7 +164,10 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
           if (!selectedActor) return;
           const currentActor = selectedActor;
           const jsonName = actorLookup[currentActor] || currentActor;
-          window.location.href = `/character-select?actor=${currentActor}&json=${jsonName}`;
+          const params = new URLSearchParams(window.location.search);
+          params.set('actor', currentActor);
+          params.set('json', jsonName);
+          window.location.href = `/character-select?${params.toString()}`;
         }}
         className={`mt-4 w-full font-bold uppercase py-2 border-2 transition-transform ${
           selectedActor
