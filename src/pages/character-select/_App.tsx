@@ -201,7 +201,13 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-tinos text-base selection:bg-ink selection:text-parchment pb-12">
+    <div className="min-h-screen flex flex-col font-tinos text-base selection:bg-ink selection:text-parchment pb-12 relative">
+      <a
+        href="/lobby"
+        className="absolute top-0 left-0 z-50 bg-black text-white border-r-2 border-b-2 border-black font-mono text-xs md:text-sm px-3 py-1 uppercase hover:bg-white hover:text-black transition-colors"
+      >
+        [ Return to Lobby ]
+      </a>
       {/* Database Schema Console Panel at the very top */}
       {showConsole && (
         <div className="p-4 md:p-8 bg-zinc-100 border-b-4 border-ink">
