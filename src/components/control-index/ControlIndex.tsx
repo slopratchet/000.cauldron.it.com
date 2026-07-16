@@ -550,7 +550,10 @@ export default function LobbyIndex() {
 
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
-          <section id="operational-control-deck" className="mb-8 w-full aspect-[1080/1260]">
+          <section
+            id="operational-control-deck"
+            className="mb-8 w-full aspect-[1080/1260]"
+          >
             <div className="w-full aspect-[1080/1260]">
               <OperationalControl title="Operational Control" />
             </div>
