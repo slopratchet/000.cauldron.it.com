@@ -171,8 +171,8 @@ describe('Spatial Integrity & Character Hot-Swaps', () => {
     const url = await page.url();
     expect(url).toContain('actor=005');
 
-    // Verify the Canvas container is mounted (meaning the App didn't crash)
-    const gameContainer = await page.$('#game-container');
+    // Verify the application container is mounted (meaning the App didn't crash)
+    const gameContainer = await page.$('#application-container');
     expect(gameContainer).not.toBeNull();
   }, 30000);
 });
