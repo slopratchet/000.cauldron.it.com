@@ -613,8 +613,11 @@ export default function LobbyIndex() {
         )}
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
-          <section id="operational-control-deck" className="mb-0 w-full">
-            <div className="w-full">
+          <section
+            id="operational-control-deck"
+            className="mb-0 w-full aspect-square"
+          >
+            <div className="w-full aspect-square">
               <OperationalControl title="Operational Control" />
               <a
                 href="/000.pdf"
