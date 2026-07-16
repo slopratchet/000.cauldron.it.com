@@ -117,6 +117,8 @@ export default function LobbyIndex() {
   // To prevent circular re-stringification on user typing edits
   const isInternalUpdatingRef = useRef(false);
 
+  const [showLogsParam, setShowLogsParam] = useState(false);
+
   // Detect URL parameter on mount
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -126,6 +128,7 @@ export default function LobbyIndex() {
       params.get('database') === 'true' ||
       params.get('db') === 'true';
     setShowDbEditor(hasParam);
+    setShowLogsParam(params.get('logs') === 'true');
   }, []);
 
   const toggleDbEditor = () => {
@@ -695,7 +698,7 @@ export default function LobbyIndex() {
         )}
 
         {/* SYSTEM LOGS — FULL-WIDTH CENTERED */}
-        {isLogsVisible && (
+        {isLogsVisible && showLogsParam && (
           <section
             id="system-logs-deck"
             className="mb-0 w-full flex justify-center"
