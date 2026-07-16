@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { ArrowLeft } from 'lucide-react';
 import { defaultCampaignData } from './_defaultData';
 import type { CampaignDatabaseSchema } from './_types';
 import CampaignSchemaConsole from './_components/CampaignSchemaConsole';
@@ -202,6 +203,13 @@ export default function App() {
 
   return (
     <div className="min-h-screen flex flex-col font-tinos text-base selection:bg-ink selection:text-parchment pb-12">
+      <a
+        href="/lobby"
+        className="fixed top-0 left-0 border-2 border-black bg-white hard-shadow-sm p-2 hover:bg-black hover:text-white transition-colors z-50 flex items-center justify-center cursor-pointer"
+        title="Back to Lobby"
+      >
+        <ArrowLeft className="w-6 h-6 md:w-8 md:h-8" />
+      </a>
       {/* Database Schema Console Panel at the very top */}
       {showConsole && (
         <div className="p-4 md:p-8 bg-zinc-100 border-b-4 border-ink">
