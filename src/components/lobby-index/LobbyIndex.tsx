@@ -634,10 +634,10 @@ export default function LobbyIndex() {
                   }
                 }}
               >
-                <input
-                  type="text"
+                <textarea
                   name="override_cmd"
-                  className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 hard-shadow-sm uppercase"
+                  rows={6}
+                  className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 hard-shadow-sm uppercase resize-none"
                   placeholder="ENTER COMMAND OVERRIDE..."
                   autoComplete="off"
                 />
