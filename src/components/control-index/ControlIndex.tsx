@@ -554,8 +554,37 @@ export default function LobbyIndex() {
             id="operational-control-deck"
             className="mb-8 w-full aspect-[1080/1260]"
           >
-            <div className="w-full aspect-[1080/1260]">
-              <OperationalControl title="Operational Control" />
+            <div className="w-full aspect-[1080/1260] flex flex-col">
+              <div className="flex-grow overflow-hidden">
+                <OperationalControl title="Operational Control" />
+              </div>
+
+              <form
+                className="mt-4 flex gap-4 w-full"
+                onSubmit={(e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const val = formData.get('override_cmd');
+                  if (val && typeof val === 'string') {
+                    handleAddLog(`[MANUAL INPUT] ${val}`, 'WARNING');
+                    e.currentTarget.reset();
+                  }
+                }}
+              >
+                <input
+                  type="text"
+                  name="override_cmd"
+                  className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 hard-shadow-sm uppercase"
+                  placeholder="ENTER COMMAND OVERRIDE..."
+                  autoComplete="off"
+                />
+                <button
+                  type="submit"
+                  className="border-2 border-black bg-black text-[#E6E2D8] px-8 font-mono font-bold hover:bg-neutral-800 transition-colors uppercase tracking-wider hard-shadow-sm cursor-pointer"
+                >
+                  Execute
+                </button>
+              </form>
             </div>
           </section>
         )}
