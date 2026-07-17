@@ -566,58 +566,13 @@ export default function LobbyIndex() {
           </div>
         )}
 
-        {/* 2. UPPER REGISTRY & IMAGING PANEL */}
-        {(isLandscapeVisible || isDiagnosticsVisible || isRegistryVisible) && (
-          <section
-            id="upper-grid-deck"
-            className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch mb-0"
-          >
-            {/* Operational Landscape Image */}
-            {isLandscapeVisible && (
-              <div className="lg:col-span-12 aspect-video">
-                <OperationalLandscape
-                  title={schema.landscapeTitle}
-                  imgRef={schema.landscapeImgRef}
-                />
-              </div>
-            )}
-
-            {/* Diagnostics & Registry */}
-            {(isDiagnosticsVisible || isRegistryVisible) && (
-              <div className="lg:col-span-12 flex flex-col gap-4">
-                <HeaderBanner
-                  seats={schema.seats}
-                  onAddLog={handleAddLog}
-                  operator={schema.operator}
-                  onOperatorChange={handleOperatorChange}
-                  encryption={schema.encryption}
-                  onEncryptionChange={handleEncryptionChange}
-                  showDiagnostics={isDiagnosticsVisible}
-                  showRegistry={isRegistryVisible}
-                />
-              </div>
-            )}
-          </section>
-        )}
-
-        {/* 3. LEDGER ARCHIVES TABLE */}
-        {isLedgerVisible && (
-          <section id="ledger-history-section" className="mb-0">
-            <LedgerTable
-              sessions={schema.sessions}
-              selectedSessionId={selectedSessionId}
-              onSelectSession={(session) => setSelectedSessionId(session.id)}
-              onAddLog={handleAddLog}
-            />
-          </section>
-        )}
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
           <section
             id="operational-control-deck"
-            className="mb-0 w-full aspect-square"
+            className="mb-0 w-full aspect-video"
           >
-            <div className="w-full aspect-square flex flex-col">
+            <div className="w-full aspect-video flex flex-col">
               <div className="flex-grow overflow-hidden">
                 <OperationalControl title="Operational Control" />
               </div>
@@ -657,6 +612,52 @@ export default function LobbyIndex() {
                 Download pdf of [campaign settings ]
               </a>
             </div>
+          </section>
+        )}
+
+        {/* 3. LEDGER ARCHIVES TABLE */}
+        {isLedgerVisible && (
+          <section id="ledger-history-section" className="mb-0">
+            <LedgerTable
+              sessions={schema.sessions}
+              selectedSessionId={selectedSessionId}
+              onSelectSession={(session) => setSelectedSessionId(session.id)}
+              onAddLog={handleAddLog}
+            />
+          </section>
+        )}
+
+        {/* 2. UPPER REGISTRY & IMAGING PANEL */}
+        {(isLandscapeVisible || isDiagnosticsVisible || isRegistryVisible) && (
+          <section
+            id="upper-grid-deck"
+            className="grid grid-cols-1 lg:grid-cols-12 gap-0 items-stretch mb-0"
+          >
+            {/* Operational Landscape Image */}
+            {isLandscapeVisible && (
+              <div className="lg:col-span-12 aspect-video">
+                <OperationalLandscape
+                  title={schema.landscapeTitle}
+                  imgRef={schema.landscapeImgRef}
+                />
+              </div>
+            )}
+
+            {/* Diagnostics & Registry */}
+            {(isDiagnosticsVisible || isRegistryVisible) && (
+              <div className="lg:col-span-12 flex flex-col gap-4">
+                <HeaderBanner
+                  seats={schema.seats}
+                  onAddLog={handleAddLog}
+                  operator={schema.operator}
+                  onOperatorChange={handleOperatorChange}
+                  encryption={schema.encryption}
+                  onEncryptionChange={handleEncryptionChange}
+                  showDiagnostics={isDiagnosticsVisible}
+                  showRegistry={isRegistryVisible}
+                />
+              </div>
+            )}
           </section>
         )}
         {/* 4. DYNAMIC SHREDDED GRID SYSTEM */}
