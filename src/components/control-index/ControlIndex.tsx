@@ -571,13 +571,14 @@ export default function LobbyIndex() {
                   }
                 }}
               >
-                <input
-                  type="text"
+                <textarea
+                  rows={6}
+                  style={{ resize: 'none' }}
                   name="override_cmd"
                   className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 hard-shadow-sm uppercase"
                   placeholder="ENTER COMMAND OVERRIDE..."
                   autoComplete="off"
-                />
+                ></textarea>
                 <button
                   type="submit"
                   className="border-2 border-black bg-black text-[#E6E2D8] px-8 font-mono font-bold hover:bg-neutral-800 transition-colors uppercase tracking-wider hard-shadow-sm cursor-pointer"
