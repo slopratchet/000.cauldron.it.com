@@ -552,9 +552,9 @@ export default function LobbyIndex() {
         {isLogsVisible && (
           <section
             id="operational-control-deck"
-            className="mb-8 w-full aspect-video"
+            className="mb-8 w-full aspect-[16/18]"
           >
-            <div className="w-full aspect-video flex flex-col">
+            <div className="w-full aspect-[16/18] flex flex-col">
               <div className="flex-grow overflow-hidden">
                 <OperationalControl title="Operational Control" />
               </div>
