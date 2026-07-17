@@ -157,26 +157,44 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
         })}
       </div>
 
-      <button
-        type="button"
-        disabled={!selectedActor}
-        onClick={() => {
-          if (!selectedActor) return;
-          const currentActor = selectedActor;
-          const jsonName = actorLookup[currentActor] || currentActor;
-          const params = new URLSearchParams(window.location.search);
-          params.set('actor', currentActor);
-          params.set('json', jsonName);
-          window.location.href = `/character-select?${params.toString()}`;
-        }}
-        className={`mt-4 w-full font-bold uppercase py-2 border-2 transition-transform ${
-          selectedActor
-            ? 'bg-white text-black border-white hover:bg-neutral-200 active:scale-95 cursor-pointer'
-            : 'bg-transparent text-neutral-500 border-neutral-700 cursor-not-allowed opacity-50'
-        }`}
-      >
-        {clickState === '01' ? '[Create Agent]' : '[Open Agent]'}
-      </button>
+      <div className="flex flex-col gap-2 mt-4">
+        <button
+          type="button"
+          disabled={!selectedActor}
+          onClick={() => {
+            if (!selectedActor) return;
+            const currentActor = selectedActor;
+            const jsonName = actorLookup[currentActor] || currentActor;
+            const params = new URLSearchParams(window.location.search);
+            params.set('actor', currentActor);
+            params.set('json', jsonName);
+            window.location.href = `/character-select?${params.toString()}`;
+          }}
+          className={`w-full font-bold uppercase py-2 border-2 transition-transform ${
+            selectedActor
+              ? 'bg-white text-black border-white hover:bg-neutral-200 active:scale-95 cursor-pointer'
+              : 'bg-transparent text-neutral-500 border-neutral-700 cursor-not-allowed opacity-50'
+          }`}
+        >
+          {clickState === '01' ? '[Create Agent]' : '[Open Agent]'}
+        </button>
+
+        <button
+          type="button"
+          onClick={() => {
+            const params = new URLSearchParams(window.location.search);
+            if (selectedActor) {
+              const jsonName = actorLookup[selectedActor] || selectedActor;
+              params.set('actor', selectedActor);
+              params.set('json', jsonName);
+            }
+            window.location.href = `/invite?${params.toString()}`;
+          }}
+          className="w-full font-bold uppercase py-2 border-2 border-white bg-transparent text-white hover:bg-white hover:text-black transition-colors cursor-pointer"
+        >
+          [Invite Agent]
+        </button>
+      </div>
     </div>
   );
 }
