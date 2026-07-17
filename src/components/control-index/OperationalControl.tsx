@@ -226,6 +226,45 @@ export default function OperationalControl({
             Compiling Destination Environment...
           </div>
         )}
+
+        {!isFullScreen && (
+          <div className="absolute bottom-6 left-6 right-6 z-20">
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const form = e.currentTarget;
+                const input = form.elements.namedItem(
+                  'commandInput',
+                ) as HTMLInputElement;
+                if (input && input.value.trim()) {
+                  const val = input.value.trim();
+                  appendLog(`[COMMAND DISPATCHED] ${val}`, 'INFO');
+                  window.dispatchEvent(
+                    new CustomEvent('lobby-ws-send', {
+                      detail: val,
+                    }),
+                  );
+                  input.value = '';
+                }
+              }}
+              className="flex gap-2"
+            >
+              <input
+                name="commandInput"
+                type="text"
+                placeholder="ENTER COMMAND..."
+                className="w-full bg-black/80 border-2 border-white/30 text-white px-3 py-2 font-mono text-sm placeholder:text-white/40 focus:outline-none focus:border-amber-500 transition-colors backdrop-blur-sm"
+                autoComplete="off"
+              />
+              <button
+                type="submit"
+                className="bg-white text-black border-2 border-white px-4 py-2 font-mono text-sm font-bold uppercase hover:bg-black hover:text-white transition-colors cursor-pointer"
+              >
+                Execute
+              </button>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );
