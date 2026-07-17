@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Invite Agent">
+  <div
+    class="min-h-screen bg-black text-white flex flex-col items-center justify-center font-mono p-4"
+  >
+    <div
+      class="border-2 border-white p-8 max-w-md w-full text-center hard-shadow-sm"
+    >
+      <h1 class="text-2xl font-bold mb-6 uppercase tracking-wider">
+        [Invite Agent]
+      </h1>
+
+      <p class="mb-8 text-sm opacity-80">
+        Transmit synchronization coordinates to external operatives.
+      </p>
+
+      <div class="space-y-4 flex flex-col">
+        <button
+          onclick="navigator.clipboard.writeText(window.location.href); alert('Link Copied to Clipboard');"
+          class="w-full border-2 border-white py-3 font-bold hover:bg-white hover:text-black transition-colors uppercase block cursor-pointer"
+        >
+          Copy Secure Link
+        </button>
+        <a
+          href="https://twitter.com/intent/tweet?text=Join%20me%20in%20Camp%20Candor"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="w-full border-2 border-white py-3 font-bold hover:bg-white hover:text-black transition-colors uppercase block"
+        >
+          Transmit via Neural Net (X)
+        </a>
+      </div>
+
+      <div class="mt-8 pt-4 border-t-2 border-white/20">
+        <a
+          href="/lobby"
+          class="text-xs text-white/50 hover:text-white transition-colors underline"
+          >[Return to Lobby]</a
+        >
+      </div>
+    </div>
+  </div>
+</Layout>
