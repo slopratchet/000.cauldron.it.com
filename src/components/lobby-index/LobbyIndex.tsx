@@ -77,7 +77,7 @@ export default function LobbyIndex() {
 
   // Countdown timer state
   const [timeInSeconds, setTimeInSeconds] = useState<number>(3 * 60 + 33);
-  const [isTimerRunning] = useState<boolean>(true);
+  const [isTimerRunning, setIsTimerRunning] = useState<boolean>(false);
 
   // Decrement Countdown Timer
   useEffect(() => {
@@ -518,6 +518,13 @@ export default function LobbyIndex() {
       <div className="dot-matrix-overlay absolute inset-0 z-0 pointer-events-none"></div>
 
       <div className="max-w-7xl mx-auto w-full px-4 md:px-8 flex-grow flex flex-col relative z-10">
+        <button
+          onClick={() => setIsTimerRunning(true)}
+          className="w-full py-12 mb-4 bg-black text-[#E6E2D8] font-mono font-bold uppercase tracking-widest text-2xl border-4 border-black hover:bg-neutral-800 transition-colors"
+        >
+          {isTimerRunning ? '[ start adventure]' : '[open adventure]'}
+        </button>
+
         {/* Simple Utility Navigation Rail */}
         {isHeaderVisible && (
           <header className="mb-0 flex flex-col sm:flex-row justify-between items-start sm:items-center border-b-2 border-black pb-3">
