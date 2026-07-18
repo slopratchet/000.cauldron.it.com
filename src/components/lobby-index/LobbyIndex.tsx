@@ -580,17 +580,14 @@ export default function LobbyIndex() {
 
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
-          <section
-            id="operational-control-deck"
-            className="mt-3 mb-0 w-full h-[720px]"
-          >
+          <section id="operational-control-deck" className="mt-3 mb-0 w-full h-[720px]">
             <div className="w-full h-[720px] flex flex-col">
               <div className="flex-grow overflow-hidden">
                 <OperationalControl title="Operational Control" />
               </div>
 
               <form
-                className="mt-4 flex gap-4 w-full"
+                className="flex gap-[6px] w-full pt-[6px]"
                 onSubmit={(e) => {
                   e.preventDefault();
                   const formData = new FormData(e.currentTarget);
@@ -604,7 +601,7 @@ export default function LobbyIndex() {
                 <textarea
                   name="override_cmd"
                   rows={6}
-                  className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 hard-shadow-sm uppercase resize-none"
+                  className="flex-grow border-2 border-black px-4 py-3 font-mono text-sm bg-[#E6E2D8] text-black focus:outline-none placeholder:text-black/50 uppercase resize-none h-[120px]"
                   placeholder="ENTER COMMAND OVERRIDE..."
                   autoComplete="off"
                   onKeyDown={(e) => {
@@ -616,7 +613,7 @@ export default function LobbyIndex() {
                 />
                 <button
                   type="submit"
-                  className="border-2 border-black bg-black text-[#E6E2D8] px-8 font-mono font-bold hover:bg-neutral-800 transition-colors uppercase tracking-wider hard-shadow-sm cursor-pointer"
+                  className="border-2 border-black bg-black text-[#E6E2D8] px-8 font-mono font-bold hover:bg-neutral-800 transition-colors uppercase tracking-wider cursor-pointer h-[120px]"
                 >
                   Execute
                 </button>
