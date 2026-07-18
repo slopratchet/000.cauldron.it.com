@@ -87,7 +87,10 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
               });
             }}
           >
-            <ArrowLeft className="w-4 h-4 text-white" />
+            <ArrowLeft
+              className="w-12 h-4 text-white"
+              preserveAspectRatio="none"
+            />
           </button>
           <button
             type="button"
@@ -106,7 +109,10 @@ export default function TheaterMap({ seats }: TheaterMapProps) {
               });
             }}
           >
-            <ArrowRight className="w-4 h-4 text-white" />
+            <ArrowRight
+              className="w-12 h-4 text-white"
+              preserveAspectRatio="none"
+            />
           </button>
         </div>
       </h3>
