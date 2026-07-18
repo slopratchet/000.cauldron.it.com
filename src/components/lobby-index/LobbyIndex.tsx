@@ -580,7 +580,10 @@ export default function LobbyIndex() {
 
         {/* 4B. OPERATIONAL CONTROL */}
         {isLogsVisible && (
-          <section id="operational-control-deck" className="mt-3 mb-0 w-full h-[720px]">
+          <section
+            id="operational-control-deck"
+            className="mt-3 mb-0 w-full h-[720px]"
+          >
             <div className="w-full h-[720px] flex flex-col">
               <div className="flex-grow overflow-hidden">
                 <OperationalControl title="Operational Control" />
