@@ -1,7 +1,7 @@
 {
   "name": "002-actor-tristan-stag",
   "type": "module",
-  "version": "0.2.03",
+  "version": "0.2.04",
   "scripts": {
     "dev": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" astro dev",
     "build": "cross-env NODE_OPTIONS=\"--max-old-space-size=8192\" astro build",
