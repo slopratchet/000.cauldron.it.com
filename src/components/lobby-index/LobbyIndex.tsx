@@ -639,7 +639,12 @@ export default function LobbyIndex() {
 
         {/* VISUAL BUFFER */}
         {isLandscapeVisible && (isLogsVisible || isInputVisible) && (
-          <div className="w-[calc(100%+24px)] -ml-[12px] h-[68px] bg-black z-0 relative"></div>
+          <div className="w-[calc(100%+24px)] -ml-[12px] h-[68px] bg-black z-0 relative">
+            <div className="absolute top-0 left-0 w-1 h-1 bg-white"></div>
+            <div className="absolute top-0 right-0 w-1 h-1 bg-white"></div>
+            <div className="absolute bottom-0 left-0 w-1 h-1 bg-white"></div>
+            <div className="absolute bottom-0 right-0 w-1 h-1 bg-white"></div>
+          </div>
         )}
 
         {/* 2. UPPER REGISTRY & IMAGING PANEL */}
