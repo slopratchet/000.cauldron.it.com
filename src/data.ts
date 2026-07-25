@@ -170,8 +170,8 @@ Highlights:
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Watches by Theme',
-    visible: true,
-    disabled: false,
+    visible: false,
+    disabled: true,
     configureCampaignUrl: 'https://www.google.com',
     saveUrl: 'https://www.google.com',
     exploreSettingUrl: 'https://www.google.com',
@@ -231,8 +231,8 @@ Technical Breakdown:
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Professional',
-    visible: true,
-    disabled: false,
+    visible: false,
+    disabled: true,
     marqueeDirection: 'right',
     configureCampaignUrl: 'https://www.google.com',
     saveUrl: 'https://www.google.com',
@@ -283,7 +283,7 @@ Maintenance Notes:
   {
     id: 'mythrokahn',
     ref: 'Ref. 05',
-    name: 'All American Alligator Delivery System of Primal Mama',
+    name: 'Mythokahn',
     tagline:
       'A legendary high-stamina beastmaster relic forged in Saronite and Titansteel. Built for the rigorous demands of deep instanced dungeons and high-damage tanking.',
     description:
@@ -292,8 +292,8 @@ Maintenance Notes:
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Professional',
-    visible: true,
-    disabled: false,
+    visible: false,
+    disabled: true,
     configureCampaignUrl: 'https://www.google.com',
     saveUrl: 'https://www.google.com',
     exploreSettingUrl: 'https://www.google.com',
