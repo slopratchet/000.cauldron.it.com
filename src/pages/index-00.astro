@@ -1,12 +1,5 @@
 ---
 import Layout from '../layouts/Layout.astro';
-
-// SECTOR_RECOVERY_PROTOCOL: Automatic Redirect if already verified
-const auth = Astro.locals.auth();
-if (auth.userId) {
-  const target = '/watch';
-  return Astro.redirect(target);
-}
 ---
 
 <Layout title="Login | Protocol Entry Point">
@@ -192,14 +185,6 @@ if (auth.userId) {
     import { $clerkStore } from '@clerk/astro/client';
 
     console.log('BIO_PUNK_UI: INITIALIZING_SCRIPT_LOAD');
-
-    // Subscribe to store to handle the case where user is already signed in on client side
-    const unsubscribe = $clerkStore.subscribe((clerk) => {
-      if (clerk && clerk.loaded && clerk.user) {
-        console.log('BIO_PUNK_UI: USER_ALREADY_AUTHENTICATED_REDIRECTING');
-        window.location.href = '/watch';
-      }
-    });
 
     // Selectors for the Biopunk UI
 
@@ -403,7 +388,7 @@ if (auth.userId) {
 
           // Metadata Fork: Determine landing zone
           const userRole = clerk.user?.publicMetadata?.role;
-          const target = '/watch';
+          const target = '/';
           console.log('BIO_PUNK_UI: REDIRECT_TRIGGERED', { target, userRole });
           window.location.href = target;
         } else if (
@@ -447,7 +432,7 @@ if (auth.userId) {
           'UNKNOWN_IMPULSE_FAILURE';
 
         if (message.toUpperCase().includes('ALREADY SIGNED IN')) {
-          window.location.href = '/watch';
+          window.location.href = '/';
           return;
         }
 
