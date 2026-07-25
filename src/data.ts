@@ -16,9 +16,9 @@ export const STATIC_WATCH_DATA: Watch[] = [
     visible: true,
     disabled: false,
     marqueeDirection: 'left',
-    configureCampaignUrl: 'https://www.google.com',
+    configureCampaignUrl: '/title?idx=primalmama',
     saveUrl: '/watch?idx=primalmama',
-    exploreSettingUrl: 'https://www.google.com',
+    exploreSettingUrl: '/book?idx=primalmama',
     specs: {
       caseDiameter: 'iLvl 400 (40mm Core)',
       material: 'Saronite Alloy (Grade 904L), satin-brushed',
@@ -101,9 +101,9 @@ Tactical Checklist:
     visible: true,
     disabled: false,
     marqueeDirection: 'right',
-    configureCampaignUrl: 'https://www.google.com',
+    configureCampaignUrl: '/title?idx=slopratchet',
     saveUrl: '/watch?idx=slopratchet',
-    exploreSettingUrl: 'https://www.google.com',
+    exploreSettingUrl: '/book?idx=slopratchet',
     specs: {
       caseDiameter: 'iLvl 360 (36mm Core)',
       material: '18ct Arcanite-Melt, mirror-polished',
@@ -281,8 +281,8 @@ Maintenance Notes:
     ],
   },
   {
-    id: 'mythrokahn',
-    ref: 'Ref. 05',
+    id: 'mythokahn',
+    ref: 'sword and sorcery',
     name: 'Mythokahn',
     tagline:
       'A legendary high-stamina beastmaster relic forged in Saronite and Titansteel. Built for the rigorous demands of deep instanced dungeons and high-damage tanking.',
@@ -292,11 +292,11 @@ Maintenance Notes:
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Professional',
-    visible: false,
-    disabled: true,
-    configureCampaignUrl: 'https://www.google.com',
-    saveUrl: 'https://www.google.com',
-    exploreSettingUrl: 'https://www.google.com',
+    visible: true,
+    disabled: false,
+    configureCampaignUrl: '/title?idx=mythokahn',
+    saveUrl: '/config?idx=mythokahn',
+    exploreSettingUrl: '/book?idx=mythokahn',
     specs: {
       caseDiameter: 'iLvl 400 (40mm Core)',
       material: 'Saronite Alloy (Grade 904L), satin-brushed',
