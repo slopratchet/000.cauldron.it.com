@@ -24,6 +24,7 @@ const ACCESS_CONFIG = {
     // '/sheet',
     '/watch',
     '/log-out',
+    '/book',
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
