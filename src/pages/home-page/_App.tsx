@@ -338,8 +338,8 @@ export default function App() {
           </div>
 
           {dbData.meta.showButtonConfigure !== false && (
-            <button
-              onClick={handleOpenConfigure}
+            <a
+              href="/log-in"
               className="font-mono uppercase text-xs tracking-widest text-white hover:bg-white hover:text-black transition-colors px-6 py-2 border-2 border-white font-bold shrink-0 cursor-pointer flex items-center space-x-2"
             >
               <Sparkles
@@ -347,7 +347,7 @@ export default function App() {
                 className="text-white group-hover:text-black transition-colors"
               />
               <span>CONFIGURE</span>
-            </button>
+            </a>
           )}
         </div>
       </div>
