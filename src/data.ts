@@ -17,7 +17,7 @@ export const STATIC_WATCH_DATA: Watch[] = [
     disabled: false,
     marqueeDirection: 'left',
     configureCampaignUrl: 'https://www.google.com',
-    saveUrl: 'https://www.google.com',
+    saveUrl: '/watch?idx=primalmama',
     exploreSettingUrl: 'https://www.google.com',
     specs: {
       caseDiameter: 'iLvl 400 (40mm Core)',
@@ -102,7 +102,7 @@ Tactical Checklist:
     disabled: false,
     marqueeDirection: 'right',
     configureCampaignUrl: 'https://www.google.com',
-    saveUrl: 'https://www.google.com',
+    saveUrl: '/watch?idx=slopratchet',
     exploreSettingUrl: 'https://www.google.com',
     specs: {
       caseDiameter: 'iLvl 360 (36mm Core)',
