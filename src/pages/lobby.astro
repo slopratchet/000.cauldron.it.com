@@ -11,6 +11,11 @@ try {
 } catch (e) {
   console.error('Failed to fetch system status:', e);
 }
+
+const auth =
+  typeof Astro.locals.auth === 'function'
+    ? Astro.locals.auth()
+    : Astro.locals.auth;
 ---
 
 <Layout bodyClass="cimmerian-theme">
@@ -20,7 +25,15 @@ try {
 
   <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-0 relative z-10">
     <div class="flex justify-between items-center mb-4">
-      <span class="text-2xl font-bold uppercase tracking-tighter">LOBBY</span>
+      {
+        auth?.userId ? (
+          <span class="text-sm font-mono tracking-widest text-[#816f2e] uppercase">
+            TITAN PROTOCOL ACCESS // RAID DATABASE
+          </span>
+        ) : (
+          <span />
+        )
+      }
       <a
         href="/log-out"
         class="border-2 border-primary bg-paper px-4 py-1.5 font-display text-[10px] font-bold uppercase tracking-widest hover:bg-primary hover:text-paper transition-all active:scale-95"

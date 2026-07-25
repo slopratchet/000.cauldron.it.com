@@ -111,7 +111,15 @@ const auth =
 
   <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-8 relative z-10">
     <div class="flex justify-between items-center mb-4">
-      <span class="text-2xl font-bold">LOBBY</span>
+      {
+        auth?.userId ? (
+          <span class="text-sm font-mono tracking-widest text-[#816f2e] uppercase">
+            TITAN PROTOCOL ACCESS // RAID DATABASE
+          </span>
+        ) : (
+          <span />
+        )
+      }
       <a href="/project-status" class="text-primary hover:underline"
         >Project Status</a
       >
