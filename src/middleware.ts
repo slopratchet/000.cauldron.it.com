@@ -137,7 +137,9 @@ export const onRequest = sequence(
 
     // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---
     if (!auth.userId && !isPublicRoute(pathname)) {
-      return redirect('/log-in');
+      const url = new URL(request.url);
+      const targetUrl = encodeURIComponent(url.pathname + url.search);
+      return redirect(`/log-in?redirect_url=${targetUrl}`);
     }
 
     // --- GATE 3: FUTURE RBAC SECTOR ISOLATION (E.G., RUNNER INFRASTRUCTURE) ---
