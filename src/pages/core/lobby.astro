@@ -111,7 +111,19 @@ const auth =
 
   <div class="max-w-7xl mx-auto w-full px-4 md:px-8 pb-12 mt-8 relative z-10">
     <div class="flex justify-between items-center mb-4">
-      <span class="text-2xl font-bold">LOBBY</span>
+      <div class="flex flex-col">
+        <span class="text-2xl font-bold uppercase tracking-tighter">LOBBY</span>
+        {
+          auth?.userId && (
+            <span
+              class="text-[10px] tracking-widest font-mono uppercase mt-1"
+              style="color: #826f2e"
+            >
+              WELCOME // AUTHORIZED ACCESS
+            </span>
+          )
+        }
+      </div>
     </div>
 
     <div class="font-label text-[10px] tracking-widest uppercase">
