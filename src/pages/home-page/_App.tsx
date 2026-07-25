@@ -386,21 +386,34 @@ export default function App() {
                     : 'animate-[marquee_20s_linear_infinite]'
                 } whitespace-nowrap text-[8px] font-mono tracking-widest text-on-surface-variant font-bold uppercase`}
               >
-                {(mainTape.items || []).map((item, idx) => (
-                  <React.Fragment key={idx}>
-                    {item === 'TITAN-FORGED COOLDOWN SYSTEM ACCESS' ? (
-                      <a
-                        href="/book"
-                        className="cursor-pointer hover:underline"
-                      >
-                        {item}
-                      </a>
-                    ) : (
-                      <span>{item}</span>
-                    )}
-                    <span>•</span>
-                  </React.Fragment>
-                ))}
+                {(mainTape.items || []).map((item, idx) => {
+                  const isTitanForged =
+                    item === 'TITAN-FORGED COOLDOWN SYSTEM ACCESS';
+                  return (
+                    <React.Fragment key={idx}>
+                      {isTitanForged ? (
+                        <span
+                          className="cursor-pointer hover:opacity-70 transition-opacity"
+                          onClick={() => {
+                            const params = new URLSearchParams(
+                              window.location.search,
+                            );
+                            window.location.href =
+                              '/book' +
+                              (params.toString()
+                                ? '?' + params.toString()
+                                : '');
+                          }}
+                        >
+                          {item}
+                        </span>
+                      ) : (
+                        <span>{item}</span>
+                      )}
+                      <span>•</span>
+                    </React.Fragment>
+                  );
+                })}
               </div>
             </div>
           );

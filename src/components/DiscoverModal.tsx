@@ -321,7 +321,7 @@ export default function DiscoverModal({
                           onClick={() => {
                             const targetUrl =
                               watch.saveUrl || 'https://www.google.com';
-                            window.open(targetUrl, '_blank');
+                            window.location.href = targetUrl;
                             if (onToggleFavorite) onToggleFavorite();
                           }}
                           className={`w-full flex items-center justify-center space-x-2 py-3 px-6 uppercase text-sm font-bold tracking-widest border-2 transition-all duration-300 ease-out cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5 ${
@@ -342,7 +342,7 @@ export default function DiscoverModal({
                             const targetUrl =
                               watch.configureCampaignUrl ||
                               'https://www.google.com';
-                            window.open(targetUrl, '_blank');
+                            window.location.href = targetUrl;
                           }}
                           className="w-full flex items-center justify-center space-x-2 bg-surface text-primary py-3 uppercase text-sm font-bold tracking-widest border-2 border-primary hover:bg-[#8a752b] hover:text-white hover:border-[#8a752b] transition-all duration-300 ease-out cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
                         >
@@ -356,7 +356,7 @@ export default function DiscoverModal({
                               watch.exploreSettingUrl ||
                               watch.exploreSettingsUrl ||
                               'https://www.google.com';
-                            window.open(targetUrl, '_blank');
+                            window.location.href = targetUrl;
                           }}
                           className="w-full flex items-center justify-center space-x-2 bg-surface text-primary py-3 uppercase text-sm font-bold tracking-widest border-2 border-primary hover:bg-[#8a752b] hover:text-white hover:border-[#8a752b] transition-all duration-300 ease-out cursor-pointer shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-0.5 active:translate-y-0.5"
                         >

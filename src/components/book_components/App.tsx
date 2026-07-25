@@ -77,6 +77,7 @@ export default function App() {
   const [rightDrawerOpen, setRightDrawerOpen] = useState(false);
   const [leftDrawerOpen, setLeftDrawerOpen] = useState(false);
   const [showFilters, setShowFilters] = useState(true);
+  const [isDbButtonVisible, setIsDbButtonVisible] = useState(false);
 
   // Check URL search parameter for ?db=true
   const [isDbMode, setIsDbMode] = useState<boolean>(() => {
@@ -94,6 +95,19 @@ export default function App() {
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+        setIsDbButtonVisible(true);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
   }, []);
 
   const handleOpenDb = useCallback(() => {
@@ -162,7 +176,7 @@ export default function App() {
         <Header
           items={items}
           selectedItem={selectedItem}
-          onOpenDb={handleOpenDb}
+          onOpenDb={isDbButtonVisible ? handleOpenDb : undefined}
         />
       </div>
 
