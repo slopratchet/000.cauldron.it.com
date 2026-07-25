@@ -388,7 +388,16 @@ export default function App() {
               >
                 {(mainTape.items || []).map((item, idx) => (
                   <React.Fragment key={idx}>
-                    <span>{item}</span>
+                    {item === 'TITAN-FORGED COOLDOWN SYSTEM ACCESS' ? (
+                      <a
+                        href="/book"
+                        className="cursor-pointer hover:underline"
+                      >
+                        {item}
+                      </a>
+                    ) : (
+                      <span>{item}</span>
+                    )}
                     <span>•</span>
                   </React.Fragment>
                 ))}
