@@ -12,6 +12,7 @@ import Footer from '../../components/Footer';
 import FigureModal from '../../components/FigureModal';
 import DatabaseConsole from '../../components/DatabaseConsole';
 import { getMasterDb, parseTickerTape } from '../../dbStore';
+import { $clerkStore } from '@clerk/astro/client';
 
 function getOverlayPositionClasses(positionString: string) {
   const pos = (positionString || '').toLowerCase().trim();
@@ -94,6 +95,14 @@ function MarqueeOverlayBox({
 export default function App() {
   // Database Console Mode State
   const [isDbMode, setIsDbMode] = useState(false);
+  const [clerk, setClerk] = useState($clerkStore.get());
+
+  useEffect(() => {
+    const unsubscribe = $clerkStore.subscribe((newClerk) => {
+      setClerk(newClerk);
+    });
+    return () => unsubscribe();
+  }, []);
 
   useEffect(() => {
     const checkDbMode = () => {
@@ -265,8 +274,15 @@ export default function App() {
     <div className="bg-surface text-primary min-h-screen flex flex-col antialiased selection:bg-primary selection:text-surface">
       {/* Minimalist Action Control Bar */}
       <div className="bg-black text-white w-full py-4 px-6 z-40 sticky top-0 flex items-center justify-center border-b border-neutral-900 select-none relative">
-        <div className="absolute left-6 font-mono text-[10px] tracking-widest text-neutral-500 hidden lg:block">
-          TITAN PROTOCOL ACCESS // RAID DATABASE
+        <div className="absolute left-6 font-mono text-[10px] tracking-widest hidden lg:block">
+          {clerk?.user ? (
+            <span style={{ color: '#826f2e' }}>
+              WELCOME //{' '}
+              {clerk.user.username?.toUpperCase() ||
+                clerk.user.firstName?.toUpperCase() ||
+                'OPERATIVE'}
+            </span>
+          ) : null}
         </div>
         <div className="flex items-center space-x-6">
           <div className="flex space-x-5 text-white items-center">
