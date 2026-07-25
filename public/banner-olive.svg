@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="300" viewBox="0 0 1200 300">
+  <rect width="1200" height="300" fill="#8a752b"/>
+  <defs>
+    <pattern id="dotGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <circle cx="10" cy="10" r="1.2" fill="#6d5c21" opacity="0.35"/>
+    </pattern>
+    <linearGradient id="overlayGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#9a8433" stop-opacity="0.2"/>
+      <stop offset="100%" stop-color="#6a581e" stop-opacity="0.3"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="300" fill="url(#dotGrid)"/>
+  <rect width="1200" height="300" fill="url(#overlayGrad)"/>
+</svg>

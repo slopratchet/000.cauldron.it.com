@@ -1,0 +1,93 @@
+@theme {
+  --color-surface: #fcf9f2;
+  --color-surface-container-lowest: #ffffff;
+  --color-surface-container-low: #f6f3ec;
+  --color-surface-container: #f1eee7;
+  --color-surface-container-high: #ebe8e1;
+  --color-surface-container-highest: #e5e2db;
+  --color-on-surface: #1c1c18;
+  --color-on-surface-variant: #474747;
+  --color-primary: #000000;
+  --color-primary-container: #3b3b3b;
+  --color-secondary: #5e5e5e;
+  --color-outline-variant: #c6c6c6;
+
+  --font-headline: 'Epilogue', sans-serif;
+  --font-display: 'Epilogue', sans-serif;
+  --font-body: 'Newsreader', serif;
+  --font-label: 'Space Grotesk', sans-serif;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
+body {
+  background-image: radial-gradient(#c6c6c6 1px, transparent 1px);
+  background-size: 20px 20px;
+  background-color: #fcf9f2;
+  font-family: 'Newsreader', serif;
+}
+
+/* Custom sleek scrollbar styles to prevent high-contrast/colored browser default scrollbars */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #111111;
+}
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+  border: 2px solid #111111;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #555555;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  100% {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@keyframes marquee-reverse {
+  0% {
+    transform: translate3d(-50%, 0, 0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation-name: marquee;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
+
+.animate-marquee-reverse {
+  display: flex;
+  width: max-content;
+  animation-name: marquee-reverse;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+  will-change: transform;
+}
