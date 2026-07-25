@@ -220,18 +220,6 @@ export default function App() {
     localStorage.setItem('archive_protocol_configs', JSON.stringify(updated));
   };
 
-  // Trigger configure modal directly
-  const handleOpenConfigure = () => {
-    setCustomizerPreset(undefined);
-    const activeWatches = WATCH_DATA.filter(
-      (w) => !w.disabled && w.visible !== false && w.enabled !== false,
-    );
-    const defaultWatch =
-      activeWatches.length > 0 ? activeWatches[0] : WATCH_DATA[0];
-    setConfigureWatch(defaultWatch);
-    setIsConfigureOpen(true);
-  };
-
   // Load a saved configuration to the customizer
   const handleLoadConfig = (saved: SavedConfig) => {
     const watch =
@@ -338,16 +326,16 @@ export default function App() {
           </div>
 
           {dbData.meta.showButtonConfigure !== false && (
-            <button
-              onClick={handleOpenConfigure}
-              className="font-mono uppercase text-xs tracking-widest text-white hover:bg-white hover:text-black transition-colors px-6 py-2 border-2 border-white font-bold shrink-0 cursor-pointer flex items-center space-x-2"
+            <a
+              href="/log-in"
+              className="font-mono uppercase text-xs tracking-widest text-white hover:bg-white hover:text-black transition-colors px-6 py-2 border-2 border-white font-bold shrink-0 cursor-pointer flex items-center space-x-2 no-underline"
             >
               <Sparkles
                 size={12}
                 className="text-white group-hover:text-black transition-colors"
               />
               <span>CONFIGURE</span>
-            </button>
+            </a>
           )}
         </div>
       </div>
