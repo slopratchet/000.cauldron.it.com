@@ -1,7 +1,9 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import App from '../components/title-page/_App';
+import '../components/title-page/index.css';
 ---
 
-<Layout
->
+<Layout>
+  <App client:load />
 </Layout>
