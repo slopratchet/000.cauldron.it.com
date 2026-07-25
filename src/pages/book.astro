@@ -1,7 +1,15 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import App from '../components/book_components/App.tsx';
+import '../components/book_components/index.css';
 ---
 
 <Layout
+  bodyClass="cimmerian-theme bg-surface w-full h-full m-0 p-0 overflow-hidden"
 >
+  <div
+    style="height: 100vh; width: 100vw; display: flex; flex-direction: column; overflow: hidden; background-color: #fcf9f2;"
+  >
+    <App client:load />
+  </div>
 </Layout>
