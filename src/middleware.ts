@@ -28,7 +28,7 @@ const ACCESS_CONFIG = {
   ],
   publicExact: ['/'],
   // Paths reserved strictly for authenticating users to prevent auth-looping
-  authGateways: ['/', '/log-in', '/login', '/sign-up'],
+  authGateways: ['/log-in', '/login', '/sign-up'],
 };
 
 /**
@@ -105,8 +105,8 @@ export const onRequest = sequence(
       secretKey,
       signInUrl: '/log-in',
       signUpUrl: '/sign-up',
-      afterSignInUrl: '/watch',
-      afterSignUpUrl: '/watch',
+      afterSignInUrl: '/',
+      afterSignUpUrl: '/',
     })(context, next);
   }),
 
@@ -133,7 +133,7 @@ export const onRequest = sequence(
 
     // --- GATE 1: REDIRECT AUTHENTICATED USERS AWAY FROM PUBLIC AUTH PATHS ---
     if (auth.userId && isAuthGateway(pathname)) {
-      return redirect('/watch');
+      return redirect('/');
     }
 
     // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---
