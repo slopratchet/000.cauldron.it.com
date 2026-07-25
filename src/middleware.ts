@@ -22,7 +22,7 @@ const ACCESS_CONFIG = {
     '/location',
     // '/script',
     // '/sheet',
-    '/lobby',
+    '/watch',
     '/log-out',
   ],
   publicExact: ['/'],
@@ -104,8 +104,8 @@ export const onRequest = sequence(
       secretKey,
       signInUrl: '/log-in',
       signUpUrl: '/sign-up',
-      afterSignInUrl: '/lobby',
-      afterSignUpUrl: '/lobby',
+      afterSignInUrl: '/watch',
+      afterSignUpUrl: '/watch',
     })(context, next);
   }),
 
@@ -132,7 +132,7 @@ export const onRequest = sequence(
 
     // --- GATE 1: REDIRECT AUTHENTICATED USERS AWAY FROM PUBLIC AUTH PATHS ---
     if (auth.userId && isAuthGateway(pathname)) {
-      return redirect('/lobby');
+      return redirect('/watch');
     }
 
     // --- GATE 2: PROTECT PRIVATE SECTORS FROM ANONYMOUS IMPULSES ---
