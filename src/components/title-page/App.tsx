@@ -512,6 +512,7 @@ export default function App() {
     JSON.stringify(INITIAL_DATABASE_SCHEMA, null, 2),
   );
   const [isJsonValid, setIsJsonValid] = useState(true);
+  const [isDbButtonVisible, setIsDbButtonVisible] = useState(false);
 
   // Sync with URL parameter ?db=true
   useEffect(() => {
@@ -638,9 +639,21 @@ export default function App() {
         setPreOrderDrawerOpen(false);
         setActiveFeatureDrawer(null);
       }
+      if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+        e.preventDefault();
+      }
+    };
+    const handleKeyUp = (e: KeyboardEvent) => {
+      if (e.ctrlKey && e.key.toLowerCase() === 'd') {
+        setIsDbButtonVisible(true);
+      }
     };
     window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener('keyup', handleKeyUp);
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('keyup', handleKeyUp);
+    };
   }, []);
 
   // Utility to scroll smoothly
@@ -2894,16 +2907,18 @@ ALLIGATOR ALLEY FRANCHISE BIBLE CHARTER ENTRY.
       </AnimatePresence>
 
       {/* Fixed Floating Database Schema Button in bottom-right corner */}
-      <button
-        id="fixed-database-btn"
-        onClick={() => toggleDbMode(true)}
-        className="fixed bottom-6 right-6 z-50 font-mono text-xs font-bold uppercase tracking-wider bg-brand-surface border-thick shadow-hard p-3 hover:bg-brand-primary hover:text-brand-surface transition-all flex items-center gap-2 cursor-pointer"
-        title="Open Archive Database Schema Interface (?db=true)"
-        aria-label="Open Database Schema"
-      >
-        <Database className="w-5 h-5 stroke-[2.5]" />
-        <span className="hidden sm:inline font-black">?db=true</span>
-      </button>
+      {isDbButtonVisible && (
+        <button
+          id="fixed-database-btn"
+          onClick={() => toggleDbMode(true)}
+          className="fixed bottom-6 right-6 z-50 font-mono text-xs font-bold uppercase tracking-wider bg-brand-surface border-thick shadow-hard p-3 hover:bg-brand-primary hover:text-brand-surface transition-all flex items-center gap-2 cursor-pointer"
+          title="Open Archive Database Schema Interface (?db=true)"
+          aria-label="Open Database Schema"
+        >
+          <Database className="w-5 h-5 stroke-[2.5]" />
+          <span className="hidden sm:inline font-black">?db=true</span>
+        </button>
+      )}
     </div>
   );
 }
