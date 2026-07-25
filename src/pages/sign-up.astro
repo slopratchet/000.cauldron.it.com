@@ -363,7 +363,14 @@ import Layout from '../layouts/Layout.astro';
           if (currentSignUp.status === 'complete') {
             await clerk.setActive({ session: currentSignUp.createdSessionId });
             pivotToIntegration();
-            window.location.href = '/lobby';
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect_url');
+            window.location.href =
+              redirectUrl &&
+              redirectUrl.startsWith('/') &&
+              !redirectUrl.startsWith('//')
+                ? redirectUrl
+                : '/lobby';
           } else {
             console.error('VERIFICATION_INCOMPLETE:', currentSignUp);
             throw new Error('VERIFICATION_FAILED: SEQUENCE_MISMATCH.');
@@ -424,7 +431,14 @@ import Layout from '../layouts/Layout.astro';
           if (currentSignUp.status === 'complete') {
             await clerk.setActive({ session: currentSignUp.createdSessionId });
             pivotToIntegration();
-            window.location.href = '/lobby';
+            const params = new URLSearchParams(window.location.search);
+            const redirectUrl = params.get('redirect_url');
+            window.location.href =
+              redirectUrl &&
+              redirectUrl.startsWith('/') &&
+              !redirectUrl.startsWith('//')
+                ? redirectUrl
+                : '/lobby';
           } else if (currentSignUp.status === 'missing_requirements') {
             console.warn('MISSING_REQUIREMENTS:', {
               missingFields: currentSignUp.missingFields,
