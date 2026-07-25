@@ -3,7 +3,7 @@ import { Watch } from './types';
 export const STATIC_WATCH_DATA: Watch[] = [
   {
     id: 'primal-mama',
-    ref: 'science fantasy',
+    ref: 'primalmama',
     name: 'An All-American Alligator Tail Delivery System of Primal Mama',
     tagline:
       'A legendary high-stamina beastmaster relic forged in Saronite and Titansteel. Built for the rigorous demands of deep instanced dungeons and high-damage tanking.',
@@ -88,7 +88,7 @@ Tactical Checklist:
   },
   {
     id: 'toot-and-scute-unusual-simulation-service',
-    ref: 'spy thriller',
+    ref: 'glopratcht',
     name: 'Toot & Scute Unusual Slopratchet Service',
     tagline:
       'A prestigious artifact of guild leadership and high-level governance. Uncompromising spell power in an unyielding gold-melt chassis.',
