@@ -470,10 +470,18 @@ export const DEFAULT_MASTER_DB: MasterDb = {
 const STORAGE_KEY = 'archive_protocol_master_db';
 
 export function getMasterDb(): MasterDb {
-  const stored = (typeof window !== 'undefined' ? localStorage.getItem.bind(localStorage) : () => null)(STORAGE_KEY);
+  const stored = (
+    typeof window !== 'undefined'
+      ? localStorage.getItem.bind(localStorage)
+      : () => null
+  )(STORAGE_KEY);
   if (!stored) {
     // Merge existing localstorage-based user saved_configs if any
-    const localConfigs = (typeof window !== 'undefined' ? localStorage.getItem.bind(localStorage) : () => null)('archive_protocol_configs');
+    const localConfigs = (
+      typeof window !== 'undefined'
+        ? localStorage.getItem.bind(localStorage)
+        : () => null
+    )('archive_protocol_configs');
     const db = { ...DEFAULT_MASTER_DB };
     if (localConfigs) {
       try {
@@ -604,12 +612,14 @@ export function getMasterDb(): MasterDb {
 }
 
 export function saveMasterDb(db: MasterDb): void {
-  if (typeof window !== 'undefined') localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
+  if (typeof window !== 'undefined')
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(db));
   // Sync back to traditional keys to avoid breaking existing dialog components
-  if (typeof window !== 'undefined') localStorage.setItem(
-    'archive_protocol_configs',
-    JSON.stringify(db.saved_configs),
-  );
+  if (typeof window !== 'undefined')
+    localStorage.setItem(
+      'archive_protocol_configs',
+      JSON.stringify(db.saved_configs),
+    );
 }
 
 export function resetMasterDb(): void {
