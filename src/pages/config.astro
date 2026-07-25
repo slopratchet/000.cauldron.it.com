@@ -1,5 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ConfigApp from '../components/config-page/ConfigApp';
 ---
 
-<Layout />
+<Layout>
+  <ConfigApp client:load />
+</Layout>
