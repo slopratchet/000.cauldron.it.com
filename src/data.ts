@@ -13,8 +13,8 @@ export const STATIC_WATCH_DATA: Watch[] = [
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Professional',
-    visible: true,
-    disabled: false,
+    visible: false,
+    disabled: true,
     marqueeDirection: 'left',
     configureCampaignUrl: '/title?idx=primalmama',
     saveUrl: '/watch?idx=primalmama',
@@ -98,8 +98,8 @@ Tactical Checklist:
     image:
       'https://lh3.googleusercontent.com/aida-public/AB6AXuDdl9VBGgYflVvCUUiBCfry4VXkgU62QGsuwhJDTKDECmR303pDJ71dsA5o13VL265MLZvzrv431bKkK6Kw6A52mVjQw8ZRa7hkmZnLbvtqZtKoFjf_yuH_gBup-brt7IEmd_lnmDRsoqBqow4rX6EaK_mXWTv1umNNE9NQ9C9yST6YWU3Nd1vYIihERxdEsWGK5k5x9ITDQPGzmCdWwYp1ozjj71BKPXCDGgl5av5SWZmUxvRgEjNdW7cwG2QPf4CPy8-neOhdVQ',
     category: 'Classic',
-    visible: true,
-    disabled: false,
+    visible: false,
+    disabled: true,
     marqueeDirection: 'right',
     configureCampaignUrl: '/title?idx=slopratchet',
     saveUrl: '/watch?idx=slopratchet',
